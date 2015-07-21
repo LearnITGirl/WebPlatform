@@ -1,8 +1,8 @@
 # Contributing to Learn IT, Girl
 
-Learn IT, Girl web platform welcomes contributors, and pull requests are very welcome.
+Learn IT, Girl web platform welcomes all contributors.
 
-First, make sure you have `Ruby on Rails` (we're using v 4.2.0), `PostgreSQL` and `bower` installed.
+First, make sure you have `Ruby on Rails` (we're using v 4.2.1), `PostgreSQL` and `bower` installed.
 
 Then, you'll need to install gem dependencies:
 
@@ -17,6 +17,4 @@ Now you can start server `rails s` and see this application in your browser on `
 
 ## Pull requests
 
-Please make sure that your branch starts with `id` of the story you want to implement e.g: `123_initialize_app`. 
-
-Before submitting pull request, ensure that your changes are well tested :) 
+Before submitting pull request, please make sure that your changes are well tested :) Remember to also include link to the story you implemented.

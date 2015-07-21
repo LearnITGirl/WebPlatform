@@ -9,4 +9,9 @@ html
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
+  body
+    .container-fluid
+      .row
+        .col-xs-12
+          = yield
     = javascript_include_tag 'application', charset: "utf-8"
