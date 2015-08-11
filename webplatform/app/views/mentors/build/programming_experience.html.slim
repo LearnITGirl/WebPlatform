@@ -1,0 +1,48 @@
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      h1.text-center Apply to become a LITG mentor
+      = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
+        - if @mentor.errors.present?
+          .alert.alert-danger.text-center
+            = @mentor.errors.full_messages.join(", ")
+        .form-group
+          label What is your professional background?
+          h5 If you don't have experience working, tell us about your education
+          = f.text_area :background, class: "form-control"
+        .form-group
+          label Are you familiar with Git, GitHub or BitBucket?
+          .radio
+            label
+              = f.radio_button :git, true
+              | Yes
+          .radio
+            label
+              = f.radio_button :git, false
+             | No
+        .form-group
+          label What programming languages do you know and would like to teach for the mentorship program?
+          h5 Please check all that apply. You will only teach one of the selected ones.
+          - Mentor::AVAILABLE_LANGUAGES.each do |k, v|
+            .checkbox
+              label
+                = check_box_tag "programming_languages[]", k, f.object.programming_languages.include?(k)
+                = v
+          .checkbox
+            label
+              = check_box_tag "programming_languages[]", "other", f.object.programming_languages.include?("other")
+              | Other
+              - if @mentor.errors.present? && @mentor.errors[:other_programming_language].present?
+                .field_with_errors
+                  = text_field_tag :other_language, nil, class: "form-control"
+              - else
+                = text_field_tag :other_language, other_language_value, class: "form-control"
+        .form-group
+          label For each programming language you selected, tell us about your experience with this language. Where have you used it? What projects have you done in those languages?
+          = f.text_area :programming_experience, class: "form-control"
+        .form-group.buttons.text-center
+          = link_to "Back", previous_wizard_path, class: "btn btn-primary"
+          = button_tag(type: 'submit', class: "btn btn-primary") do
+            | Next step
+          p
+            | Step 3/4

@@ -31,11 +31,11 @@
           label Would you like to teach absolute beginners or women who want to learn a new language?
           .checkbox
             label
-              = check_box_tag :mentee_level[], "beginners"
+              = check_box_tag "mentee_level[]", "beginners", f.object.mentee_level.include?("beginners")
               | Absolute beginners
           .checkbox
             label
-              = check_box_tag :mentee_level[], "with experience"
+              = check_box_tag "mentee_level[]", "with experience", f.object.mentee_level.include?("with experience")
               | Women who already know a language and would like to learn another
         .form-group
           label Have you ever mentored someone or taught classes?

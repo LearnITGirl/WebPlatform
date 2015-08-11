@@ -9,4 +9,9 @@ module MentorsHelper
   def timezone_to_offset_string(timezone)
     timezone.now.utc_offset / 3600
   end
+
+  def other_language_value
+    other = @mentor.programming_languages.select{|a| !Mentor::AVAILABLE_LANGUAGES.keys.include?(a)}
+    other.present? ? other.reject{|a| a == "other"} : nil
+  end
 end
