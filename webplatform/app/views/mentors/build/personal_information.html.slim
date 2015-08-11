@@ -1,0 +1,44 @@
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      h1.text-center Apply to become a LITG mentor
+      p.text-center
+        | Let us know a little about yourself
+      = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
+        - if @mentor.errors.present?
+          .alert.alert-danger.text-center
+            = @mentor.errors.full_messages.join(", ")
+        .form-group
+          = f.text_field :first_name, class: "form-control text-center", placeholder: "First name"
+        .form-group
+          = f.text_field :last_name, class: "form-control text-center", placeholder: "Last name"
+        .form-group
+          = f.text_field :email, class: "form-control text-center", placeholder: "Email"
+        .form-group
+          label Gender:
+          .radio
+            label
+              = f.radio_button :gender, :female
+              | Female
+          .radio
+            label
+              = f.radio_button :gender, :male
+              | Male
+          .radio
+            label
+              = f.radio_button :gender, :other
+              | Other
+        .form-group
+          label.bottom-space Where are you from?
+          = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+        .form-group
+          label.bottom-space Where will you be during the program (October to December)?
+          = f.select :program_country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.program_country), {prompt: "Choose your country"}, class: "form-control"
+        .form-group
+          label.bottom-space Which timezone you will be at during the program (October to December)?
+          = f.select :time_zone, options_for_select(timezone_options, selected: f.object.time_zone), {prompt: "Choose your timezone"}, class: "form-control"
+        .form-group.buttons.text-center
+          = button_tag(type: 'submit', class: "btn btn-primary") do
+            | Next step
+          p
+            | Step 1/4

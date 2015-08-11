@@ -1,0 +1,58 @@
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      h1.text-center Apply to become a LITG mentor
+      = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
+        - if @mentor.errors.present?
+          .alert.alert-danger.text-center
+            = @mentor.errors.full_messages.join(", ")
+        .form-group
+          label What motivated you to become mentor?
+          = f.text_area :motivation, class: "form-control"
+        .form-group
+          label Can you read and write in English?
+          .radio
+            label
+              = f.radio_button :english_level, "very well"
+              | Very well
+          .radio
+            label
+              = f.radio_button :english_level, "not so well"
+              | Not so well
+          .radio
+            label
+              = f.radio_button :english_level, "good enough"
+              | Good enough
+          .radio
+            label
+              = f.radio_button :english_level, "no"
+              | No
+        .form-group
+          label Would you like to teach absolute beginners or women who want to learn a new language?
+          .checkbox
+            label
+              = check_box_tag :mentee_level[], "beginners"
+              | Absolute beginners
+          .checkbox
+            label
+              = check_box_tag :mentee_level[], "with experience"
+              | Women who already know a language and would like to learn another
+        .form-group
+          label Have you ever mentored someone or taught classes?
+          .radio
+            label
+              = f.radio_button :experienced, true
+              | Yes
+          .radio
+            label
+              = f.radio_button :experienced, false
+              | No
+        .form-group
+          label Tell us about your experience
+          = f.text_area :mentor_experience, class: "form-control"
+        .form-group.buttons.text-center
+          = link_to "Back", previous_wizard_path, class: "btn btn-primary"
+          = button_tag(type: 'submit', class: "btn btn-primary") do
+            | Next step
+          p
+            | Step 2/4
