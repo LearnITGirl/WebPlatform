@@ -1,0 +1,24 @@
+<div class="row">
+   <div class="container" style="width:50%">
+      <img id="logo-img-id" src="https://sites.google.com/site/learnitgirl/_/rsrc/1411988271580/config/customLogo.gif?revision=17" width="100%" alt="Learn IT, Girl!" class="sites-logo-centered sites-chrome-header-valign-top ">
+      <h1>Subscribe to our newsletter</h1>
+      <%= form_tag('/subscribe/subscribe', method: "post", id: "subscribe") do -%>
+         <div class="form-group">
+            <%= email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control", required: true}) %>
+         </div>
+         <div class="form-group">
+         <%= text_field(:list, :first_name,  {id: "first_name", placeholder: "First Name", class: "form-control", required: true}) %>
+         </div>
+         <div class="form-group">
+         <%= text_field(:list, :last_name,  {id: "last_name", placeholder: "Last Name", class: "form-control", required: true}) %>
+         </div>
+         <% if flash.alert %>
+         <p class="bg-danger" style="padding:15px"><%= flash.alert%></p>
+         <% end %>
+         <% if flash.notice %>
+         <p class="bg-success" style="padding:15px"><%= flash.notice%></p>
+         <% end %>
+         <%= submit_tag("Subscribe", {class: "btn btn-default pull-right"}) %>
+      <% end %>
+   </div>
+</div>

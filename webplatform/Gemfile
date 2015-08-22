@@ -18,6 +18,8 @@ gem 'dotenv-rails'
 
 gem "bower-rails", "~> 0.10.0"
 
+gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
+
 group :development, :test do
   gem 'pry-rails'
 end
