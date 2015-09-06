@@ -24,7 +24,7 @@
         .form-group
           label What programming languages do you know and would like to teach for the mentorship program?
           h5 Please check all that apply. You will only teach one of the selected ones.
-          - MentorApplication::AVAILABLE_LANGUAGES.each do |k, v|
+          - available_languages.each do |k, v|
             .checkbox
               label
                 = check_box_tag "programming_languages[]", k, f.object.programming_languages.include?(k)

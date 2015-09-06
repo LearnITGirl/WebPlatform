@@ -18,12 +18,6 @@ class MentorApplication < ActiveRecord::Base
   validates :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
             presence: true, on: :update, if: :done_or_details?
 
-  AVAILABLE_LANGUAGES = {
-    "c" => "C", "c_plus_plus" => "C++", "java" => "Java", "python" => "Python",
-    "c_sharp" => "C#", "dot_net" => ".NET", "html_css" => "HTML, CSS",
-    "javascript" => "JavaScript", "ruby" => "Ruby", "php" => "PHP"
-  }
-
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
 
   def done?
