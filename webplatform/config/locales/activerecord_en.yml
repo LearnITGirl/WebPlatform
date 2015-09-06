@@ -2,7 +2,12 @@ en:
   activerecord:
     attributes:
       mentor_application:
+        sources: LITG source information
+        engagements: Engagements during the program
+        background: Programming background
         time_availability:
+          one: Time Availability
+          other: Time Availabilities
           below_1: Under one hour per week
           up_to_2: 1-2 hours per week
           up_to_5: 3-5 hours per week

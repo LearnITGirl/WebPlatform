@@ -6,9 +6,6 @@ class MentorApplications::BuildController < ApplicationController
   def show
     @mentor = MentorApplication.find(params[:mentor_application_id])
 
-    #case step
-    #when :personal_information
-    #end
     render_wizard
   end
 
@@ -35,11 +32,13 @@ class MentorApplications::BuildController < ApplicationController
   end
 
   def mentor_params
-    params.require(:mentor_application).permit(
+    param = params.require(:mentor_application).permit(
       :first_name, :last_name, :country, :email, :gender, :time_zone, :motivation,
       :english_level, :experienced, :mentor_experience, :background, :git,
       :programming_experience, :sources, :application_idea, :concept_explanation,
-      :time_availability, :engagements, :program_country
+      :engagements, :program_country
     ).merge({build_step: step})
+    param[:time_availability] = params[:mentor_application][:time_availability].to_i if params[:mentor_application][:time_availability].present?
+    param
   end
 end

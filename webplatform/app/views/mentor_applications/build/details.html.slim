@@ -1,7 +1,7 @@
 .wizard
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-      h1.text-center Apply to become a LITG mentor
+      h1.text-center.green-text Apply to become a LITG mentor
       = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
         - if @mentor.errors.present?
           .alert.alert-danger.text-center
@@ -25,18 +25,18 @@
           - available_engagements.each do |k, v|
             .checkbox
               label
-                = check_box_tag "engagements[]", k, f.object.engagements && f.object.engagements.include?(k)
+                = check_box_tag "engagements[]", k, f.object.engagements && f.object.engagements.include?(k.to_s)
                 = v
         .form-group
           label Where did you find out about the program?
           - program_sources.each do |k, v|
             .checkbox
               label
-                = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k)
+                = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k.to_s)
                 = v
         .form-group.buttons.text-center
-          = link_to "Back", previous_wizard_path, class: "btn btn-primary"
-          = button_tag(type: 'submit', class: "btn btn-primary") do
+          = link_to "Back", previous_wizard_path, class: "btn btn-pink"
+          = button_tag(type: 'submit', class: "btn btn-pink") do
             | Finish
           p
             | Step 4/4

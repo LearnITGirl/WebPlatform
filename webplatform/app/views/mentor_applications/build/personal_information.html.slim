@@ -1,7 +1,7 @@
 .wizard
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-      h1.text-center Apply to become a LITG mentor
+      h1.text-center.green-text Apply to become a LITG mentor
       p.text-center
         | Let us know a little about yourself
       = form_for @mentor, url: wizard_path(step, mentor_application_id: @mentor.id), method: "put" do |f|
@@ -38,7 +38,7 @@
           label.bottom-space Which timezone you will be at during the program (October to December)?
           = f.select :time_zone, options_for_select(timezone_options, selected: f.object.time_zone), {prompt: "Choose your timezone"}, class: "form-control"
         .form-group.buttons.text-center
-          = button_tag(type: 'submit', class: "btn btn-primary") do
+          = button_tag(type: 'submit', class: "btn btn-pink") do
             | Next step
           p
             | Step 1/4

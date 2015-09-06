@@ -23,9 +23,21 @@
   }
 }
 
+.green-text {
+  color: #01b2ac !important;
+}
+
 #other_language {
   position: relative;
   top: -25px;
   left: 50px;
   width: 200px;
+}
+
+.btn-pink {
+  background-color: #f19eae;
+  color: #fff;
+  &:hover, &:active, &:focus {
+    color: #fff;
+  }
 }

@@ -1,20 +1,20 @@
 class MentorApplication < ActiveRecord::Base
 
-validates :first_name, :last_name, :email, :gender, :country, :program_country,
+  validates :first_name, :last_name, :email, :gender, :country, :program_country,
             :time_zone, presence: true, on: :update, if: :done_or_personal_information?
 
   validates :motivation, :english_level, :mentee_level,
             :mentor_experience, presence: true, on: :update, if: :done_or_experience?
 
-  validates :background, :programming_languages, :git, :programming_experience,
+  validates :background, :programming_languages, :programming_experience,
             presence: true, on: :update, if: :done_or_programming_experience?
 
   validates :email, format: { with: REGEXP_EMAIL }, on: :update, if: :done_or_personal_information?
 
   validate :other_language, on: :update, if: :done_or_programming_experience?
 
-  validate :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
-           on: :update, if: :done_or_details?
+  validates :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
+            presence: true, on: :update, if: :done_or_details?
 
   AVAILABLE_LANGUAGES = {
     "c" => "C", "c_plus_plus" => "C++", "java" => "Java", "python" => "Python",
