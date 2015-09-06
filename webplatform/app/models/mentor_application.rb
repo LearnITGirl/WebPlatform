@@ -11,6 +11,8 @@ class MentorApplication < ActiveRecord::Base
 
   validates :email, format: { with: REGEXP_EMAIL }, on: :update, if: :done_or_personal_information?
 
+  validate :already_applied, on: :update, if: :done_or_personal_information?
+
   validate :other_language, on: :update, if: :done_or_programming_experience?
 
   validates :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
@@ -49,6 +51,12 @@ class MentorApplication < ActiveRecord::Base
   def other_language
     if programming_languages && programming_languages.include?(nil) || programming_languages.include?("")
       errors.add(:other_programming_language, "can't be blank")
+    end
+  end
+
+  def already_applied
+    if MentorApplication.where(email: email).where.not(id: id).present?
+      errors.add(:base, "You already applied to be a mentor")
     end
   end
 end

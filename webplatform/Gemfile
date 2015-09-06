@@ -25,6 +25,7 @@ gem 'carmen-rails'
 
 group :development, :test do
   gem 'pry-rails'
+  gem "letter_opener"
 end
 
 group :test do
