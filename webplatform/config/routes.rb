@@ -1,7 +1,7 @@
 Webplatform::Application.routes.draw do
   root 'home#index'
 
-  resources :mentors do
-    resources :build, controller: 'mentors/build'
+  resources :mentor_applications do
+    resources :build, controller: 'mentor_applications/build'
   end
 end

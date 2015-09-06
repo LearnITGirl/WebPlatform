@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150907080605) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  create_table "mentors", force: :cascade do |t|
+  create_table "mentor_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"

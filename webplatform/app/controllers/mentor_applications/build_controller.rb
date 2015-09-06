@@ -1,10 +1,10 @@
-class Mentors::BuildController < ApplicationController
+class MentorApplications::BuildController < ApplicationController
   include Wicked::Wizard
 
   steps :personal_information, :experience, :programming_experience, :details, :done
 
   def show
-    @mentor = Mentor.find(params[:mentor_id])
+    @mentor = MentorApplication.find(params[:mentor_application_id])
 
     #case step
     #when :personal_information
@@ -13,7 +13,7 @@ class Mentors::BuildController < ApplicationController
   end
 
   def update
-    @mentor = Mentor.find(params[:mentor_id])
+    @mentor = MentorApplication.find(params[:mentor_application_id])
 
     case step
     when :experience
@@ -25,6 +25,8 @@ class Mentors::BuildController < ApplicationController
         params[:programming_languages] = []
       end
       @mentor.update_attributes(mentor_params.merge({programming_languages: params[:programming_languages]}))
+    when :details
+      @mentor.update_attributes(mentor_params.merge({engagements: params[:engagements], sources: params[:sources]}))
     else
       @mentor.update_attributes(mentor_params)
     end
@@ -33,7 +35,7 @@ class Mentors::BuildController < ApplicationController
   end
 
   def mentor_params
-    params.require(:mentor).permit(
+    params.require(:mentor_application).permit(
       :first_name, :last_name, :country, :email, :gender, :time_zone, :motivation,
       :english_level, :experienced, :mentor_experience, :background, :git,
       :programming_experience, :sources, :application_idea, :concept_explanation,

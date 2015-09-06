@@ -1,6 +1,6 @@
-class Mentor < ActiveRecord::Base
+class MentorApplication < ActiveRecord::Base
 
-  validates :first_name, :last_name, :email, :gender, :country, :program_country,
+validates :first_name, :last_name, :email, :gender, :country, :program_country,
             :time_zone, presence: true, on: :update, if: :done_or_personal_information?
 
   validates :motivation, :english_level, :mentee_level,
@@ -13,11 +13,16 @@ class Mentor < ActiveRecord::Base
 
   validate :other_language, on: :update, if: :done_or_programming_experience?
 
+  validate :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
+           on: :update, if: :done_or_details?
+
   AVAILABLE_LANGUAGES = {
     "c" => "C", "c_plus_plus" => "C++", "java" => "Java", "python" => "Python",
     "c_sharp" => "C#", "dot_net" => ".NET", "html_css" => "HTML, CSS",
     "javascript" => "JavaScript", "ruby" => "Ruby", "php" => "PHP"
   }
+
+  enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
 
   def done?
     build_step.to_s == "done"
@@ -33,6 +38,10 @@ class Mentor < ActiveRecord::Base
 
   def done_or_programming_experience?
     build_step.to_s == "programming_experience" || done?
+  end
+
+  def done_or_details?
+    build_step.to_s == "details" || done?
   end
 
   private

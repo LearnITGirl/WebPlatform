@@ -2,7 +2,7 @@
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
       h1.text-center Apply to become a LITG mentor
-      = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
+      = form_for @mentor, url: wizard_path(step, mentor_application_id: @mentor.id), method: "put" do |f|
         - if @mentor.errors.present?
           .alert.alert-danger.text-center
             = @mentor.errors.full_messages.join(", ")
@@ -31,11 +31,11 @@
           label Would you like to teach absolute beginners or women who want to learn a new language?
           .checkbox
             label
-              = check_box_tag "mentee_level[]", "beginners", f.object.mentee_level.include?("beginners")
+              = check_box_tag "mentee_level[]", "beginners", f.object.mentee_level && f.object.mentee_level.include?("beginners")
               | Absolute beginners
           .checkbox
             label
-              = check_box_tag "mentee_level[]", "with experience", f.object.mentee_level.include?("with experience")
+              = check_box_tag "mentee_level[]", "with experience", f.object.mentee_level && f.object.mentee_level.include?("with experience")
               | Women who already know a language and would like to learn another
         .form-group
           label Have you ever mentored someone or taught classes?

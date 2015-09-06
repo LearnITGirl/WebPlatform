@@ -14,16 +14,16 @@
           label Are you familiar with Git, GitHub or BitBucket?
           .radio
             label
-              = f.radio_button :git, true
+              = f.radio_button :git, 1, checked: f.object.git == true
               | Yes
           .radio
             label
-              = f.radio_button :git, false
-             | No
+              = f.radio_button :git, 0, checked: f.object.git == false
+              | No
         .form-group
           label What programming languages do you know and would like to teach for the mentorship program?
           h5 Please check all that apply. You will only teach one of the selected ones.
-          - Mentor::AVAILABLE_LANGUAGES.each do |k, v|
+          - MentorApplication::AVAILABLE_LANGUAGES.each do |k, v|
             .checkbox
               label
                 = check_box_tag "programming_languages[]", k, f.object.programming_languages.include?(k)

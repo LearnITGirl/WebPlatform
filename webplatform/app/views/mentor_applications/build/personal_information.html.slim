@@ -4,7 +4,7 @@
       h1.text-center Apply to become a LITG mentor
       p.text-center
         | Let us know a little about yourself
-      = form_for @mentor, url: wizard_path(step, mentor_id: @mentor.id), method: "put" do |f|
+      = form_for @mentor, url: wizard_path(step, mentor_application_id: @mentor.id), method: "put" do |f|
         - if @mentor.errors.present?
           .alert.alert-danger.text-center
             = @mentor.errors.full_messages.join(", ")
