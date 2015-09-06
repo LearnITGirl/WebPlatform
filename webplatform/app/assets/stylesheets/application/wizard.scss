@@ -21,13 +21,15 @@
     resize: none;
     min-height: 120px;
   }
+
+  span.green-text {margin-bottom: 10px;}
 }
 
 .green-text {
   color: #01b2ac !important;
 }
 
-#other_language {
+#other_language, #other_lang {
   position: relative;
   top: -25px;
   left: 50px;
@@ -37,6 +39,7 @@
 .btn-pink {
   background-color: #f19eae;
   color: #fff;
+  margin: 10px;
   &:hover, &:active, &:focus {
     color: #fff;
   }

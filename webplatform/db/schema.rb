@@ -27,6 +27,32 @@ ActiveRecord::Schema.define(version: 20150907080605) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "mentee_applications", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "gender"
+    t.string   "country"
+    t.string   "program_country"
+    t.string   "time_zone"
+    t.text     "motivation"
+    t.string   "english_level"
+    t.text     "experience"
+    t.string   "programming_level"
+    t.text     "background"
+    t.string   "known_programming_languages",           default: [], array: true
+    t.string   "programming_language"
+    t.text     "project_proposal"
+    t.text     "programming_experience"
+    t.text     "roadmap"
+    t.integer  "time_availability",           limit: 2
+    t.string   "engagements",                           default: [], array: true
+    t.string   "sources",                               default: [], array: true
+    t.string   "build_step"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "mentor_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"

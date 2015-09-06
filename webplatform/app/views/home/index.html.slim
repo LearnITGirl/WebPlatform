@@ -1,3 +1,6 @@
 h1 Find me in app/views/home/index.html.slim
 
-= link_to "Apply to become mentor", new_mentor_application_path
+.row
+  .col-xs-12
+    = link_to "Apply to become mentor", new_mentor_application_path, class: "btn btn-pink"
+    = link_to "Apply to become mentee", new_mentee_application_path, class: "btn btn-pink"
