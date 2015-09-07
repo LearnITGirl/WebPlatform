@@ -16,6 +16,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'dotenv-rails'
 
+gem "sorcery"
+
 gem "bower-rails", "~> 0.10.0"
 
 group :development, :test do
