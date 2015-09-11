@@ -13,5 +13,6 @@ html
     .container-fluid
       .row
         .col-xs-12
+          = render "shared/flash_messages"
           = yield
     = javascript_include_tag 'application', charset: "utf-8"

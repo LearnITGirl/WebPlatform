@@ -20,8 +20,12 @@ gem "sorcery"
 
 gem "bower-rails", "~> 0.10.0"
 
+gem "wicked"
+gem 'carmen-rails'
+
 group :development, :test do
   gem 'pry-rails'
+  gem "letter_opener"
 end
 
 group :test do

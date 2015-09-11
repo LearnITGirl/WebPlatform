@@ -1,0 +1,46 @@
+.wizard {
+  h1 {margin-bottom: 30px;}
+
+  p {margin-bottom: 20px;}
+
+  label.bottom-space{margin-bottom: 15px; }
+
+  .form-group {margin-bottom: 20px;}
+
+  .field_with_errors .form-control {
+    border: 1px solid #CE2D29;
+  }
+
+  .buttons {
+    button, a {
+      margin: 30px 5px 10px;
+    }
+  }
+
+  textarea {
+    resize: none;
+    min-height: 120px;
+  }
+
+  span.green-text {margin-bottom: 10px;}
+}
+
+.green-text {
+  color: #01b2ac !important;
+}
+
+#other_language, #other_lang {
+  position: relative;
+  top: -25px;
+  left: 50px;
+  width: 200px;
+}
+
+.btn-pink {
+  background-color: #f19eae;
+  color: #fff;
+  margin: 10px;
+  &:hover, &:active, &:focus {
+    color: #fff;
+  }
+}

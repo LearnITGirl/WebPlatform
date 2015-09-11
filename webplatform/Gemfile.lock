@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.3)
     bcrypt (3.1.10)
     bower-rails (0.10.0)
@@ -46,6 +47,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carmen (1.0.2)
+      activesupport (>= 3.0.0)
+    carmen-rails (1.0.1)
+      carmen (~> 1.0.0)
+      rails
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
@@ -84,6 +90,10 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -199,6 +209,8 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     websocket (1.2.2)
+    wicked (1.2.1)
+      railties (>= 3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -208,12 +220,14 @@ PLATFORMS
 DEPENDENCIES
   bower-rails (~> 0.10.0)
   capybara
+  carmen-rails
   coffee-rails (~> 4.1.0)
   database_cleaner
   dotenv-rails
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
+  letter_opener
   pg
   pry-rails
   rails (= 4.2.1)
@@ -223,3 +237,4 @@ DEPENDENCIES
   slim-rails
   sorcery
   uglifier (>= 1.3.0)
+  wicked
