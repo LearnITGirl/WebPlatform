@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '1.9.3'
 
 gem 'rails', '4.2.1'
 
@@ -20,6 +20,7 @@ gem "sorcery"
 
 gem "bower-rails", "~> 0.10.0"
 
+gem 'font-awesome-sass'
 gem "wicked"
 gem 'carmen-rails'
 
