@@ -13,6 +13,22 @@
  *= require_self
  *= require_directory ./application
  */
+ $LITG-green:#00b2ac;
+ $LITG-pink:#f19eae;
+ $brand-primary:$LITG-pink;
+
 
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
+
+.LITG-green{
+  color: $LITG-green;
+}
+
+.sides-padding{
+  padding-left: 5px;
+  padding-right: 5px;
+}
