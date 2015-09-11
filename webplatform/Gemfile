@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '1.9.3'
 
 gem 'rails', '4.2.1'
 
@@ -17,6 +17,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'dotenv-rails'
 
 gem "bower-rails", "~> 0.10.0"
+
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'pry-rails'
