@@ -16,12 +16,17 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'dotenv-rails'
 
+gem "sorcery"
+
 gem "bower-rails", "~> 0.10.0"
 
 gem 'font-awesome-sass'
+gem "wicked"
+gem 'carmen-rails'
 
 group :development, :test do
   gem 'pry-rails'
+  gem "letter_opener"
 end
 
 group :test do
@@ -32,5 +37,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :production, :staging do
+  gem 'rails_12factor'
+  gem 'rails_stdout_logging'
+end
