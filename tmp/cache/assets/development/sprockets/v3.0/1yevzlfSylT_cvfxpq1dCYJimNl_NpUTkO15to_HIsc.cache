@@ -1,0 +1,34 @@
+I"”(function() {
+  var MenteeApplication;
+
+  window.learnItGirl || (window.learnItGirl = {});
+
+  MenteeApplication = {
+    showExtraQuestions: function() {
+      if ($('#mentee_application_programming_level_medium').is(":checked") || $('#mentee_application_programming_level_advanced').is(":checked")) {
+        return $('.extra-question').show();
+      } else {
+        return $('.extra-question').hide();
+      }
+    },
+    programmingLevel: function() {
+      return $("input[type='radio'][name='mentee_application[programming_level]']").change((function(_this) {
+        return function() {
+          return _this.showExtraQuestions();
+        };
+      })(this));
+    },
+    init: function() {
+      this.showExtraQuestions();
+      return this.programmingLevel();
+    }
+  };
+
+  $(function() {
+    if ($('#mentee_application_background').length) {
+      return MenteeApplication.init();
+    }
+  });
+
+}).call(this);
+:ET
