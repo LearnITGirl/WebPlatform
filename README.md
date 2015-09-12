@@ -8,3 +8,7 @@ Find out more [here](https://sites.google.com/site/learnitgirl/)
 
 And stay tunned for the second edition!
 
+
+# Contributing
+
+Please make sure to read {Contributing Guide}[https://github.com/LearnITGirl/WebPlatform/blob/master/CONTRIBUTING.md].

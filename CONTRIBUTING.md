@@ -2,7 +2,7 @@
 
 Learn IT, Girl web platform welcomes all contributors.
 
-First, make sure you have `Ruby on Rails` (we're using v 4.2.1), `PostgreSQL` and `bower` installed.
+First, make sure you have `Ruby on Rails` (we're using v 4.2.1) and `PostgreSQL` installed.
 
 Then, you'll need to install gem dependencies:
 
