@@ -11,4 +11,4 @@ And stay tunned for the second edition!
 
 # Contributing
 
-Please make sure to read {Contributing Guide}[https://github.com/LearnITGirl/WebPlatform/blob/master/CONTRIBUTING.md].
+Please make sure to read [Contributing Guide](https://github.com/LearnITGirl/WebPlatform/blob/master/CONTRIBUTING.md).
