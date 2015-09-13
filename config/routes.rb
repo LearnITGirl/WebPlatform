@@ -15,6 +15,9 @@ Webplatform::Application.routes.draw do
 
   resource :mentee_profile, only: [:show]
 
+  get "evaluation_panel" => "organizer#organizer_evaluation_panel"
+  get "user_home_page" => "organizer#user_home_page"
+
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'
   end

@@ -1,0 +1,11 @@
+div class="row"
+  div class="col-md-3 col-md-offset-3"
+    p x mentee applications to evaluate 
+  div class="col-md-3"
+    = link_to "EVALUATE MENTEES", new_mentor_application_path, class: "btn btn-pink"
+div class="row"
+  div class="col-md-3 col-md-offset-3"
+    p x mentor applications to evaluate
+  div class="col-md-3"
+    = link_to "EVALUATE MENTORS", new_mentor_application_path, class: "btn btn-pink"
+  
