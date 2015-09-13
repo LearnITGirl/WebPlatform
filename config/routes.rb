@@ -1,6 +1,6 @@
 Webplatform::Application.routes.draw do
   root 'home#index'
-  get  "first-edition" => "home#firstEditionProjects"
+  get  "first-edition" => "home#first_edition_projects"
 
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'
