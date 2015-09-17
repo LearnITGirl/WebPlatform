@@ -5,4 +5,7 @@ class HomeController < ApplicationController
 
   def first_edition_projects
   end
+
+  def sponsors
+  end
 end
