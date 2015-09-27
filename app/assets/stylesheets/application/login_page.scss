@@ -30,19 +30,6 @@
   span.green-text {margin-bottom: 10px;}
 }
 
-.green-text {
-  color: #01b2ac !important;
-}
-
-.btn-pink {
-  background-color: #f19eae;
-  color: #fff;
-  margin: 10px;
-  &:hover, &:active, &:focus {
-    color: #fff;
-  }
-}
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;

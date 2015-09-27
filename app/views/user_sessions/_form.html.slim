@@ -5,9 +5,9 @@
       p.text-center
         | Login
       
-      = form_for(:session, url: login_path) do |f|
+      = form_for(:session, url: user_sessions_path) do |f|
         p.text-center
-          = f.text_field :email,  class: 'form-control uneditable-input', placeholder: 'Email ID'
+          = f.text_field :email,  class: 'form-control uneditable-input', placeholder: 'Email'
         p
           = f.password_field :password, class: 'form-control uneditable-input', placeholder: 'Password'
         p

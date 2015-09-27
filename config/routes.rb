@@ -1,11 +1,6 @@
 Webplatform::Application.routes.draw do
-  #get 'user_sessions/new'
 
-  #get 'user_sessions/create'
-
-  #get 'user_sessions/destroy'
-
-  resources :user_sessions
+  resource :user_sessions
   root 'home#index'
 
   resources :mentor_applications do
