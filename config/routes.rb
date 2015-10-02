@@ -1,5 +1,6 @@
 Webplatform::Application.routes.draw do
   root 'home#index'
+  get  "first-edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
 
   resources :mentor_applications do
