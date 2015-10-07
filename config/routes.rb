@@ -21,5 +21,5 @@ Webplatform::Application.routes.draw do
   end
   
 
-  resource :password_resets
+  resources :password_resets
 end
