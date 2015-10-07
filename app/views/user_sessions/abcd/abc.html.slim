@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title
+      | Auth Example
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  |  body class="
+  = params[:controller]
+  | "
+  #container
+    .user_nav
+      - if current_user
+        |  Logged in as 
+        = current_user.email
+        | . 
+        = link_to "Log out", logout_path
+      - else
+        = link_to "Sign up", signup_path
+        |  or 
+        = link_to "Log in", login_path
+        | . 
+    - flash.each do |name, msg|
+      = content_tag :div, msg, :id => "flash_#{name}"
+    = yield

@@ -1,6 +1,9 @@
 Webplatform::Application.routes.draw do
 
-  resource :user_sessions
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  resource :user_sessions, only: [:create]
   root 'home#index'
 
   resources :mentor_applications do
@@ -11,6 +14,4 @@ Webplatform::Application.routes.draw do
     resources :build, controller: 'mentee_applications/build'
   end
   
-  get 'login' => 'user_sessions#new', :as => :login
-  post 'logout' => 'user_sessions#destroy', :as => :logout
 end
