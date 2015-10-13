@@ -1,11 +1,5 @@
 Webplatform::Application.routes.draw do
 
-  get 'password_resets/create'
-
-  get 'password_resets/edit'
-
-  get 'password_resets/update'
-
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
   
