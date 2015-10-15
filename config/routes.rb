@@ -16,4 +16,6 @@ Webplatform::Application.routes.draw do
     resources :build, controller: 'mentee_applications/build'
   end
   
+
+  resources :password_resets
 end

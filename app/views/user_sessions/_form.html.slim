@@ -14,4 +14,7 @@
           .form-group.buttons.text-center
             = f.submit "Log in", class: "buttons btn-pink"
         p.text-center
-          = link_to "Forgot Password!"
+          = link_to "Forgot Password!", new_password_reset_path
+	p.text-center
+  	  = link_to 'Back', root_path
+
