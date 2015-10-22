@@ -1,5 +1,7 @@
 Webplatform::Application.routes.draw do
 
+  get 'organiser' =>'organiser#index'
+
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
   

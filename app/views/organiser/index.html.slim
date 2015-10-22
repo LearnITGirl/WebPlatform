@@ -1,0 +1,15 @@
+.displayorg
+  .container
+     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      h1.text-center.green-text Manage Organizers
+      p
+      p
+      p
+      p.text-center
+     	- @organisers.each do |organiser|
+      	 .orgdetails
+           p
+             ='  organiser.firstname
+             ='  organiser.lastname
+             ='  organiser.country
+             ='  organiser.email
