@@ -1,0 +1,53 @@
+.col-xs-2.col-md-3.col-lg-2
+  h3.mentee-name Jane Doe
+  = image_tag "profile/mentee_icon.jpg", alt: "Mentee profile picture", class: "profile-icon"
+  h3.litg-pink Project
+  span.project-title Lorem ipsum
+  p
+    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    | consequat.
+  a href="#"  Read more
+  .git-link
+    a href="" 
+      i.fa.fa-github.fa-3
+      | See on Github
+.col.xs-8.col-md-6.col-lg-8.project-progress
+  .progress
+    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
+      | 60%
+  a href="#"  See entire project
+  h2 Current week
+  b October 7th - October 13th
+  .tasks
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c1 type="checkbox" value="" /
+          label for="c1"  Write code for xxx
+      .action.col-md-4
+        a.delete href="#"  Delete
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c2 type="checkbox" value="" /
+          label for="c2"  Code user interface
+      .action.col-md-4
+        a.delete href="#"  Delete
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c3 type="checkbox" value="" /
+          label for="c3"  Run tests
+      .action.col-md-4
+        label.mentor-task NEW! Added by Sarah on Tuesday
+.col-xs-2.col-md-3.col-lg-2
+  .mentor-name
+    span Mentor:
+    span Sarah Jones
+  = image_tag "profile/mentor_icon.png", alt: "Mentor profile picture", class: "profile-icon"
+  span sarah@lorem.com
+  div
+    span.badge.online &nbsp;
+    | Online

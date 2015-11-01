@@ -13,17 +13,23 @@
  *= require_self
  *= require_directory ./application
  */
- $litg-green:#00b2ac;
- $litg-pink:#f19eae;
+ $litg-green:#0CB1AB;
+ $litg-pink:#F19EAE;
+ $litg-gray:#3D4759;
+ $litg-white:#FFFFFF;
  $brand-primary:$litg-pink;
 
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+ @import "mentee_profile";
 
 .litg-green{
   color: $litg-green;
+}
+.litg-pink{
+  color: $litg-pink;
 }
 
 
@@ -34,4 +40,100 @@
 
 .top-space{
   margin-top: 50px;
+}
+
+header {
+	background-color: $litg-gray;
+	text-align: center;
+	position: relative;
+	padding-bottom: 10px;
+	.home-btn {
+		position: absolute;
+		top: 10px;
+		left:10px;
+		color:#fff;
+		font-size: 2em;
+	}
+	.login-btn {
+		position: absolute;
+		top: 10px;
+		right:10px;
+		color:#fff;
+		cursor: pointer;
+		.fa-user {
+			font-size: 1em;
+		}
+	}
+	.home-btn:hover, .login-btn:hover {
+		color:$litg-white;
+	}
+	span.edition-no {
+		font-size: 3em;
+	    color: $litg-green;
+	    position: absolute;
+	    top: 70%;
+	    left: 68%;
+	}
+	h2 {
+		font-size: 1.3em;
+	    color: $litg-white;
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	}
+}
+footer {
+	background-color: $litg-gray;
+	padding:10px 30px;
+	.social-icons a{
+		color: $litg-green;
+	    font-size: 2em;
+	    padding: 5px;
+	    float: left;
+	}
+	.contact-email {
+		float: right;
+		position: relative;
+		a {
+			color: $litg-white;
+		    line-height: 45px;
+		    font-size: 16px;
+		}
+	}
+}
+body {
+	font-family: FontAwesome;
+	font-size: 13px;
+}
+p {
+	margin: 10px 0;
+}
+h3 {
+	color:$litg-green;
+	font-weight: 400;
+	font-size: 22px;
+	margin: 10px 0;
+}
+h2 {
+	color: $litg-green;
+}
+a, a:hover {
+	color: $litg-pink;
+}
+label {
+	font-weight: 400;
+}
+div.centered {
+	margin:auto;
+	float: none;
+}
+.top10 {
+	margin-top:10px;
+}
+.bottom10 {
+	margin-bottom:10px;
+}
+.left10 {
+	margin-left:10px;
 }

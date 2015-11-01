@@ -10,9 +10,11 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   body
-    .container-fluid
+    = render "shared/header"
+    .container-fluid.top-space
       .row
         .col-xs-12
           = render "shared/flash_messages"
           = yield
+    = render "shared/footer"
     = javascript_include_tag 'application', charset: "utf-8"

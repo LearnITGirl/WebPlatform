@@ -1,0 +1,1 @@
+/usr/local/Cellar/postgresql/9.4.4/bin/postgres "-D" "psql"
