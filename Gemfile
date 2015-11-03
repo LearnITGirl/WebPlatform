@@ -12,22 +12,21 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'slim-rails'
 
 gem 'jquery-rails'
-gem 'jbuilder', '~> 1.2'
 
 gem 'dotenv-rails'
 
-gem "sorcery"
+gem 'sorcery'
 
-gem "bower-rails", "~> 0.10.0"
+gem 'bower-rails', '~> 0.10.0'
 
-gem "wicked"
+gem 'wicked'
 gem 'carmen-rails'
 
 gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'pry-rails'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :test do
