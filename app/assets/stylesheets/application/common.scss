@@ -1,5 +1,27 @@
+@import "variables";
+
 .alert {
   padding: 8px;
   text-align: center;
   margin: 15px 0;
 }
+
+#header-logo {
+  width: 100%;
+}
+
+#top-menu {
+  position: relative;
+  top: 5px;
+  margin-bottom: 5px;
+}
+
+nav.navbar.navbar-default {
+  min-height: 15px;
+  background-color: #fff;
+
+  li a {
+    padding-bottom: 0;
+  }
+}
+

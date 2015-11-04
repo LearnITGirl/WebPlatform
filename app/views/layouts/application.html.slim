@@ -10,7 +10,25 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   body
-    .container-fluid
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          ul.nav.navbar-nav.navbar-right
+            - if current_user
+              li = "Logged in as #{current_user.email}"
+              li = link_to "Log out", logout_path
+            - else
+              li = link_to "Log in", login_path
+    .container
+      = image_tag "logo_big.png", id: "header-logo"
+    .container
       .row
         .col-xs-12
           = render "shared/flash_messages"
