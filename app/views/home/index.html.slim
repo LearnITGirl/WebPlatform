@@ -1,7 +1,41 @@
-.page-header
-  h1.green-text.text-center What is Learn IT Girl?
 .row
   .col-xs-12
-    = link_to "Apply to become mentor", new_mentor_application_path, class: "btn btn-pink"
-    = link_to "Apply to become mentee", new_mentee_application_path, class: "btn btn-pink"
+    .page-header
+      h1.green-text.text-center What is Learn IT Girl?
+    p
+      = "Our aim is to help women learn a programming language while doing an awesome"
+      =< "project! But don't worry, you're not alone in this journey, each scholar has"
+      =< "a mentor that guides them on their path. There are many roads you can take"
+      =< "and we will make sure you go on the one that is best for you - without"
+      =< "missing out on the important features of the chosen language."
+
+    .page-header
+      h1.green-text.text-center How does it work?
+      p
+        = "Each accepted mentee gets a mentor to help them through discovering their"
+        =< "new language and coding their great project. Don't worry if you don't"
+        =< "know which language to choose: we will help you! During 3 months, the"
+        =< "mentee will work on their code on GitHub to be able to show their"
+        =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
+
+    .page-header
+      h1.green-text.text-center When will it happen?
+      p
+        = "This second edition of the program will take place from January to March"
+        =< "2016. Save the date!"
+
+    .page-header
+      h1.green-text.text-center How can I get involved?
+      p
+        = "Do you want to learn a new language with the help of a mentor? It doesn't"
+        =< "matter if you are an absolute newbie or an experienced coder"
+      .row
+        .col-sm-offset-4.col-sm-4.col-xs-12
+          = link_to "Apply to become a mentee", new_mentee_application_path, class: "btn btn-pink btn-block btn-lg"
+      p
+        = "Want to help a girl learn a new programming language? Want to show her the"
+        =< "best practices and tricks while she builds her own project?"
+      .row
+        .col-sm-offset-4.col-sm-4.col-xs-12
+          = link_to "Apply to become a mentor", new_mentor_application_path, class: "btn btn-pink btn-block btn-lg"
 
