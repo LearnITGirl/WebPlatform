@@ -10,27 +10,27 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   body
-    nav.navbar.navbar-default
+    header
       .container-fluid
-        .navbar-header
-          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        .collapse.navbar-collapse#bs-example-navbar-collapse-1
-          ul.nav.navbar-nav.navbar-right
-            - if current_user
-              li = "Logged in as #{current_user.email}"
-              li = link_to "Log out", logout_path
-            - else
-              li = link_to "Log in", login_path
+        - if current_user
+          = link_to "Log out", logout_path, class: "pull-right"
+          a.pull-right href="#"
+            span.glyphicon.glyphicon-user
+            =< current_user.full_name
+          = link_to "#", class: "pull-left" do
+            span.glyphicon.glyphicon-home
+        - else
+          = link_to "Log in", login_path, class: "pull-right"
+        = image_tag "logo.png"
     .container
-      = image_tag "logo_big.png", id: "header-logo"
-    .container
-      .row
-        .col-xs-12
-          = render "shared/flash_messages"
-          = yield
+      = render "shared/flash_messages"
+      = yield
+    footer.footer
+      .container-fluid
+        = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do
+          i.fa.fa-facebook-official
+        = link_to "https://learnitgirl.wordpress.com/", target: "_blank" do
+          i.fa.fa-wordpress
+        = link_to "https://github.com/LearnITGirl/WebPlatform", target: "_blank" do
+          i.fa.fa-github
     = javascript_include_tag 'application', charset: "utf-8"

@@ -1,13 +1,31 @@
 @import "variables";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 40px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: $litg-grey;
+  a {
+    color: $litg-green;
+    font-size: 30px;
+    margin: 0 5px;
+  }
+}
+
 .alert {
   padding: 8px;
   text-align: center;
   margin: 15px 0;
-}
-
-#header-logo {
-  width: 100%;
 }
 
 #top-menu {
@@ -22,6 +40,28 @@ nav.navbar.navbar-default {
 
   li a {
     padding-bottom: 0;
+  }
+}
+
+header .container-fluid {
+  background-color: $litg-grey;
+
+  img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    padding-top: 15px;
+    margin-right: 20px;
+    color: #fff;
+
+    &:hover, &:focus {text-decoration: none;}
+    span.glyphicon {
+      margin-right: 5px;
+      font-size: 20px;
+    }
   }
 }
 
