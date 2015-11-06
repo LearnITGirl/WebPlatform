@@ -1,5 +1,91 @@
+@import "variables";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 40px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-content {
+  padding-bottom: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: $litg-grey;
+  a {
+    color: $litg-green;
+    font-size: 30px;
+    margin: 0 5px;
+  }
+
+  .pull-right {
+    color: #fff;
+    padding-top: 10px;
+    a {
+      color: #fff;
+      font-size: 14px;
+      &, &:focus, &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .alert {
   padding: 8px;
   text-align: center;
   margin: 15px 0;
 }
+
+#top-menu {
+  position: relative;
+  top: 5px;
+  margin-bottom: 5px;
+}
+
+nav.navbar.navbar-default {
+  min-height: 15px;
+  background-color: #fff;
+
+  li a {
+    padding-bottom: 0;
+  }
+}
+
+header .container-fluid {
+  background-color: $litg-grey;
+
+  img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    padding-top: 15px;
+    margin-right: 20px;
+    color: #fff;
+
+    &:hover, &:focus {text-decoration: none;}
+    span.glyphicon {
+      margin-right: 5px;
+      font-size: 20px;
+    }
+  }
+}
+
+.page-header {
+  border: none;
+  margin: 40px 0 0;
+}
+
+a:focus, a:hover {text-decoration: none;}

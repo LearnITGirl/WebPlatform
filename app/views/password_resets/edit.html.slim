@@ -1,26 +1,16 @@
-h1
-  | Choose a new password
-= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2
-        = pluralize(@user.errors.count, "error")
-        |  prohibited this user from being saved:
-      ul
-        - @user.errors.full_messages.each do |msg|
-          li
-            = msg
-  .field
-    = f.label :email
-    br
-    = @user.email
-  .field
-    = f.label :password
-    br
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation
-  .actions
-    = f.submit
+.page-header
+  h1.text-center.green-text Set new password
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @user, url: password_reset_path(@token), html: {method: :put} do |f|
+      - if @user.errors.any?
+        .alert.alert-danger
+          = @user.errors.full_messages.join(", ")
+      .form-group
+        = f.text_field :email, value: @user.email, class: "form-control text-center", disabled: true
+      .form-group
+        = f.password_field :password, class: "form-control text-center", placeholder: "Password"
+      .form-group
+        = f.password_field :password_confirmation, class: "form-control text-center", placeholder: "Password confirmation"
+      .form-group.text-center
+        = f.submit "Save", class: "btn btn-pink"

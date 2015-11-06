@@ -244,6 +244,3 @@ DEPENDENCIES
   sorcery
   uglifier (>= 1.3.0)
   wicked
-
-BUNDLED WITH
-   1.10.6
