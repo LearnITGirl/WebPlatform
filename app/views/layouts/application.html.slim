@@ -13,6 +13,8 @@ html
   body
     header
       .container-fluid
+        = link_to root_path, class: "pull-left" do
+          span.glyphicon.glyphicon-home
         - if current_user
           = link_to "Log out", logout_path, class: "pull-right"
           a.pull-right href="#"

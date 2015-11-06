@@ -1,10 +1,11 @@
 Webplatform::Application.routes.draw do
 
+  root 'home#index'
+
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
   resource :user_sessions, only: [:create]
-  root 'home#index'
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
 
