@@ -11,6 +11,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.main-content {
+  padding-bottom: 30px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -21,6 +25,18 @@ body {
     color: $litg-green;
     font-size: 30px;
     margin: 0 5px;
+  }
+
+  .pull-right {
+    color: #fff;
+    padding-top: 10px;
+    a {
+      color: #fff;
+      font-size: 14px;
+      &, &:focus, &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -67,3 +83,7 @@ header .container-fluid {
   }
 }
 
+.page-header {
+  border: none;
+  margin: 40px 0 0;
+}

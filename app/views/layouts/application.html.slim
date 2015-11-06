@@ -23,7 +23,7 @@ html
         - else
           = link_to "Log in", login_path, class: "pull-right"
         = image_tag "logo.png"
-    .container
+    .container.main-content
       = render "shared/flash_messages"
       = yield
     footer.footer
@@ -34,4 +34,7 @@ html
           i.fa.fa-wordpress
         = link_to "https://github.com/LearnITGirl/WebPlatform", target: "_blank" do
           i.fa.fa-github
+        .pull-right
+          | Contact:
+          =< mail_to "learnitgirl.office@gmail.com", "learnitgirl.office@gmail.com"
     = javascript_include_tag 'application', charset: "utf-8"

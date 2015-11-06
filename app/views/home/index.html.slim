@@ -1,4 +1,4 @@
-.row
+.row#home-page
   .col-xs-12
     .page-header
       h1.green-text.text-center What is Learn IT Girl?
@@ -11,31 +11,34 @@
 
     .page-header
       h1.green-text.text-center How does it work?
-      p
-        = "Each accepted mentee gets a mentor to help them through discovering their"
-        =< "new language and coding their great project. Don't worry if you don't"
-        =< "know which language to choose: we will help you! During 3 months, the"
-        =< "mentee will work on their code on GitHub to be able to show their"
-        =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
+    p
+      = "Each accepted mentee gets a mentor to help them through discovering their"
+      =< "new language and coding their great project. Don't worry if you don't"
+      =< "know which language to choose: we will help you! During 3 months, the"
+      =< "mentee will work on their code on GitHub to be able to show their"
+      =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
 
     .page-header
       h1.green-text.text-center When will it happen?
-      p
-        = "This second edition of the program will take place from January to March"
-        =< "2016. Save the date!"
+    p
+      = "This second edition of the program will take place from January to March"
+      =< "2016. Save the date!"
 
     .page-header
       h1.green-text.text-center How can I get involved?
-      p
-        = "Do you want to learn a new language with the help of a mentor? It doesn't"
-        =< "matter if you are an absolute newbie or an experienced coder"
-      .row
-        .col-sm-offset-4.col-sm-4.col-xs-12
-          = link_to "Apply to become a mentee", new_mentee_application_path, class: "btn btn-pink btn-block btn-lg"
-      p
-        = "Want to help a girl learn a new programming language? Want to show her the"
-        =< "best practices and tricks while she builds her own project?"
-      .row
-        .col-sm-offset-4.col-sm-4.col-xs-12
-          = link_to "Apply to become a mentor", new_mentor_application_path, class: "btn btn-pink btn-block btn-lg"
+    = render partial: "application_closed"
+
+    .page-header
+      h1.green-text.text-center Want to get inspired?
+    p
+      = "Check some first edition mentees and their projects"
+    .row
+      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+        = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"
+
+    .page-header
+      h1.green-text.text-center Want to stay informed?
+    .row
+      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+        = link_to "Subscribe to our newsletter", "#", class: "btn btn-pink btn-block btn-lg"
 
