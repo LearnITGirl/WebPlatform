@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20151022200132) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-    t.string   "firstname"
-    t.string   "lastname"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "country"
   end
 
