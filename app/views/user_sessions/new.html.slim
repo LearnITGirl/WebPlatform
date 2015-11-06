@@ -1,2 +1,14 @@
-.login_page
-= render 'form'
+.page-header
+  h1.text-center.green-text Login
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for(:session, url: user_sessions_path) do |f|
+      .form-group
+        = f.text_field :email,  class: 'form-control text-center', placeholder: 'Email'
+      .form-group
+        = f.password_field :password, class: 'form-control text-center', placeholder: 'Password'
+      .form-group
+        = link_to "Forgot password?", new_password_reset_path
+      .form-group.text-center
+        = f.submit "Log in", class: "btn btn-pink"
+
