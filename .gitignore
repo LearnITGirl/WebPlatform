@@ -14,4 +14,8 @@
 # Ignore all logfiles and tempfiles.
 config/database.yml
 #Ignore .DS_Store files
+__MACOSX
 .DS_Store
+*/.DS_Store
+.DS_Store
+.DS_Store?
