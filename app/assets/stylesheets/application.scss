@@ -19,6 +19,7 @@
  $litg-white:#FFFFFF;
  $brand-primary:$litg-pink;
 
+ @import "variables";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
  @import "font-awesome-sprockets";

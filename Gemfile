@@ -5,6 +5,8 @@ ruby '2.2.2'
 gem 'rails', '4.2.1'
 
 gem 'pg'
+gem 'unicorn'
+
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -12,22 +14,21 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'slim-rails'
 
 gem 'jquery-rails'
-gem 'jbuilder', '~> 1.2'
 
 gem 'dotenv-rails'
 
-gem "sorcery"
+gem 'sorcery'
 
-gem "bower-rails", "~> 0.10.0"
+gem 'bower-rails', '~> 0.10.0'
 
-gem "wicked"
+gem 'wicked'
 gem 'carmen-rails'
 
 gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'pry-rails'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :test do
@@ -41,4 +42,12 @@ end
 group :production, :staging do
   gem 'rails_12factor'
   gem 'rails_stdout_logging'
+end
+
+group :development do
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
