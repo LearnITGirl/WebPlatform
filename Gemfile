@@ -7,6 +7,7 @@ gem 'rails', '4.2.1'
 gem 'pg'
 gem 'unicorn'
 
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -43,3 +44,10 @@ group :production, :staging do
   gem 'rails_stdout_logging'
 end
 
+group :development do
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
+end
