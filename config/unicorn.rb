@@ -3,7 +3,7 @@ timeout 15
 preload_app true
 
 if Rails.env.production?
-  root "var/apps/WebPlatform/current"
+  root "/home/litg/current"
   working_directory root
 
   pid "#{root}/tmp/pids/unicorn.log"
