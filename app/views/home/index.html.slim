@@ -26,7 +26,10 @@
 
     .page-header
       h1.green-text.text-center How can I get involved?
-    = render partial: "application_open"
+    - if Rails.env.production?
+      = render partial: "application_closed"
+    - else
+      = render partial: "application_open"
 
     .page-header
       h1.green-text.text-center Want to get inspired?
@@ -38,9 +41,13 @@
 
     .page-header
       h1.green-text.text-center Want to stay informed?
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        = form_tag('/subscription', method: "post", id: "subscribe") do 
+    - if Rails.env.production?
+      p
+        | Soon you will be able to subscribe to our newsletter. Stay tuned!
+    - else
+      .row
+        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+          = form_tag('/subscription', method: "post", id: "subscribe") do 
             .form-group
               = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control left10", required: true})
               = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
