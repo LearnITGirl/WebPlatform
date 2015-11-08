@@ -42,66 +42,6 @@
 .top-space{
   margin-top: 50px;
 }
-
-header {
-	background-color: $litg-gray;
-	text-align: center;
-	position: relative;
-	padding-bottom: 10px;
-	.home-btn {
-		position: absolute;
-		top: 10px;
-		left:10px;
-		color:#fff;
-		font-size: 2em;
-	}
-	.login-btn {
-		position: absolute;
-		top: 10px;
-		right:10px;
-		color:#fff;
-		cursor: pointer;
-		.fa-user {
-			font-size: 1em;
-		}
-	}
-	.home-btn:hover, .login-btn:hover {
-		color:$litg-white;
-	}
-	span.edition-no {
-		font-size: 3em;
-	    color: $litg-green;
-	    position: absolute;
-	    top: 70%;
-	    left: 68%;
-	}
-	h2 {
-		font-size: 1.3em;
-	    color: $litg-white;
-	    position: absolute;
-	    bottom: 0;
-	    left: 0;
-	    width: 100%;
-	}
-}
-footer {
-	background-color: $litg-gray;
-	.social-icons a{
-		color: $litg-green;
-	    font-size: 2em;
-	    padding: 5px;
-	    float: left;
-	}
-	.contact-email {
-		float: right;
-		position: relative;
-		a {
-			color: $litg-white;
-		    line-height: 45px;
-		    font-size: 16px;
-		}
-	}
-}
 body {
 	font-family: FontAwesome;
 	font-size: 13px;
