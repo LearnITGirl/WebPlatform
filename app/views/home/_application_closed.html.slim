@@ -1,5 +1,8 @@
 p
-  = "Join our facebook group to check what the participants are doing"
+  - if Rails.env.production?
+    = "Join our facebook group to check what the participants are doing"
+  - else
+    = "Join our facebook group"
 .row
   .text-center
     = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do

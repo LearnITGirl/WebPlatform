@@ -26,7 +26,10 @@
 
     .page-header
       h1.green-text.text-center How can I get involved?
-    = render partial: "application_open"
+    - if Rails.env.production?
+      = render partial: "application_closed"
+    - else
+      = render partial: "application_open"
 
     .page-header
       h1.green-text.text-center Want to get inspired?
@@ -38,7 +41,11 @@
 
     .page-header
       h1.green-text.text-center Want to stay informed?
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        = link_to "Subscribe to our newsletter", "#", class: "btn btn-pink btn-block btn-lg"
+    - if Rails.env.production?
+      p
+        Soon you will be able to subscribe to our newsletter. Stay tuned!
+    - else
+      .row
+        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+          = link_to "Subscribe to our newsletter", "#", class: "btn btn-pink btn-block btn-lg"
 
