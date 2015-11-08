@@ -1,0 +1,6 @@
+.row
+    h1 Subscribe to our newsletter
+    = form_tag('/subscription', method: "post", id: "subscribe") do 
+        .form-group
+          = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control", required: true})
+        = submit_tag("Subscribe", {class: "btn btn-default pull-right"})

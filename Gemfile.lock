@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/amro/gibbon.git
+  revision: cd5db98c6801971e7cd3ae23de39e3cb674a4047
+  specs:
+    gibbon (2.1.1)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -264,6 +272,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   font-awesome-sass
+  gibbon!
   jquery-rails
   letter_opener
   pg
