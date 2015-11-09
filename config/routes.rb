@@ -8,7 +8,7 @@ Webplatform::Application.routes.draw do
   resource :user_sessions, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
-  get  "mentee_dashboard" => "mentee_profile#dashboard"
+  get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   resource :mentee_profile, only: [:show]
 
