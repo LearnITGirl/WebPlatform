@@ -1,6 +1,9 @@
-= form_tag password_resets_path, :method => :post do
-  .field
-    = label_tag :email
-    br
-    = text_field_tag :email
-    = submit_tag "Reset my password!"
+.page-header
+  h1.text-center.green-text Forgot password
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_tag password_resets_path do
+      .form-group
+        = text_field_tag :email, nil, class: "form-control text-center", placeholder: "Email"
+      .form-group.text-center
+        = submit_tag "Reset my password", class: "btn btn-pink"

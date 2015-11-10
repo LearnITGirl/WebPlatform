@@ -1,7 +1,8 @@
+.page-header
+  h1.text-center.green-text Apply to become a LITG mentor
 .wizard
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-      h1.text-center.green-text Apply to become a LITG mentor
       = form_for @mentor, url: wizard_path(step, mentor_application_id: @mentor.id), method: "put" do |f|
         - if @mentor.errors.present?
           .alert.alert-danger.text-center
