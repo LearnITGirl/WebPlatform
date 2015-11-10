@@ -1,4 +1,12 @@
 Webplatform::Application.routes.draw do
+
+  
+  resources :organisers, only: [:index]
+
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  resource :user_sessions, only: [:create]
   root 'home#index'
 
   resources :mentor_applications do
@@ -8,4 +16,7 @@ Webplatform::Application.routes.draw do
   resources :mentee_applications do
     resources :build, controller: 'mentee_applications/build'
   end
+  
+
+  resources :password_resets
 end

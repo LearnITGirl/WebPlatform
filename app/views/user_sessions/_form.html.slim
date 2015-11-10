@@ -1,0 +1,20 @@
+.login_page
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      h1.text-center.green-text Login
+      p.text-center
+        | Login
+      
+      = form_for(:session, url: user_sessions_path) do |f|
+        p.text-center
+          = f.text_field :email,  class: 'form-control uneditable-input', placeholder: 'Email'
+        p
+          = f.password_field :password, class: 'form-control uneditable-input', placeholder: 'Password'
+        p
+          .form-group.buttons.text-center
+            = f.submit "Log in", class: "buttons btn-pink"
+        p.text-center
+          = link_to "Forgot Password!", new_password_reset_path
+	p.text-center
+  	  = link_to 'Back', root_path
+

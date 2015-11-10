@@ -3,7 +3,7 @@ Webplatform::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
