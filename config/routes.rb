@@ -1,8 +1,6 @@
 Webplatform::Application.routes.draw do
 
 
-  get 'organisers/index'
-
   root 'home#index'
 
   resources :organisers, only: [:index]
