@@ -1,7 +1,11 @@
 Webplatform::Application.routes.draw do
 
+
+  get 'organisers/index'
+
   root 'home#index'
 
+  resources :organisers, only: [:index]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
