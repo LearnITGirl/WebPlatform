@@ -1,2 +1,0 @@
-module OrganisersHelper
-end
