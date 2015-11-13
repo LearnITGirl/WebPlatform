@@ -1,0 +1,6 @@
+<%= form_tag organisers_path, remote:true , method => :post do %>
+  <div class="field">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %> <%= submit_tag "Add Organiser!" %>
+  </div>
+<% end %>
