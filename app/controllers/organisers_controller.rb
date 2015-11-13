@@ -8,15 +8,15 @@ class OrganisersController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
-    @user_new = User.new(email: params[:email])
     if @user.blank? || (@user.role != "organizer")
-       @user_new.deliver_now
+       OrganisersMailer.organisers_add_email(params[:email]).deliver_now
        redirect_to organisers_path, notice: 'Instructions have been sent to the email'
     else
        flash.now[:alert] = "User exist"
-       render "index"
+       #render "index"
     end
-       
+  end
+  def edit
 
   end
 
