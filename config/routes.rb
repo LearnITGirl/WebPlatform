@@ -2,7 +2,7 @@ Webplatform::Application.routes.draw do
 
 
   root 'home#index'
-  resources :organisers #only: [:index]
+  resources :organisers # , only: [:index, :create, :update, :edit]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
