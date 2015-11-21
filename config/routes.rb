@@ -1,7 +1,9 @@
 Webplatform::Application.routes.draw do
 
+
   root 'home#index'
 
+  resources :organisers, only: [:index]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
@@ -9,6 +11,9 @@ Webplatform::Application.routes.draw do
   resources :subscription, only: [:index, :create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
+  get  "mentee_dashboard" => "mentee_profiles#dashboard"
+
+  resource :mentee_profile, only: [:show]
 
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'

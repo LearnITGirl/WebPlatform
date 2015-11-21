@@ -1,0 +1,93 @@
+// Place all the styles related to the mentee_profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.profile-icon {
+	width:80%;
+    margin: 5px 0;
+}
+.mentee-name {
+	font-size: 20px;
+    font-weight: 400;
+    color: $litg-green;
+    line-height: 40px;
+    margin: 0;
+}
+.mentor-name span {
+	font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    display: block;
+    color:$litg-green;
+}
+.project-title {
+	font-size: 16px;
+	font-weight: 500;
+}
+.project-progress {
+	text-align: center;
+	padding: 10px 0;
+}
+.git-link {
+	padding: 10px 0;
+	a {
+		color: $litg-green;
+		i {
+			font-size: 3em;
+		}
+	}
+}
+.online {
+	color: $litg-green;
+	background-color: $litg-green;
+	margin: 0 3px 0 0;
+}
+.progress-bar {
+	background-color: $litg-green;
+}
+.tasks {
+	max-width:500px;
+	margin:auto;
+	text-align: left;
+	.action .mentor-task {
+		color: $litg-green;
+	}
+	label {
+		display: block;
+	}
+	.custom-checkbox {
+		display: inline-block;
+		label {
+			position: relative;
+		}
+		input[type="checkbox"] + label:before {
+			content: " ";
+		    width: 13px;
+		    height: 13px;
+		    display: inline-block;
+		    border: 1px $litg-gray solid;
+		    margin-right: 5px;
+		    box-shadow: 0.5px 0.5px #ccc;
+		}
+		input[type="checkbox"] {
+			display: none;
+		}
+		input[type="checkbox"]:checked + label:after {
+			content: "\f00c";
+		    font-family: "FontAwesome";
+		    font-size: 20px;
+		    position: absolute;
+		    top: -10px;
+		    left: 0;
+		    color: $litg-green;
+		}
+	}
+	.single-task {
+		padding:10px;
+	}
+}
+.delete {
+	text-transform: uppercase;
+	margin-left: 10px;
+	display: inline-block;
+	cursor: pointer;
+}
