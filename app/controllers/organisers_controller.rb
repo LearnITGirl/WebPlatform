@@ -2,23 +2,20 @@ class OrganisersController < ApplicationController
    before_action :require_organiser
 
   def index
-    @organisers = User.where(role: 1)
+    display_organisers
   end
   
   def create
     @user = User.find_by(email: params[:email])
-    if @user.blank?
+    if @user.save
        @user = User.new(email: params[:email])
-       if @user.save
-         OrganisersMailer.organisers_add_email(@user).deliver_now
-         redirect_to organisers_path, notice: 'Instructions have been sent to the email'
-       else 
-         flash.now[:alert] = "User not saved"
-	 #render "index"
-       end 
+        OrganisersMailer.organisers_add_email(@user).deliver_now
+       redirect_to organisers_path, notice: 'Instructions have been sent to the email'
     else
        flash.now[:alert] = "User exist"
-       #render "index"
+       display_organisers
+       render "index"
+
     end
   end
 
@@ -46,6 +43,7 @@ class OrganisersController < ApplicationController
       render :action => "edit"
     end
   end
+  
   private
   def require_organiser
     unless current_user && current_user.role =='organizer'
@@ -54,5 +52,8 @@ class OrganisersController < ApplicationController
   end
   def user_params
       params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation)
+  end
+  def display_organisers
+    @organisers = User.where(role: 1)
   end
 end 

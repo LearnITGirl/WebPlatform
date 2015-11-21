@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, if: -> { password || password_confirmation }
   validates :password_confirmation, presence: true, if: -> { password || password_confirmation }
 
-  validates :email, uniqueness: true
+  validates :email,  uniqueness: { case_sensitive: false } , presence: true, allow_blank: false, allow_nil: false, format: { with: REGEXP_EMAIL }, on: :create
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
 
   private
     def create_organiser_token
-      self.organiser_token = SecureRandom.hex(8)
+          self.organiser_token = SecureRandom.hex(8)
     end
 
 
