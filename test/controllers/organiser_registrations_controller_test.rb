@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class OrganisersRegistrationControllerTest < ActionController::TestCase
-  test "should get create" do
-    get :create
+class OrganiserRegistrationsControllerTest < ActionController::TestCase
+  test "should get edit" do
+    get :edit
     assert_response :success
   end
 

@@ -1,13 +1,9 @@
 Webplatform::Application.routes.draw do
 
 
-  #get 'organisers_registration/create'
-
-  #get 'organisers_registration/update'
-
   root 'home#index'
-  resources :organisers, only: [:index]
-  resources :organisers_registration, only: [:create, :edit, :update]
+  resources :organisers, only: [:index, :create]
+  resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 

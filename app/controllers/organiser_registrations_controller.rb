@@ -1,19 +1,5 @@
-class OrganisersRegistrationController < ApplicationController
+class OrganiserRegistrationsController < ApplicationController
  before_action :require_organiser
- def create
-    @user = User.new(email: params[:email])
-    @user.role = params[:role]
-    if @user.save
-       OrganisersMailer.organisers_add_email(@user).deliver_now
-       redirect_to organisers_path, notice: 'Instructions have been sent to the email'
-    else
-       flash.now[:alert] = @user.errors.full_messages.join(", ")
-       display_organisers
-       render "/organsiers/index"
-
-    end
-  end
-
   def edit
     @token = params[:id]
     @user = User.find_by(organiser_token: params[:id])
@@ -36,7 +22,7 @@ class OrganisersRegistrationController < ApplicationController
       redirect_to(organisers_path, :notice => 'Succesfully added as organiser.')
     else
       render :action => "edit"
-    end
+ end
   end
   private
   def require_organiser
@@ -50,6 +36,5 @@ class OrganisersRegistrationController < ApplicationController
   def display_organisers
     @organisers = User.where(role: 1)
   end
-
 
 end

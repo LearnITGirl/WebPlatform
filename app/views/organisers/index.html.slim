@@ -5,12 +5,11 @@
       p
       p
       p
-      = form_tag organisers_registration_index_path, :method => :post do
+      = form_tag organisers_path, :method => :post do
         .field
           = label_tag :email
           br
           = text_field_tag :email
-          = hidden_field_tag :role, 'organizer'
           = submit_tag "Add Organiser!"
 
       p.text-center
