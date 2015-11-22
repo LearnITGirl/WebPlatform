@@ -1,0 +1,2 @@
+module OrganisersRegistrationHelper
+end

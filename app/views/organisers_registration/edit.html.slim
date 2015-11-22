@@ -1,6 +1,6 @@
 h1
   | Enter Details
-= form_for @user, :url => organiser_path(@token), :html => {:method => :put} do |f|
+= form_for @user, :url => organisers_registration_path(@token), :html => {:method => :put} do |f|
   - if @user.errors.any?
     #error_explanation
       h2
