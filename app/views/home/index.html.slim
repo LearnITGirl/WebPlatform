@@ -47,8 +47,22 @@
     - else
       .row
         .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          = form_tag('/subscription', method: "post", id: "subscribe") do 
+          = form_tag('/subscription', method: "post", id: "subscribe", remote: true) do 
             .form-group
-              = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control left10", required: true})
+              = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control", required: true})
               = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+              #status_message.alert
 
+javascript:
+  $('#subscribe').submit(function(){
+    var input = $(this).serialize();
+    $.ajax({
+      url: $(this).attr('action'),
+      type: "POST",
+      data: input
+    }).success(function(response){
+      $('#status_message').removeClass('alert-danger alert-success');
+      $('#status_message').addClass('alert-'+response.class);
+      $('#status_message').html(response.msg);
+    })
+  });
