@@ -12,6 +12,7 @@
           = text_field_tag :email
           = submit_tag "Add Organiser!"
 
+      h3.text-center.green-text Our Organizers Team
       p.text-center
      	- @organisers.each do |organiser|
       	 .orgdetails
@@ -20,4 +21,12 @@
              ='  organiser.last_name
              ='  organiser.country
              ='  organiser.email
+      h3.text-center.green-text Pending Organizers
+      p.text-center
+        - if !@pending_organisers.empty?
+          - @pending_organisers.each do |pending_organiser|
+            .orgdetails
+              p
+                =pending_organiser.email
+
 

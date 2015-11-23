@@ -17,7 +17,7 @@ class OrganiserRegistrationsController < ApplicationController
       not_authenticated
       return
     end
-    @user.role = 1
+    @user.organiser_token = nil
     if @user.update_attributes(user_params)
       redirect_to(organisers_path, :notice => 'Succesfully added as organiser.')
     else
@@ -32,9 +32,6 @@ class OrganiserRegistrationsController < ApplicationController
   end
   def user_params
       params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation)
-  end
-  def display_organisers
-    @organisers = User.where(role: 1)
   end
 
 end

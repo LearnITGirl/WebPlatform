@@ -3,6 +3,7 @@ class OrganisersController < ApplicationController
 
   def index
     display_organisers
+    organisers_left
   end
   
   def create
@@ -13,6 +14,7 @@ class OrganisersController < ApplicationController
     else
        flash.now[:alert] = @user.errors.full_messages.join(", ")
        display_organisers
+       organisers_left
        render "index"
 
     end
@@ -24,6 +26,9 @@ class OrganisersController < ApplicationController
     end
   end
   def display_organisers
-    @organisers = User.where(role: 1)
+    @organisers = User.where(role: 1, organiser_token:nil)
+  end
+  def organisers_left
+    @pending_organisers = User.where(role: 1).where.not(organiser_token: nil)
   end
 end 
