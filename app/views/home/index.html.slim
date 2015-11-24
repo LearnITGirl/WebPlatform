@@ -47,5 +47,8 @@
     - else
       .row
         .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          = link_to "Subscribe to our newsletter", "#", class: "btn btn-pink btn-block btn-lg"
-
+          = form_tag('/subscription', method: "post", id: "subscribe", remote: true) do 
+            .form-group
+              = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control", required: true})
+              = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+              #status_message.alert

@@ -26,6 +26,8 @@ gem 'carmen-rails'
 
 gem 'font-awesome-sass'
 
+gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'letter_opener'
