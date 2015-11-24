@@ -1,5 +1,4 @@
 class OrganiserRegistrationsController < ApplicationController
- before_action :require_organiser
   def edit
     @token = params[:id]
     @user = User.find_by(organiser_token: params[:id])
@@ -19,17 +18,12 @@ class OrganiserRegistrationsController < ApplicationController
     end
     @user.organiser_token = nil
     if @user.update_attributes(user_params)
-      redirect_to(organisers_path, :notice => 'Succesfully added as organiser.')
+      redirect_to(root_path, :notice => 'Succesfully added as organiser. You can now login')
     else
       render :action => "edit"
- end
-  end
-  private
-  def require_organiser
-    unless current_user && current_user.role =='organizer'
-      redirect_to root_path, notice: "Login again as a organiser"
     end
   end
+  private
   def user_params
       params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation)
   end

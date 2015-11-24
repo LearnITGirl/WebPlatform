@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   validates :email,  uniqueness: { case_sensitive: false } , presence: true,  format: { with: REGEXP_EMAIL }
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+  validates :country, presence: true, on: :update
 
   private
     def create_organiser_token
