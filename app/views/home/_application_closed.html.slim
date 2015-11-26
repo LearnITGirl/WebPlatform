@@ -1,10 +1,12 @@
-p
-  - if Rails.env.production?
-    = "Join our facebook group to check what the participants are doing"
-  - else
+- if Rails.env.development?
+  p
     = "Join our facebook group"
-.row
-  .text-center
-    = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do
-      i.fa.fa-facebook-official
-
+  .row
+    .text-center
+      = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do
+        i.fa.fa-facebook-official
+- else
+  p
+    | You will be able to learn a new language with the help of a mentor. It doesn't matter if you are an absolute newbie or an experienced coder.
+  p
+    | You can help a girl learn a new programming language,  show her the best practices and tricks while she builds her own project.

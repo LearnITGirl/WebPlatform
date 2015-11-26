@@ -11,7 +11,7 @@ html
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
-  body
+  body class="#{controller_name}-controller #{action_name}-action"
     header
       .container-fluid
         = link_to root_path, class: "pull-left" do

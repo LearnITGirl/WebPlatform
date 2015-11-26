@@ -24,4 +24,5 @@ Webplatform::Application.routes.draw do
   end
 
   resources :password_resets
+  resources :polls, only: [:create]
 end
