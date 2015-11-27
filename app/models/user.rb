@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   validates :country, presence: true, on: :update
 
   private
-    def create_organiser_token
-      self.organiser_token = SecureRandom.hex(8) if self.role == 'organizer'
-    end
+
+  def create_organiser_token
+    self.organiser_token = SecureRandom.hex(8) if role == 'organizer'
+  end
 end

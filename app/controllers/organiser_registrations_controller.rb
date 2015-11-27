@@ -1,4 +1,5 @@
 class OrganiserRegistrationsController < ApplicationController
+
   def edit
     @token = params[:id]
     @user = User.find_by(organiser_token: params[:id])
@@ -8,6 +9,7 @@ class OrganiserRegistrationsController < ApplicationController
       return
     end
   end
+
   def update
     @token = params[:id]
     @user = User.find_by(organiser_token: params[:id])
@@ -18,14 +20,16 @@ class OrganiserRegistrationsController < ApplicationController
     end
     @user.organiser_token = nil
     if @user.update_attributes(user_params)
-      redirect_to(root_path, :notice => 'Succesfully added as organiser. You can now login')
+      login(@user.email, user_params[:password])
+      redirect_to(organisers_path, :notice => "You've been succesfully added as organiser.")
     else
       render :action => "edit"
     end
   end
-  private
-  def user_params
-      params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation)
-  end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation)
+  end
 end
