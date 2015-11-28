@@ -8,7 +8,7 @@ Webplatform::Application.routes.draw do
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
   resource :user_sessions, only: [:create]
-  resources :subscription, only: [:index, :create]
+  resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
