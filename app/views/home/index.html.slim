@@ -43,10 +43,10 @@
       h1.green-text.text-center Want to stay informed?
       .row
         .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          = form_tag('/subscription', method: "post", id: "subscribe", remote: true) do
+          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
             .form-group
               #status_message.alert
-              = email_field(:list, :email, {id: "email", placeholder: "Email Address", class: "form-control", required: true})
+              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
               = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
 
     .page-header
