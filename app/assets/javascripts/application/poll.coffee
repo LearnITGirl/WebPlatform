@@ -28,12 +28,8 @@ Poll =
     $("#poll_answer_other").val("Other")
 
   toggleAlert: (success, element, text) ->
-    if success
-      removeClass ="alert-danger"
-      addClass = "alert-success"
-    else
-      removeClass ="alert-success"
-      addClass = "alert-danger"
+    removeClass = if success then "alert-danger" else "alert-success"
+    addClass = if success then "alert-success" else "alert-danger"
 
     alert = element.siblings(".alert")
     alert.text(text)

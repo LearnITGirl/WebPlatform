@@ -14,15 +14,15 @@ class NewslettersController < ApplicationController
         )
       rescue Gibbon::MailChimpError => e
         response = {
-          status: 'error', class: 'danger',
+          status: 422, class: 'danger',
           msg: e.detail.gsub(/Use PUT to insert or update list members./,'')
         }
       else
-        response = {status: 'success', class: 'success', msg: 'Thank you for subscribing!' }
+        response = {status: 201, class: 'success', msg: 'Thank you for subscribing!' }
       end
     else
-      response = {status: 'error', class: 'danger', msg: @newsletter.errors.full_messages.join(", ")}
+      response = {status: 422, class: 'danger', msg: @newsletter.errors.full_messages.join(", ")}
     end
-    render json: response
+    render json: response, status: response[:status]
   end
 end
