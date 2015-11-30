@@ -7,7 +7,7 @@ gem 'rails', '4.2.1'
 gem 'pg'
 gem 'unicorn'
 
-gem "rmagick"
+gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'sass-rails', '~> 5.0'

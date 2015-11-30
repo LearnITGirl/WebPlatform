@@ -9,9 +9,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, if: -> { password || password_confirmation }
   validates :password_confirmation, presence: true, if: -> { password || password_confirmation }
   validates :email,  uniqueness: { case_sensitive: false } , presence: true,  format: { with: REGEXP_EMAIL }
-  validates :first_name, presence: true, on: :update
-  validates :last_name, presence: true, on: :update
-  validates :country, presence: true, on: :update
+  validates :first_name, :last_name, :country, :avatar, presence: true, on: :update
 
   before_create :create_organiser_token
 

@@ -129,6 +129,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
+    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
@@ -187,7 +188,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
     rake (10.4.2)
-    rmagick (2.15.4)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -282,12 +282,12 @@ DEPENDENCIES
   gibbon!
   jquery-rails
   letter_opener
+  mini_magick
   pg
   pry-rails
   rails (= 4.2.1)
   rails_12factor
   rails_stdout_logging
-  rmagick
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   selenium-webdriver (= 2.45.0)

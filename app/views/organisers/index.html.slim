@@ -17,6 +17,7 @@
      	- @organisers.each do |organiser|
       	 .orgdetails
            p
+             = image_tag organiser.avatar_url(:thumb) if organiser.avatar?
              ='  organiser.first_name
              ='  organiser.last_name
              ='  organiser.country
