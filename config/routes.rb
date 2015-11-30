@@ -18,6 +18,7 @@ Webplatform::Application.routes.draw do
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   get "mentor_evaluation/:application_id" => "evaluations#mentor"
+  post "mentor_evaluation/:application_id" => "evaluations#create_evaluation"
 
   resource :mentee_profile, only: [:show]
 
