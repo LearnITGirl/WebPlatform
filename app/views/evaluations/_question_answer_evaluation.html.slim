@@ -1,0 +1,8 @@
+.col-xs-12.question
+  strong
+    = question["question"]
+    | &nbsp;(0 - #{question["max_score"]})
+.col-xs-12.answer
+  = answer
+.col-xs-12.evaluation
+  = f.select '', options_for_select(question["answers"].map{|x| [x["answer"], x["score"], {title: x["hint"]}]}), {prompt: "", class: 'form-control col-xs-12'}
