@@ -65,4 +65,5 @@
                   = language
               - if language == "Other"
                 = text_field_tag :other_language, nil, class: "form-control"
-          = f.submit "Submit", class: "btn btn-pink"
+          .form-group
+            = f.submit "Submit", class: "btn btn-pink"
