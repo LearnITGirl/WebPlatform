@@ -46,7 +46,7 @@ abilities:
         score: 2
       - answer: 'no'
         score: 0
-  mentor_experiece:
+  mentor_experience:
     question: "Tell us about your experience"
     max_score: 3
     answers:
