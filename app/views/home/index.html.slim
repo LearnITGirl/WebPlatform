@@ -26,10 +26,10 @@
 
     .page-header
       h1.green-text.text-center How can I get involved?
-    - if Rails.env.production?
-      = render partial: "application_closed"
-    - else
+    - if Rails.env.development?
       = render partial: "application_open"
+    - else
+      = render partial: "application_closed"
 
     .page-header
       h1.green-text.text-center Want to get inspired?
@@ -41,11 +41,29 @@
 
     .page-header
       h1.green-text.text-center Want to stay informed?
-    - if Rails.env.production?
-      p
-        | Soon you will be able to subscribe to our newsletter. Stay tuned!
-    - else
       .row
         .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          = link_to "Subscribe to our newsletter", "#", class: "btn btn-pink btn-block btn-lg"
+          #status-message.alert.hidden
+          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
+            .form-group
+              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
+            .form-group
+              = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
 
+    .page-header
+      h1.green-text.text-center Help us make the program better!
+      p
+        | What is your preferred language to learn at "Learn IT, Girl"?
+      .text-center
+        .alert.hidden
+        = form_for :poll, url: polls_path, remote: true, html: {id: "poll-form"} do |f|
+          - suggested_languages.each do |language|
+            .form-group
+              .radio
+                label
+                  = f.radio_button :answer, language, checked: language == "C"
+                  = language
+              - if language == "Other"
+                = text_field_tag :other_language, nil, class: "form-control"
+          .form-group
+            = f.submit "Submit", class: "btn btn-pink"

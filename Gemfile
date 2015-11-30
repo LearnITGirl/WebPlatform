@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'rails', '4.2.1'
 
@@ -25,6 +25,8 @@ gem 'wicked'
 gem 'carmen-rails'
 
 gem 'font-awesome-sass'
+
+gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
 group :development, :test do
   gem 'pry-rails'

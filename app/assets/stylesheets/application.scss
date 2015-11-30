@@ -13,15 +13,24 @@
  *= require_self
  *= require_directory ./application
  */
+ $litg-green:#0CB1AB;
+ $litg-pink:#F19EAE;
+ $litg-gray:#3D4759;
+ $litg-white:#FFFFFF;
+ $brand-primary:$litg-pink;
 
  @import "variables";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+ @import "mentee_profile";
 
 .litg-green{
   color: $litg-green;
+}
+.litg-pink{
+  color: $litg-pink;
 }
 
 
@@ -32,4 +41,44 @@
 
 .top-space{
   margin-top: 50px;
+}
+
+body {
+	font-family: FontAwesome;
+	font-size: 13px;
+}
+p {
+	margin: 10px 0;
+}
+h3 {
+	color:$litg-green;
+	font-weight: 400;
+	font-size: 22px;
+	margin: 10px 0;
+}
+h2 {
+	color: $litg-green;
+}
+a, a:hover {
+	color: $litg-pink;
+}
+label {
+	font-weight: 400;
+}
+div.centered {
+	margin:auto;
+	float: none;
+}
+#home-page .btn-pink {
+	margin: 10px 0;
+}
+.top10 {
+	margin-top:10px;
+}
+.bottom10 {
+	margin-bottom:10px;
+}
+
+.left10 {
+	margin-left:10px;
 }

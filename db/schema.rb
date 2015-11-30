@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007054656) do
+ActiveRecord::Schema.define(version: 20151127213946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 20151007054656) do
     t.datetime "updated_at"
   end
 
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string   "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                                     null: false
     t.string   "crypted_password"
@@ -79,6 +91,10 @@ ActiveRecord::Schema.define(version: 20151007054656) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
+    t.string   "organiser_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

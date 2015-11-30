@@ -23,7 +23,7 @@ body {
   background-color: $litg-grey;
   a {
     color: $litg-green;
-    font-size: 30px;
+    font-size: 28px;
     margin: 0 5px;
   }
 
@@ -81,6 +81,8 @@ header .container-fluid {
       font-size: 20px;
     }
   }
+
+  .pull-right {padding-top: 15px;}
 }
 
 .page-header {
@@ -89,3 +91,7 @@ header .container-fluid {
 }
 
 a:focus, a:hover {text-decoration: none;}
+
+.white-text {
+  color: #fff !important;
+}
