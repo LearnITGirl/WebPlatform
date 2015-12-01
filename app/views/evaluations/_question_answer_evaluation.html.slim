@@ -5,4 +5,4 @@
 .col-xs-12.answer
   = answer
 .col-xs-12.evaluation
-  = f.select '', options_for_select(question["answers"].map{|x| [x["answer"], x["score"], {title: x["hint"]}]}), {prompt: "", class: 'form-control col-xs-12'}
+  = f.select field, options_for_select(question["answers"].map{|x| [x["answer"], x["score"], {title: x["hint"]}]}), {prompt: "", class: 'form-control col-xs-12'}
