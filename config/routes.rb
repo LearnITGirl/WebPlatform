@@ -1,6 +1,10 @@
 Webplatform::Application.routes.draw do
 
 
+  get 'mentor_profiles/dashboard'
+
+  get 'mentor_profiles/show'
+
   root 'home#index'
   resources :organisers, only: [:index, :create]
   resources :organiser_registrations, only: [ :edit, :update]
