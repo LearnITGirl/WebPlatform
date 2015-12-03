@@ -2,7 +2,12 @@ Webplatform::Application.routes.draw do
 
 
   root 'home#index'
-  resources :organisers, only: [:index, :create]
+  resources :organisers, only: [:index, :create] do
+    collection do
+      get :dashboard
+    end
+  end
+
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
@@ -14,9 +19,6 @@ Webplatform::Application.routes.draw do
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   resource :mentee_profile, only: [:show]
-
-  get "evaluation_panel" => "organizer#organizer_evaluation_panel"
-  get "user_home_page" => "organizer#user_home_page"
 
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'

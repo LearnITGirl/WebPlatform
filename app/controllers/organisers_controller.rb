@@ -1,5 +1,8 @@
 class OrganisersController < ApplicationController
-   before_action :require_organiser
+  before_action :require_organiser
+
+  def dashboard
+  end
 
   def index
     display_organisers
