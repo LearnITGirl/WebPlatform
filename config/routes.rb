@@ -1,9 +1,6 @@
 Webplatform::Application.routes.draw do
 
 
-  get 'mentor_profiles/dashboard'
-
-  get 'mentor_profiles/show'
 
   root 'home#index'
   resources :organisers, only: [:index, :create]
@@ -18,6 +15,7 @@ Webplatform::Application.routes.draw do
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   resource :mentee_profile, only: [:show]
+  resource :mentor_profile, only: [:show]
 
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'
