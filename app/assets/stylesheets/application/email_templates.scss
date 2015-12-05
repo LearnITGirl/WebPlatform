@@ -1,7 +1,21 @@
 @import "variables";
 
 body.email_templates-controller {
-  &.index-action {
+  &.index-action, &.search-action {
+    #search_form {
+      input {
+        padding-left: 35px;
+      }
+      .email_template_subject:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e003";
+        position: absolute;
+        line-height: 34px;
+        margin-left: 12px;
+        color: #aaa;
+      }
+    }
+
     .add-new {
       margin-top: 20px;
     }

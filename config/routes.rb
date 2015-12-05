@@ -34,5 +34,9 @@ Webplatform::Application.routes.draw do
 
   resources :password_resets
   resources :polls, only: [:create]
-  resources :email_templates
+  resources :email_templates do
+    collection do
+      post :search
+    end
+  end
 end

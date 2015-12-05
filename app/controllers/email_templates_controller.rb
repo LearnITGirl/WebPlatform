@@ -5,6 +5,11 @@ class EmailTemplatesController < ApplicationController
     @email_templates = EmailTemplate.all
   end
 
+  def search
+    @email_templates = EmailTemplate.search(search_template_params)
+    render :index
+  end
+
   def create
     @email_template = EmailTemplate.new(email_template_params)
     if @email_template.save
@@ -31,6 +36,10 @@ class EmailTemplatesController < ApplicationController
 
   def email_template_params
     params.require(:email_template).permit(:subject, :body, :recipients)
+  end
+
+  def search_template_params
+    params.require(:email_template).permit(:subject)
   end
 
   def find_email_template

@@ -14,4 +14,8 @@ class EmailTemplate < ActiveRecord::Base
 
   validates :subject, :body, :recipients, presence: true
   validates :recipients, inclusion: { in: EmailTemplate.recipients.keys }
+
+  def self.search params
+    where("subject ILIKE ?", "%#{params[:subject]}%")
+  end
 end
