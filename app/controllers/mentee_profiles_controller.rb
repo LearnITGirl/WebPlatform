@@ -10,8 +10,7 @@ class MenteeProfilesController < ApplicationController
       	MissingPersonsMailer.MissingMentor(@user).deliver_now
       	redirect_to mentee_dashboard_path, notice: 'Organsiers Have been notified about the missing mentor'
       else 
-         flash.now[:alert] = "couldnt update"
-      	 redirect_to mentee_dashboard_path, notice: 'failed'
+      	 redirect_to mentee_dashboard_path, notice: 'Couldnt send mail'
       end
   end
 end
