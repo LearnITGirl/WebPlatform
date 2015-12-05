@@ -1,4 +1,5 @@
 class EmailTemplatesController < ApplicationController
+  before_action :require_organiser
   before_action :find_email_template, only: [:edit, :update, :destroy, :deliver]
 
   def index
