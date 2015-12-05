@@ -6,7 +6,7 @@
       .col-sm-4.col-xs-6
         = "For: #{email_template.recipients.humanize}"
       .col-sm-2.col-xs-12
-        = link_to "SEND", "#", class: "btn btn-primary btn-block"
+        = link_to "SEND", deliver_email_template_path(email_template), method: :post, class: "btn btn-primary btn-block"
   .template-body
     .row
       .col-xs-11

@@ -1,5 +1,5 @@
 class EmailTemplatesController < ApplicationController
-  before_action :find_email_template, only: [:edit, :update, :destroy]
+  before_action :find_email_template, only: [:edit, :update, :destroy, :deliver]
 
   def index
     @email_templates = EmailTemplate.all
@@ -30,6 +30,13 @@ class EmailTemplatesController < ApplicationController
   def destroy
     @email_template.delete
     redirect_to :back, notice: "Deleted successfully!"
+  end
+
+  def deliver
+    @email_template.users.each do |user|
+      EmailTemplateMailer.custom(@email_template, user).deliver
+    end
+    redirect_to :back, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
   end
 
   private

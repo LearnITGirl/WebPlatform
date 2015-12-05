@@ -1,7 +1,7 @@
 = simple_form_for @email_template || EmailTemplate.new do |f|
   = f.input :subject
   = f.input :recipients, as: :select, include_blank: false, collection: EmailTemplate.recipients.keys, label_method: :humanize
-  = f.input :body
+  = f.input :body, placeholder: "Dear %{first_name} %{last_name}"
   .row
     .col-sm-3.col-sm-offset-3.col-xs-6
       = link_to "CANCEL", email_templates_path, class: "btn btn-default btn-block"

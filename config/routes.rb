@@ -38,5 +38,8 @@ Webplatform::Application.routes.draw do
     collection do
       post :search
     end
+    member do
+      post :deliver
+    end
   end
 end
