@@ -36,7 +36,6 @@ motivation:
     - answer:
       hint: "if they state they want to do what the program does (copy-paste, or even with minor modifications). We want their personal experience here, we already know what the program does."
       score: 0
-
 abilities:
   experienced:
     question: "Have they mentored someone or taught classes ?"
