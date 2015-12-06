@@ -20,3 +20,15 @@ $ ->
   $('.language > div > select').change( ->
     count_language_score()
   )
+
+  $('.evaluation').find('select').change( ->
+    if $(this).val() == 'other'
+      $(this).parent().find('.other').show()
+    else
+      $(this).parent().find('.other').hide()
+  )
+
+  $('.other-score').change( ->
+    option = $(this).parents('.evaluation').find('select:first option:contains("other")')
+    option.val( $(this).val() )
+  )
