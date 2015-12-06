@@ -22,4 +22,15 @@
   .select2-container{
     width: 100% !important;
   }
+  .other{
+    display: none;
+    margin: 15px 0px 0px 0px;
+    span{
+      line-height: 34px;
+      padding-right: 5px;
+    }
+    .other-score{
+      width: 180px;
+    }
+  }
 }

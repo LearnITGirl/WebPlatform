@@ -4,40 +4,41 @@
       h1 Mentor Evaluation (##{params[:application_id]})
 
     = form_for :evaluation do |f|
-      .col-xs-12
-        .section.row
-          - question = questions["motivation"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.motivation, f: f, field: "M1"}
+      .evaluations
+        .col-xs-12
+          .section.row
+            - question = questions["motivation"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.motivation, f: f, field: "M1"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["abilities"]["experienced"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.experienced, f: f, field: "A1"}
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["experienced"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.experienced, f: f, field: "A1"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["abilities"]["mentor_experience"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.mentor_experience, f: f, field: "A2"}
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["mentor_experience"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.mentor_experience, f: f, field: "A2"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["abilities"]["application_idea"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.application_idea, f: f, field: "A3"}
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["application_idea"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.application_idea, f: f, field: "A3"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["abilities"]["concept_explanation"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.concept_explanation, f: f, field: "A4"}
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["concept_explanation"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.concept_explanation, f: f, field: "A4"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["knowledge"]["background"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.background, f: f, field: "K1"}
+        .col-xs-12
+          .section.row
+            - question = questions["knowledge"]["background"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.background, f: f, field: "K1"}
 
-      .col-xs-12
-        .section.row
-          - question = questions["knowledge"]["git"]
-          = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.git, f: f, field: "K2"}
+        .col-xs-12
+          .section.row
+            - question = questions["knowledge"]["git"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.git, f: f, field: "K2"}
 
       .col-xs-12
         .section.row
@@ -55,5 +56,5 @@
                 .col-xs-2
                   | - #{language}
                 .col-xs-2
-                  = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control'}
+                  = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
       = f.submit "save", class: 'btn btn-default col-xs-offset-4 col-xs-4'
