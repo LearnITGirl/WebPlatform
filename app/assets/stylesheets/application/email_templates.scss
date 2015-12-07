@@ -1,0 +1,62 @@
+@import "variables";
+
+body.email_templates-controller {
+  &.index-action, &.search-action {
+    #search_form {
+      input {
+        padding-left: 35px;
+      }
+      .email_template_subject:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e003";
+        position: absolute;
+        line-height: 34px;
+        margin-left: 12px;
+        color: #aaa;
+      }
+    }
+
+    .add-new {
+      margin-top: 20px;
+    }
+
+    .email-template {
+      border: 1px solid $border-color;
+      margin-bottom: 3px;
+    }
+
+    .template-header {
+      border-bottom: 1px solid $border-color;
+      padding: 10px 20px;
+      &, h4 {
+        line-height: 34px;
+      }
+      h4 {
+        margin: 0;
+      }
+    }
+
+    .template-body {
+      position: relative;
+      padding: 10px 20px;
+    }
+
+    .template-actions {
+      position: absolute;
+      right: 20px;
+      bottom: 10px;
+      a {
+        display: block;
+        margin-top: 5px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &.new-action, &.create-action, &.edit-action, &.update-action {
+    textarea {
+      height: 160px;
+      resize: vertical;
+    }
+  }
+}
