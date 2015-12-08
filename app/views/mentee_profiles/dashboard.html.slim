@@ -52,5 +52,6 @@
   div
     span.badge.online &nbsp;
     | Online
-  = button_to "Report Missing Mentor", { :action => "missing_mentor" }, :confirm => "Are you sure?", :method => :missing_mentor
+    - if !@mentor.is_missing
+      = button_to "Report Missing Mentor", { :action => "missing_mentor" }, :data => {:confirm => "Are you Sure to report your Mentor as missing?"}, :method => :missing_mentor,  class: "btn btn-pink"
 
