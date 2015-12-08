@@ -23,7 +23,7 @@ class UserSessionsController < ApplicationController
 
   def user_dashboard_path
     case current_user.role
-    when "mentee" then mentee_dashboard_path
+    when "mentee" then dashboard_mentee_profiles_path
     when "organizer" then dashboard_organisers_path
     else root_path #we also don't have mentor dashboard yet
     end

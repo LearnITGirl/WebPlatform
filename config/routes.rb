@@ -15,10 +15,15 @@ Webplatform::Application.routes.draw do
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
-  get "mentee_dashboard" => "mentee_profiles#dashboard"
-  resources :mentee_profiles, only: [:show]
-  post "mentee_dashboard/missing_mentor" => "mentee_profiles#missing_mentor"
+  #get "mentee_dashboard" => "mentee_profiles#dashboard"
+  #post "mentee_dashboard/missing_mentor" => "mentee_profiles#missing_mentor"
 
+  resources :mentee_profiles, only: [:show] do
+    collection do
+      get :dashboard
+      post :missing_mentor
+    end
+  end
   resource :mentor_profile, only: [:show] do
     collection do
       get :dashboard
