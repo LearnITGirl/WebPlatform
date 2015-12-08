@@ -3,11 +3,15 @@
     .col-md-6
       = image_tag "profile/mentee_icon.jpg", alt: "Mentee profile picture", class: "profile-icon"
     .col-md-6
-      h3.mentee-name Jane Doe
-      p From: UK
+      h3.mentee-name 
+       ='  @user.first_name 
+       ='  @user.last_name
+      p 
+       | From 
+       = @user.country
       p
-        | Currently in: Italy
-        a.left10 GMT+2
+        | Currently in:  @user.program_country
+        a.left10  @user.time_zone
   h3 Project
   span.project-title Lorem ipsum
   p
@@ -23,4 +27,6 @@
   .mentor-name.top10.bottom10
     span
       | Mentor:
-      a href="#"  Sarah Jones
+      a href="#"  
+      ='   @mentor.first_name 
+      ='  @mentor.last_name
