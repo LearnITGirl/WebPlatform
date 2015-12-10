@@ -13,6 +13,7 @@ Webplatform::Application.routes.draw do
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   resource :mentee_profile, only: [:show]
+  resources :mentee_evaluation
 
   resources :mentor_applications do
     resources :build, controller: 'mentor_applications/build'
