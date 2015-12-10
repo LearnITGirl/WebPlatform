@@ -1,0 +1,33 @@
+.conainer
+  .row
+    .col-xs-6.centered.text-center
+		h1 Mentee Evaluation
+		= form_for :evaluation do |f|
+			.evaluations
+		        .col-xs-12
+		          .section.row
+					- question = questions["motivation"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["motivation"], f: f, field: "M[0]"}
+			.evaluations
+		        .col-xs-12
+		          .section.row
+					- question = questions["creativity"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["project_proposal"], f: f, field: "C[0]"}
+			.evaluations
+		        .col-xs-12
+		          .section.row
+					- question = questions["team_work"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "T[0]"}
+			.evaluations
+		        .col-xs-12
+		          .section.row
+					- question = questions["leadership"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["roadmap"], f: f, field: "L[0]"}
+			- if questions["experience"].present?
+				.evaluations
+			        .col-xs-12
+			          .section.row
+						- question = questions["experience"]
+				        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["programming_experience"], f: f, field: "E[0]"}
+			= hidden_field_tag :mentee_application_id, application.id
+      		= f.submit "Save", class: 'btn btn-pink col-xs-offset-4 col-xs-4 pull-right'
