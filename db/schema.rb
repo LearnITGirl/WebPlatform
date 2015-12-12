@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20151210225405) do
     t.integer "mentee_application_id"
     t.integer "user_id"
   end
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "subject",                null: false
+    t.text     "body",                   null: false
+    t.integer  "recipients", default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "mentee_applications", force: :cascade do |t|
     t.string   "first_name"
@@ -76,6 +83,18 @@ ActiveRecord::Schema.define(version: 20151210225405) do
     t.datetime "updated_at"
   end
 
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string   "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                                     null: false
     t.string   "crypted_password"
@@ -89,6 +108,8 @@ ActiveRecord::Schema.define(version: 20151210225405) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "country"
+    t.string   "organiser_token"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

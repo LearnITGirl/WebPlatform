@@ -24,3 +24,5 @@ en:
           up_to_5: 3-5 hours per week
           up_to_7: 6-7 hours per week
           up_to_10: 8-10 hours per week
+      poll:
+        answer: Vote

@@ -10,4 +10,18 @@
   .fa-facebook-official {
     font-size: 45px;
   }
+
+  #poll-form {
+    display: inline-block;
+    text-align: left;
+
+    .btn-pink {
+      margin-top: -25px;
+    }
+  }
+
+  #other_language {
+    left: 70px;
+    top: -35px;
+  }
 }

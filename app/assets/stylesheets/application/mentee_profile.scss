@@ -1,6 +1,5 @@
-// Place all the styles related to the mentee_profile controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
 .profile-icon {
 	width:80%;
     margin: 5px 0;
@@ -64,7 +63,7 @@
 		    width: 13px;
 		    height: 13px;
 		    display: inline-block;
-		    border: 1px $litg-gray solid;
+		    border: 1px $litg-grey solid;
 		    margin-right: 5px;
 		    box-shadow: 0.5px 0.5px #ccc;
 		}

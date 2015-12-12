@@ -1,0 +1,16 @@
+.email-template
+  .template-header
+    .row
+      .col-xs-6
+        h4= email_template.subject
+      .col-sm-4.col-xs-6
+        = "For: #{email_template.recipients.humanize}"
+      .col-sm-2.col-xs-12
+        = link_to "SEND", deliver_email_template_path(email_template), method: :post, class: "btn btn-primary btn-block"
+  .template-body
+    .row
+      .col-xs-11
+        = simple_format(email_template.body)
+    .template-actions
+      = link_to glyphicon(:pencil), edit_email_template_path(email_template)
+      = link_to glyphicon(:trash), email_template_path(email_template), method: :delete, data: { confirm: "Are you sure?" }
