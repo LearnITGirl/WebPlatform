@@ -16,18 +16,32 @@
 			.evaluations
 		        .col-xs-12
 		          .section.row
-					- question = questions["team_work"]
-			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "T[0]"}
+					- question = questions["teamwork_leadership"]["teamwork"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "L[0]"}
 			.evaluations
 		        .col-xs-12
 		          .section.row
-					- question = questions["leadership"]
-			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["roadmap"], f: f, field: "L[0]"}
+					- question = questions["teamwork_leadership"]["leadership"]
+			        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["roadmap"], f: f, field: "L[1]"}
 			- if questions["experience"].present?
 				.evaluations
 			        .col-xs-12
 			          .section.row
 						- question = questions["experience"]
 				        = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["programming_experience"], f: f, field: "E[0]"}
+			.evaluations
+		        .col-xs-12
+		          .section.row
+					- questions["soundness"]['answers'].each_with_index { |soundness, index|
+					.align-left.col-xs-12 title= "#{soundness['hint']}"
+						input type="checkbox" name="evaluation[S[#{index}]]" value="#{soundness['score']}" id="soundness_#{index}"
+						label for="soundness_#{index}"
+							= soundness['answer']
+					- }
 			= hidden_field_tag :mentee_application_id, application.id
+			= hidden_field_tag :max_soundness, questions["soundness"]["max_score"]
+			.col-xs-12.top10
+				h4.align-left 
+					span Total Score: 
+					span id="total_score" 0
       		= f.submit "Save", class: 'btn btn-pink col-xs-offset-4 col-xs-4 pull-right'

@@ -7,7 +7,7 @@
     = answer
 .col-xs-12.evaluation
   - options = question["answers"].map{ |x| [x["answer"], x["score"], {title: x["hint"]}]}
-  = f.select field, options_for_select(options.push(['Other'])), {}, {prompt: "", class: 'form-control', required: true}
+  = f.select field, options_for_select(options.push(['Other', 0])), {}, {prompt: "", class: 'form-control', required: true}
   .other.row
     .clearfix
       .pull-left
@@ -15,4 +15,3 @@
           |Score (out of #{question["max_score"]}):
       .pull-left
         input.other-score.form-control type="number" placeholder="Your score (out of #{question["max_score"]})" min="0" max="#{question["max_score"]}" step="1"
-    textarea.form-control placeholder="Reason" 

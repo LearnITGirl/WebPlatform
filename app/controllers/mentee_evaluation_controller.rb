@@ -14,12 +14,16 @@ class MenteeEvaluationController < ApplicationController
 	    render locals: {questions: questions, application: application}
  	end
 
-	def create_evaluation
-	    if params[:mentor_application_id].present?
-	      application = MentorApplication.find(params[:mentor_application_id])
-	      MentorApplicationEvaluation.new(evaluation: params['evaluation'],
+	def create
+		Rails.logger.info("PARAMS: #{params.inspect}")
+	    if params[:mentee_application_id].present?
+	      application = MenteeApplication.find(params[:mentee_application_id])
+		Rails.logger.info("SOUNDNESS: #{@max_soundness}")
+
+	      MenteeApplicationEvaluation.new(evaluation: params['evaluation'],
 	                                    user: current_user,
-	                                    application: application).evaluate
+	                                    application: application,
+	                                    max_soundness: params[:max_soundness]).evaluate
 	    end
 
 	    redirect_to root_url
