@@ -16,18 +16,19 @@ ActiveRecord::Schema.define(version: 20151210225405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "evaluations", force: :cascade do |t|
-    t.float   "score"
-    t.integer "mentor_application_id"
-    t.integer "mentee_application_id"
-    t.integer "user_id"
-  end
   create_table "email_templates", force: :cascade do |t|
     t.string   "subject",                null: false
     t.text     "body",                   null: false
     t.integer  "recipients", default: 0, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.float   "score"
+    t.integer "mentor_application_id"
+    t.integer "mentee_application_id"
+    t.integer "user_id"
   end
 
   create_table "mentee_applications", force: :cascade do |t|
