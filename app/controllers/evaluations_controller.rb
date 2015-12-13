@@ -1,4 +1,6 @@
 class EvaluationsController < ApplicationController
+  before_action :require_organiser, only: [:create_evaluation, :mentor]
+
   def mentor
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
     application = MentorApplication.where(id: params['application_id']).first
@@ -16,6 +18,14 @@ class EvaluationsController < ApplicationController
                                     application: application).evaluate
     end
 
-    redirect_to root_url
+    redirect_to root_path, notice: "Evaluation finished successfully!"
+  end
+
+  private
+
+  def require_organiser
+    unless current_user && current_user.role =='organizer'
+      redirect_to root_path, notice: "Login again as a organiser"
+    end
   end
 end
