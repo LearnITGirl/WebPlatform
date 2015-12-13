@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'rails', '4.2.1'
 
 gem 'pg'
 gem 'unicorn'
 
+gem 'mini_magick'
+gem 'carrierwave'
+gem "fog"
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -27,6 +30,8 @@ gem 'carmen-rails'
 gem 'font-awesome-sass'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
+
+gem 'rollbar', '~> 2.4.0'
 
 group :development, :test do
   gem 'pry-rails'

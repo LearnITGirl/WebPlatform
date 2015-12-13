@@ -89,7 +89,7 @@ Webplatform::Application.configure do
   }
 
   ActionMailer::Base.delivery_method = :smtp
-  config.action_mailer.default_url_options = {:host => 'learn-it-girl-staging.herokuapp.com', protocol: 'https'}
+  config.action_mailer.default_url_options = {host: 'learn-it-girl-staging.herokuapp.com', protocol: 'https'}
 
   Rails.application.default_url_options[:host] = 'learn-it-girl-staging.herokuapp.com'
   Rails.application.default_url_options[:protocol] = 'https'

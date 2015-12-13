@@ -3,7 +3,6 @@ Webplatform::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.action_mailer.default_url_options = {:host => "localhost:3000"}
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
@@ -77,4 +76,20 @@ Webplatform::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  ActionMailer::Base.smtp_settings = {
+    port: '587',
+    address: 'smtp.sendgrid.net',
+    domain: 'heroku.com',
+    authentication: :plain,
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    enable_starttls_auto: true
+  }
+
+  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.default_url_options = {host: 'learnitgirl.com', protocol: 'https'}
+
+  Rails.application.default_url_options[:host] = 'learnitgirl.com'
+  Rails.application.default_url_options[:protocol] = 'https'
 end

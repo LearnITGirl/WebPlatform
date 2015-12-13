@@ -76,6 +76,12 @@ ActiveRecord::Schema.define(version: 20151206185429) do
     t.datetime "updated_at"
   end
 
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "polls", force: :cascade do |t|
     t.string   "answer"
     t.datetime "created_at"
@@ -96,6 +102,7 @@ ActiveRecord::Schema.define(version: 20151206185429) do
     t.string   "last_name"
     t.string   "country"
     t.string   "organiser_token"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
