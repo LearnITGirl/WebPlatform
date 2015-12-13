@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206185429) do
+ActiveRecord::Schema.define(version: 20151213173132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "evaluations", force: :cascade do |t|
-    t.float   "score"
+    t.decimal "score"
     t.integer "mentor_application_id"
     t.integer "mentee_application_id"
     t.integer "user_id"
