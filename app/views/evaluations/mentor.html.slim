@@ -1,4 +1,4 @@
-.conainer
+.conainer.mentor_evaluation
   .row
     .col-xs-12.text-center
       h1 Mentor Evaluation (##{params[:application_id]})
@@ -58,4 +58,8 @@
                 .col-xs-2
                   = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
       = hidden_field_tag :mentor_application_id, application.id
+      .col-xs-12.top10
+        h4.align-left 
+          span Total Score: 
+          span id="total_score" 0
       = f.submit "save", class: 'btn btn-default col-xs-offset-4 col-xs-4'
