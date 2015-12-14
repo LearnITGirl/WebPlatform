@@ -18,9 +18,11 @@ Webplatform::Application.routes.draw do
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
   get "mentor_evaluation/:application_id" => "evaluations#mentor"
-  post "mentor_evaluation/:application_id" => "evaluations#create_evaluation"
+  get "mentee_evaluation/:application_id" => "evaluations#mentee"
+  post "evaluation/:application_id" => "evaluations#create_evaluation"
 
   resource :mentee_profile, only: [:show]
+
   resource :mentor_profile, only: [:show] do
     collection do
       get :dashboard
