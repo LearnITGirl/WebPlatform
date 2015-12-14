@@ -15,7 +15,6 @@ Evaluation =
       count_total_score()
     )
 
-
   customDropdowns: ->
     $('select').select2({
       placeholder: "Select answer that fits the most",
@@ -70,7 +69,6 @@ Evaluation =
       console.log k
     (m * 3 + a * 2 + k * 2)
 
-
   init: ->
     @languageScoreCounter()
     @customDropdowns()
@@ -79,7 +77,6 @@ Evaluation =
 
 $ ->
   Evaluation.init()
-
 
 count_total_score = ->
   if($('.mentee_evaluation').length > 0)
