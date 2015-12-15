@@ -1,4 +1,7 @@
 class MenteeProfilesController < ApplicationController
+  before_action :require_mentee, except: [ :show ]
+  before_action :require_mentee_or_organiser, only: [:show]
+
   def show
     @user = User.find(params[:id])
     @mentor = User.find(@user.matched_id)
@@ -17,7 +20,7 @@ class MenteeProfilesController < ApplicationController
         MissingPersonsMailer.missing_mentor(@user).deliver_now
       	redirect_to dashboard_mentee_profiles_path, notice: 'Organsiers Have been notified about the missing mentor'
       else 
-      	 redirect_to dashboard_mentee_profiles_path, notice: 'Couldnt send mail'
+      	redirect_to dashboard_mentee_profiles_path, notice: 'Couldnt send mail'
       end
     else 
       redirect_to dashboard_mentee_profiles_path, notice: "Please login first"
