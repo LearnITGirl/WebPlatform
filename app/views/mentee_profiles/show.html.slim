@@ -1,7 +1,7 @@
 .col-md-6.centered
   .row
     .col-md-6
-      = image_tag "profile/mentee_icon.jpg", alt: "Mentee profile picture", class: "profile-icon"
+      = image_tag @user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if @user.avatar?
     .col-md-6
       h3.mentee-name 
        ='  @user.first_name 

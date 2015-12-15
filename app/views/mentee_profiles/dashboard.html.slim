@@ -1,6 +1,6 @@
 .col-xs-2.col-md-3.col-lg-2
   h3.mentee-name = current_user.first_name
-  = image_tag "profile/mentee_icon.jpg", alt: "Mentee profile picture", class: "profile-icon"
+  = image_tag @user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if @user.avatar?
   h3.litg-pink Project
   span.project-title Lorem ipsum
   p
@@ -46,7 +46,7 @@
   .mentor-name
     span Mentor:
     span = @mentor.first_name
-  = image_tag "profile/mentor_icon.png", alt: "Mentor profile picture", class: "profile-icon"
+  = image_tag @mentor.avatar_url(:thumb) , alt: "Mentor profile picture", class: "profile-icon" if @mentor.avatar?
   span 
   = @mentor.email
   div
