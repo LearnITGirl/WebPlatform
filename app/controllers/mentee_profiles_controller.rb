@@ -6,13 +6,13 @@ class MenteeProfilesController < ApplicationController
   end
   
   def dashboard
-    @mentor = User.find_by(id: current_user.matched_id)
+    @mentor = User.find(current_user.matched_id)
   end
   
   def missing_mentor
     @user = current_user
     if !@user.blank? 
-      @mentor = User.find_by(id: current_user.matched_id)
+      @mentor = User.find(current_user.matched_id)
       if @mentor.update_attribute(:is_missing, true)
         MissingPersonsMailer.missing_mentor(@user).deliver_now
       	redirect_to dashboard_mentee_profiles_path, notice: 'Organsiers Have been notified about the missing mentor'
