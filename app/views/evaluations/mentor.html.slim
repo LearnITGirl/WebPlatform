@@ -1,0 +1,65 @@
+.conainer.mentor_evaluation
+  .row
+    .col-xs-12.text-center
+      h1 Mentor Evaluation (##{params[:application_id]})
+
+    = form_for :evaluation do |f|
+      .evaluations
+        .col-xs-12
+          .section.row
+            - question = questions["motivation"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.motivation, f: f, field: "M[0]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["experienced"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.experienced, f: f, field: "A[0]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["mentor_experience"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.mentor_experience, f: f, field: "A[1]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["application_idea"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.application_idea, f: f, field: "A[2]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["abilities"]["concept_explanation"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.concept_explanation, f: f, field: "A[3]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["knowledge"]["background"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.background, f: f, field: "K[0]"}
+
+        .col-xs-12
+          .section.row
+            - question = questions["knowledge"]["git"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application.git, f: f, field: "K[1]"}
+
+      .col-xs-12
+        .section.row
+          - question = questions["knowledge"]["programming_languages"]
+          .col-xs-12.question
+            strong
+              = question["question"]
+              | &nbsp;(0 - #{question["max_score"]})
+          .col-xs-12.answer
+            = application.programming_experience
+          .col-xs-12.evaluation
+            = f.hidden_field 'K[2]', class: 'language-score'
+            - application.programming_languages.each do |language|
+              .language.row
+                .col-xs-2
+                  | - #{language}
+                .col-xs-2
+                  = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
+      = hidden_field_tag :mentor_application_id, application.id
+      .col-xs-12.top10
+        h4.align-left 
+          span Total Score: 
+          span id="total_score" 0
+      = f.submit "save", class: 'btn btn-default col-xs-offset-4 col-xs-4'

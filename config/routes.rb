@@ -15,8 +15,6 @@ Webplatform::Application.routes.draw do
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
-  #get "mentee_dashboard" => "mentee_profiles#dashboard"
-  #post "mentee_dashboard/missing_mentor" => "mentee_profiles#missing_mentor"
 
   resources :mentee_profiles, only: [:show] do
     collection do
@@ -24,6 +22,10 @@ Webplatform::Application.routes.draw do
       post :missing_mentor
     end
   end
+  get "mentor_evaluation/:application_id" => "evaluations#mentor"
+  get "mentee_evaluation/:application_id" => "evaluations#mentee"
+  post "evaluation/:application_id" => "evaluations#create_evaluation"
+
   resource :mentor_profile, only: [:show] do
     collection do
       get :dashboard

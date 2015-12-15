@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151215160837) do
 
   # These are extensions that must be enabled in order to support this database
@@ -22,6 +23,13 @@ ActiveRecord::Schema.define(version: 20151215160837) do
     t.integer  "recipients", default: 0, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.decimal "score"
+    t.integer "mentor_application_id"
+    t.integer "mentee_application_id"
+    t.integer "user_id"
   end
 
   create_table "mentee_applications", force: :cascade do |t|

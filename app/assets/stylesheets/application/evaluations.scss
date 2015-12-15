@@ -1,0 +1,36 @@
+//= require 'select2.min'
+.section{
+  .question{
+    font-size: 16px;
+    padding-top: 35px;
+    padding-bottom: 5px;
+  }
+
+  .answer{
+    font-style: italic;
+  }
+
+  .evaluation{
+    margin: 5px 0px;
+    option{
+      padding: 2px;
+    }
+  }
+  .language{
+    line-height: 30px;
+  }
+  .select2-container{
+    width: 100% !important;
+  }
+  .other{
+    display: none;
+    margin: 15px 0px 0px 0px;
+    span{
+      line-height: 34px;
+      padding-right: 5px;
+    }
+    .other-score{
+      width: 180px;
+    }
+  }
+}
