@@ -10,8 +10,9 @@
        | From 
        = @user.country
       p
-        | Currently in:  @user.program_country
-        a.left10  @user.time_zone
+        | Currently in: 
+        = @user.program_country
+        a.left10 = @user.timezone
   h3 Project
   span.project-title Lorem ipsum
   p
