@@ -1,6 +1,6 @@
 class MenteeProfilesController < ApplicationController
   before_action :require_mentee, except: [ :show ]
-  before_action :require_mentee_or_organiser, only: [:show]
+  before_action :require_user, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -29,8 +29,8 @@ class MenteeProfilesController < ApplicationController
     end
    end
 
-   def require_mentee_or_organiser
-    unless current_user && (current_user.organizer? || current_user.mentee?)
+   def require_user
+    unless current_user
       redirect_to root_path, alert: "You're not authorized to access this page!"
     end
    end
