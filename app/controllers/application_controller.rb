@@ -14,18 +14,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_mentee
-    unless current_user && current_user.mentee?
-      redirect_to root_path, alert: "Login again as a Mentee!"
-    end
-  end
- 
-  def require_mentee_or_organiser
-    unless current_user && (current_user.organizer? || current_user.mentee?)
-      redirect_to root_path, alert: "You're not authorized to access this page!"
-    end
-  end
-    
- 
-
 end
