@@ -1,4 +1,5 @@
 class MenteeApplication < ActiveRecord::Base
+  has_many :evaluations
 
   validates :first_name, :last_name, :email, :gender, :country, :program_country,
             :time_zone, presence: true, on: :update, if: :done_or_personal_information?
@@ -40,6 +41,15 @@ class MenteeApplication < ActiveRecord::Base
 
   def done_or_details?
     build_step.to_s == "details" || done?
+  end
+
+  def self.no_evaluation
+    MenteeApplication.joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
+      where("evaluations.mentee_application_id is null")
+  end
+  def self.no_evaluation
+    MenteeApplication.joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
+      where("evaluations.mentee_application_id is null")
   end
 
   private

@@ -17,8 +17,8 @@ Webplatform::Application.routes.draw do
   get "sponsors" => "home#sponsors"
   get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
-  get "mentor_evaluation/:application_id" => "evaluations#mentor"
-  get "mentee_evaluation/:application_id" => "evaluations#mentee"
+  get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
+  get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
   post "evaluation/:application_id" => "evaluations#create_evaluation"
 
   resource :mentee_profile, only: [:show]

@@ -2,6 +2,8 @@ class OrganisersController < ApplicationController
   before_action :require_organiser
 
   def dashboard
+    @mentees = MenteeApplication.no_evaluation
+    @mentors = MentorApplication.no_evaluation
   end
 
   def index
