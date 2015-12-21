@@ -1,0 +1,27 @@
+@import "variables";
+
+body.organisers-controller {
+  h3 {margin-top: 50px;}
+
+  table {
+    margin-top: 50px;
+
+    &.pending {
+      margin-top: 20px;
+    }
+
+
+    img {
+      width: 50px;
+      border: 1px solid #f7f7f7;
+    }
+
+    td {vertical-align: middle;}
+
+    span {
+      position: relative;
+      top: 5px;
+      left: 15px;
+    }
+  }
+}

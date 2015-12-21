@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   before_create :create_organiser_token
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def create_organiser_token
