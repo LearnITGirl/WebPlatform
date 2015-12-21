@@ -13,7 +13,7 @@ html
   body class="#{controller_name}-controller #{action_name}-action"
     header
       .container-fluid
-        = link_to root_path, class: "pull-left" do
+        = link_to main_path, class: "pull-left" do
           span.glyphicon.glyphicon-home
         - if current_user
           .pull-right
