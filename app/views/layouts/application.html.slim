@@ -12,18 +12,7 @@ html
     = csrf_meta_tags
   body class="#{controller_name}-controller #{action_name}-action"
     header
-      .container-fluid
-        = link_to main_path, class: "pull-left" do
-          span.glyphicon.glyphicon-home
-        - if current_user
-          .pull-right
-            a href="#"
-              span.glyphicon.glyphicon-user
-              =< current_user.email
-            = link_to "Log out", logout_path
-        - else
-          = link_to "Log in", login_path, class: "pull-right"
-        = image_tag "logo.png"
+      = render partial: "layouts/header"
     .container.main-content
       = render "shared/flash_messages"
       = yield

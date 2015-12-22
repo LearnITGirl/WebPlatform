@@ -70,19 +70,26 @@ header .container-fluid {
     max-width: 100%;
   }
 
-  a {
-    padding-top: 15px;
-    margin-right: 20px;
-    color: #fff;
+  nav.navbar.navbar-default {
+    border: none;
 
-    &:hover, &:focus {text-decoration: none;}
-    span.glyphicon {
-      margin-right: 5px;
-      font-size: 20px;
+    li.no-image a {padding-top: 20px;}
+
+    a {
+      color: #fff;
+
+      &:hover, &:focus {
+        text-decoration: none;
+        color: #fff;
+      }
+
+
+      span.glyphicon {
+        margin-right: 5px;
+        font-size: 20px;
+      }
     }
   }
-
-  .pull-right {padding-top: 15px;}
 }
 
 .page-header {
