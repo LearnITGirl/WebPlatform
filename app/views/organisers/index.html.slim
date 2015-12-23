@@ -1,32 +1,42 @@
-.displayorg
-  .container
-     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-      h1.text-center.green-text Manage Organizers
-      p
-      p
-      p
-      = form_tag organisers_path, :method => :post do
-        .field
-          = label_tag :email
-          br
-          = text_field_tag :email
-          = submit_tag "Add Organiser!"
+.page-header
+  h1.text-center.green-text Manage Organizers
+.row
+  .col-xs-12
+    = form_tag organisers_path, class: "form-inline text-center" do
+      .form-group
+        = text_field_tag :email, params[:email], class: "form-control", placeholder: "Add new email"
+      = submit_tag "Add Organiser", class: "btn btn-pink"
 
-      h3.text-center.green-text Our Organizers Team
-      p.text-center
-     	- @organisers.each do |organiser|
-      	 .orgdetails
-           p
-             ='  organiser.first_name
-             ='  organiser.last_name
-             ='  organiser.country
-             ='  organiser.email
-      h3.text-center.green-text Pending Organizers
-      p.text-center
-        - if !@pending_organisers.empty?
+.row
+  .col-xs-12
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th Name
+          th Country
+          th Email
+      tbody
+        - @organisers.each do |organiser|
+          tr
+            td
+              = image_tag display_avatar(organiser)
+              span
+                = organiser.full_name
+            td = organiser.country
+            td = organiser.email
+
+h3.text-left.green-text Pending Organizers
+
+.row
+  .col-xs-12
+    table.table.table-striped.table-bordered.pending
+      thead
+        tr
+          th Email
+      tbody
+        - if @pending_organisers.length > 0
           - @pending_organisers.each do |pending_organiser|
-            .orgdetails
-              p
-                =pending_organiser.email
+            tr
+              td = pending_organiser.email
 
 

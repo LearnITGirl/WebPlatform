@@ -26,10 +26,7 @@
 
     .page-header
       h1.green-text.text-center How can I get involved?
-    - if Rails.env.development?
       = render partial: "application_open"
-    - else
-      = render partial: "application_closed"
 
     .page-header
       h1.green-text.text-center Want to get inspired?

@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127213946) do
+ActiveRecord::Schema.define(version: 20151223092534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "subject",                null: false
+    t.text     "body",                   null: false
+    t.integer  "recipients", default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.decimal "score"
+    t.integer "mentor_application_id"
+    t.integer "mentee_application_id"
+    t.integer "user_id"
+  end
 
   create_table "mentee_applications", force: :cascade do |t|
     t.string   "first_name"
@@ -81,6 +96,15 @@ ActiveRecord::Schema.define(version: 20151127213946) do
     t.datetime "updated_at"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string  "title"
+    t.string  "language"
+    t.text    "description"
+    t.string  "github_link"
+    t.integer "mentor_id"
+    t.integer "mentee_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                                     null: false
     t.string   "crypted_password"
@@ -95,6 +119,11 @@ ActiveRecord::Schema.define(version: 20151127213946) do
     t.string   "last_name"
     t.string   "country"
     t.string   "organiser_token"
+    t.string   "avatar"
+    t.boolean  "is_missing"
+    t.integer  "matched_id"
+    t.string   "program_country"
+    t.string   "timezone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

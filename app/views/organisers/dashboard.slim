@@ -1,0 +1,19 @@
+.row
+  .col-xs-12.text-center
+    - if @mentees.length > 0
+      h3.text-center
+        span.counter = @mentees.size
+        =< "mentee applications to evaluate"
+        = link_to "EVALUATE MENTEES", mentee_evaluation_path(@mentees.first), class: "btn btn-pink"
+    - else
+      h3.text-center No mentee applications to evaluate
+.row.top-space-40
+  .col-xs-12.text-center
+    - if @mentors.length > 0
+      h3.text-center
+        span.counter = @mentors.size
+        =< "mentor applications to evaluate"
+        = link_to "EVALUATE MENTORS", mentor_evaluation_path(@mentors.first), class: "btn btn-pink"
+    - else
+      h3.text-center No mentor applications to evaluate
+

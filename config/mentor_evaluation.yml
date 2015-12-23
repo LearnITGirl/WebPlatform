@@ -1,0 +1,182 @@
+motivation:
+  question: "What motivated you to become a mentor?"
+  max_score: 10
+  answers:
+    - answer: "Women in Computer Science"
+      hint: "if the motivation is related to women in Computer Science, and they seem very involved (give a personal example of why the cause is important to them, or state other events of this type that they have been involved in: e.g. Rails Girls, other workshops for women etc.)"
+      score: 8
+    - answer:
+      hint: "if the motivation is related to women in Computer Science, but they do not give a personal example, they just believe in the cause"
+      score: 7
+    - answer:
+      hint: "if the motivation is related to helping others (generic) and they give a personal example why or what else they have done to help others in this context"
+      score: 6
+    - answer:
+      hint: "if the motivation is related to helping others (generic)(no example)"
+      score: 5
+    - answer:
+      hint: "if their sentences are too general, and the personal reason why they are doing this is not really showing. Althoug, they add at least something related to how they feel"
+      score: 4
+    - answer:
+      hint: "if their sentences are too general, and the personal reason why they are doing this is not really showing. And there are only general sentences"
+      score: 3
+    - answer:
+      hint: "if they make the application about them: sharing their skills, showing off, testing their knowledge (of programming, or English etc.). if they seem like it’s more of a challenge, and they want to test themselves"
+      score: 2
+    - answer:
+      hint: "if they make the application about them: sharing their skills, showing off, testing their knowledge (of programming, or English etc.). if they are really full of themselves and want to show off"
+      score: 1
+    - answer:
+      hint: "If at any point you feel that the applicant is only saying things to get a good score, and using buzzwords only for the sake of it."
+      score: 0
+    - answer:
+      text:
+      hint: "if they are in it for a diploma, or think they can get hired by Google this way, or other absurd reasons."
+      score: 0
+    - answer:
+      hint: "if they state they want to do what the program does (copy-paste, or even with minor modifications). We want their personal experience here, we already know what the program does."
+      score: 0
+abilities:
+  experienced:
+    question: "Have they mentored someone or taught classes ?"
+    max_score: 2
+    answers:
+      - answer: 'yes'
+        score: 2
+      - answer: 'no'
+        score: 0
+  mentor_experience:
+    question: "Tell us about your experience"
+    max_score: 3
+    answers:
+      - answer: "mentored in reputed and known programs like Google-code, Other Girls organisation in successfully"
+        hint: ""
+        score: 3
+      - answer: "done teaching to a classroom of students"
+        hint: "(e.g. for a paid workshop etc.)"
+        score: 3
+      - answer: "worked in college or some volunteer work or taught in workshops/seminars which impacted a large organisation as whole"
+        hint: ""
+        score: 3
+      - answer: "share experience of teaching in university"
+        hint: ""
+        score: 3
+      - answer: "done teaching in places locally"
+        hint: ""
+        score: 2
+      - answer: "helped their friends / colleagues out"
+        hint: "(e.g. as part of their job, for paid individual tutoring)"
+        score: 2
+      - answer: "general answer"
+        hint: "answer like i teach some language to individuals who don't know programming. Here there are no specification"
+        score: 0
+  application_idea:
+    question: "If you would need to help a friend learn how to program, what application would you suggest to her to create?"
+    max_score: 2
+    answers:
+      - answer: "clearly specify the ideas and also mentioning that they will combine the interest of mentee with the idea"
+        hint: ""
+        score: 2
+      - answer: "Specifying the idea along with why they choose it."
+        hint: "For example, Learning through building a game like tic-tac-toe, she will learn through basic syntaxes. Them can move on to building memory games. "
+        score: 2
+      - answer: "answer is more general statements like “identifying the interest and suggesting ideas accordingly"
+        hint: ""
+        score: 1
+      - answer: "suggest some basic apps and then move creating more complex ones"
+        hint: ""
+        score: 1
+      - answer: "Something general as an web-app or mobile app or game but not specifying the detailed idea like webapp like todolist."
+        hint: ""
+        score: 1
+      - answer: "Not suggested any new idea and mentioned reasons"
+        hint: "like 'will ask the mentee', 'depending on mentee interest'"
+        score: 0
+      - answer: "Just mention the tools and languages to learn. "
+        hint: ""
+        score: 0
+      - answer: "Something totally impractical or highly complex projects like building a search engine"
+        hint: ""
+        score: 0
+  concept_explanation:
+    question: "Explain, in your own words, a concept in programming that you consider hard."
+    max_score: 3
+    answers:
+      - answer: "understand the concept explained provided you don't know about it before hand"
+        hint: ""
+        score:  3
+      - answer: "explain using simple language without using many technical words"
+        hint: ""
+        score: 3
+      - answer: "help you understand a concept by explaining it in an unusual way"
+        hint: "for instance by using real-life examples (cars, movies, forks, something that everyone can understand from the real world)."
+        score: 3
+      - answer: "Copy-pasting a piece of code and explaining it how it works. "
+        hint: ""
+        score: 2
+      - answer: "explain how they would explain, instead of actually explaining "
+        hint: "we don’t know how easily someone understands, because this skips some actual explanations"
+        score: 2
+      - answer: "Simple concepts like control statements, conditional statements, arithmetic operations, etc present in any every language."
+        hint: ""
+        score: 2
+      - answer: "the answers are too technical"
+        hint: ""
+        score: 0
+      - answer: "the explanation is too long (as in text, not code or figures) and hard to understand."
+        hint: ""
+        score: 0
+      - answer: "Copy Pasting the definition from wikipedia or similar to some standard answer."
+        hint: ""
+        score: 0
+      - answer: "gave u list of concepts and tell they will explain all this but don't explain them"
+        hint: ""
+        score: 0
+      - answer: "General answers"
+        hint: "like “programming” is a hard concept like itself. Anyone can learn it, “way of thinking” is difficult etc. ."
+        score: 
+      - answer: "have not understood the questions, or if the answers are not fit "
+        hint: ""
+        score: 0
+knowledge:
+  background:
+    question: "Professional Background/Educational Background"
+    max_score: 5
+    answers:
+      - answer: "experienced professionals (they work in the field - regardless if they are students or not)"
+        hint:
+        score: 5
+      - answer: "Graduate students, or a T.A. with no other experience (no projects)"
+        hint:
+        score: 4
+      - answer: "Undergraduate students, after their third year of study"
+        hint:
+        score: 3
+      - answer: "Undergraduate students, first or second year of study"
+        hint:
+        score: 2
+      - answer: "self taught, and have some programming projects that they work on, but do not work in the field"
+        hint:
+        score: 1
+      - answer: "no experience in the field"
+        hint:
+        score: 0
+  git:
+    question: "Knows Git / GitHub / BitBucket"
+    hint:
+    max_score: 1
+    answers:
+      - answer: "yes"
+        hint: ""
+        score: 1
+      - answer: "no"
+        hint: ""
+        score: 0
+  programming_languages:
+    question: "For each of the selected programming languages, tell us about a project you have worked on.(Feel free to get technical here)"
+    hint: "Assign a grade 
+      for each of the programming languages they state they could teach. 
+      The grade is in the range 0-10, with 10 being the highest score. 
+      In order to assign a grade, you have to read through the projects they state they have done.
+      "
+    max_score: 10

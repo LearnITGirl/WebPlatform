@@ -1,0 +1,16 @@
+.col-xs-12.question
+  strong
+    = question["question"]
+    | &nbsp;(0 - #{question["max_score"]})
+.col-xs-12.answer
+  = answer
+.col-xs-12.evaluation
+  - options = question["answers"].map{ |x| [x["answer"], x["score"], {title: x["hint"]}]}
+  = f.select field, options_for_select(options.push(['other'])), {prompt: "", class: 'form-control col-xs-12'}, required: true
+  .other.row
+    .pull-left
+      span
+        |Score (out of #{question["max_score"]}):
+    .pull-left
+      input.other-score.form-control type="number" placeholder="Your score (out of #{question["max_score"]})" min="0" max="#{question["max_score"]}" step="1"
+

@@ -4,4 +4,3 @@
 #= require bootstrap-sass-official/assets/javascripts/bootstrap/collapse
 
 #= require_directory ./application
-#
