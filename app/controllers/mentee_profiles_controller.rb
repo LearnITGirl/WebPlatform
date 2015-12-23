@@ -1,6 +1,6 @@
 class MenteeProfilesController < ApplicationController
   before_action :require_mentee, except: [ :show ]
-  before_action :require_user, only: [:show]
+  before_action :require_login, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -22,17 +22,5 @@ class MenteeProfilesController < ApplicationController
     end
   end
   
-  private
-   def require_mentee
-    unless current_user && current_user.mentee?
-      redirect_to root_path, alert: "Login again as a Mentee!"
-    end
-   end
-
-   def require_user
-    unless current_user
-      redirect_to root_path, alert: "You're not authorized to access this page!"
-    end
-   end
 
 end

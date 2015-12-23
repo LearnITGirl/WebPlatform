@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_mentee
+    unless current_user && current_user.mentee?
+      redirect_to root_path, alert: "Login again as a Mentee!"
+    end
+  end
+
 end
