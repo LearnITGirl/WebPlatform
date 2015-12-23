@@ -16,12 +16,12 @@
   h3 Project
   span.project-title = @project.title
   p
-     |Languages used
-     = @project.language
-     br
-     = @project.description
+    |Languages used
+    = @project.language
+  p
+    = @project.description
   .git-link
-    = link_to "See on Github", url_with_protocol(@project.github_link),  :target => '_blank'
+    = link_to url_with_protocol(@project.github_link),  :target => '_blank'
       i.fa.fa-github.fa-3
       | See on Github
   .mentor-name.top10.bottom10

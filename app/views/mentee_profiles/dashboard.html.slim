@@ -8,9 +8,9 @@
    = @project.language
    br
    = @project.description 
-  a href="#"  Read more
+  = link_to "Read more", mentee_profile_path(current_user)
   .git-link
-    a href="" 
+    = link_to url_with_protocol(@project.github_link), target: "_blank" do
       i.fa.fa-github.fa-3
       | See on Github
 .col.xs-10.col-md-6.col-lg-8.project-progress
