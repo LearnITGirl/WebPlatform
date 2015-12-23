@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_one :project, foreign_key: "mentor_id"
+  has_one :project, foreign_key: "mentee_id"
+
   mount_uploader :avatar, AvatarUploader
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
