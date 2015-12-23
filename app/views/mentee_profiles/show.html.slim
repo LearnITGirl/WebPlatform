@@ -14,15 +14,14 @@
         = @user.program_country
         a.left10 = @user.timezone
   h3 Project
-  span.project-title Lorem ipsum
+  span.project-title = @project.title
   p
-    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    | consequat.
-  p Odio nostrum nisi vel enim veritatis, facere sunt quo sequi vitae vero suscipit, consequatur cupiditate tenetur maxime perspiciatis neque provident hic ad veniam. Nostrum consequuntur tempore, saepe provident atque accusantium.
+    |Languages used
+    = @project.language
+  p
+    = @project.description
   .git-link
-    a href="" 
+    = link_to url_with_protocol(@project.github_link),  :target => '_blank'
       i.fa.fa-github.fa-3
       | See on Github
   .mentor-name.top10.bottom10

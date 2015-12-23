@@ -75,6 +75,16 @@ header .container-fluid {
 
     li.no-image a {padding-top: 20px;}
 
+    .navbar-toggle {
+      border: 1px solid #fff;
+      span.icon-bar {background-color: #fff;}
+
+      &:focus, &:active, &:hover {
+        background-color: #f19eae;
+        span.icon-bar {background-color: #fff;}
+      }
+    }
+
     a {
       color: #fff;
 

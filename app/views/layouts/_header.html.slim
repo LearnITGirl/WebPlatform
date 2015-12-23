@@ -2,14 +2,14 @@
   nav class="navbar navbar-default"
     .container-fluid
       .navbar-header
-        button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+        button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false"
           span.sr-only Toggle navigation
           span.icon-bar
           span.icon-bar
           span.icon-bar
         = link_to main_path, class: "navbar-brand" do
           span.glyphicon.glyphicon-home
-      .collapse.navbar-collapse id="bs-example-navbar-collapse-1"
+      .collapse.navbar-collapse id="menu"
         ul.nav.navbar-nav
           - menu_links.each do |link|
             = link

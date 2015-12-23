@@ -3,22 +3,21 @@
     = current_user.first_name
   = image_tag current_user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if current_user.avatar?
   h3.litg-pink Project
-  span.project-title Lorem ipsum
+  span.project-title = @project.title
   p
-    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    | consequat.
-  a href="#"  Read more
+   = @project.language
+   br
+   = @project.description 
+  = link_to "Read more", mentee_profile_path(current_user)
   .git-link
-    a href="" 
+    = link_to url_with_protocol(@project.github_link), target: "_blank" do
       i.fa.fa-github.fa-3
       | See on Github
 .col.xs-10.col-md-6.col-lg-8.project-progress
   .progress
     .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
       | 60%
-  a href="#"  See entire project
+  = link_to  "See entire project", mentee_profile_url(current_user.id)
   h2 Current week
   b October 7th - October 13th
   .tasks
