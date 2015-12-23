@@ -10,7 +10,7 @@ class MenteeProfilesController < ApplicationController
   
   def dashboard
     @mentor = User.find(current_user.matched_id)
-    @project = Project.where(mentee_id: current_user.id)
+    @project = Project.find_by(mentee_id: current_user.id)
 
   end
   
