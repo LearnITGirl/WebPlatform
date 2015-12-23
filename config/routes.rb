@@ -15,13 +15,17 @@ Webplatform::Application.routes.draw do
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
-  get  "mentee_dashboard" => "mentee_profiles#dashboard"
 
-  get "mentor_evaluation/:application_id" => "evaluations#mentor"
-  get "mentee_evaluation/:application_id" => "evaluations#mentee"
+  resources :mentee_profiles, only: [:show] do
+    collection do
+      get :dashboard
+      post :missing_mentor
+    end
+  end
+  
+  get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
+  get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
   post "evaluation/:application_id" => "evaluations#create_evaluation"
-
-  resource :mentee_profile, only: [:show]
 
   resource :mentor_profile, only: [:show] do
     collection do

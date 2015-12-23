@@ -1,0 +1,17 @@
+@import "variables";
+
+body.organisers-controller.dashboard-action {
+  span.counter {
+    font-weight: bold;
+    font-size: 40px;
+    padding-right: 30px;
+    position: relative;
+    top: 10px;
+  }
+
+  a.btn-pink {
+    position: relative;
+    top: -6px;
+    left: 20px;
+  }
+}

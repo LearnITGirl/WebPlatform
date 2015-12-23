@@ -45,6 +45,11 @@ class MentorApplication < ActiveRecord::Base
     evaluations.map(&:score).sum / evaluations.size
   end
 
+  def self.no_evaluation
+    MentorApplication.joins("LEFT JOIN evaluations ON mentor_applications.id = evaluations.mentor_application_id").
+      where("evaluations.mentor_application_id is null")
+  end
+
   private
 
   def other_language
