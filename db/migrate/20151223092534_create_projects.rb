@@ -7,7 +7,6 @@ class CreateProjects < ActiveRecord::Migration
       t.string :github_link
       t.integer :mentor_id
       t.integer :mentee_id
-
     end
   end
 end
