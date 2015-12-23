@@ -1,8 +1,20 @@
 p
-  = "Hi, #{@mentor.first_name}"
+  = "Dear #{@mentor.first_name},"
 p
-  | We've received your mentor application. Thank you for your interest. We'll get back to you as soon as possible.
+  |Thank you for applying to "Learn IT, Girl" second edition! It is great to know you want
+  => "to mentor a girl who wants to learn IT and build a great project."
+  => "We hope you are as excited as we are!"
 p
-  | Best regards,
+  = "We will be reviewing applications in the following weeks and get back to you before"
+  =< "the end of January to let you know whether we have a mentee for you."
+p
+  |Meanwhile, you can follow us on our
+  a href="https://www.facebook.com/groups/learnitgirl/" target="_blank"
+    =< "facebook group"
+  =< "and "
+  a href= "https://learnitgirl.wordpress.com/" target="_blank" our blog.
+p
+  |Best regards,
   br
-  | Learn IT Girl Team
+  i
+    | The "Learn IT, Girl" team
