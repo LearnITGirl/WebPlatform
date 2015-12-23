@@ -5,10 +5,13 @@ class MenteeProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @mentor = User.find(@user.matched_id)
+    @project = Project.find_by(mentee_id: params[:id])
   end
   
   def dashboard
     @mentor = User.find(current_user.matched_id)
+    @project = Project.where(mentee_id: current_user.id)
+
   end
   
   def missing_mentor
