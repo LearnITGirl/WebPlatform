@@ -33,10 +33,10 @@
           label.bottom-space Where are you from?
           = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
         .form-group
-          label.bottom-space Where will you be during the program (October to December)?
+          label.bottom-space Where will you be during the program (February to April)?
           = f.select :program_country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.program_country), {prompt: "Choose your country"}, class: "form-control"
         .form-group
-          label.bottom-space Which timezone you will be at during the program (October to December)?
+          label.bottom-space Which timezone you will be at during the program (February to April)?
           = f.select :time_zone, options_for_select(timezone_options, selected: f.object.time_zone), {prompt: "Choose your timezone"}, class: "form-control"
         .form-group.buttons.text-center
           = button_tag(type: 'submit', class: "btn btn-pink") do
