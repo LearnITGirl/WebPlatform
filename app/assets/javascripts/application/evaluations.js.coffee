@@ -76,7 +76,8 @@ Evaluation =
     @soundnessGetChanged()
 
 $ ->
-  Evaluation.init()
+  if $('.evaluations').length
+    Evaluation.init()
 
 count_total_score = ->
   if($('.mentee_evaluation').length > 0)

@@ -1,42 +1,25 @@
-h1
-  | Enter Details
-= form_for @user, :url => organiser_registration_path(@token), :html => {:method => :put} do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2
-        = pluralize(@user.errors.count, "error")
-        |  Error while filling the form:
-      ul
-        - @user.errors.full_messages.each do |msg|
-          li
-            = msg
-  .field
-    = f.label :email
-    br
-    = @user.email
-  .field
-    = f.label :firstname
-    br
-    = f.text_field :first_name
-  .field
-    = f.label :lastname
-    br
-    = f.text_field :last_name
-  .field
-    = f.label :Country
-    br
-    = f.text_field :country
-  .field
-    = f.label :avatar
-    br
-    = f.file_field :avatar
-  .field
-    = f.label :password
-    br
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation
-  .actions
-    = f.submit
+.page-header
+  h1.text-center.green-text Enter Your Details
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @user, url: organiser_registration_path(@token) do |f|
+      - if @user.errors.any?
+        .alert.alert-danger
+          = @user.errors.full_messages.join(", ")
+      .form-group
+        = @user.email
+      .form-group
+        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+      .form-group
+        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+      .form-group
+        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+      .form-group
+        label Avatar
+        = f.file_field :avatar
+      .form-group
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+      .form-group
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
+      .form-group.text-center
+        = f.submit "Save", class: "btn btn-pink"
