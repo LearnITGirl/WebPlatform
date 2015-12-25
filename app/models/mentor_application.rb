@@ -46,7 +46,7 @@ class MentorApplication < ActiveRecord::Base
   end
 
   def self.no_evaluation
-    MentorApplication.joins("LEFT JOIN evaluations ON mentor_applications.id = evaluations.mentor_application_id").
+    MentorApplication.where(build_step: "done").joins("LEFT JOIN evaluations ON mentor_applications.id = evaluations.mentor_application_id").
       where("evaluations.mentor_application_id is null")
   end
 
@@ -59,7 +59,7 @@ class MentorApplication < ActiveRecord::Base
   end
 
   def already_applied
-    if MentorApplication.where(email: email).where.not(id: id).present?
+    if MentorApplication.where(email: email, build_step: "done").where.not(id: id).present?
       errors.add(:base, "You already applied to be a mentor")
     end
   end
