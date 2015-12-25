@@ -44,11 +44,7 @@ class MenteeApplication < ActiveRecord::Base
   end
 
   def self.no_evaluation
-    MenteeApplication.joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
-      where("evaluations.mentee_application_id is null")
-  end
-  def self.no_evaluation
-    MenteeApplication.joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
+    MenteeApplication.where(build_step: "done").joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
       where("evaluations.mentee_application_id is null")
   end
 
@@ -65,7 +61,7 @@ class MenteeApplication < ActiveRecord::Base
   end
 
   def already_applied
-    if MenteeApplication.where(email: email).where.not(id: id).present?
+    if MenteeApplication.where(email: email, build_step: "done").where.not(id: id).present?
       errors.add(:base, "You already applied to be a mentee")
     end
   end
