@@ -4,7 +4,8 @@ class MenteeApplications::BuildController < ApplicationController
   steps :personal_information, :experience, :programming_experience, :details, :done
 
   def show
-    @mentee = MenteeApplication.find(params[:mentee_application_id])
+    @mentee = MenteeApplication.find_by(id: params[:mentee_application_id])
+    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentee
 
     case step
     when :done
@@ -17,7 +18,8 @@ class MenteeApplications::BuildController < ApplicationController
   end
 
   def update
-    @mentee = MenteeApplication.find(params[:mentee_application_id])
+    @mentee = MenteeApplication.find_by(id: params[:mentee_application_id])
+    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentee
 
     case step
     when :programming_experience
