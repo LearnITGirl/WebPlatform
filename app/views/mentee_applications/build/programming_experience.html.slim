@@ -35,8 +35,9 @@
           label Which programming language or framework would you like to learn during the mentorship program?
           .row
             .col-xs-12
-              span.glyphicon.glyphicon-info-sign.green-text#lang-guide data-toggle="modal" data-target="#languages-guide"
-              =< "Not sure? Check our guide!"
+              = link_to "http://editorial.designtaxi.com/news-infprogramming090115/5.jpg", target: "_blank", id: "lang-guide" do
+                span.glyphicon.glyphicon-info-sign.green-text
+                =< "Not sure? Check our guide!"
           - available_languages.each do |k, v|
             .radio
               label
