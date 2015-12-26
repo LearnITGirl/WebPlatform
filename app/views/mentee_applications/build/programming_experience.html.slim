@@ -56,14 +56,15 @@
           label Which project would you like to develop during the learning period?
           .row
             .col-xs-12
-              span.glyphicon.glyphicon-info-sign.green-text data-toggle="modal" data-target="#roadmap-modal"
-              =< "Don't have any idea? Check our proposals"
+              = link_to "#", data: {toggle: "modal", target: "#proposal-modal"} do
+                span.glyphicon.glyphicon-info-sign.green-text
+                =< "Don't have any idea? Check our proposals"
           = f.text_area :project_proposal, class: "form-control"
         .form-group
           label If you were to implement the application described in the previous question, what would be your roadmap?
           .row
             .col-xs-12
-              span.glyphicon.glyphicon-info-sign.green-text data-toggle="modal" data-target="#proposal-modal"
+              span.glyphicon.glyphicon-info-sign.green-text data-toggle="modal" data-target="#roadmap-modal"
               =< "Need some help? Check this roadmap example."
           p
             | Please provide detailed milestones with the devision of work. What are the tasks that need implementing? In what order?
@@ -120,4 +121,8 @@
           span aria-hidden="true" &times;
         h4 Project proposal
       .modal-body
-        | Proposal
+        p
+          | A game that teaches children to read and write by showing images of objects along with their name and later asks them to write that name when seeing the image. The app will assign a score to each answer depending on the difficulty and will register the global score for the user.
+        p
+          | If you want to see more check our
+          = link_to " first edition projects.", first_edition_path, target: "_blank"
