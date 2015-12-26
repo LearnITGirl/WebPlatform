@@ -4,7 +4,8 @@ class MentorApplications::BuildController < ApplicationController
   steps :personal_information, :experience, :programming_experience, :details, :done
 
   def show
-    @mentor = MentorApplication.find(params[:mentor_application_id])
+    @mentor = MentorApplication.find_by(id: params[:mentor_application_id])
+    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentor
 
     case step
     when :done
@@ -17,7 +18,8 @@ class MentorApplications::BuildController < ApplicationController
   end
 
   def update
-    @mentor = MentorApplication.find(params[:mentor_application_id])
+    @mentor = MentorApplication.find_by(id: params[:mentor_application_id])
+    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentor
 
     case step
     when :experience
