@@ -19,7 +19,7 @@ Webplatform::Application.routes.draw do
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
   get "faq" => "home#faq"
 
-  resources :mentee_profiles, only: [:show] do
+  resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
       post :missing_mentor

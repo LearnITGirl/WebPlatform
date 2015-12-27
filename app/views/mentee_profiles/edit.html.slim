@@ -1,0 +1,40 @@
+.page-header
+  h1.text-center.green-text Enter Your Details
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @user, url: mentee_profile_path(@menteeid) do |f|
+      - if @user.errors.any?
+        .alert.alert-danger
+          = @user.errors.full_messages.join(", ")
+      .form-group
+        label Avatar
+        = f.file_field :avatar
+      .form-group
+        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+      .form-group
+        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+      | Country from: 
+      .form-group
+        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+      | Currently in:
+      .form-group
+        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+      .form-group
+        = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
+      = f.fields_for :project do |proj|
+          br
+          |Project Title
+          = proj.text_field :title, class: "form-control"
+          br
+          |Project Language
+          = proj.text_field :language, class: "form-control"
+          br
+          |Project Description
+          = proj.text_area :description, class: "form-control"
+          br
+          | Github Link
+          = proj.text_field :github_link, class: "form-control"
+      .form-group.text-center
+        = f.submit "Save", class: "btn btn-pink"
+        = f.submit "Cancel", class: "btn btn-pink"
+
