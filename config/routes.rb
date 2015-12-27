@@ -17,7 +17,7 @@ Webplatform::Application.routes.draw do
   get "sponsors" => "home#sponsors"
   get "faq" => "home#faq"
 
-  resources :mentee_profiles, only: [:show] do
+  resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
       post :missing_mentor
