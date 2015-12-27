@@ -21,5 +21,6 @@ module ApplicationHelper
       links << (content_tag :li, link_to('Email templates', email_templates_path), class: "no-image")
     end
     links << (content_tag :li, link_to('Sponsors', sponsors_path), class: "no-image")
+    links << (content_tag :li, link_to('FAQs', faq_path), class: "no-image")
   end
 end
