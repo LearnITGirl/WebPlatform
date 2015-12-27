@@ -8,4 +8,7 @@ class HomeController < ApplicationController
 
   def sponsors
   end
+
+  def mentee_dos_and_donts
+  end
 end
