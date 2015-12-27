@@ -15,6 +15,7 @@ Webplatform::Application.routes.draw do
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
+  get "faq" => "home#faq"
 
   resources :mentee_profiles, only: [:show] do
     collection do

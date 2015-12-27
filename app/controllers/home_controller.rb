@@ -8,4 +8,7 @@ class HomeController < ApplicationController
 
   def sponsors
   end
+
+  def faq
+  end
 end
