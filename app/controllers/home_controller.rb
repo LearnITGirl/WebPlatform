@@ -11,4 +11,7 @@ class HomeController < ApplicationController
 
   def mentor_dos_and_donts
   end
+
+  def faq
+  end
 end
