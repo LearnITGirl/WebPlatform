@@ -36,5 +36,4 @@
           = proj.text_field :github_link, class: "form-control"
       .form-group.text-center
         = f.submit "Save", class: "btn btn-pink"
-        = f.submit "Cancel", class: "btn btn-pink"
-
+        = link_to "Cancel", mentee_profile_path , class: "btn btn-pink"
