@@ -18,7 +18,7 @@
         = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
       | Currently in:
       .form-group
-        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+        = f.select :program_country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.program_country), {prompt: "Choose your country"}, class: "form-control"
       .form-group
         = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
       = f.fields_for :project do |proj|
