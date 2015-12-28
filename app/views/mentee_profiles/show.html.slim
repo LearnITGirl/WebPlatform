@@ -7,21 +7,21 @@
        ='  @user.first_name 
        ='  @user.last_name
       p 
-       | From 
+       | From   
        = @user.country
       p
-        | Currently in: 
-        = @user.program_country
-        a.left10 = @user.timezone
+        | Currently in:   
+        = @user.program_country     
+        a.left10  = @user.timezone
   h3 Project
-  span.project-title = @project.title
+  span.project-title = @project.title if @project.title?
   p
     |Languages used  
-    = @project.language
+    = @project.language if @project.language?
   p
-    = @project.description
+    = @project.description if @project.description
   .git-link
-    = link_to url_with_protocol(@project.github_link),  :target => '_blank'
+    = link_to url_with_protocol(@project.github_link),  :target => '_blank' 
       i.fa.fa-github.fa-3
       | See on Github
   .mentor-name.top10.bottom10

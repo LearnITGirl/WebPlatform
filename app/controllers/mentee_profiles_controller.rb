@@ -33,7 +33,7 @@ class MenteeProfilesController < ApplicationController
       not_authenticated
       return
     end
-    if @user.update_attributes(user_params) 
+    if @user.update_attributes(user_params)
       redirect_to(mentee_profile_path, :notice => "Details have been succesfuly updated.")
     else
       render :action => "edit"
@@ -53,12 +53,9 @@ class MenteeProfilesController < ApplicationController
   
   private
   def user_params
-    params.permit( :_method, :authenticity_token, :commit, :user => [:id,:first_name, :last_name, :country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link]])
+    params.require(:user).permit(:id, :first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link, :mentor_id])
   end
   
-  def project_params
-     params.permit(:user => [:project_attributes => [:title,:language,:description,:github_link]])
-  end
 
 
 end
