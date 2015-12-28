@@ -64,8 +64,9 @@
           label If you were to implement the application described in the previous question, what would be your roadmap?
           .row
             .col-xs-12
-              span.glyphicon.glyphicon-info-sign.green-text data-toggle="modal" data-target="#roadmap-modal"
-              =< "Need some help? Check this roadmap example."
+              = link_to "#", data: {toggle: "modal", target: "#roadmap-modal"} do
+                span.glyphicon.glyphicon-info-sign.green-text
+                =< "Need some help? Check this roadmap example."
           p
             | Please provide detailed milestones with the devision of work. What are the tasks that need implementing? In what order?
             =< "How much does each of them take? What else do you need to make it possible?"
