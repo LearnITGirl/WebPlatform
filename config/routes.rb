@@ -16,6 +16,7 @@ Webplatform::Application.routes.draw do
   get  "first_edition" => "home#first_edition_projects"
   get "sponsors" => "home#sponsors"
   get "mentor_dos_and_donts" => "home#mentor_dos_and_donts"
+  get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
   get "faq" => "home#faq"
 
   resources :mentee_profiles, only: [:show] do
