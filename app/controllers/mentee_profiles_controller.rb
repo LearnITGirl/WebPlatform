@@ -53,7 +53,8 @@ class MenteeProfilesController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:id, :first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link])
+    #params.require(:user).permit(:first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [ :mentor_id])
+    params.require(:user).permit(:first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link, :mentor_id])
   end
 
 
