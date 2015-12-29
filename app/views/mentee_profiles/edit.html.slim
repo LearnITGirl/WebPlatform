@@ -22,6 +22,7 @@
       .form-group
         = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
       = f.fields_for :project do |proj|
+          = proj.hidden_field :mentor_id, :value => f.object.matched_id
           br
           |Project Title
           = proj.text_field :title, class: "form-control"
