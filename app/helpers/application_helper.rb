@@ -20,6 +20,12 @@ module ApplicationHelper
       links << (content_tag :li, link_to('Manage organizers', organisers_path), class: "no-image")
       links << (content_tag :li, link_to('Email templates', email_templates_path), class: "no-image")
     end
+    if current_user && current_user.mentee?
+      links << (content_tag :li, link_to('Mentee do\'s and don\'ts', mentee_dos_and_donts_path), class: "no-image")
+    end
+    if current_user && current_user.mentor?
+      links << (content_tag :li, link_to('Mentor do\'s and don\'ts', mentor_dos_and_donts_path), class: "no-image")
+    end
     links << (content_tag :li, link_to('Sponsors', sponsors_path), class: "no-image")
     links << (content_tag :li, link_to('FAQs', faq_path), class: "no-image")
   end
