@@ -14,12 +14,12 @@
         = @user.program_country     
         a.left10  = @user.timezone
   h3 Project
-  span.project-title = @project.title if @project.title?
+  span.project-title = @project.try(:title)
   p
     |Languages used  
-    = @project.language if @project.language?
+    = @project.try(:language)
   p
-    = @project.description if @project.description
+    = @project.try(:description)
   .git-link
     = link_to url_with_protocol(@project.github_link),  :target => '_blank' 
       i.fa.fa-github.fa-3

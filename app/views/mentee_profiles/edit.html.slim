@@ -2,10 +2,10 @@
   h1.text-center.green-text Enter Your Details
 .row
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-    = form_for @user, url: mentee_profile_path(@menteeid) do |f|
-      - if @user.errors.any?
+    = form_for current_user, url: mentee_profile_path(params[:id]) do |f|
+      - if current_user.errors.any?
         .alert.alert-danger
-          = @user.errors.full_messages.join(", ")
+          = current_user.errors.full_messages.join(", ")
       .form-group
         label Avatar
         = f.file_field :avatar
