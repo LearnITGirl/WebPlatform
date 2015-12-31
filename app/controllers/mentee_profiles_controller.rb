@@ -15,26 +15,22 @@ class MenteeProfilesController < ApplicationController
   end
 
   def edit
-    @menteeid = params[:id]
-    @user = User.find(params[:id])
     @project = Project.find_by(mentee_id: params[:id])
 
-    if @user.blank? or @user.role != "mentee"
+    if current_user.blank?
       not_authenticated
       return
     end
   end
 
   def update
-    @menteeid = params[:id]
-    @user = User.find(params[:id])
 
-    if @user.blank? or @user.role != "mentee"
+    if current_user.blank? 
       not_authenticated
       return
     end
-    if @user.update_attributes(user_params)
-      redirect_to(mentee_profile_path, :notice => "Details have been succesfuly updated.")
+    if current_user.update_attributes(user_params)
+      redirect_to mentee_profile_path, notice: "Details have been succesfuly updated."
     else
       render :action => "edit"
     end
@@ -53,7 +49,7 @@ class MenteeProfilesController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link, :mentor_id])
+    params.require(:user).permit(:first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link])
   end
 
 
