@@ -6,5 +6,5 @@ class Project < ActiveRecord::Base
   validates :mentee_id, presence: true, on: :update
   validates :title, :language, :description, :github_link, presence: true, on: :update
 
-
+  validates :github_link, format: { with: GITHUB_REGEXP }
 end
