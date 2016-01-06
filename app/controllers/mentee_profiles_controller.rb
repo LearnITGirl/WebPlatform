@@ -16,23 +16,16 @@ class MenteeProfilesController < ApplicationController
 
   def edit
     @project = Project.find_by(mentee_id: params[:id])
-
-    if current_user.blank?
-      not_authenticated
-      return
-    end
   end
 
   def update
+    @project = Project.find_by(mentee_id: params[:id])
 
-    if current_user.blank? 
-      not_authenticated
-      return
-    end
     if current_user.update_attributes(user_params)
+      @project.update_column :mentor_id, current_user.matched_id
       redirect_to mentee_profile_path, notice: "Details have been succesfuly updated."
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 
@@ -46,12 +39,13 @@ class MenteeProfilesController < ApplicationController
       redirect_to dashboard_mentee_profiles_path, notice: 'Couldnt send mail'
     end
   end
-  
+
   private
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :country, :program_country, :timezone, :project_attributes => [:id, :title,:language,:description,:github_link])
+    params.require(:user).permit(
+      :first_name, :last_name, :country, :program_country, :timezone,
+      :project_attributes => [:id, :title,:language,:description,:github_link]
+    )
   end
-
-
-
 end
