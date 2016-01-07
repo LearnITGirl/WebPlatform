@@ -1,0 +1,19 @@
+.mentee_profiles-controller {
+  &.edit-action, &.update-action {
+    textarea {
+      resize: none;
+    }
+
+    label.control-label {
+      text-align: left;
+    }
+
+    .ordinary-field {
+      margin-bottom: 15px;
+    }
+
+    .field_with_errors .form-control {
+      border: 1px solid #CE2D29;
+    }
+  }
+}

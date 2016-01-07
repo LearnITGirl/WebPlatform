@@ -178,5 +178,18 @@ div.centered {
 }
 
 .align-left {
-    text-align: left;
+  text-align: left;
+}
+
+.btn-pink-border {
+  color: #f19eae;
+  background-color: #fff;
+  border: 1px solid #f19eae;
+  &:hover, &:focus {
+    color: #f19eae;
+  }
+}
+
+.no-right-margin {
+  margin-right: 0 !important;
 }
