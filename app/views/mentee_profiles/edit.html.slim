@@ -2,39 +2,57 @@
   h1.text-center.green-text Enter Your Details
 .row
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-    = form_for current_user, url: mentee_profile_path(current_user) do |f|
+    = form_for current_user, url: mentee_profile_path(current_user), html: {class: "form-horizontal top-space-40"} do |f|
       - if current_user.errors.any?
         .alert.alert-danger
           = current_user.errors.full_messages.join(", ")
-      .form-group
-        label Avatar
-        = f.file_field :avatar
-      .form-group
-        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
-      .form-group
-        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
-      | Country from: 
-      .form-group
-        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
-      | Currently in:
-      .form-group
-        = f.select :program_country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.program_country), {prompt: "Choose your country"}, class: "form-control"
-      .form-group
-        = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
-      = f.fields_for :project do |proj|
-          = proj.hidden_field :mentor_id, :value => f.object.matched_id
-          br
-          |Project Title
-          = proj.text_field :title, class: "form-control"
-          br
-          |Project Language
-          = proj.text_field :language, class: "form-control"
-          br
-          |Project Description
-          = proj.text_area :description, class: "form-control"
-          br
-          | Github Link
-          = proj.text_field :github_link, class: "form-control"
-      .form-group.text-center
-        = f.submit "Save", class: "btn btn-pink"
-        = link_to "Cancel", mentee_profile_path , class: "btn btn-pink"
+      .row
+        .col-sm-4
+          .ordinary-field
+            label Avatar
+            = f.file_field :avatar
+        .col-sm-8
+          .ordinary-field
+            .row
+              .col-xs-6
+                = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+              .col-xs-6
+                = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+          .ordinary-field
+            .row
+              .col-xs-12
+                .row
+                  label.col-sm-6.col-xs-12.control-label Country from:
+                  .col-sm-6.col-xs-12
+                    = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+          .ordinary-field
+            .row
+              .col-xs-12
+                .row
+                  label.col-sm-6.col-xs-12.control-label Currently in:
+                  .col-sm-6.col-xs-12
+                    = f.select :program_country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.program_country), {prompt: "Choose your country"}, class: "form-control"
+          .ordinary-field
+            .row
+              .col-md-12
+                .row
+                  label.col-sm-6.col-xs-12.control-label Current time zone:
+                  .col-sm-6.col-xs-12
+                    = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
+      h4.pink-text Project
+      .row
+        .col-xs-12.normal-form
+          = f.fields_for :project do |proj|
+            .ordinary-field
+              = proj.text_field :title, class: "form-control", placeholder: "Title"
+            .ordinary-field
+              label.control-label = proj.object.language
+            .ordinary-field
+              = proj.text_area :description, class: "form-control", rows: 7, placeholder: "Description"
+            .row
+              label.col-md-2.col-sm-3.control-label Country from:
+              .col-md-10.col-sm-9
+                = proj.text_field :github_link, class: "form-control", placeholder: "GitHub link"
+      .pull-right
+        = link_to "Cancel", mentee_profile_path , class: "btn btn-pink-border"
+        = f.submit "Save", class: "btn btn-pink no-right-margin"

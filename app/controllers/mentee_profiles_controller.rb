@@ -15,11 +15,11 @@ class MenteeProfilesController < ApplicationController
   end
 
   def edit
-    @project = Project.find_by(mentee_id: params[:id])
+    @project = Project.find_by(mentee_id: current_user.id)
   end
 
   def update
-    @project = Project.find_by(mentee_id: params[:id])
+    @project = Project.find_by(mentee_id: current_user.id)
 
     if current_user.update_attributes(user_params)
       @project.update_column :mentor_id, current_user.matched_id
@@ -44,7 +44,7 @@ class MenteeProfilesController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :first_name, :last_name, :country, :program_country, :timezone,
+      :first_name, :last_name, :country, :program_country, :timezone, :avatar,
       :project_attributes => [:id, :title,:language,:description,:github_link]
     )
   end
