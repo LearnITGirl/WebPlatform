@@ -1,5 +1,5 @@
 # "Learn IT, Girl" web platform
-Web platform for the "Learn IT, Girl" program
+It's open source web platform for the "Learn IT, Girl" program.
 
 "Learn IT, Girl" is an international mentorship program that helps women learn a new programming language by doing an awesome project!
 
