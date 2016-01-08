@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223092534) do
+ActiveRecord::Schema.define(version: 20160108162355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,17 +44,19 @@ ActiveRecord::Schema.define(version: 20151223092534) do
     t.text     "experience"
     t.string   "programming_level"
     t.text     "background"
-    t.string   "known_programming_languages",           default: [], array: true
+    t.string   "known_programming_languages",                default: [], array: true
     t.string   "programming_language"
     t.text     "project_proposal"
     t.text     "programming_experience"
     t.text     "roadmap"
-    t.integer  "time_availability",           limit: 2
-    t.string   "engagements",                           default: [], array: true
-    t.string   "sources",                               default: [], array: true
+    t.integer  "time_availability",                limit: 2
+    t.string   "engagements",                                default: [], array: true
+    t.string   "sources",                                    default: [], array: true
     t.string   "build_step"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "other_programming_language"
+    t.string   "other_known_programming_language"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -67,21 +69,22 @@ ActiveRecord::Schema.define(version: 20151223092534) do
     t.string   "time_zone"
     t.text     "motivation"
     t.string   "english_level"
-    t.string   "mentee_level",                     default: [],    array: true
-    t.boolean  "experienced",                      default: false
+    t.string   "mentee_level",                         default: [],    array: true
+    t.boolean  "experienced",                          default: false
     t.text     "mentor_experience"
     t.text     "background"
-    t.boolean  "git",                              default: false
-    t.string   "programming_languages",            default: [],    array: true
+    t.boolean  "git",                                  default: false
+    t.string   "programming_languages",                default: [],    array: true
     t.text     "programming_experience"
     t.text     "application_idea"
     t.text     "concept_explanation"
-    t.integer  "time_availability",      limit: 2
-    t.string   "engagements",                      default: [],    array: true
-    t.string   "sources",                          default: [],    array: true
+    t.integer  "time_availability",          limit: 2
+    t.string   "engagements",                          default: [],    array: true
+    t.string   "sources",                              default: [],    array: true
     t.string   "build_step"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "other_programming_language"
   end
 
   create_table "newsletters", force: :cascade do |t|
