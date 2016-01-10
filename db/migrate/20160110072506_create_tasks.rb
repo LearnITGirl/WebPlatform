@@ -4,9 +4,8 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.integer :creator_id
       t.datetime :created_at
-      t.boolean :completed, :default: false
+      t.integer :status, limit:1
       t.integer :project_id
-     
     end
   end
 end
