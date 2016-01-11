@@ -10,11 +10,6 @@ module MentorApplicationsHelper
     timezone.now.utc_offset / 3600
   end
 
-  def other_language_value
-    other = @mentor.programming_languages.select{|a| !available_languages.keys.include?(a)}
-    other.present? ? other.reject{|a| a == "other"} : nil
-  end
-
   def available_engagements
   {
     hs_student: "I am a high school student", bc_student: "I am a bachelor student",

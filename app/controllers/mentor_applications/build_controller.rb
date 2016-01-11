@@ -25,14 +25,14 @@ class MentorApplications::BuildController < ApplicationController
     when :experience
       @mentor.update_attributes(mentor_params.merge({mentee_level: params[:mentee_level]}))
     when :programming_experience
-      if params[:programming_languages].present? && params[:programming_languages].include?("other")
-        params[:programming_languages] << params[:other_language]
-      elsif params[:programming_languages].blank?
-        params[:programming_languages] = []
-      end
-      @mentor.update_attributes(mentor_params.merge({programming_languages: params[:programming_languages]}))
+      @mentor.update_attributes(mentor_params.merge({programming_languages: (params[:programming_languages] || [])}))
     when :details
       if @mentor.update_attributes(mentor_params.merge({engagements: params[:engagements], sources: params[:sources]}))
+        index = @mentor.programming_languages.index("other")
+        if index
+          @mentor.programming_languages[index] = @mentor.other_programming_language
+          @mentor.save
+        end
         @mentor.update_column :build_step, :done
         MentorApplicationMailer.confirm_application(@mentor).deliver_now
       end
@@ -48,7 +48,7 @@ class MentorApplications::BuildController < ApplicationController
       :first_name, :last_name, :country, :email, :gender, :time_zone, :motivation,
       :english_level, :experienced, :mentor_experience, :background, :git,
       :programming_experience, :sources, :application_idea, :concept_explanation,
-      :engagements, :program_country
+      :engagements, :program_country, :other_programming_language
     ).merge({build_step: step})
     param[:time_availability] = params[:mentor_application][:time_availability].to_i if params[:mentor_application][:time_availability].present?
     param
