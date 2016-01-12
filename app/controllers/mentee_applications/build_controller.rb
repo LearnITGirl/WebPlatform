@@ -50,7 +50,7 @@ class MenteeApplications::BuildController < ApplicationController
   end
 
   def update_programming_languages
-    index = @mentee.known_programming_languages.index("other")
+    index = @mentee.known_programming_languages.present? ? @mentee.known_programming_languages.index("other") : nil
     if index
       @mentee.known_programming_languages[index] = @mentee.other_known_programming_language
     end
