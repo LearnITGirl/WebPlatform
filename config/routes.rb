@@ -28,6 +28,9 @@ Webplatform::Application.routes.draw do
   end
  
   post 'tasks/create'
+  post 'tasks/destroy'
+  post 'tasks/update'
+  resources :tasks
 
   get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
   get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
