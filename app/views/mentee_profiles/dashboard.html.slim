@@ -24,28 +24,27 @@
       .form-group
         = text_field_tag :title, params[:title], class: "form-control", placeholder: "Add new task"
       = submit_tag "Add Task", class: "btn btn-pink"  
-  .tasks
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c1 type="checkbox" value="" /
-          label for="c1"  Write code for xxx
-      .action.col-md-4
-        a.delete href="#"  Delete
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c2 type="checkbox" value="" /
-          label for="c2"  Code user interface
-      .action.col-md-4
-        a.delete href="#"  Delete
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c3 type="checkbox" value="" /
-          label for="c3"  Run tests
-      .action.col-md-4
-        label.mentor-task NEW! Added by Sarah on Tuesday br
+  = form_tag tasks_update_path, :method => "post" do
+    ul#tasks
+    - if @tasks.length > 0 
+      - @tasks.each do |task|
+        - if task.status == 2
+          li[style="color:grey;"]
+            = check_box_tag "tasks_checkbox[]",task.id 
+            strike
+              = task.title
+            = link_to  "Delete task", task, :method=>'delete', :confirm=>'Are you sure?'
+          
+        - else
+          li
+            = check_box_tag "tasks_checkbox[]",task.id
+            = task.title
+            
+            = link_to " Delete task", task, :method=>'delete', :confirm=>'Are you sure?'
+
+    - else h3 You have no tasks
+    br
+    = submit_tag("Complete Task", class: "btn btn-primary") 
 .col-xs-2.col-md-3.col-lg-2
   .mentor-name
     span Mentor:
