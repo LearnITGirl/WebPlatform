@@ -10,7 +10,7 @@
    = @project.try(:description)
   = link_to "Read more", mentee_profile_path(current_user)
   .git-link
-    = link_to url_with_protocol(@project.github_link), target: "_blank" do
+    = link_to url_with_protocol(@project.try(:github_link)), target: "_blank" do
       i.fa.fa-github.fa-3
       | See on Github
 .col.xs-10.col-md-6.col-lg-8.project-progress
@@ -20,6 +20,10 @@
   = link_to  "See entire project", mentee_profile_url(current_user.id)
   h2 Current week
   b October 7th - October 13th
+  = form_tag tasks_create_path, class: "form-inline text-center" do
+      .form-group
+        = text_field_tag :title, params[:title], class: "form-control", placeholder: "Add new task"
+      = submit_tag "Add Task", class: "btn btn-pink"  
   .tasks
     .single-task.clearfix
       .details.col-md-8
@@ -41,7 +45,7 @@
           input#c3 type="checkbox" value="" /
           label for="c3"  Run tests
       .action.col-md-4
-        label.mentor-task NEW! Added by Sarah on Tuesday
+        label.mentor-task NEW! Added by Sarah on Tuesday br
 .col-xs-2.col-md-3.col-lg-2
   .mentor-name
     span Mentor:
