@@ -33,7 +33,7 @@ module MentorApplicationsHelper
       tv: "TV", gwcrfp: "Girls Who Code Romania Facebook page",
       gwcrfg: "Girls Who Code Romania Facebook group", ggc: "Geek Girls Carrot",
       geekettes: "Geekettes Facebook Group", gr8ladies: "Gr8Ladies", systers: "Systers",
-      participant: "Last edition participant"
+      participant: "Last edition participant", wit: "Women in Technology Poland"
     }
   end
 end
