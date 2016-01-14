@@ -61,6 +61,8 @@ class MentorApplication < ActiveRecord::Base
   def already_applied
     if MentorApplication.where(email: email, build_step: "done").where.not(id: id).present?
       errors.add(:base, "You already applied to be a mentor")
+    elsif MenteeApplication.where(email: email, build_step: "done").where.not(id: id).present?
+      errors.add(:base, "You can only apply once to the program and you already applied to be a mentee.")
     end
   end
 end
