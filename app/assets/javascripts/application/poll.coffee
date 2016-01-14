@@ -6,7 +6,9 @@ Poll =
     $("input[name='poll[answer]']:radio").change ->
       if $(this).val() == "Other"
         $(this).val($("#other_language").val())
+        $("#other_language").show()
       else
+        $("#other_language").hide()
         self.clearOther()
 
     $("#other_language").keyup ->
@@ -18,6 +20,7 @@ Poll =
       self.toggleAlert(true, $(this), data["msg"])
       self.clearOther()
       $("#poll_answer_c").prop("checked", true)
+      $("#other_language").hide()
 
     $("#poll-form").on "ajax:error", (e, data) ->
       response = JSON.parse(data.responseText)
