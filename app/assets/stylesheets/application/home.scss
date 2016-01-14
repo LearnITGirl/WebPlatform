@@ -16,13 +16,16 @@
     text-align: left;
 
     .btn-pink {
-      margin-top: -25px;
+      margin-top: -5px;
     }
-  }
 
-  #other_language {
-    left: 70px;
-    top: -35px;
+    #other_language {
+      left: 70px;
+      top: -35px;
+      display: none;
+      width: 100%;
+      padding: 0px;
+    }
   }
 }
 
