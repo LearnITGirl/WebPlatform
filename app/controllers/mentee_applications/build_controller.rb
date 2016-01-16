@@ -23,14 +23,10 @@ class MenteeApplications::BuildController < ApplicationController
 
     case step
     when :programming_experience
-      if params[:known_programming_languages].present? && params[:known_programming_languages].include?("other")
-        params[:known_programming_languages] << params[:other_language]
-      elsif params[:known_programming_languages].blank?
-        params[:known_programming_languages] = []
-      end
-      @mentee.update_attributes(mentee_params.merge({known_programming_languages: params[:known_programming_languages]}))
+      @mentee.update_attributes(mentee_params.merge({known_programming_languages: (params[:known_programming_languages] || nil)}))
     when :details
       if @mentee.update_attributes(mentee_params.merge({engagements: params[:engagements], sources: params[:sources]}))
+        update_programming_languages
         @mentee.update_column :build_step, :done
         MenteeApplicationMailer.confirm_application(@mentee).deliver_now
       end
@@ -46,10 +42,19 @@ class MenteeApplications::BuildController < ApplicationController
     param = params.require(:mentee_application).permit(
       :first_name, :last_name, :country, :email, :gender, :time_zone, :motivation,
       :english_level, :experience, :background, :programming_experience, :programming_level,
-      :sources, :roadmap, :project_proposal, :engagements, :program_country, :programming_language
+      :sources, :roadmap, :project_proposal, :engagements, :program_country, :programming_language,
+      :other_known_programming_language, :other_programming_language
     ).merge({build_step: step})
     param[:time_availability] = params[:mentee_application][:time_availability].to_i if params[:mentee_application][:time_availability].present?
-    param[:programming_language] = params[:other_lang] if param[:programming_language] == "other"
     param
+  end
+
+  def update_programming_languages
+    index = @mentee.known_programming_languages.present? ? @mentee.known_programming_languages.index("other") : nil
+    if index
+      @mentee.known_programming_languages[index] = @mentee.other_known_programming_language
+    end
+    @mentee.programming_language = @mentee.other_programming_language if @mentee.programming_language == "other"
+    @mentee.save
   end
 end

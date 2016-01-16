@@ -10,11 +10,6 @@ module MentorApplicationsHelper
     timezone.now.utc_offset / 3600
   end
 
-  def other_language_value
-    other = @mentor.programming_languages.select{|a| !available_languages.keys.include?(a)}
-    other.present? ? other.reject{|a| a == "other"} : nil
-  end
-
   def available_engagements
   {
     hs_student: "I am a high school student", bc_student: "I am a bachelor student",
@@ -38,7 +33,16 @@ module MentorApplicationsHelper
       tv: "TV", gwcrfp: "Girls Who Code Romania Facebook page",
       gwcrfg: "Girls Who Code Romania Facebook group", ggc: "Geek Girls Carrot",
       geekettes: "Geekettes Facebook Group", gr8ladies: "Gr8Ladies", systers: "Systers",
-      participant: "Last edition participant"
+      participant: "Last edition participant", wit: "Women in Technology Poland",
+      gwcr: "Girls Who Code Romania", whc: "Women Who Code", py_ladies: "PyLadies",
+      rails_girls: "Rails Girls", latinas_in_computing: "Latinas in Computing",
+      indian_women: "Indian Women in Computing", litg_fb_page: "Learn IT, Girl facebook page",
+      litg_fb_group: "Learn IT, Girl facebook group", litg_blog: "Learn IT, Girl blog",
+      litg_twitter: "Learn IT, Girl twitter", litg_newsletter: "Learn IT, Girl newsletter",
+      she_plus_plus: "She++", django_girls: "DjangoGirls",
+      ghc_scholars_page: "GHC scholars page", ghc_indian_scholars: "GHC India scholars group",
+      outreachy: "Outreachy", gnome_women: "Gnome Women", ununtu_women: "Ubuntu Women",
+      linux_chix: "Linux Chix", comp_scisters: "CompScisters", lovelace: "Lovelace Alumnae mailing list"
     }
   end
 end

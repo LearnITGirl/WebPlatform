@@ -30,11 +30,12 @@
                 = v
         .form-group
           label Where did you find out about the program?
-          - program_sources.each do |k, v|
-            .checkbox
-              label
-                = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k.to_s)
-                = v
+          .sources
+            - program_sources.except(:gwcrfg, :gwcrfp).each do |k, v|
+              .checkbox
+                label
+                  = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k.to_s)
+                  = v
         .form-group.buttons.text-center
           = link_to "Back", previous_wizard_path, class: "btn btn-pink"
           = button_tag(type: 'submit', class: "btn btn-pink") do

@@ -14,7 +14,7 @@ class MentorApplication < ActiveRecord::Base
 
   validate :already_applied, on: :update, if: :done_or_personal_information?
 
-  validate :other_language, on: :update, if: :done_or_programming_experience?
+  validate :other_language, on: :update, if: "done_or_programming_experience?"
 
   validates :sources, :engagements, :time_availability, :application_idea, :concept_explanation,
             presence: true, on: :update, if: :done_or_details?
@@ -53,7 +53,7 @@ class MentorApplication < ActiveRecord::Base
   private
 
   def other_language
-    if programming_languages && programming_languages.include?(nil) || programming_languages.include?("")
+    if programming_languages && programming_languages.include?("other") && other_programming_language.blank?
       errors.add(:other_programming_language, "can't be blank")
     end
   end
@@ -61,6 +61,8 @@ class MentorApplication < ActiveRecord::Base
   def already_applied
     if MentorApplication.where(email: email, build_step: "done").where.not(id: id).present?
       errors.add(:base, "You already applied to be a mentor")
+    elsif MenteeApplication.where(email: email, build_step: "done").where.not(id: id).present?
+      errors.add(:base, "You can only apply once to the program and you already applied to be a mentee.")
     end
   end
 end

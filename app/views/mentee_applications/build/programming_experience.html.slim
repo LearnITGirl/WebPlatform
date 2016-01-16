@@ -17,15 +17,15 @@
           .radio
             label
               = f.radio_button :programming_level, "medium"
-              | I can code in at least one programming language but I'm not very confident in my skill
+              | I can code in at least one programming language but I'm not very confident in my skills
           .radio
             label
               = f.radio_button :programming_level, "advanced"
               | I am very confident about coding in at least one programming language
         .form-group.extra-question
           label
-            | Tell us about your previous experience. What projects have you been working on? What was your role? What programming language did you use?
-          p We want to hear your experience, so make sure you tell us about it and don't provide links to external sources only.
+            | Tell us about your previous experience. What projects have you been working on? What was your role? What programming languages did you use?
+          p We want to hear about your experience, so make sure you tell us about it and don't provide links to external sources only.
           = f.text_area :programming_experience, class: "form-control"
         .form-group
           label
@@ -45,13 +45,13 @@
                 = v
           .radio
             label
-              = f.radio_button :programming_language, other_value
+              = f.radio_button :programming_language, "other"
               | Other
-              - if @mentee.errors.present? && @mentee.errors[:programming_language].present?
+              - if @mentee.errors.present? && @mentee.errors[:other_programming_language].present?
                 .field_with_errors
-                  = text_field_tag :other_lang, nil, class: "form-control"
+                  = f.text_field :other_programming_language, class: "form-control"
               - else
-                = text_field_tag :other_lang, mentee_other_language_value, class: "form-control"
+                = f.text_field :other_programming_language, class: "form-control"
         .form-group
           label Which project would you like to develop during the learning period?
           .row
@@ -68,25 +68,25 @@
                 span.glyphicon.glyphicon-info-sign.green-text
                 =< "Need some help? Check this roadmap example."
           p
-            | Please provide detailed milestones with the devision of work. What are the tasks that need implementing? In what order?
+            | Please provide detailed milestones with the division of work. What are the tasks that need implementing? In what order?
             =< "How much does each of them take? What else do you need to make it possible?"
           = f.text_area :roadmap, class: "form-control"
         .form-group.extra-question
-          label Do you know any programming languageas (at least medium level)?
+          label Do you know any programming languages (at least medium level)?
           - available_languages.each do |k, v|
             .checkbox
               label
-                = check_box_tag "known_programming_languages[]", k, f.object.known_programming_languages.include?(k)
+                = check_box_tag "known_programming_languages[]", k, f.object.known_programming_languages.present? && f.object.known_programming_languages.include?(k)
                 = v
           .checkbox
             label
-              = check_box_tag "known_programming_languages[]", "other", f.object.known_programming_languages.include?("other")
+              = check_box_tag "known_programming_languages[]", "other", f.object.known_programming_languages.present? && f.object.known_programming_languages.include?("other")
               | Other
-              - if @mentee.errors.present? && @mentee.errors[:other_programming_language].present?
+              - if @mentee.errors.present? && @mentee.errors[:other_known_programming_language].present?
                 .field_with_errors
-                  = text_field_tag :other_language, nil, class: "form-control"
+                  = f.text_field :other_known_programming_language, class: "form-control"
               - else
-                = text_field_tag :other_language, other_known_language_value, class: "form-control"
+                = f.text_field :other_known_programming_language, class: "form-control"
         .form-group.buttons.text-center
           = link_to "Back", previous_wizard_path, class: "btn btn-pink"
           = button_tag(type: 'submit', class: "btn btn-pink") do

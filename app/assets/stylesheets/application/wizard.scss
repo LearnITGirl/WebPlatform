@@ -31,6 +31,11 @@
     background-color: #fff;
     border: 1px solid #f19eae;
   }
+
+  .sources {
+    max-height: 210px;
+    overflow-y: scroll;
+  }
 }
 
 .green-text {
@@ -41,7 +46,9 @@
   color: #f19eae !important;
 }
 
-#other_language, #other_lang {
+#mentor_application_other_programming_language,
+#mentee_application_other_known_programming_language,
+#mentee_application_other_programming_language {
   position: relative;
   top: -25px;
   left: 50px;

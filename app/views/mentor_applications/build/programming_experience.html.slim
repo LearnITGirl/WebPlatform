@@ -36,11 +36,11 @@
               | Other
               - if @mentor.errors.present? && @mentor.errors[:other_programming_language].present?
                 .field_with_errors
-                  = text_field_tag :other_language, nil, class: "form-control"
+                  = f.text_field :other_programming_language, class: "form-control"
               - else
-                = text_field_tag :other_language, other_language_value, class: "form-control"
+                = f.text_field :other_programming_language, class: "form-control"
         .form-group
-          label For each programming language you selected, tell us about your experience with this language. Where have you used it? What projects have you done in those languages?
+          label For each programming language you selected, tell us about your experience with this language. Where have you used it? Which projects have you done in those languages?
           = f.text_area :programming_experience, class: "form-control"
         .form-group.buttons.text-center
           = link_to "Back", previous_wizard_path, class: "btn btn-pink"
