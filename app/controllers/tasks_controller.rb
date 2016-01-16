@@ -15,7 +15,10 @@ class TasksController < ApplicationController
 
   end
 
-  def delete
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy   
+    redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"   
   end
 
   def index
