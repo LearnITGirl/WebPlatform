@@ -30,17 +30,18 @@
       - @tasks.each do |task|
         - if task.status == 2
           li[style="color:grey;"]
+          .custom-checkbox
             = check_box_tag "tasks_checkbox[]",task.id 
             strike
               = task.title
-            = link_to  "Delete task", task, :method=>'delete', :confirm=>'Are you sure?'
+            = link_to  "Delete task", task, :method=>'delete', :data => {:confirm=>'Are you sure?'}
           
         - else
           li
             = check_box_tag "tasks_checkbox[]",task.id
             = task.title
             
-            = link_to " Delete task", task, :method=>'delete', :confirm=>'Are you sure?'
+            = link_to " Delete task", task, :method=>'delete', :data => {:confirm=>'Are you sure?'}
 
     - else h3 You have no tasks
     br
