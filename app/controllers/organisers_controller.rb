@@ -15,7 +15,7 @@ class OrganisersController < ApplicationController
     @user = User.new(email: params[:email], role:1)
 
     if @user.save
-      OrganisersMailer.organisers_add_email(@user).deliver_now
+      OrganisersMailer.register(@user).deliver_now
       redirect_to organisers_path, notice: 'Instructions have been sent to the email'
     else
       flash.now[:alert] = @user.errors.full_messages.join(", ")
@@ -23,6 +23,11 @@ class OrganisersController < ApplicationController
       organisers_left
       render "index"
     end
+  end
+
+  def destroy
+    User.find_by(role:1, id: params[:id]).delete
+    redirect_to :back, notice: "Deleted successfully!"
   end
 
   private
