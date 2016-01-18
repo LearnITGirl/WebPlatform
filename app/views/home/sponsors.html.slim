@@ -1,14 +1,17 @@
 .page-header
   h1.text-center.litg-green Our sponsors
-.col-md-8.col-md-offset-2
-  h4.text-center.litg-green These are the partners that have helped us make "Learn IT, Girl" second edition true
-  h4.text-center.litg-green Thank you for your support and resources
+.row
+  .col-md-8.col-md-offset-2
+    h4.text-center.litg-green These are the partners that have helped us make "Learn IT, Girl" second edition true
+    h4.text-center.litg-green Thank you for your support and resources
 
-.col-md-4.col-md-offset-4
-  = link_to (image_tag "sponsors/balsamiq-logo.jpg", alt: "Balsamiq"), "https://balsamiq.com/", target: "_blank", class: "img-responsive center-block top-space"
+  .col-md-4.col-md-offset-4
+    = link_to (image_tag "sponsors/balsamiq-logo.jpg", alt: "Balsamiq"), "https://balsamiq.com/", target: "_blank", class: "img-responsive center-block top-space"
 
-  = link_to (image_tag "sponsors/github-logo.png", alt: "Github"), "https://github.com/", target: "_blank", class: "img-responsive center-block top-space"
+    = link_to (image_tag "sponsors/github-logo.png", alt: "Github"), "https://github.com/", target: "_blank", class: "img-responsive center-block top-space"
 
-  = link_to (image_tag "sponsors/accredible-logo.png", alt: "Accredible"), "https://www.accredible.com/", target: "_blank", class: "img-responsive center-block top-space"
-  p
-    = "Are you a company interested in sponsoring this project? We'll be happy to talk! Email us at learnitgirl.office@gmail.com"
+    = link_to (image_tag "sponsors/accredible-logo.png", alt: "Accredible"), "https://www.accredible.com/", target: "_blank", class: "img-responsive center-block top-space"
+.row
+  .col-xs-12.text-center.top-space-40
+    p
+      = "Are you a company interested in sponsoring this project? We'll be happy to talk! Email us at learnitgirl.office@gmail.com"
