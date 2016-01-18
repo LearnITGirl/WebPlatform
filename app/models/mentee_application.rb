@@ -12,6 +12,8 @@ class MenteeApplication < ActiveRecord::Base
 
   validates :email, format: { with: REGEXP_EMAIL }, on: :update, if: :done_or_personal_information?
 
+  validate :gender_male, on: :update, if: :done_or_personal_information?
+
   validate :already_applied, on: :update, if: :done_or_personal_information?
   validates :programming_experience, :known_programming_languages, on: :update,
             presence: true, if: :medium_mentee
@@ -73,5 +75,9 @@ class MenteeApplication < ActiveRecord::Base
     elsif MentorApplication.where(email: email, build_step: "done").where.not(id: id).present?
       errors.add(:base, "You can only apply once to the program and you already applied to be a mentor.")
     end
+  end
+
+  def gender_male
+    errors.add(:base, 'Male mentees not allowed. You may consider applying to be a mentor.') if gender == "male"
   end
 end
