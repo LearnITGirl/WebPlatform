@@ -25,6 +25,11 @@ class OrganisersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find_by(role:1, id: params[:id]).delete
+    redirect_to :back, notice: "Deleted successfully!"
+  end
+
   private
 
   def display_organisers
