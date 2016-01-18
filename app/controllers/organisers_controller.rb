@@ -15,7 +15,7 @@ class OrganisersController < ApplicationController
     @user = User.new(email: params[:email], role:1)
 
     if @user.save
-      OrganisersMailer.organisers_add_email(@user).deliver_now
+      OrganisersMailer.register(@user).deliver_now
       redirect_to organisers_path, notice: 'Instructions have been sent to the email'
     else
       flash.now[:alert] = @user.errors.full_messages.join(", ")
