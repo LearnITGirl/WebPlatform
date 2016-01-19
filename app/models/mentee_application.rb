@@ -44,11 +44,6 @@ class MenteeApplication < ActiveRecord::Base
     build_step.to_s == "details" || done?
   end
 
-  def self.no_evaluation
-    MenteeApplication.where(build_step: "done").joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
-      where("evaluations.mentee_application_id is null")
-  end
-
   private
 
   def medium_mentee

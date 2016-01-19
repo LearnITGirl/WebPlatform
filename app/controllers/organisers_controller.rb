@@ -2,8 +2,15 @@ class OrganisersController < ApplicationController
   before_action :require_organiser
 
   def dashboard
-    @mentees = MenteeApplication.where.not(email: current_user.email).no_evaluation
-    @mentors = MentorApplication.where.not(email: current_user.email).no_evaluation
+    @mentees = MenteeApplication.where.not(email: current_user.email)
+                                .where(build_step: "done")
+                                .eager_load(:evaluations)
+                                .where('evaluations.user_id IS NULL OR evaluations.user_id <> ?', current_user.id)
+
+    @mentors = MentorApplication.where.not(email: current_user.email)
+                                .where(build_step: "done").eager_load(:evaluations)
+                                .eager_load(:evaluations)
+                                .where('evaluations.user_id IS NULL OR evaluations.user_id <> ?', current_user.id)
   end
 
   def index
