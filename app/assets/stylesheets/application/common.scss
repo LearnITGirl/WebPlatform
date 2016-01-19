@@ -193,3 +193,7 @@ div.centered {
 .no-right-margin {
   margin-right: 0 !important;
 }
+
+.field_with_errors .form-control {
+  border: 1px solid #CE2D29;
+}

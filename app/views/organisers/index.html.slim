@@ -12,10 +12,10 @@
     table.table.table-striped.table-bordered
       thead
         tr
-          th Name
-          th Country
-          th Email
-          th
+          th.col-md-4 Name
+          th.col-md-4 Country
+          th.col-md-2 Email
+          th.col-md-1
       tbody
         - @organisers.each do |organiser|
           tr
@@ -26,6 +26,7 @@
             td = organiser.country
             td = organiser.email
             td
+              = link_to glyphicon(:pencil), edit_organiser_path(organiser) if organiser == current_user
               = link_to glyphicon(:trash), organiser_path(organiser), method: :delete, data: { confirm: "Are you sure you want to delete this organiser?" }
 
 h3.text-left.green-text Pending Organizers

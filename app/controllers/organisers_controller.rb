@@ -25,8 +25,23 @@ class OrganisersController < ApplicationController
     end
   end
 
+
+  def edit
+    @organizer = current_user
+  end
+
+  def update
+    @organizer = current_user
+    if @organizer.update_attributes(organizer_params)
+      redirect_to(organisers_path, notice: "Details were successfully updated.")
+    else
+      render "edit"
+    end
+  end
+
   def destroy
-    User.find_by(role:1, id: params[:id]).delete
+    @organizer = User.find_by(role:1, id: params[:id])
+    @organizer.delete
     redirect_to :back, notice: "Deleted successfully!"
   end
 
@@ -38,5 +53,9 @@ class OrganisersController < ApplicationController
 
   def organisers_left
     @pending_organisers = User.where(role: 1).where.not(organiser_token: nil)
+  end
+
+  def organizer_params
+    params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation, :avatar)
   end
 end

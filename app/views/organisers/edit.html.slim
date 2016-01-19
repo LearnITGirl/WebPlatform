@@ -1,0 +1,40 @@
+.page-header
+  h1.text-center.green-text Edit Organizer Details
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @organizer, url: organiser_path(@organizer) do |f|
+      - if @organizer.errors.present? && !@organizer.errors.has_key?(:password) && !@organizer.errors.has_key?(:password_confirmation)
+        .alert.alert-danger
+          = @organizer.errors.full_messages.join(", ")
+      .form-group
+        - if current_user == @organizer
+          = f.text_field :email, class: "form-control", placeholder: "Email"
+        - else
+          = @organizer.email
+      .form-group
+        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+      .form-group
+        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+      .form-group
+        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+      .form-group
+        label Avatar
+        = f.file_field :avatar
+      .form-group.text-center
+        = link_to "Cancel", organisers_path, class: "btn btn-pink-border"
+        = f.submit "Save", class: "btn btn-pink"
+.top-space-40
+  h2.text-center.green-text Edit Password
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @organizer, url: organiser_path(@organizer) do |f|
+      - if @organizer.errors.has_key?(:password) || @organizer.errors.has_key?(:password_confirmation)
+        .alert.alert-danger
+          = @organizer.errors.full_messages.join(", ")
+      .form-group
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+      .form-group
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
+      .form-group.text-center
+        = link_to "Cancel", organisers_path, class: "btn btn-pink-border"
+        = f.submit "Save", class: "btn btn-pink"
