@@ -1,36 +1,35 @@
-.conainer.mentee_evaluation
-  .row
-    .col-xs-6.centered.text-center
-      h1 Mentee Evaluation
-
+.page-header
+  h1.text-center.green-text Mentee Evaluation
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
     = form_for :evaluation, url: { action: :create_evaluation } do |f|
-      .evaluations
+      .row.evaluations
         .col-xs-12
           .section.row
             - question = questions["motivation"]
             = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["motivation"], f: f, field: "M[0]"}
-      .evaluations
+      .row.evaluations
         .col-xs-12
           .section.row
             - question = questions["creativity"]
             = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["project_proposal"], f: f, field: "C[0]"}
-      .evaluations
+      .row.evaluations
         .col-xs-12
           .section.row
             - question = questions["teamwork_leadership"]["teamwork"]
             = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "L[0]"}
-      .evaluations
+      .row.evaluations
         .col-xs-12
           .section.row
             - question = questions["teamwork_leadership"]["leadership"]
             = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["roadmap"], f: f, field: "L[1]"}
       - if questions["experience"].present?
-        .evaluations
+        .row.evaluations
           .col-xs-12
             .section.row
               - question = questions["experience"]
               = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["programming_experience"], f: f, field: "E[0]"}
-      .evaluations
+      .row.evaluations
         .col-xs-12
           .section.row
             - questions["soundness"]['answers'].each_with_index do |soundness, index|
@@ -40,8 +39,10 @@
                 = soundness['answer']
       = hidden_field_tag :mentee_application_id, application.id
       = hidden_field_tag :max_soundness, questions["soundness"]["max_score"]
-      .col-xs-12.top10
-        h4.align-left 
-          span Total Score: 
-          span id="total_score" 0
-          = f.submit "Save", class: 'btn btn-pink col-xs-offset-4 col-xs-4 pull-right'
+      .row
+        .col-xs-12
+          h4.align-left.top-space-40
+            span.green-text
+              => "Total Score:"
+            span#total_score 0
+            = f.submit "Save", class: 'btn btn-pink pull-right'
