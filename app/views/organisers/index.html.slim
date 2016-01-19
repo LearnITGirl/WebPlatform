@@ -36,10 +36,13 @@ h3.text-left.green-text Pending Organizers
       thead
         tr
           th Email
+          th.col-md-1
       tbody
         - if @pending_organisers.length > 0
           - @pending_organisers.each do |pending_organiser|
             tr
               td = pending_organiser.email
+              td
+                = link_to glyphicon(:trash), organiser_path(pending_organiser), method: :delete, data: { confirm: "Are you sure you want to delete this organiser?" }
 
 
