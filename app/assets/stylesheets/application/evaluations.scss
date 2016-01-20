@@ -38,3 +38,14 @@
     }
   }
 }
+
+.mentee_evaluation, .mentor_evaluation {
+  .buttons a.btn-pink-border {
+    position: relative;
+    top: 10px;
+  }
+
+  .rejection-reason {resize: none;}
+
+  .btn-pink.pull-right {margin-right: 0;}
+}

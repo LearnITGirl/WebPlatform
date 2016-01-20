@@ -2,7 +2,7 @@
   h1.text-center.green-text Mentee Evaluation
 .row
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentee_evaluation
-    = form_for :evaluation, url: { action: :create_evaluation } do |f|
+    = form_for :evaluation, url: { action: :create_evaluation } , method: :post do |f|
       .row.evaluations
         .col-xs-12
           .section.row
@@ -40,9 +40,22 @@
       = hidden_field_tag :mentee_application_id, application.id
       = hidden_field_tag :max_soundness, questions["soundness"]["max_score"]
       .row
-        .col-xs-12
+        .col-xs-12.buttons
           h4.align-left.top-space-40
             span.green-text
               => "Total Score:"
             span#total_score 0
             = f.submit "Save", class: 'btn btn-pink pull-right'
+            = link_to "Skip application", skip_mentee_evaluation_path(mentee_application_id: application.id), class: "btn btn-pink-border pull-right", data: { confirm: "Are you sure you want to skip this application?" }
+
+.row.top-space-40
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentee_evaluation
+    h3.green-text Reject application
+    = form_for application, url: reject_mentee_application_path do |f|
+      = hidden_field_tag :mentee_application_id, application.id
+      = f.hidden_field :state, value: 3
+      .alert.alert-danger.hidden Rejection reason can't be blank
+      .form-group
+        = f.text_area :rejection_reason, rows: 3, class: "form-control rejection-reason", placeholder: "Rejection reason"
+      .form-group
+        = f.submit "Reject", class: 'btn btn-pink pull-right reject'

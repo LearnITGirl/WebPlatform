@@ -2,8 +2,10 @@ class EvaluationsController < ApplicationController
   before_action :require_organiser, only: [:create_evaluation, :mentor]
 
   def mentor
-    questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
     application = MentorApplication.where(id: params['application_id']).first
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+
+    questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
 
     locals = { application: application, questions: questions }
 
@@ -11,8 +13,10 @@ class EvaluationsController < ApplicationController
   end
 
   def mentee
-    questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
     application = MenteeApplication.where(id: params['application_id']).first
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+
+    questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
 
     if application['programming_level'] == 'beginner'
       questions = questions['beginners']
@@ -47,11 +51,43 @@ class EvaluationsController < ApplicationController
     redirect_to dashboard_organisers_path, notice: notice
   end
 
+  def skip
+    application = params[:mentor_application_id].present? ?
+      MentorApplication.find(params[:mentor_application_id]) :
+      MenteeApplication.find(params[:mentee_application_id])
+    application.update_columns(started: false, state: 2)
+    redirect_to dashboard_organisers_path, notice: "Application was skipped"
+  end
+
+  def reject_mentee
+    app = MenteeApplication.find(params[:mentee_application_id])
+    app.update_attributes(mentee_params)
+    redirect_to dashboard_organisers_path, notice: "Application was rejected"
+  end
+
+  def reject_mentor
+    app = MentorApplication.find(params[:mentor_application_id])
+    app.update_attributes(mentor_params)
+    redirect_to dashboard_organisers_path, notice: "Application was rejected"
+  end
+
   private
 
   def require_organiser
     unless current_user && current_user.role =='organizer'
       redirect_to root_path, notice: "Login again as a organiser"
+    end
+  end
+
+  def mentee_params
+    params.require(:mentee_application).permit(:state, :rejection_reason).tap do |p|
+      p["state"] = p["state"].to_i
+    end
+  end
+
+  def mentor_params
+    params.require(:mentor_application).permit(:state, :rejection_reason).tap do |p|
+      p["state"] = p["state"].to_i
     end
   end
 end

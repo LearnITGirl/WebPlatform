@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108162355) do
+ActiveRecord::Schema.define(version: 20160120214801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,19 +44,22 @@ ActiveRecord::Schema.define(version: 20160108162355) do
     t.text     "experience"
     t.string   "programming_level"
     t.text     "background"
-    t.string   "known_programming_languages",                default: [], array: true
+    t.string   "known_programming_languages",                default: [],    array: true
     t.string   "programming_language"
     t.text     "project_proposal"
     t.text     "programming_experience"
     t.text     "roadmap"
     t.integer  "time_availability",                limit: 2
-    t.string   "engagements",                                default: [], array: true
-    t.string   "sources",                                    default: [], array: true
+    t.string   "engagements",                                default: [],    array: true
+    t.string   "sources",                                    default: [],    array: true
     t.string   "build_step"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "other_programming_language"
     t.string   "other_known_programming_language"
+    t.integer  "state",                            limit: 2, default: 1
+    t.boolean  "started",                                    default: false
+    t.text     "rejection_reason"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -85,6 +88,9 @@ ActiveRecord::Schema.define(version: 20160108162355) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "other_programming_language"
+    t.integer  "state",                      limit: 2, default: 1
+    t.boolean  "started",                              default: false
+    t.text     "rejection_reason"
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -106,6 +112,14 @@ ActiveRecord::Schema.define(version: 20160108162355) do
     t.string  "github_link"
     t.integer "mentor_id"
     t.integer "mentee_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "creator_id"
+    t.datetime "created_at"
+    t.integer  "status",     limit: 2
+    t.integer  "project_id"
   end
 
   create_table "users", force: :cascade do |t|
