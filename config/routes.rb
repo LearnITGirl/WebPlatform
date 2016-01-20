@@ -18,6 +18,7 @@ Webplatform::Application.routes.draw do
   get "mentor_dos_and_donts" => "home#mentor_dos_and_donts"
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
   get "faq" => "home#faq"
+  get "timeline" => "home#timeline"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
