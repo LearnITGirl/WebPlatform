@@ -47,6 +47,14 @@ class EvaluationsController < ApplicationController
     redirect_to dashboard_organisers_path, notice: notice
   end
 
+  def skip
+    application = params[:mentor_application_id].present? ?
+      MentorApplication.find(params[:mentor_application_id]) :
+      MenteeApplication.find(params[:mentee_application_id])
+    application.update_columns(started: false, state: 2)
+    redirect_to dashboard_organisers_path, notice: "Application was skipped"
+  end
+
   private
 
   def require_organiser

@@ -38,3 +38,10 @@
     }
   }
 }
+
+.mentee_evaluation, .mentor_evaluation {
+  .buttons a.btn-pink-border {
+    position: relative;
+    top: 10px;
+  }
+}

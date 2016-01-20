@@ -20,6 +20,7 @@ class MentorApplication < ActiveRecord::Base
             presence: true, on: :update, if: :done_or_details?
 
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
+  enum state: {pending: 1, skipped: 2, rejected: 3}
 
   scope :done, -> { where(build_step: 'done') }
   scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }
@@ -27,6 +28,7 @@ class MentorApplication < ActiveRecord::Base
 
   scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
+  scope :pending, -> { where(state: 1) }
 
   def done?
     build_step.to_s == "done"

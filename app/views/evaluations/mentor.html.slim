@@ -58,9 +58,10 @@
                     = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
         = hidden_field_tag :mentor_application_id, application.id
       .row
-        .col-xs-12
+        .col-xs-12.buttons
           h4.align-left.top-space-40
             span.green-text
               => "Total Score:"
             span#total_score 0
             = f.submit "Save", class: 'btn btn-pink pull-right'
+            = link_to "Skip application", skip_mentor_evaluation_path(mentor_application_id: application.id), class: "btn btn-pink-border pull-right", data: { confirm: "Are you sure you want to skip this application?" }

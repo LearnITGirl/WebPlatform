@@ -29,6 +29,8 @@ Webplatform::Application.routes.draw do
   get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
   get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
   post "evaluation/:application_id" => "evaluations#create_evaluation"
+  get "evaluation/:mentee_application_id/skip" => "evaluations#skip", as: "skip_mentee_evaluation"
+  get "evaluation/:mentor_application_id/skipr" => "evaluations#skip", as: "skip_mentor_evaluation"
 
   resource :mentor_profile, only: [:show] do
     collection do
