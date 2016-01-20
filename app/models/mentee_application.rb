@@ -26,6 +26,10 @@ class MenteeApplication < ActiveRecord::Base
 
   scope :done, -> { where(build_step: 'done') }
   scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }
+  scope :evaluated, -> { done.eager_load(:evaluations).where.not('evaluations IS NULL') }
+
+  scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
+  scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
 
   def done?
     build_step.to_s == "done"

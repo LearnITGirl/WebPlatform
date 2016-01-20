@@ -2,8 +2,10 @@ class OrganisersController < ApplicationController
   before_action :require_organiser
 
   def dashboard
-    @mentees = MenteeApplication.where.not(email: current_user.email).not_evaluated
-    @mentors = MentorApplication.where.not(email: current_user.email).not_evaluated
+    @mentees = MenteeApplication.where.not(email: current_user.email)
+                                .not_evaluated.know_english.have_time_to_learn
+    @mentors = MentorApplication.where.not(email: current_user.email)
+                                .not_evaluated.know_english.have_time_to_learn
   end
 
   def index
