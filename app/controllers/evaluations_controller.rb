@@ -2,8 +2,10 @@ class EvaluationsController < ApplicationController
   before_action :require_organiser, only: [:create_evaluation, :mentor]
 
   def mentor
-    questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
     application = MentorApplication.where(id: params['application_id']).first
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+
+    questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
 
     locals = { application: application, questions: questions }
 
@@ -11,8 +13,10 @@ class EvaluationsController < ApplicationController
   end
 
   def mentee
-    questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
     application = MenteeApplication.where(id: params['application_id']).first
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+
+    questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
 
     if application['programming_level'] == 'beginner'
       questions = questions['beginners']
