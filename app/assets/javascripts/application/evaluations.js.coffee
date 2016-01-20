@@ -66,11 +66,18 @@ Evaluation =
       k += $(this).val()*1
     (m * 3 + a * 2 + k * 2)
 
+  rejectApplication: ->
+    $('.reject').click (e) ->
+      if $('textarea.rejection-reason').val() == ""
+        e.preventDefault()
+        $('.alert').removeClass('hidden')
+
   init: ->
     @languageScoreCounter()
     @customDropdowns()
     @otherFieldScoreToggler()
     @soundnessGetChanged()
+    @rejectApplication()
 
 $ ->
   if $('.evaluations').length

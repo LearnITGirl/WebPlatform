@@ -59,11 +59,35 @@ class EvaluationsController < ApplicationController
     redirect_to dashboard_organisers_path, notice: "Application was skipped"
   end
 
+  def reject_mentee
+    app = MenteeApplication.find(params[:mentee_application_id])
+    app.update_attributes(mentee_params)
+    redirect_to dashboard_organisers_path, notice: "Application was rejected"
+  end
+
+  def reject_mentor
+    app = MentorApplication.find(params[:mentor_application_id])
+    app.update_attributes(mentor_params)
+    redirect_to dashboard_organisers_path, notice: "Application was rejected"
+  end
+
   private
 
   def require_organiser
     unless current_user && current_user.role =='organizer'
       redirect_to root_path, notice: "Login again as a organiser"
+    end
+  end
+
+  def mentee_params
+    params.require(:mentee_application).permit(:state, :rejection_reason).tap do |p|
+      p["state"] = p["state"].to_i
+    end
+  end
+
+  def mentor_params
+    params.require(:mentor_application).permit(:state, :rejection_reason).tap do |p|
+      p["state"] = p["state"].to_i
     end
   end
 end

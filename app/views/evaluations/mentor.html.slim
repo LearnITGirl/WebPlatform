@@ -65,3 +65,15 @@
             span#total_score 0
             = f.submit "Save", class: 'btn btn-pink pull-right'
             = link_to "Skip application", skip_mentor_evaluation_path(mentor_application_id: application.id), class: "btn btn-pink-border pull-right", data: { confirm: "Are you sure you want to skip this application?" }
+
+.row.top-space-40
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentee_evaluation
+    h3.green-text Reject application
+    = form_for application, url: reject_mentor_application_path do |f|
+      = hidden_field_tag :mentor_application_id, application.id
+      = f.hidden_field :state, value: 3
+      .alert.alert-danger.hidden Rejection reason can't be blank
+      .form-group
+        = f.text_area :rejection_reason, rows: 3, class: "form-control rejection-reason", placeholder: "Rejection reason"
+      .form-group
+        = f.submit "Reject", class: 'btn btn-pink pull-right reject'
