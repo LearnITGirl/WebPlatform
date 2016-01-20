@@ -24,6 +24,13 @@ class MenteeApplication < ActiveRecord::Base
 
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
 
+  scope :done, -> { where(build_step: 'done') }
+  scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }
+  scope :evaluated, -> { done.eager_load(:evaluations).where.not('evaluations IS NULL') }
+
+  scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
+  scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
+
   def done?
     build_step.to_s == "done"
   end
@@ -42,11 +49,6 @@ class MenteeApplication < ActiveRecord::Base
 
   def done_or_details?
     build_step.to_s == "details" || done?
-  end
-
-  def self.no_evaluation
-    MenteeApplication.where(build_step: "done").joins("LEFT JOIN evaluations ON mentee_applications.id = evaluations.mentee_application_id").
-      where("evaluations.mentee_application_id is null")
   end
 
   private

@@ -60,13 +60,10 @@ Evaluation =
     m = a = k = 0
     $('select[id^="evaluation_M"]').each ->
       m += $(this).val()*1
-      console.log m
     $('select[id^="evaluation_A"]').each ->
       a += $(this).val()*1
-      console.log a
     $('[id^="evaluation_K"]').each ->
       k += $(this).val()*1
-      console.log k
     (m * 3 + a * 2 + k * 2)
 
   init: ->

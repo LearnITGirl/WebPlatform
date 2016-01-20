@@ -26,20 +26,25 @@ class EvaluationsController < ApplicationController
   end
 
   def create_evaluation
-    if params[:mentor_application_id].present?
-      application = MentorApplication.find(params[:mentor_application_id])
-      MentorApplicationEvaluation.new(evaluation: params['evaluation'],
-                                    user: current_user,
-                                    application: application).evaluate
-    elsif params[:mentee_application_id].present?
-      application = MenteeApplication.find(params[:mentee_application_id])
-      MenteeApplicationEvaluation.new(evaluation: params['evaluation'],
-                                    user: current_user,
-                                    application: application,
-	                                  max_soundness: params[:max_soundness]).evaluate
+    begin
+      if params[:mentor_application_id].present?
+        application = MentorApplication.find(params[:mentor_application_id])
+        MentorApplicationEvaluation.new(evaluation: params['evaluation'],
+                                        user: current_user,
+                                        application: application).evaluate
+      elsif params[:mentee_application_id].present?
+        application = MenteeApplication.find(params[:mentee_application_id])
+        MenteeApplicationEvaluation.new(evaluation: params['evaluation'],
+                                        user: current_user,
+                                        application: application,
+                                        max_soundness: params[:max_soundness]).evaluate
+      end
+    rescue ActiveRecord::RecordInvalid => e
+      notice = e.message
     end
 
-    redirect_to root_path, notice: "Evaluation finished successfully!"
+    notice ||= "Evaluation finished successfully!"
+    redirect_to dashboard_organisers_path, notice: notice
   end
 
   private

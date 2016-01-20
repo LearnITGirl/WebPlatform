@@ -1,7 +1,7 @@
 Webplatform::Application.routes.draw do
 
   root 'home#index'
-  resources :organisers, only: [:index, :create, :destroy] do
+  resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
     collection do
       get :dashboard
     end
