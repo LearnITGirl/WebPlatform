@@ -1,8 +1,10 @@
 .page-header
-  h1.text-center.green-text Mentee Evaluation
+  h1.text-center.green-text
+    = "#{application.programming_level != 'beginner' ? 'Advanced' : 'Beginner'} Mentee Evaluation"
 .row
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentee_evaluation
     = form_for :evaluation, url: { action: :create_evaluation } , method: :post do |f|
+      = render partial: "mentee_info", locals: {application: application}
       .row.evaluations
         .col-xs-12
           .section.row
