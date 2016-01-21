@@ -1,0 +1,42 @@
+.form-group
+  p
+    strong Gender
+    br
+      = application.gender.capitalize
+.form-group
+  p
+    strong English level
+    br
+      = eng_level(application.english_level)
+.form-group
+  p
+    strong Programming level
+    br
+      = programming_level(application.programming_level)
+- if application.known_programming_languages.any?
+  .form-group
+    p
+      strong Known programming languages
+      br
+        = known_languages(application.known_programming_languages)
+.form-group
+  p
+    strong Background
+    br
+      = application.background
+.form-group
+  p
+    strong Chosen programming language
+    br
+      - language = application.programming_language
+      = available_languages.key?(language) ? available_languages[language] : language
+.form-group
+  p
+    strong Time availability
+    br
+      = t("activerecord.attributes.mentee_application.time_availability.#{application.time_availability}")
+.form-group
+  p
+    strong Engagements
+    br
+      = application.engagements.map{|e| available_engagements[e.to_sym]}.join(", ")
