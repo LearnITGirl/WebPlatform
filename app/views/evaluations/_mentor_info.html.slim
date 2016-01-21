@@ -1,0 +1,36 @@
+.form-group
+  p
+    strong Gender
+    br
+      = application.gender.capitalize
+.form-group
+  p
+    strong English level
+    br
+      = eng_level(application.english_level)
+.form-group
+  p
+    strong Who do you want to teach?
+    br
+      = mentee_level(application.mentee_level)
+
+.form-group
+  p
+    strong Programming languages
+    br
+      = known_languages(application.programming_languages)
+.form-group
+  p
+    strong Background
+    br
+      = application.background
+.form-group
+  p
+    strong Time availability
+    br
+      = t("activerecord.attributes.mentee_application.time_availability.#{application.time_availability}")
+.form-group
+  p
+    strong Engagements
+    br
+      = application.engagements.map{|e| available_engagements[e.to_sym]}.join(", ")

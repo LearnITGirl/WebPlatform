@@ -22,4 +22,10 @@ module EvaluationsHelper
       available_languages.key?(lang) ? available_languages[lang] : lang
     end.join(", ")
   end
+
+  def mentee_level(level)
+    level.map do |lvl|
+      lvl == "beginners" ? "Absolute beginners" : "Women who already know a language and would like to learn another"
+    end.join(" & ")
+  end
 end

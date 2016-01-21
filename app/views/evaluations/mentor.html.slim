@@ -3,6 +3,7 @@
 .row
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentor_evaluation
     = form_for :evaluation, url: { action: :create_evaluation } do |f|
+      = render partial: "mentor_info", locals: {application: application}
       .row.evaluations
         .col-xs-12
           .section.row
