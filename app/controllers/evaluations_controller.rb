@@ -5,8 +5,8 @@ class EvaluationsController < ApplicationController
     application = MentorApplication.where(id: params['application_id']).first
     return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
 
+    application.update_column :started, true
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
-
     locals = { application: application, questions: questions }
 
     render locals: locals
@@ -16,6 +16,7 @@ class EvaluationsController < ApplicationController
     application = MenteeApplication.where(id: params['application_id']).first
     return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
 
+    application.update_column :started, true
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
 
     if application['programming_level'] == 'beginner'
