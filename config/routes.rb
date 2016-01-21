@@ -30,8 +30,8 @@ Webplatform::Application.routes.draw do
   get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
   get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
   post "evaluation/:application_id" => "evaluations#create_evaluation"
-  get "evaluation/:mentee_application_id/skip" => "evaluations#skip", as: "skip_mentee_evaluation"
-  get "evaluation/:mentor_application_id/skipr" => "evaluations#skip", as: "skip_mentor_evaluation"
+  get "evaluation/:application_id/skip" => "evaluations#skip", as: "skip_evaluation"
+  get "evaluation/:application_id/cancel" => "evaluations#cancel", as: "cancel_evaluation"
   patch "evaluation/reject_mentee" => "evaluations#reject_mentee", as: :reject_mentee_application
   patch "evaluation/reject_mentor" => "evaluations#reject_mentor", as: :reject_mentor_application
 
