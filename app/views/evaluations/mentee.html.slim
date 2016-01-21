@@ -48,7 +48,8 @@
               => "Total Score:"
             span#total_score 0
             = f.submit "Save", class: 'btn btn-pink pull-right'
-            = link_to "Skip application", skip_mentee_evaluation_path(mentee_application_id: application.id), class: "btn btn-pink-border pull-right", data: { confirm: "Are you sure you want to skip this application?" }
+            = link_to "Skip application", skip_evaluation_path(application_id: application.id, type: "mentee"), class: "btn btn-pink-border pull-right", data: { confirm: "Are you sure you want to skip this application?" }
+            = link_to "Cancel evaluation", cancel_evaluation_path(application_id: application.id, type: "mentee"), class: "btn btn-pink-border pull-right with-right-margin", data: { confirm: "Are you sure you want to cancel evaluating this application?" }
 
 .row.top-space-40
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.mentee_evaluation

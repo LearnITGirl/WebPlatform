@@ -53,11 +53,11 @@ class EvaluationsController < ApplicationController
   end
 
   def skip
-    application = params[:mentor_application_id].present? ?
-      MentorApplication.find(params[:mentor_application_id]) :
-      MenteeApplication.find(params[:mentee_application_id])
+    application = params[:type] == "mentor" ?
+      MentorApplication.find(params[:application_id]) :
+      MenteeApplication.find(params[:application_id])
     application.update_columns(started: false, state: 2)
-    redirect_to dashboard_organisers_path, notice: "Application was skipped"
+    redirect_to dashboard_organisers_path, notice: "Application was skipped and will be accessible only by direct URL"
   end
 
   def reject_mentee
@@ -70,6 +70,14 @@ class EvaluationsController < ApplicationController
     app = MentorApplication.find(params[:mentor_application_id])
     app.update_attributes(mentor_params)
     redirect_to dashboard_organisers_path, notice: "Application was rejected"
+  end
+
+  def cancel
+    application = params[:type] == "mentor" ?
+      MentorApplication.find(params[:application_id]) :
+      MenteeApplication.find(params[:application_id])
+    application.update_columns(started: false, state: 1)
+    redirect_to dashboard_organisers_path, notice: "Application will be available for later evaluation"
   end
 
   private
