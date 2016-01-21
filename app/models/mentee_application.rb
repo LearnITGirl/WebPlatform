@@ -25,7 +25,7 @@ class MenteeApplication < ActiveRecord::Base
   validates :rejection_reason, presence: true, on: :update, if: "state == 'rejected'"
 
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
-  enum state: {pending: 1, skipped: 2, rejected: 3}
+  enum state: {pending: 1, skipped: 2, rejected: 3, evaluated: 4}
 
   scope :done, -> { where(build_step: 'done') }
   scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }

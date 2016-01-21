@@ -48,6 +48,7 @@ class EvaluationsController < ApplicationController
       notice = e.message
     end
 
+    application.update_column :state, 4
     notice ||= "Evaluation finished successfully!"
     redirect_to dashboard_organisers_path, notice: notice
   end
