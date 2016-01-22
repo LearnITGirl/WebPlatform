@@ -85,6 +85,6 @@ $ ->
 
 count_total_score = ->
   if($('.mentee_evaluation').length > 0)
-    $('#total_score').text Evaluation.menteeTotalScore()
+    $('#total_score').text Evaluation.menteeTotalScore().toFixed(2)
   else if($('.mentor_evaluation').length > 0)
-    $('#total_score').text Evaluation.mentorTotalScore()
+    $('#total_score').text Evaluation.mentorTotalScore().toFixed(2)

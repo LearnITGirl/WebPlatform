@@ -233,7 +233,7 @@ experienced:
     score: "0"
  soundness:
   question: ""
-  max_score: ""
+  max_score: "2"
   answers:
   - answer: "They overestimated the time they can dedicate on the program"
     hint: "If they state they can put in more than 7 hours of work, even though they have a job/school and/or other responsibilities which involves them full time"
