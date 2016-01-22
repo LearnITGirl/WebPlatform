@@ -13,7 +13,7 @@
     strong Programming level
     br
       = programming_level(application.programming_level)
-- if application.known_programming_languages.any?
+- if application.known_programming_languages && application.known_programming_languages.any?
   .form-group
     p
       strong Known programming languages
