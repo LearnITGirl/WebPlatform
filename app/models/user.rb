@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_one :project, foreign_key: "mentor_id"
   has_one :project, foreign_key: "mentee_id"
   accepts_nested_attributes_for :project
+
+  has_many :mentee_applications, foreign_key: "evaluator_id"
+  has_many :mentor_applications, foreign_key: "evaluator_id"
+
   mount_uploader :avatar, AvatarUploader
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
