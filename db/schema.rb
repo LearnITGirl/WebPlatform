@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120214801) do
+ActiveRecord::Schema.define(version: 20160123213941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20160120214801) do
     t.string   "other_programming_language"
     t.string   "other_known_programming_language"
     t.integer  "state",                            limit: 2, default: 1
-    t.boolean  "started",                                    default: false
     t.text     "rejection_reason"
+    t.integer  "evaluator_id"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 20160120214801) do
     t.datetime "updated_at"
     t.string   "other_programming_language"
     t.integer  "state",                      limit: 2, default: 1
-    t.boolean  "started",                              default: false
     t.text     "rejection_reason"
+    t.integer  "evaluator_id"
   end
 
   create_table "newsletters", force: :cascade do |t|
