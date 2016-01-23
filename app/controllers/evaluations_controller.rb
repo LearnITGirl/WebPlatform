@@ -3,9 +3,9 @@ class EvaluationsController < ApplicationController
 
   def mentor
     application = MentorApplication.where(id: params['application_id']).first
-    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if different_evaluator(application)
 
-    application.update_column :started, true
+    application.update_column :evaluator_id, current_user.id
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentor_evaluation.yml")
     locals = { application: application, questions: questions }
 
@@ -14,9 +14,9 @@ class EvaluationsController < ApplicationController
 
   def mentee
     application = MenteeApplication.where(id: params['application_id']).first
-    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if application.started?
+    return redirect_to dashboard_organisers_path, notice: "Application is being evaluated by another organiser" if different_evaluator(application)
 
-    application.update_column :started, true
+    application.update_column :evaluator_id, current_user.id
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
 
     if application['programming_level'] == 'beginner'
@@ -57,7 +57,7 @@ class EvaluationsController < ApplicationController
     application = params[:type] == "mentor" ?
       MentorApplication.find(params[:application_id]) :
       MenteeApplication.find(params[:application_id])
-    application.update_columns(started: false, state: 2)
+    application.update_columns(evaluator_id: nil, state: 2)
     redirect_to dashboard_organisers_path, notice: "Application was skipped and will be accessible only by direct URL"
   end
 
@@ -77,7 +77,7 @@ class EvaluationsController < ApplicationController
     application = params[:type] == "mentor" ?
       MentorApplication.find(params[:application_id]) :
       MenteeApplication.find(params[:application_id])
-    application.update_columns(started: false, state: 1)
+    application.update_columns(evaluator_id: nil, state: 1)
     redirect_to dashboard_organisers_path, notice: "Application will be available for later evaluation"
   end
 
@@ -99,5 +99,9 @@ class EvaluationsController < ApplicationController
     params.require(:mentor_application).permit(:state, :rejection_reason).tap do |p|
       p["state"] = p["state"].to_i
     end
+  end
+
+  def different_evaluator(app)
+    app.evaluator && (app.evaluator != current_user)
   end
 end

@@ -1,5 +1,6 @@
 class MentorApplication < ActiveRecord::Base
-  has_many :evaluations
+  has_many :evaluations, dependent: :destroy
+  belongs_to :evaluator, class_name: 'User', foreign_key: "evaluator_id"
 
   validates :first_name, :last_name, :email, :gender, :country, :program_country,
             :time_zone, presence: true, on: :update, if: :done_or_personal_information?
@@ -29,10 +30,10 @@ class MentorApplication < ActiveRecord::Base
   scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 2) }
   scope :pending, -> { where(state: 1) }
-  scope :unstarted, -> { where(started: false) }
+  scope :no_evaluator_assigned, -> { where(evaluator_id: nil) }
 
   def self.active
-    pending.unstarted
+    pending.no_evaluator_assigned
   end
 
   def done?
