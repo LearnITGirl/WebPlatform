@@ -35,9 +35,10 @@ Webplatform::Application.routes.draw do
   patch "evaluation/reject_mentee" => "evaluations#reject_mentee", as: :reject_mentee_application
   patch "evaluation/reject_mentor" => "evaluations#reject_mentor", as: :reject_mentor_application
 
-  resource :mentor_profile, only: [:show] do
+  resources :mentor_profiles, only: [:show] do
     collection do
       get :dashboard
+      post :missing_mentee
     end
   end
 

@@ -1,2 +1,48 @@
-h1 MentorProfiles#dashboard
-p Find me in app/views/mentor_profiles/dashboard.html.slim
+.col-xs-2.col-md-3.col-lg-2
+  h3.mentee-name
+    = @mentee.first_name
+  = image_tag @mentee.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if @mentee.avatar?
+  h3.litg-pink Project
+  span.project-title = @project.try(:title)
+  p
+   = @project.try(:language)
+   br
+   = @project.try(:description)
+  = link_to "Read more", mentor_profile_path(current_user)
+  .git-link
+    = link_to url_with_protocol(@project.github_link), target: "_blank" do
+      i.fa.fa-github.fa-3
+      | See on Github
+.col.xs-10.col-md-6.col-lg-8.project-progress
+  .progress
+    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;")
+      | 60%
+  = link_to  "See entire project", mentor_profile_url(current_user.id)
+  h2 Current week
+  b October 7th - October 13th
+  .tasks
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c1 type="checkbox" value="" /
+          label for="c1"  Write code for xxx
+      .action.col-md-4
+        a.delete href="#"  Delete
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c2 type="checkbox" value="" /
+          label for="c2"  Code user interface
+      .action.col-md-4
+        a.delete href="#"  Delete
+    .single-task.clearfix
+      .details.col-md-8
+        .custom-checkbox
+          input#c3 type="checkbox" value="" /
+          label for="c3"  Run tests
+      .action.col-md-4
+        label.mentor-task NEW! Added by Sarah on Tuesday
+.col-xs-2.col-md-3.col-lg-2
+    - unless @mentee.is_missing
+      = button_to "Report Abandoned Project", { :action => "missing_mentee" }, :data => {:confirm => "Are you Sure to report your Mentee as missing?"}, :method => :missing_mentee,  class: "btn btn-pink"
+
