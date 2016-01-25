@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123213941) do
+ActiveRecord::Schema.define(version: 20160125200159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "editions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+  end
 
   create_table "email_templates", force: :cascade do |t|
     t.string   "subject",                null: false
@@ -44,14 +49,14 @@ ActiveRecord::Schema.define(version: 20160123213941) do
     t.text     "experience"
     t.string   "programming_level"
     t.text     "background"
-    t.string   "known_programming_languages",                default: [],    array: true
+    t.string   "known_programming_languages",                default: [], array: true
     t.string   "programming_language"
     t.text     "project_proposal"
     t.text     "programming_experience"
     t.text     "roadmap"
     t.integer  "time_availability",                limit: 2
-    t.string   "engagements",                                default: [],    array: true
-    t.string   "sources",                                    default: [],    array: true
+    t.string   "engagements",                                default: [], array: true
+    t.string   "sources",                                    default: [], array: true
     t.string   "build_step"
     t.datetime "created_at"
     t.datetime "updated_at"
