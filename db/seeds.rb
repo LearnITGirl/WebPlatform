@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-Edition.create(start_date: DateTime.new(2016, 2, 8), end_date: DateTime.new(2016, 4, 29))
+Edition.create(start_date: DateTime.new(2016, 2, 8), end_date: DateTime.new(2016, 4, 29), name: "second")
