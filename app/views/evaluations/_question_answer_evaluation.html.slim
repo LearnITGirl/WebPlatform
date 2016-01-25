@@ -6,7 +6,7 @@
   = answer
 .col-xs-12.evaluation
   - options = question["answers"].map{ |x| [x["answer"], x["score"], {title: x["hint"]}]}
-  = f.select field, options_for_select(options.push(['other'])), {prompt: "", class: 'form-control col-xs-12'}, required: true
+  = f.select field, options_for_select(options.push(['Other', 0, {title: "Other"}])), {prompt: "", class: 'form-control col-xs-12'}, required: true
   .other.row
     .pull-left
       span
