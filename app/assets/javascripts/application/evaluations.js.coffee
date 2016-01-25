@@ -23,7 +23,7 @@ Evaluation =
 
   otherFieldScoreToggler: ->
     $('.evaluation').find('select').change( ->
-      if $(this).val() == 'other'
+      if $(this).find('option:selected').text() == 'Other'
         $(this).parent().find('.other').show()
       else
         $(this).parent().find('.other').hide()
@@ -31,7 +31,7 @@ Evaluation =
     )
 
     $('.other-score').change( ->
-      option = $(this).parents('.evaluation').find('select:first option:contains("other")')
+      option = $(this).parents('.evaluation').find('select option:selected')
       option.val( $(this).val() )
       count_total_score()
     )
