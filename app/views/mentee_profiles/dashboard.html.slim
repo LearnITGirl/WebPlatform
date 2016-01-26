@@ -1,61 +1,38 @@
-.col-xs-2.col-md-3.col-lg-2
-  h3.mentee-name 
-    = current_user.first_name
-  = image_tag current_user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if current_user.avatar?
-  h3.litg-pink Project
-  span.project-title = @project.try(:title)
-  p
-   = @project.try(:language)
-   br
-   = @project.try(:description)
-  = link_to "Read more", mentee_profile_path(current_user)
-  .git-link
-    = link_to url_with_protocol(@project.try(:github_link)), target: "_blank" do
-      i.fa.fa-github.fa-3
-      | See on Github
-.col.xs-10.col-md-6.col-lg-8.project-progress
-  .progress
-    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
-      | 60%
-  = link_to  "See entire project", mentee_profile_url(current_user.id)
-  h2 Current week
-  b October 7th - October 13th
-  = form_tag tasks_create_path, class: "form-inline text-center" do
-      .form-group
-        = text_field_tag :title, params[:title], class: "form-control", placeholder: "Add new task"
-      = submit_tag "Add Task", class: "btn btn-pink"  
-  = form_tag tasks_update_path, :method => "post" do
-    ul#tasks
-    - if @tasks.length > 0 
-      - @tasks.each do |task|
-        - if task.status == 2
-          li[style="color:grey;"]
-          .custom-checkbox
-            = check_box_tag "tasks_checkbox[]",task.id 
-            strike
-              = task.title
-            = link_to  "Delete task", task, :method=>'delete', :data => {:confirm=>'Are you sure?'}
-          
-        - else
-          li
-            = check_box_tag "tasks_checkbox[]",task.id
-            = task.title
-            
-            = link_to " Delete task", task, :method=>'delete', :data => {:confirm=>'Are you sure?'}
-
-    - else h3 You have no tasks
-    br
-    = submit_tag("Complete Task", class: "btn btn-primary") 
-.col-xs-2.col-md-3.col-lg-2
-  .mentor-name
-    span Mentor:
-    span = @mentor.first_name
-  = image_tag @mentor.avatar_url(:thumb) , alt: "Mentor profile picture", class: "profile-icon" if @mentor.avatar?
-  span 
-  = @mentor.email
-  div
-    span.badge.online &nbsp;
-    | Online
-    - unless @mentor.is_missing
-      = button_to "Report Missing Mentor", { :action => "missing_mentor" }, :data => {:confirm => "Are you Sure to report your Mentor as missing?"}, :method => :missing_mentor,  class: "btn btn-pink"
+.row.top-space-40
+  .col-md-6.col-md-offset-3.green-text
+    .progress
+      .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
+        | 60%
+.row.top-space-20
+  .col-md-3
+    h3.green-text
+      = current_user.first_name
+    .row
+      .col-xs-12
+        = image_tag display_avatar(current_user), alt: "Mentee's avatar", class: "profile-icon"
+    h3.litg-pink Project
+    p
+      strong = @project.try(:title)
+    p
+      = @project.try(:language)
+    p.top-space-20
+      = @project.try(:description)
+    .row.top-space-20
+      .col-xs-12
+        = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
+          i.fa.fa-github
+          span See on Github
+  .col-md-6
+    h1.text-center.green-text Current week
+  .col-md-3.text-right
+    h3.green-text
+      = "Mentor: #{@mentor.first_name}"
+    .row
+      .col-xs-12
+        = image_tag display_avatar(@mentor), alt: "Mentor's avatar", class: "profile-icon"
+    p
+      strong  = @mentor.email
+- unless @mentor.is_missing
+  .pull-right
+    = button_to "Report Missing Mentor", {action: "missing_mentor" }, data: {confirm: "Are you Sure to report your Mentor as missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 
