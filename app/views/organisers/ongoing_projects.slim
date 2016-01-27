@@ -1,0 +1,19 @@
+.row
+  .col-xs-12
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th.col-md-4 Mentee
+          th.col-md-4 Mentor
+          th.col-md-2 Project
+          th.col-md-1
+      tbody
+        - @projects.each do |project|
+          tr
+            td
+              = project.user.first_name
+              span
+                = project.user.last_name
+            td = project.title
+            td = project.github_link
+
