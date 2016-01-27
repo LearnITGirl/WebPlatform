@@ -15,8 +15,9 @@
       strong = @project.try(:title)
     p
       = @project.try(:language)
-    p.top-space-20
+    p.top-space-20.dot-dot-dot
       = @project.try(:description)
+      = link_to "read more", mentee_profile_path(current_user), class: "read-more"
     .row.top-space-20
       .col-xs-12
         = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
