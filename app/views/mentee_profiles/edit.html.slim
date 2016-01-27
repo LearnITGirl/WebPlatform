@@ -42,7 +42,7 @@
       h4.pink-text Project
       .row
         .col-xs-12.normal-form
-          = f.fields_for :project do |proj|
+          = f.fields_for :mentee_project do |proj|
             .ordinary-field
               = proj.text_field :title, class: "form-control", placeholder: "Title"
             .ordinary-field

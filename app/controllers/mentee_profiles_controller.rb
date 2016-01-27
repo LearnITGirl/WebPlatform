@@ -22,7 +22,6 @@ class MenteeProfilesController < ApplicationController
     @project = Project.find_by(mentee_id: current_user.id)
 
     if current_user.update_attributes(user_params)
-      @project.update_column :mentor_id, current_user.matched_id
       redirect_to mentee_profile_path, notice: "Details have been succesfuly updated."
     else
       render "edit"
@@ -45,7 +44,7 @@ class MenteeProfilesController < ApplicationController
   def user_params
     params.require(:user).permit(
       :first_name, :last_name, :country, :program_country, :timezone, :avatar,
-      :project_attributes => [:id, :title,:language,:description,:github_link]
+      :mentee_project_attributes => [:id, :title,:language,:description,:github_link]
     )
   end
 end
