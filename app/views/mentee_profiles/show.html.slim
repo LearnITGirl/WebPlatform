@@ -30,5 +30,5 @@
         span See on Github
     p.top-space-20
       strong Mentor:
-      =< @mentor.full_name
+      =< link_to @mentor.full_name, mentor_profile_path(@mentor)
     p = @mentor.email

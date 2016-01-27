@@ -27,7 +27,8 @@
     h1.text-center.green-text Current week
   .col-md-3.right-left-text
     h3.green-text
-      = "Mentor: #{@mentor.first_name}"
+      | Mentor:
+      =< link_to @mentor.full_name, mentor_profile_path(@mentor), class: "green-text"
     .row
       .col-xs-12
         = image_tag display_avatar(@mentor), alt: "Mentor's avatar", class: "profile-icon"
@@ -35,5 +36,5 @@
       strong  = @mentor.email
 - unless @mentor.is_missing
   .pull-right
-    = button_to "Report Missing Mentor", {action: "missing_mentor" }, data: {confirm: "Are you Sure to report your Mentor as missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
+    = button_to "Report Missing Mentor", {action: "missing_mentor" }, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 

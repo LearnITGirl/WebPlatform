@@ -1,17 +1,16 @@
 class MentorProfilesController < ApplicationController
   before_action :require_mentor, except: [ :show ]
   before_action :require_login, only: [:show]
-  
+
   def dashboard
     @mentee = User.find(current_user.matched_id)
     @project = Project.find_by(mentor_id: current_user.id)
   end
 
   def show
-    @user = User.find(params[:id])
-    @mentee = User.find(@user.matched_id)
+    @mentor = User.find(params[:id])
+    @mentee = User.find(@mentor.matched_id)
     @project = Project.find_by(mentor_id: params[:id])
-
   end
 
   def missing_mentee
