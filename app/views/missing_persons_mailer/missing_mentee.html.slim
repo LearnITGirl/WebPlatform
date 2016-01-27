@@ -1,0 +1,17 @@
+h1
+  | The Following
+  = @user.email
+p
+  | has reported her mentee to be missing. 
+p
+  |To see the mentor profile, just follow this link:
+
+  = link_to "click here", @mentorurl
+p
+  |To see the mentee profile, just follow this link:
+  
+  = link_to "click here", @menteeurl
+
+p
+  |  Assign the new mentor as soon as possible.
+

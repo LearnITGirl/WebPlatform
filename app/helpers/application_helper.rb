@@ -7,7 +7,7 @@ module ApplicationHelper
   def main_path
     case current_user.try(:role)
     when "organizer" then dashboard_organisers_path
-    when "mentor" then dashboard_mentor_profile_path
+    when "mentor" then dashboard_mentor_profiles_path
     when "mentee" then dashboard_mentee_profiles_path
     else
       root_path
