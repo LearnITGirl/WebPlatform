@@ -3,8 +3,8 @@ class MenteeProfilesController < ApplicationController
   before_action :require_login, only: [:show]
 
   def show
-    @user = User.find(params[:id])
-    @mentor = User.find(@user.matched_id)
+    @mentee = User.find(params[:id])
+    @mentor = User.find(@mentee.matched_id)
     @project = Project.find_by(mentee_id: params[:id])
   end
 
@@ -12,7 +12,6 @@ class MenteeProfilesController < ApplicationController
     @mentor = User.find(current_user.matched_id)
     @project = Project.find_by(mentee_id: current_user.id)
     @tasks = Task.where(project_id: @project.id)
-
   end
 
   def edit

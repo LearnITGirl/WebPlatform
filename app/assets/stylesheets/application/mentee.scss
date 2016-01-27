@@ -20,6 +20,12 @@ body.mentee_profiles-controller {
     }
   }
 
+  .right-left-text {
+    @media (min-width: 992px) {
+      text-align: right;
+    }
+  }
+
   .btn.missing {margin-right: 0;}
 }
 
