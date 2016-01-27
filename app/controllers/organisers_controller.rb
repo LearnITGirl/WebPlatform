@@ -60,4 +60,5 @@ class OrganisersController < ApplicationController
   def organizer_params
     params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation, :avatar)
   end
+ 
 end
