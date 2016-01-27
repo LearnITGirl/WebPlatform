@@ -55,6 +55,11 @@ class OrganisersController < ApplicationController
     @organizer.delete
     redirect_to :back, notice: "Deleted successfully!"
   end
+  
+  def problematic_projects
+    @projects = Project.all
+    render "problematic_projects"
+  end
 
   private
 
