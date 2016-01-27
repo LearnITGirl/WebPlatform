@@ -8,13 +8,13 @@ class OrganisersController < ApplicationController
     @mentors = MentorApplication.where.not(email: current_user.email)
                                 .active.not_evaluated.know_english.have_time_to_learn
     if (@mentees.length > 0 or @mentors.length > 0) 
-       render 'dashboard'
-    else if (@mentees.length < 0 and @mentors.length < 0) 
+       render 'evaluate_projects'
+    elsif (@mentees.length <= 0 and @mentors.length <= 0) 
        @projects = Project.all 
        render 'ongoing_projects'
     # else if (current_date > edition date) 
        #render 'project_evaluate'
-    
+    end
   end
 
   def index

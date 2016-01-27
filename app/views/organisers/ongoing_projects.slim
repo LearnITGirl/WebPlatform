@@ -6,14 +6,18 @@
           th.col-md-4 Mentee
           th.col-md-4 Mentor
           th.col-md-2 Project
-          th.col-md-1
+          th.col-md-2 GitHub Link
       tbody
         - @projects.each do |project|
           tr
-            td
-              = project.user.first_name
-              span
-                = project.user.last_name
+            td 
+               = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
+            td 
+               = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
             td = project.title
-            td = project.github_link
+            td 
+               = link_to url_with_protocol(project.github_link), target: "_blank" do
+                 i.fa.fa-github.fa-3
+                  
+
 
