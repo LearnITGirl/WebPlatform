@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  has_one :project, foreign_key: "mentor_id"
-  has_one :project, foreign_key: "mentee_id"
-  accepts_nested_attributes_for :project
+  has_one :mentor_project, foreign_key: "mentor_id", class_name: "Project"
+  has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
+
+  accepts_nested_attributes_for :mentee_project
+  accepts_nested_attributes_for :mentor_project
 
   has_many :mentee_applications, foreign_key: "evaluator_id"
   has_many :mentor_applications, foreign_key: "evaluator_id"
@@ -22,6 +24,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def project
+    role == "mentee" ? mentee_project : mentor_project
   end
 
   private
