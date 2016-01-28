@@ -1,32 +1,34 @@
-.col-md-6.centered
-  .row
-    .col-md-6
-      = image_tag @user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if @user.avatar?
-    .col-md-6
-      h3.mentee-name 
-       ='  @user.first_name 
-       ='  @user.last_name
-      p 
-       | From   
-       = @user.country
+.row.top-space-40
+  .col-md-2.col-md-offset-2.col-sm-3.col-xs-5
+    = image_tag display_avatar(@mentee), alt: "Mentee's avatar", class: "profile-icon"
+  .col-md-6.col-sm-9.col-xs-7
+      h3.green-text
+       = @mentee.full_name
+       - if current_user == @mentee
+         .pull-right
+           = link_to edit_mentee_profile_path(@mentee) do
+             .fa.fa-pencil
       p
-        | Currently in:   
-        = @user.program_country     
-        a.left10  = @user.timezone
-  h3 Project
-  span.project-title = @project.try(:title)
-  p
-    |Languages used  
-    = @project.try(:language)
-  p
-    = @project.try(:description)
-  .git-link
-    = link_to url_with_protocol(@project.github_link),  :target => '_blank' 
-      i.fa.fa-github.fa-3
-      | See on Github
-  .mentor-name.top10.bottom10
-    span
-      | Mentor:
-      a href="#"  
-      ='@mentor.first_name 
-      ='  @mentor.last_name
+        = "From: #{Carmen::Country.coded(@mentee.country)}"
+      p
+        = "Currently in: #{Carmen::Country.coded(@mentee.program_country)}"
+      p
+        = "Current time zone: #{display_timezone(@mentee.timezone)}"
+
+.row.top-space-20
+  .col-md-10.col-md-offset-2.col-xs-12
+    h3.litg-pink Project
+    p
+      strong = @project.try(:title)
+    p.top-space-20
+      = "Language: #{@project.try(:language) || '--'}"
+    p.top-space-20
+      = @project.try(:description)
+    p.top-space-20
+      = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
+        i.fa.fa-github
+        span See on Github
+    p.top-space-20
+      strong Mentor:
+      =< link_to @mentor.full_name, mentor_profile_path(@mentor)
+    p = @mentor.email

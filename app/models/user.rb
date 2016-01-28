@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :mentee_applications, foreign_key: "evaluator_id"
   has_many :mentor_applications, foreign_key: "evaluator_id"
+  has_many :tasks, foreign_key: "creator_id"
 
   mount_uploader :avatar, AvatarUploader
 

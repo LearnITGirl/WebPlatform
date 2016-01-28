@@ -1,57 +1,40 @@
-.col-xs-2.col-md-3.col-lg-2
-  h3.mentee-name 
-    = current_user.first_name
-  = image_tag current_user.avatar_url(:thumb) , alt: "Mentee profile picture", class: "profile-icon" if current_user.avatar?
-  h3.litg-pink Project
-  span.project-title = @project.try(:title)
-  p
-   = @project.try(:language)
-   br
-   = @project.try(:description)
-  = link_to "Read more", mentee_profile_path(current_user)
-  .git-link
-    = link_to url_with_protocol(@project.github_link), target: "_blank" do
-      i.fa.fa-github.fa-3
-      | See on Github
-.col.xs-10.col-md-6.col-lg-8.project-progress
-  .progress
-    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
-      | 60%
-  = link_to  "See entire project", mentee_profile_url(current_user.id)
-  h2 Current week
-  b October 7th - October 13th
-  .tasks
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c1 type="checkbox" value="" /
-          label for="c1"  Write code for xxx
-      .action.col-md-4
-        a.delete href="#"  Delete
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c2 type="checkbox" value="" /
-          label for="c2"  Code user interface
-      .action.col-md-4
-        a.delete href="#"  Delete
-    .single-task.clearfix
-      .details.col-md-8
-        .custom-checkbox
-          input#c3 type="checkbox" value="" /
-          label for="c3"  Run tests
-      .action.col-md-4
-        label.mentor-task NEW! Added by Sarah on Tuesday
-.col-xs-2.col-md-3.col-lg-2
-  .mentor-name
-    span Mentor:
-    span = @mentor.first_name
-  = image_tag @mentor.avatar_url(:thumb) , alt: "Mentor profile picture", class: "profile-icon" if @mentor.avatar?
-  span 
-  = @mentor.email
-  div
-    span.badge.online &nbsp;
-    | Online
-    - unless @mentor.is_missing
-      = button_to "Report Missing Mentor", { :action => "missing_mentor" }, :data => {:confirm => "Are you Sure to report your Mentor as missing?"}, :method => :missing_mentor,  class: "btn btn-pink"
+.row.top-space-40
+  .col-md-6.col-md-offset-3.green-text
+    .progress
+      .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
+        | 60%
+.row.top-space-20
+  .col-md-3
+    h3.green-text
+      = current_user.first_name
+    .row
+      .col-xs-12
+        = image_tag display_avatar(current_user), alt: "Mentee's avatar", class: "profile-icon"
+    h3.litg-pink Project
+    p
+      strong = @project.try(:title)
+    p
+      = @project.try(:language)
+    p.top-space-20.dot-dot-dot
+      = @project.try(:description)
+      = link_to "read more", mentee_profile_path(current_user), class: "read-more"
+    .row.top-space-20
+      .col-xs-12
+        = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
+          i.fa.fa-github
+          span See on Github
+  .col-md-6
+    h1.text-center.green-text Current week
+  .col-md-3.right-left-text
+    h3.green-text
+      | Mentor:
+      =< link_to @mentor.full_name, mentor_profile_path(@mentor), class: "green-text"
+    .row
+      .col-xs-12
+        = image_tag display_avatar(@mentor), alt: "Mentor's avatar", class: "profile-icon"
+    p
+      strong  = @mentor.email
+- unless @mentor.is_missing
+  .pull-right
+    = button_to "Report Missing Mentor", {action: "missing_mentor" }, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 
