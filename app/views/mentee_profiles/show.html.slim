@@ -1,7 +1,7 @@
 .row.top-space-40
   .col-md-2.col-md-offset-2.col-sm-3.col-xs-5
     = image_tag display_avatar(@mentee), alt: "Mentee's avatar", class: "profile-icon"
-  .col-md-6.col-sm-9.col-xs-7
+  .col-md-8.col-sm-9.col-xs-7
       h3.green-text
        = @mentee.full_name
        - if current_user == @mentee

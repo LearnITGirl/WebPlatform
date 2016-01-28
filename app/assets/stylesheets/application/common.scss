@@ -201,3 +201,18 @@ div.centered {
 .top-space-20 {
   margin-top: 20px;
 }
+
+.avatar-field {
+  span {
+    color: #aaa;
+  }
+  .display-avatar {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #cecece;
+    background-size: cover;
+    background-position: center;
+    &+input {display: none;}
+  }
+}

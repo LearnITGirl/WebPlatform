@@ -30,4 +30,28 @@ body.organisers-controller {
   a.github-link-big {
     font-size: 25px;
   }
+
+  .avatar {margin-bottom: 10px;}
+
+  @media(max-width: 768px) {
+    .avatar-field {
+      text-align: center;
+      margin-bottom: 15px;
+
+      .display-avatar {margin: 0 auto;}
+    }
+  }
+}
+
+body.organiser_registrations-controller {
+  .avatar {margin-bottom: 10px;}
+
+  @media(max-width: 768px) {
+    .avatar-field {
+      text-align: center;
+      margin-bottom: 15px;
+
+      .display-avatar {margin: 0 auto;}
+    }
+  }
 }

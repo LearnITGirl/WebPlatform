@@ -6,20 +6,24 @@
       - if @user.errors.any?
         .alert.alert-danger
           = @user.errors.full_messages.join(", ")
-      .form-group
-        = @user.email
-      .form-group
-        = f.text_field :first_name, class: "form-control", placeholder: "First Name"
-      .form-group
-        = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
-      .form-group
-        = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
-      .form-group
-        label Avatar
-        = f.file_field :avatar
-      .form-group
-        = f.password_field :password, class: "form-control", placeholder: "Password"
-      .form-group
-        = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
+      .row
+        .col-sm-3.avatar-field
+          .ordinary-field.avatar
+            .display-avatar style='background-image: url("#{display_avatar(@user)}")'
+            = f.file_field :avatar
+          span Click to select new picture
+        .col-sm-9
+          .form-group
+            = @user.email
+          .form-group
+            = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+          .form-group
+            = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+          .form-group
+            = f.select :country, options_from_collection_for_select(Carmen::Country.all.sort_by{|c| c.name}, :code, :name, f.object.country), {prompt: "Choose your country"}, class: "form-control"
+          .form-group
+            = f.password_field :password, class: "form-control", placeholder: "Password"
+          .form-group
+            = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
       .form-group.text-center
         = f.submit "Save", class: "btn btn-pink"
