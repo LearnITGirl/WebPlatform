@@ -17,7 +17,7 @@
             td 
                = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
             td 
-               = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
+               = link_to project.mentor.full_name, mentor_profile_path(project.mentor_id)
             td = project.title
             td 
                = link_to url_with_protocol(project.github_link), target: "_blank" do

@@ -14,22 +14,21 @@
           th.col-md-2 Missing
       tbody
         - @projects.each do |project| 
-          - if (project.mentee.is_missing == true) or (project.mentor.is_missing == true)
-             tr
-              td
-                = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
-              td
-                = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
-              td = project.try(:title)
-              td
-                = link_to url_with_protocol(project.github_link), target: "_blank" do
-                  i.fa.fa-github.fa-3
-              td 
-                - if (project.mentee.is_missing == true) and (project.mentor.is_missing == true)
-                  | Both
-                - elsif (project.mentee.is_missing == true)
-                  | Mentee
-                - elsif (project.mentor.is_missing == true)
-                  | Mentor
-                - else 
-                  | None
+          tr
+           td
+             = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
+           td
+             = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
+           td = project.try(:title)
+           td
+             = link_to url_with_protocol(project.github_link), target: "_blank" do
+               i.fa.fa-github.fa-3
+           td 
+             - if (project.mentee.is_missing == true) and (project.mentor.is_missing == true)
+               | Both
+             - elsif (project.mentee.is_missing == true)
+               | Mentee
+             - elsif (project.mentor.is_missing == true)
+               | Mentor
+             - else 
+               | None

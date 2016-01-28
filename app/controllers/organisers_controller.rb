@@ -57,8 +57,7 @@ class OrganisersController < ApplicationController
   end
   
   def problematic_projects
-    @projects = Project.all
-    render "problematic_projects"
+    @projects = User.where(is_missing: true).map{|user| user.project}.uniq.compact
   end
 
   private
