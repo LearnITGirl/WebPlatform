@@ -24,11 +24,11 @@
              = link_to url_with_protocol(project.github_link), target: "_blank" do
                i.fa.fa-github.fa-3
            td 
-             - if (project.mentee.is_missing == true) and (project.mentor.is_missing == true)
+             - if (project.mentee.is_missing  && project.mentor.is_missing )
                | Both
-             - elsif (project.mentee.is_missing == true)
+             - elsif (project.mentee.is_missing)
                | Mentee
-             - elsif (project.mentor.is_missing == true)
+             - elsif (project.mentor.is_missing)
                | Mentor
              - else 
                | None
