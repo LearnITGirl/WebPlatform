@@ -8,19 +8,6 @@
       table.table.table-striped.table-bordered
         thead
           tr
-<<<<<<< HEAD
-            td 
-               = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
-            td 
-               = link_to project.mentor.full_name, mentor_profile_path(project.mentor_id)
-            td = project.title
-            td 
-               = link_to url_with_protocol(project.github_link), target: "_blank" do
-                 i.fa.fa-github.fa-3
-                  
-
-
-=======
             th.col-xs-4 Mentee
             th.col-xs-4 Mentor
             th.col-xs-3 Project
@@ -36,4 +23,3 @@
               td.text-center
                  = link_to url_with_protocol(project.github_link), target: "_blank", class: "green-text github-link-big" do
                    i.fa.fa-github
->>>>>>> master
