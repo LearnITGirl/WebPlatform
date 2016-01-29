@@ -47,6 +47,10 @@ class OrganisersController < ApplicationController
     @organizer.delete
     redirect_to :back, notice: "Deleted successfully!"
   end
+  
+  def problematic_projects
+    @projects = User.where(is_missing: true).map{|user| user.project}.uniq.compact
+  end
 
   private
 

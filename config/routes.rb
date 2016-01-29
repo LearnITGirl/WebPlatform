@@ -4,6 +4,7 @@ Webplatform::Application.routes.draw do
   resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
     collection do
       get :dashboard
+      get :problematic_projects
     end
   end
 
