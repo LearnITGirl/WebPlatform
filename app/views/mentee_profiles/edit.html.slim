@@ -7,10 +7,11 @@
         .alert.alert-danger
           = current_user.errors.full_messages.join(", ")
       .row
-        .col-sm-4
-          .ordinary-field
-            label Avatar
+        .col-sm-4.avatar-field
+          .ordinary-field.avatar
+            .display-avatar style='background-image: url("#{display_avatar(current_user)}")'
             = f.file_field :avatar
+          span Click to select new picture
         .col-sm-8
           .ordinary-field
             .row

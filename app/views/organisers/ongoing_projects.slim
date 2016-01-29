@@ -1,19 +1,14 @@
 .page-header
-  h2.text-center.green-text Ongoing Projects
+  h2.text-center.green-text Projects
 
 = link_to "See problematic projects dashboard", problematic_projects_organisers_path
 .row
   .col-xs-12
-    table.table.table-striped.table-bordered
-      thead
-        tr
-          th.col-md-4 Mentee
-          th.col-md-4 Mentor
-          th.col-md-2 Project
-          th.col-md-2 GitHub Link
-      tbody
-        - @projects.each do |project|
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
           tr
+<<<<<<< HEAD
             td 
                = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
             td 
@@ -25,3 +20,20 @@
                   
 
 
+=======
+            th.col-xs-4 Mentee
+            th.col-xs-4 Mentor
+            th.col-xs-3 Project
+            th.col-xs-1 GitHub Link
+        tbody
+          - @projects.each do |project|
+            tr
+              td
+                 = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
+              td
+                 = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
+              td = project.title
+              td.text-center
+                 = link_to url_with_protocol(project.github_link), target: "_blank", class: "green-text github-link-big" do
+                   i.fa.fa-github
+>>>>>>> master

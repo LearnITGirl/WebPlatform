@@ -24,9 +24,15 @@ Webplatform::Application.routes.draw do
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
+      post :dashboard
       post :missing_mentor
     end
   end
+ 
+  post 'tasks/create'
+  post 'tasks/destroy'
+  post 'tasks/update'
+  resources :tasks
 
   get "mentor_evaluation/:application_id" => "evaluations#mentor", as: "mentor_evaluation"
   get "mentee_evaluation/:application_id" => "evaluations#mentee", as: "mentee_evaluation"
