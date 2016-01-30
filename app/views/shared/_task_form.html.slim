@@ -1,0 +1,10 @@
+- @task ||= Task.new
+= form_for @task, html: {class: "horizontal-form task-form"} do |f|
+  - if @task.errors.any?
+    .alert.alert-danger
+       | Task can't be empty
+  .form-group
+    .col-xs-9
+      = f.text_field :title, value: params[:title], class: "form-control", placeholder: "Add new task"
+    .col-xs-3
+      = f.submit "Add Task", class: "btn btn-pink", style: "#{@task.errors.any? and 'margin: 0px;'}"

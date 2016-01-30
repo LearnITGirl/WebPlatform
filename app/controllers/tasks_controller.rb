@@ -1,18 +1,16 @@
 class TasksController < ApplicationController
 
   def create
-    @mentor = current_user.partner
-    @project = Project.find_by(mentee_id: current_user.id)
+    @project = current_user.project
+    current_user.mentee? ? (@mentor = @project.mentor) : (@mentee = @project.mentee)
 
-    @task = Task.new(title: params[:title], creator_id: current_user.id, created_at: DateTime.now, status: 1, project_id: @project.id)
+    @task = @project.tasks.new(title: params[:task][:title], creator_id: current_user.id, status: 1)
 
     if @task.save
-      redirect_to dashboard_mentee_profiles_path, notice: "Task added succesfully"
+      render current_view
     else
-      flash.now[:alert] = @task.errors.full_messages.join(", ")
-      redirect_to dashboard_mentee_profiles_path
+      render current_view
     end
-
   end
 
   def destroy
@@ -21,6 +19,9 @@ class TasksController < ApplicationController
     redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"
   end
 
-  def index
+  private
+
+  def current_view
+    current_user.mentee? ? "mentee_profiles/dashboard" : "mentor_profiles/dashboard"
   end
 end
