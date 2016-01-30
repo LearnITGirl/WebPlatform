@@ -18,12 +18,17 @@ class MentorToMenteeMatchersController < ApplicationController
 
   def accept_pair
     application_match = ApplicationMatch.where(id: params[:id]).first
-    application_match.update_attributes(confirmed: true)
-    #
-    #To Do: Create user account for both
-    #
+
+    project_setup = ProjectSetup.new(mentor_application: application_match.mentor_application,
+                                     mentee_application: application_match.mentee_application)
+
     respond_to do |format|
-      format.json { render json: {}, status: :ok }
+      if project_setup.create
+        application_match.update_attributes(confirmed: true)
+        format.json { render json: {}, status: :ok }
+      else
+        format.json { render json: {}, status: :unprocessable_entity }
+      end
     end
   end
 
