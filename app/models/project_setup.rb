@@ -12,13 +12,15 @@ class ProjectSetup
       mentor, mentee = create_user_accounts
       language = @mentee_application.programming_language
 
-      Project.create!(language: language,
-                     mentor: mentor,
-                     mentee: mentee,
-                     description: '',
-                     title: '',
-                     edition: @edition,
-                     github_link: nil)
+      if Project.where(mentor_id: mentor.id, mentee_id: mentee.id).empty?
+        Project.create!(language: language,
+                        mentor: mentor,
+                        mentee: mentee,
+                        description: '',
+                        title: '',
+                        edition: @edition,
+                        github_link: nil)
+      end
     end
   end
 

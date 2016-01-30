@@ -36,19 +36,3 @@ br
         = pair.mentee_application.last_name
       br
       | #{pair.mentee_application.programming_language.titleize}
-    .pair-actions class="#{ pair.confirmed && 'hidden'}"
-      .col-xs-4.text-right
-        = form_for(:pair, remote: true, url: reject_mentor_mentor_to_mentee_matcher_path(pair.id), method: :put, html: {class: "mentor-rejected"}) do |f|
-          = f.submit "Reject mentor application", class: 'btn btn-danger', data: { disable_with: "In progress..." }
-      .col-xs-4.text-center
-        = form_for(:pair, remote: true, url: accept_pair_mentor_to_mentee_matcher_path(pair.id), method: :put, html: {class: "pair-accepted"}) do |f|
-          = f.submit 'Confirm pair', class: 'btn btn-success', data: { disable_with: "In progress..." }
-      .col-xs-4.text-left
-        = form_for(:pair, remote: true, url: reject_mentee_mentor_to_mentee_matcher_path(pair.id), method: :put, html: {class: "mentee-rejected"}) do |f|
-          = f.submit "Reject mentee application", class: 'btn btn-danger', data: { disable_with: "In progress..." }
-    .pair-accepted class="#{ !pair.confirmed && 'hidden'}"
-      .col-xs-12.text-center.alert-success
-        |Pair Confirmed
-    .pair-rejected.hidden
-      .col-xs-12.text-center.alert-danger
-        |Pair Rejected. Run match algorithm

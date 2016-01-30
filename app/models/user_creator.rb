@@ -4,11 +4,19 @@ class  UserCreator
   end
 
   def add_mentor(application:)
-    User.create!(user_params(application, role: 'mentor'))
+    if user_uniq(application.email)
+      User.new(user_params(application, role: 'mentor'))
+    else
+      User.find_by(email: application.email)
+    end
   end
 
   def add_mentee(application:)
-    User.create!(user_params(application, role: 'mentee'))
+    if user_uniq(application.email)
+      User.new(user_params(application, role: 'mentee'))
+    else
+      User.find_by(email: application.email)
+    end
   end
 
   private
@@ -24,5 +32,9 @@ class  UserCreator
       edition: @edition,
       role: role
     }
+  end
+
+  def user_uniq(email)
+    User.find_by(email: email).nil?
   end
 end
