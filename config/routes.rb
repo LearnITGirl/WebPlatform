@@ -57,6 +57,17 @@ Webplatform::Application.routes.draw do
     resources :build, controller: 'mentee_applications/build'
   end
 
+  resources :mentor_to_mentee_matchers do
+    collection do
+      post :match
+    end
+    member do
+      put :accept_pair
+      put :reject_mentee
+      put :reject_mentor
+    end
+  end
+
   resources :password_resets
   resources :polls, only: [:create]
   resources :email_templates do
