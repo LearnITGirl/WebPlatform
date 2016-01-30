@@ -27,6 +27,9 @@
     h1.text-center.green-text Current week
     .row
       .col-xs-12
+        = render partial: "shared/task_list", locals: {project: @project}
+    .row
+      .col-xs-12
         = render partial: "shared/task_form"
   .col-md-3.right-left-text
     h3.green-text

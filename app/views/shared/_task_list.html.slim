@@ -1,0 +1,6 @@
+- project.tasks.each do |task|
+  = form_for task do |t|
+    .checkbox
+      = t.check_box :status
+      label
+        = t.object.title
