@@ -8,10 +8,11 @@ class MentorToMenteeMatchersController < ApplicationController
   end
 
   def match
-   number =  MentorToMenteeMatcher.new.run
+    last_number = ApplicationMatch.all.size
+    new_number =  MentorToMenteeMatcher.new.run
 
     respond_to do |format|
-      format.json { render json: {number: number}, status: :ok }
+      format.json { render json: {number: (last_number-new_number).abs}, status: :ok }
     end
   end
 
