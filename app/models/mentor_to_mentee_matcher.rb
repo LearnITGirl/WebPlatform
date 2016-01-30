@@ -1,25 +1,29 @@
 class MentorToMenteeMatcher
 
   def run
-    mentors.each do |mentor|
-      languages = count_languages
-      languages.each do |language|
-        if mentor.programming_languages.include?(language[:name])
-          break unless mentees(language, mentor.mentee_level, mentor.country).each do |mentee|
-            if timezone_difference(mentor.time_zone, mentee.time_zone) <= 2
-              ApplicationMatch.create!(mentor_application_id: mentor.id, mentee_application_id: mentee.id)
-              break
-            end
-
-          end
-        end
-      end
-    end
+    matcher_algorithm(with_time_zone: true)
+    matcher_algorithm(with_time_zone: false)
 
     p ApplicationMatch.all.size
   end
 
   private
+
+  def matcher_algorithm(with_time_zone: true)
+    mentors.each do |mentor|
+      languages = count_languages
+      languages.each do |language|
+        if mentor.programming_languages.include?(language[:name])
+          break unless mentees(language, mentor.mentee_level, mentor.country).each do |mentee|
+            if !with_time_zone || (timezone_difference(mentor.time_zone, mentee.time_zone) <= 2)
+              ApplicationMatch.create!(mentor_application_id: mentor.id, mentee_application_id: mentee.id)
+              break
+            end
+          end
+        end
+      end
+    end
+  end
 
   def count_languages
     mentors.pluck(:programming_languages)
