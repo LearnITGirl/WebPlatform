@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
     role == "mentee" ? mentee_project : mentor_project
   end
 
+  def matched_id
+    role == "mentee" ? project.mentee.id : project.mentor.id
+  end
+
+  def partner
+    role == "mentee" ? project.mentee : project.mentor
+  end
+
   private
 
   def create_organiser_token

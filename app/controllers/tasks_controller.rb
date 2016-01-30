@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
- 
+
   def create
-    @mentor = User.find(current_user.matched_id)
+    @mentor = current_user.partner
     @project = Project.find_by(mentee_id: current_user.id)
-   
+
     @task = Task.new(title: params[:title], creator_id: current_user.id, created_at: DateTime.now, status: 1, project_id: @project.id)
 
     if @task.save
@@ -17,8 +17,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy   
-    redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"   
+    @task.destroy
+    redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"
   end
 
   def index
