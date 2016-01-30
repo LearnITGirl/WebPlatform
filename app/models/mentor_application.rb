@@ -29,6 +29,7 @@ class MentorApplication < ActiveRecord::Base
 
   scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 2) }
+
   scope :pending, -> { where(state: 1) }
   scope :no_evaluator_assigned, -> { where(evaluator_id: nil) }
 

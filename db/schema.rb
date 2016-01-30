@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125201022) do
+ActiveRecord::Schema.define(version: 20160127222924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "application_matches", force: :cascade do |t|
+    t.integer "mentor_application_id"
+    t.integer "mentee_application_id"
+  end
 
   create_table "editions", force: :cascade do |t|
     t.datetime "start_date"
