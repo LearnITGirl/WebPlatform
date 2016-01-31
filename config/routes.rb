@@ -21,6 +21,7 @@ Webplatform::Application.routes.draw do
   get "faq" => "home#faq"
   get "timeline" => "home#timeline"
   get "roadmap_example" => "home#roadmap_example"
+  get "learning_materials/git" => "learning_materials#git"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
@@ -56,6 +57,17 @@ Webplatform::Application.routes.draw do
 
   resources :mentee_applications do
     resources :build, controller: 'mentee_applications/build'
+  end
+
+  resources :mentor_to_mentee_matchers do
+    collection do
+      post :match
+    end
+    member do
+      put :accept_pair
+      put :reject_mentee
+      put :reject_mentor
+    end
   end
 
   resources :password_resets

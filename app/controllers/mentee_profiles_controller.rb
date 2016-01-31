@@ -4,12 +4,12 @@ class MenteeProfilesController < ApplicationController
 
   def show
     @mentee = User.find(params[:id])
-    @mentor = User.find(@mentee.matched_id)
+    @mentor = @mentee.partner
     @project = Project.find_by(mentee_id: params[:id])
   end
 
   def dashboard
-    @mentor = User.find(current_user.matched_id)
+    @mentor = current_user.partner
     @project = Project.find_by(mentee_id: current_user.id)
     @tasks = Task.where(project_id: @project.id)
   end
@@ -30,7 +30,7 @@ class MenteeProfilesController < ApplicationController
 
   def missing_mentor
     @user = current_user
-    @mentor = User.find(current_user.matched_id)
+    @mentor = current_user.partner
     if @mentor.update_attribute(:is_missing, true)
       MissingPersonsMailer.missing_mentor(@user).deliver_now
       redirect_to dashboard_mentee_profiles_path, notice: 'Organsiers Have been notified about the missing mentor'
