@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130225222) do
+ActiveRecord::Schema.define(version: 20160131172216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20160130225222) do
     t.boolean  "is_missing"
     t.string   "program_country"
     t.string   "timezone"
+    t.string   "registration_token"
     t.integer  "edition_id"
   end
 
