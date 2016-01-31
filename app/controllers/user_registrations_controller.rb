@@ -19,8 +19,6 @@ class UserRegistrationsController < ApplicationController
       not_authenticated
       return
     end
-    @user.registration_token = nil
-    @user.password_confirmation = params[:user][:password_confirmation]
     if @user.update_attributes(user_params)
       login(@user.email, user_params[:password])
       redirect_to(dashboard_mentor_profiles_path, :notice => "You've been succesfully added as Mentor.")
@@ -34,8 +32,10 @@ class UserRegistrationsController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(
-       :password, :password_confirmation
-    )
+    params.require(:user).permit(:password).tap do |whitelisted|
+      whitelisted[:password_confirmation] = params[:user][:password_confirmation]
+      whitelisted[:registration_token] = nil
+    end
   end
+
 end

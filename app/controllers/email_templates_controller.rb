@@ -46,6 +46,9 @@ class EmailTemplatesController < ApplicationController
     params.require(:email_template).permit(:subject, :body, :recipients)
   end
 
+  def search_template_params
+    params.require(:email_template).permit(:subject)
+  end
 
   def find_email_template
     @email_template ||= EmailTemplate.find(params[:id])

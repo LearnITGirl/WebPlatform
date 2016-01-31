@@ -155,11 +155,8 @@ ActiveRecord::Schema.define(version: 20160131172216) do
     t.boolean  "is_missing"
     t.string   "program_country"
     t.string   "timezone"
-<<<<<<< HEAD
     t.string   "registration_token"
-=======
     t.integer  "edition_id"
->>>>>>> master
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
