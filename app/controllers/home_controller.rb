@@ -20,4 +20,7 @@ class HomeController < ApplicationController
 
   def timeline
   end
+
+  def roadmap
+  end
 end
