@@ -13,9 +13,29 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find(params[:id])
+    @task.update_attributes task_params
+    redirect_to :back
+  end
+
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"
+  end
+
+  def accept
+    @task = Task.find(params[:id])
+    @task.update_column :status, 3
+    redirect_to :back
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:status).tap do |task|
+      task[:status] = Task.statuses[task["status"]]
+    end
   end
 end
