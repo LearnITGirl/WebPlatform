@@ -1,5 +1,6 @@
 Webplatform::Application.routes.draw do
 
+
   root 'home#index'
   resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
     collection do
@@ -58,6 +59,7 @@ Webplatform::Application.routes.draw do
     resources :build, controller: 'mentee_applications/build'
   end
 
+  resources :user_registrations
   resources :password_resets
   resources :polls, only: [:create]
   resources :email_templates do
