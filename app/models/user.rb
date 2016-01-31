@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_one :mentor_project, foreign_key: "mentor_id", class_name: "Project"
   has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
 
+  belongs_to :edition
+
   accepts_nested_attributes_for :mentee_project
   accepts_nested_attributes_for :mentor_project
 
@@ -29,6 +31,14 @@ class User < ActiveRecord::Base
 
   def project
     role == "mentee" ? mentee_project : mentor_project
+  end
+
+  def matched_id
+    role == "mentee" ? project.mentee.id : project.mentor.id
+  end
+
+  def partner
+    role == "mentee" ? project.mentee : project.mentor
   end
 
   private

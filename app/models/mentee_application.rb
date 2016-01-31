@@ -29,8 +29,9 @@ class MenteeApplication < ActiveRecord::Base
   enum state: {pending: 1, skipped: 2, rejected: 3, evaluated: 4}
 
   scope :done, -> { where(build_step: 'done') }
-  scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }
-  scope :evaluated, -> { done.eager_load(:evaluations).where.not('evaluations IS NULL') }
+  scope :not_rejected, -> { where.not(state: 3).where.not(state: 'rejected') }
+  scope :not_evaluated, -> { done.not_rejected.eager_load(:evaluations).where('evaluations IS NULL') }
+  scope :evaluated, -> { done.not_rejected.eager_load(:evaluations).where.not('evaluations IS NULL') }
 
   scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
@@ -59,6 +60,11 @@ class MenteeApplication < ActiveRecord::Base
 
   def done_or_details?
     build_step.to_s == "details" || done?
+  end
+
+  def evaluation_score
+    percentage = ((evaluations.sum(:score)/evaluations.size)/20)*100
+    "#{percentage.to_f.round(1)}%"
   end
 
   private
