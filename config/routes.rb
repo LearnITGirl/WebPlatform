@@ -21,7 +21,9 @@ Webplatform::Application.routes.draw do
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
   get "faq" => "home#faq"
   get "timeline" => "home#timeline"
+  get "roadmap_example" => "home#roadmap_example"
   get "learning_materials/git" => "learning_materials#git"
+  get "learning_materials/php" => "learning_materials#php"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
@@ -30,7 +32,7 @@ Webplatform::Application.routes.draw do
       post :missing_mentor
     end
   end
- 
+
   post 'tasks/create'
   post 'tasks/destroy'
   post 'tasks/update'
@@ -60,6 +62,17 @@ Webplatform::Application.routes.draw do
   end
 
   resources :user_registrations
+  resources :mentor_to_mentee_matchers do
+    collection do
+      post :match
+    end
+    member do
+      put :accept_pair
+      put :reject_mentee
+      put :reject_mentor
+    end
+  end
+
   resources :password_resets
   resources :polls, only: [:create]
   resources :email_templates do

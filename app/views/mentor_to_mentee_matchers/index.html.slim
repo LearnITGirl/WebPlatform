@@ -1,0 +1,38 @@
+.row
+  h2.col-xs-12.text-center
+    div
+      |Mentors and Mentees pairs
+.row
+  .col-xs-4.col-xs-offset-4.text-center
+    = form_for(:match, remote:true, url: { action: 'match'}, html: {id: 'match-form'}) do |f|
+      = f.submit 'Match!', class: 'btn btn-pink', data: { disable_with: "Matching in progress..." }
+      .row
+        .col-xs-12.text-center.info
+br
+.row
+  .col-xs-12.text-center
+    h2
+      div
+        |Mentor - Mentee
+    h4
+      div
+        |Matched #{matched_paires.count} pairs
+
+- matched_paires.each do |pair|
+  .row
+    .col-xs-8.col-xs-offset-2
+      hr
+    p.col-xs-6.text-right
+      strong
+        = pair.mentor_application.first_name
+        |&nbsp;
+        = pair.mentor_application.last_name
+      br
+      = known_languages(pair.mentor_application.programming_languages)
+    p.col-xs-6.text-left
+      strong
+        = pair.mentee_application.first_name
+        |&nbsp;
+        = pair.mentee_application.last_name
+      br
+      | #{pair.mentee_application.programming_language.titleize}
