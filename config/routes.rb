@@ -1,5 +1,6 @@
 Webplatform::Application.routes.draw do
 
+
   root 'home#index'
   resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
     collection do
@@ -60,6 +61,7 @@ Webplatform::Application.routes.draw do
     resources :build, controller: 'mentee_applications/build'
   end
 
+  resources :user_registrations
   resources :mentor_to_mentee_matchers do
     collection do
       post :match
