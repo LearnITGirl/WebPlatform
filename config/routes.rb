@@ -62,6 +62,9 @@ Webplatform::Application.routes.draw do
   end
 
   resources :user_registrations
+  get "user_registrations/:id/link_github" => 'user_registrations#link_github', as: "link_github"
+  put "user_registrations/:id/link_github" => 'user_registrations#update_github', as: "update_github"
+
   resources :mentor_to_mentee_matchers do
     collection do
       post :match
