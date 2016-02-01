@@ -24,6 +24,7 @@ Webplatform::Application.routes.draw do
   get "roadmap_example" => "home#roadmap_example"
   get "learning_materials/git" => "learning_materials#git"
   get "learning_materials/php" => "learning_materials#php"
+  get "learning_materials/android" => "learning_materials#android"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
