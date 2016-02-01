@@ -16,7 +16,7 @@ class MentorProfilesController < ApplicationController
   def missing_mentee
     @user = current_user
     @mentee = current_user.partner
-    if @mentee.update_attribute(:is_missing, true)
+    if @mentee.update_attributes(:is_missing=>true, :missing_since => DateTime.now)
       MissingPersonsMailer.missing_mentee(@user).deliver_now
       redirect_to dashboard_mentor_profiles_path, notice: 'Organsiers Have been notified about the missing mentee'
     else
