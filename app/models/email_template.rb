@@ -21,10 +21,9 @@ class EmailTemplate < ActiveRecord::Base
 
   def users
     case recipients.to_sym
-    when :accepted_mentees, :not_accepted_mentees, :mentees_running_late, :mentees_not_registered,
-         :mentees_abandoned, :passed_mentees, :failed_mentees
+    when :accepted_mentees
       User.mentee
-    when :accepted_mentors, :mentors_missing, :mentors_not_registered
+    when :accepted_mentors
       User.mentor
     else
       User.none
