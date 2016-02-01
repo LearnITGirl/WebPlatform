@@ -5,4 +5,7 @@ class LearningMaterialsController < ApplicationController
 
   def php
   end
+
+  def android
+  end
 end
