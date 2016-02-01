@@ -29,11 +29,14 @@
       = "#{@week.start.strftime('%B %d')} - #{@week.end.strftime('%B %d')}"
     .row.top-space-40
       .col-xs-12
-        = render partial: "shared/task_list", locals: {project: @project}
+        = render partial: "shared/unfinished_task_list", locals: {tasks: @tasks}
     - if @week.end > DateTime.now
       .row
         .col-xs-12
           = render partial: "shared/task_form"
+    .row.top-space-40
+      .col-xs-12
+        = render partial: "shared/finished_task_list", locals: {tasks: @tasks}
   .col-md-3.right-left-text
     h3.green-text
       | Mentor:

@@ -6,4 +6,11 @@ class Task < ActiveRecord::Base
 
   validates :title, presence: true
 
+  def self.finished(user)
+    where("(creator_id != (?) and status = 3) or (creator_id= (?) and status in (?))", user.id, user.id, [2,3])
+  end
+
+  def self.unfinished(user)
+    where("(creator_id != (?) and status in (?)) or (creator_id= (?) and status = 1)", user.id, [1,2], user.id)
+  end
 end

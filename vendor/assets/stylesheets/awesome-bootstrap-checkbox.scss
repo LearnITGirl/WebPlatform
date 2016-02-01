@@ -71,6 +71,7 @@ $check-icon: $fa-var-check !default;
     &:checked + label::after{
       font-family: $font-family-icon;
       content: $check-icon;
+      color: #01b2ac;
     }
 
     &:disabled + label{

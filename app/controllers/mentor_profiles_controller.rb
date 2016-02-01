@@ -6,6 +6,7 @@ class MentorProfilesController < ApplicationController
     @mentee = current_user.partner
     @project = Project.find_by(mentor_id: current_user.id)
     @week = find_week
+    @tasks = @project.week_tasks(@week.number)
   end
 
   def show
