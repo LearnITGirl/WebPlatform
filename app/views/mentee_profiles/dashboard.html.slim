@@ -25,12 +25,15 @@
           span See on Github
   .col-md-6
     h1.text-center.green-text Current week
+    p.text-center
+      = "#{@week.start.strftime('%B %d')} - #{@week.end.strftime('%B %d')}"
     .row.top-space-40
       .col-xs-12
         = render partial: "shared/task_list", locals: {project: @project}
-    .row
-      .col-xs-12
-        = render partial: "shared/task_form"
+    - if @week.end > DateTime.now
+      .row
+        .col-xs-12
+          = render partial: "shared/task_form"
   .col-md-3.right-left-text
     h3.green-text
       | Mentor:

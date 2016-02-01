@@ -1,0 +1,9 @@
+.week-bar.text-center
+  - Edition.find_by(name: "second").weeks.each do |week|
+    = link_to week_url(week.number) do
+      - if week.number == @week.number
+        span.week-label
+          span.text
+            = "WEEK #{week.number}"
+          .fa.fa-caret-down
+      span.label Week

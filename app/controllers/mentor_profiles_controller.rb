@@ -5,6 +5,7 @@ class MentorProfilesController < ApplicationController
   def dashboard
     @mentee = current_user.partner
     @project = Project.find_by(mentor_id: current_user.id)
+    @week = find_week
   end
 
   def show
@@ -23,5 +24,4 @@ class MentorProfilesController < ApplicationController
       redirect_to dashboard_mentor_profiles_path, notice: 'Couldnt send mail'
     end
   end
-
 end

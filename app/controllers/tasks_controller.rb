@@ -4,10 +4,13 @@ class TasksController < ApplicationController
     @project = current_user.project
     current_user.mentee? ? (@mentor = @project.mentor) : (@mentee = @project.mentee)
 
-    @task = @project.tasks.new(title: params[:task][:title], creator_id: current_user.id, status: 1)
+    @task = @project.tasks.new(
+      title: params[:task][:title], creator_id: current_user.id,
+      status: 1, week: params[:task][:week]
+    )
 
     if @task.save
-      redirect_to (current_user.mentee? ? dashboard_mentee_profiles_path : dashboard_mentor_profiles_path)
+      redirect_to (current_user.mentee? ? dashboard_mentee_profiles_path(week: @task.week) : dashboard_mentor_profiles_path(week: @task.week))
     else
       render (current_user.mentee? ? "mentee_profiles/dashboard" : "mentor_profiles/dashboard")
     end
@@ -34,7 +37,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:status).tap do |task|
+    params.require(:task).permit(:status, :week).tap do |task|
       task[:status] = Task.statuses[task["status"]]
     end
   end

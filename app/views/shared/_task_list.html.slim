@@ -1,4 +1,4 @@
-- project.tasks.order(:id).each do |task|
+- project.current_tasks(@week.number).order(:id).each do |task|
   = form_for task do |t|
     .row
       - if current_user.mentee?

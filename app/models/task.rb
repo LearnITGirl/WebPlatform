@@ -5,4 +5,5 @@ class Task < ActiveRecord::Base
   enum status: {not_done: 1, finished: 2, accepted: 3}
 
   validates :title, presence: true
+
 end

@@ -11,7 +11,7 @@ class MenteeProfilesController < ApplicationController
   def dashboard
     @mentor = current_user.partner
     @project = Project.find_by(mentee_id: current_user.id)
-    @tasks = Task.where(project_id: @project.id)
+    @week = find_week
   end
 
   def edit

@@ -27,4 +27,8 @@ module TasksHelper
   def require_confirmation?(task)
     current_user.mentor? && !task.accepted? && task.creator == current_user && task.finished?
   end
+
+  def week_url(week_number)
+    current_user.mentee? ? dashboard_mentee_profiles_path(week: week_number) : dashboard_mentor_profiles_path(week: week_number)
+  end
 end
