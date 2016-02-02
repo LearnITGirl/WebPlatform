@@ -1,9 +1,16 @@
 .week-bar.text-center
   - Edition.find_by(name: "second").weeks.each do |week|
     = link_to week_url(week.number) do
-      - if week.number == @week.number
+      - if @week && (week.number == @week.number)
         span.week-label
           span.text
             = "WEEK #{week.number}"
           .fa.fa-caret-down
       span.label Week
+
+- if @week.nil?
+  p.text-center.grey-text
+    | Click on a week to see its tasks
+- else
+  p.text-center.pink-text
+    = link_to "See entire project", user_dashboard_path

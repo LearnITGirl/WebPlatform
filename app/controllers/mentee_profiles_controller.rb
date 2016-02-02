@@ -12,7 +12,7 @@ class MenteeProfilesController < ApplicationController
     @mentor = current_user.partner
     @project = Project.find_by(mentee_id: current_user.id)
     @week = find_week
-    @tasks = @project.week_tasks(@week.number)
+    @tasks = @week.nil? ? @project.tasks : @project.week_tasks(@week.number)
   end
 
   def edit

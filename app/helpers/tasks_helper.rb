@@ -31,4 +31,8 @@ module TasksHelper
   def week_url(week_number)
     current_user.mentee? ? dashboard_mentee_profiles_path(week: week_number) : dashboard_mentor_profiles_path(week: week_number)
   end
+
+  def user_dashboard_path
+    current_user.mentee? ? dashboard_mentee_profiles_path(week: 'all') : dashboard_mentor_profiles_path(week: 'all')
+  end
 end
