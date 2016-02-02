@@ -4,6 +4,11 @@
   .col-md-6.col-sm-9.col-xs-7
       h3.green-text
        = @mentor.full_name
+       - if current_user.role == "organizer" && @mentor.is_missing
+         .pull-right.red-text
+           | Missing since 
+           = @mentor.missing_since.strftime("%B %d, %Y")
+
       p
         = "From: #{Carmen::Country.coded(@mentor.country)}"
       p
@@ -27,4 +32,8 @@
     p.top-space-20
       strong Mentee:
       =< link_to @mentee.full_name, mentee_profile_path(@mentee)
+      - if current_user.role == "organizer" && @mentee.is_missing
+        .pull-right.red-text
+          | Abandoned since 
+          = @mentee.missing_since.strftime("%B %d, %Y")
     p = @mentee.email

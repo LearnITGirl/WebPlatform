@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def partner
-    role == "mentee" ? project.mentee : project.mentor
+    role == "mentee" ? project.mentor : project.mentee
   end
 
   private

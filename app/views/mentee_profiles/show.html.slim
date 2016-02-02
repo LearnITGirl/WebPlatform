@@ -3,11 +3,15 @@
     = image_tag display_avatar(@mentee), alt: "Mentee's avatar", class: "profile-icon"
   .col-md-8.col-sm-9.col-xs-7
       h3.green-text
-       = @mentee.full_name
+       = @mentee.full_name  
        - if current_user == @mentee
          .pull-right
            = link_to edit_mentee_profile_path(@mentee) do
              .fa.fa-pencil
+       - if current_user.role == "organizer" && @mentee.is_missing
+         .pull-right.red-text
+           | Abandoned since 
+           = @mentee.missing_since.strftime("%B %d, %Y")
       p
         = "From: #{Carmen::Country.coded(@mentee.country)}"
       p
@@ -31,4 +35,9 @@
     p.top-space-20
       strong Mentor:
       =< link_to @mentor.full_name, mentor_profile_path(@mentor)
+      - if current_user.role == "organizer" && @mentor.is_missing
+         .pull-right.red-text
+           | Missing since 
+           = @mentor.missing_since.strftime("%B %d, %Y")
+ 
     p = @mentor.email
