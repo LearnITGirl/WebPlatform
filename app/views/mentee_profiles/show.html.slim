@@ -9,7 +9,7 @@
            = link_to edit_mentee_profile_path(@mentee) do
              .fa.fa-pencil
        - if current_user.role == "organizer" && @mentee.is_missing
-         .pull-right
+         .pull-right.red-text
            | Abandoned since 
            = @mentee.missing_since.strftime("%B %d, %Y")
       p
@@ -36,7 +36,7 @@
       strong Mentor:
       =< link_to @mentor.full_name, mentor_profile_path(@mentor)
       - if current_user.role == "organizer" && @mentor.is_missing
-         .pull-right
+         .pull-right.red-text
            | Missing since 
            = @mentor.missing_since.strftime("%B %d, %Y")
  
