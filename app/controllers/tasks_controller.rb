@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
   def create
     @project = current_user.project
-    current_user.mentee? ? (@mentor = @project.mentor) : (@mentee = @project.mentee)
+    @partner = current_user.partner
 
     @task = @project.tasks.new(
       title: params[:task][:title], creator_id: current_user.id,
@@ -39,6 +39,7 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:status, :week).tap do |task|
       task[:status] = Task.statuses[task["status"]]
+      task[:finished_by] = current_user.id
     end
   end
 end

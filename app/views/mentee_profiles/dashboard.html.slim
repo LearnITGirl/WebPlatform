@@ -1,8 +1,6 @@
 .row.top-space-40
-  .col-md-6.col-md-offset-3.green-text
-    .progress
-      .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
-        | 60%
+  .col-xs-12
+    = render partial: "shared/weeks_bar"
 .row.top-space-20
   .col-md-3
     h3.green-text
@@ -28,13 +26,13 @@
   .col-md-3.right-left-text
     h3.green-text
       | Mentor:
-      =< link_to @mentor.full_name, mentor_profile_path(@mentor), class: "green-text"
+      =< link_to @partner.full_name, mentor_profile_path(@partner), class: "green-text"
     .row
       .col-xs-12
-        = image_tag display_avatar(@mentor), alt: "Mentor's avatar", class: "profile-icon"
+        = image_tag display_avatar(@partner), alt: "Mentor's avatar", class: "profile-icon"
     p
-      strong  = @mentor.email
-- unless @mentor.is_missing
+      strong  = @partner.email
+- unless @partner.is_missing
   .pull-right
     = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 

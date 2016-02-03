@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 edition = Edition.create(start_date: DateTime.new(2016, 2, 15), end_date: DateTime.new(2016, 5, 8), name: "second")
+Week.create(start: DateTime.new(2016, 2, 1), end: DateTime.new(2016, 2, 7), number: -1, edition_id: edition.id)
+Week.create(start: DateTime.new(2016, 2, 8), end: DateTime.new(2016, 2, 14), number: 0, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 2, 15), end: DateTime.new(2016, 2, 21), number: 1, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 2, 22), end: DateTime.new(2016, 2, 28), number: 2, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 2, 29), end: DateTime.new(2016, 3, 6), number: 3, edition_id: edition.id)

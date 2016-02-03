@@ -11,6 +11,6 @@ class Project < ActiveRecord::Base
   validates :github_link, format: { with: GITHUB_REGEXP }, on: :update
 
   def week_tasks(week)
-    tasks.where("week = (?) or (status = 1 and week < (?))", week, week)
+    tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
   end
 end

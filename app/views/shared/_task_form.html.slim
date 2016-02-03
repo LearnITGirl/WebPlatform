@@ -1,6 +1,7 @@
 - @task ||= Task.new
 = form_for @task, html: {class: "horizontal-form task-form"} do |f|
   = f.hidden_field :week, value: @week.number
+  = f.hidden_field :finished_by, value: current_user.id
   - if @task.errors.any?
     .alert.alert-danger
        | Task can't be empty

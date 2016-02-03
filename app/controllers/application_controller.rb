@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     elsif params[:week].present?
       current_edition.weeks.find_by(number: params[:week])
     else
-      current_edition.weeks.find_by(start: (Time.zone.now + 14.days).beginning_of_week)
+      current_edition.weeks.find_by(start: (Time.zone.now).beginning_of_week)
     end
   end
 end

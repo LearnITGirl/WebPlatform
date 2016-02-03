@@ -7,10 +7,10 @@ class Task < ActiveRecord::Base
   validates :title, presence: true
 
   def self.finished(user)
-    where("(creator_id != (?) and status = 3) or (creator_id= (?) and status in (?))", user.id, user.id, [2,3])
+    where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2)", {user_id: user.id})
   end
 
   def self.unfinished(user)
-    where("(creator_id != (?) and status in (?)) or (creator_id= (?) and status = 1)", user.id, [1,2], user.id)
+    where("(status = 1) or (creator_id = :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
   end
 end

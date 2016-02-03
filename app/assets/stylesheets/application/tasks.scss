@@ -12,5 +12,24 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
 
     .btn-pink {margin: 15px 0 0;}
   }
+
+  span.confirmation-left, span.confirmation-right {
+    @media(min-width: 992px) {
+      position: relative;
+      left: -15px;
+      font-size: 11px;
+      font-weight: bold;
+      padding-left: 0;
+    }
+    @media(max-width: 992px) {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  span.confirmation-right {
+    right: 0;
+    left: 0
+  }
 }
 
