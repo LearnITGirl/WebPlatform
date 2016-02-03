@@ -9,7 +9,8 @@ class EmailTemplate < ActiveRecord::Base
     mentors_not_registered: 6,
     mentees_abandoned: 7,
     passed_mentees: 8,
-    failed_mentees: 9
+    failed_mentees: 9,
+    mentors_on_waiting_list: 10
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -25,6 +26,8 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee
     when :accepted_mentors
       User.mentor
+    when :mentors_on_waiting_list
+      MentorApplication.waiting_list
     else
       User.none
     end

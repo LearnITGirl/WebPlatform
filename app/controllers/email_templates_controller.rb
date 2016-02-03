@@ -34,6 +34,8 @@ class EmailTemplatesController < ApplicationController
   end
 
   def deliver
+    return redirect_to(:back, alert: "There are no users in '#{@email_template.recipients.humanize}' list") unless @email_template.users.present?
+
     @email_template.users.each do |user|
       EmailTemplateMailer.custom(@email_template, user).deliver
     end

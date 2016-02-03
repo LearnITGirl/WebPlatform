@@ -38,6 +38,12 @@ class MentorApplication < ActiveRecord::Base
     pending.no_evaluator_assigned
   end
 
+  def self.waiting_list
+    evaluated.where("evaluations.score >= ?", 40)
+      .where.not(id: ApplicationMatch.pluck(:mentor_application_id))
+      .order("evaluations.score DESC")
+  end
+
   def done?
     build_step.to_s == "done"
   end
