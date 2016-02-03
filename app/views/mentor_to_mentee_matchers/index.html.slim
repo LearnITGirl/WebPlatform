@@ -1,7 +1,5 @@
-.row
-  h2.col-xs-12.text-center
-    div
-      |Mentors and Mentees pairs
+.page-header
+  h1.text-center.green-text Mentors and Mentees pairs
 .row
   .col-xs-4.col-xs-offset-4.text-center
     = form_for(:match, remote:true, url: { action: 'match'}, html: {id: 'match-form'}) do |f|

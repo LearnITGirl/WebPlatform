@@ -24,7 +24,7 @@
                 = image_tag display_avatar(organiser)
                 span
                   = organiser.full_name
-              td = organiser.country
+              td = Carmen::Country.coded(organiser.country)
               td = organiser.email
               td
                 = link_to glyphicon(:pencil), edit_organiser_path(organiser) if organiser == current_user
