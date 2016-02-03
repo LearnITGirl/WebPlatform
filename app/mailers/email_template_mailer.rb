@@ -10,8 +10,12 @@ class EmailTemplateMailer < ApplicationMailer
 
   private
 
-  def allowed_fields
-    User.column_names - %w(crypted_password salt organiser_token)
+  def allowed_fields(user)
+    if user.instance_of? User
+      User.column_names - %w(crypted_password salt organiser_token)
+    elsif user.instance_of? MentorApplication
+      MentorApplication.column_names - %w(rejection_reason evaluator_id state)
+    end
   end
 
   def parse_attribute user, attribute
@@ -29,7 +33,7 @@ class EmailTemplateMailer < ApplicationMailer
 
   def parse_content(template, user)
     template.body.tap do |body|
-      allowed_fields.each do |column|
+      allowed_fields(user).each do |column|
         body.gsub!("%{#{column}}", parse_attribute(user, column))
       end
     end
