@@ -79,13 +79,12 @@ Webplatform::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   ActionMailer::Base.smtp_settings = {
-    port: '587',
-    address: 'smtp.sendgrid.net',
-    domain: 'heroku.com',
-    authentication: :plain,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    enable_starttls_auto: true
+    user_name: ENV["MAILTRAP_USERNAME"],
+    password: ENV["MAILTRAP_PASSWORD"],
+    address: 'mailtrap.io',
+    domain: 'mailtrap.io',
+    port: '2525',
+    authentication: :cram_md5
   }
 
   ActionMailer::Base.delivery_method = :smtp
