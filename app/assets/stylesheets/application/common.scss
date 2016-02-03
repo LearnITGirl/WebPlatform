@@ -216,8 +216,14 @@ div.centered {
     &+input {display: none;}
   }
 }
+
 .red-text {
   color: #CE2D29;
   font-size: 15px;
-
 }
+
+.grey-text {
+  color: #aaa;
+}
+
+.no-left-padding {padding-left: 0;}

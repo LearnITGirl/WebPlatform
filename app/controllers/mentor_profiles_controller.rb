@@ -3,8 +3,10 @@ class MentorProfilesController < ApplicationController
   before_action :require_login, only: [:show]
 
   def dashboard
-    @mentee = current_user.partner
+    @partner = current_user.partner
     @project = Project.find_by(mentor_id: current_user.id)
+    @week = find_week
+    @tasks = @week.nil? ? @project.tasks : @project.week_tasks(@week.number)
   end
 
   def show
@@ -23,5 +25,4 @@ class MentorProfilesController < ApplicationController
       redirect_to dashboard_mentor_profiles_path, notice: 'Couldnt send mail'
     end
   end
-
 end

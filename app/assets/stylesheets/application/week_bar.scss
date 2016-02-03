@@ -1,0 +1,30 @@
+@import "variables";
+
+.week-bar {
+  a {display: inline-block;}
+
+  span.label {
+    background-color: $litg-green;
+    color: $litg-green;
+    padding: .2em 1em .3em;
+    margin-right: 1px;
+  }
+  .week-label {
+    position: absolute;
+    top: -15px;
+    color: $litg-green;
+
+    span.text {
+     position: relative;
+     top: -10px;
+     left: 7px;
+     font-size: 10px;
+     font-weight: bold;
+    }
+
+    .fa-caret-down {
+      position: relative;
+      right: 19px;
+    }
+  }
+}

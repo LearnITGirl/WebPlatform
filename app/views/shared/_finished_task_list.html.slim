@@ -1,0 +1,9 @@
+- tasks.finished(current_user).order(:id).each do |task|
+  .row
+    - if current_user.mentee?
+      .col-xs-3.pink-text
+    .col-xs-9
+      .checkbox
+        = check_box_tag :status, 'accepted', true, disabled: true
+        label
+          = task.title
