@@ -30,7 +30,7 @@ class EmailTemplatesController < ApplicationController
 
   def destroy
     @email_template.delete
-    redirect_to :back, notice: "Deleted successfully!"
+    redirect_to email_templates_path, notice: "Deleted successfully!"
   end
 
   def deliver
