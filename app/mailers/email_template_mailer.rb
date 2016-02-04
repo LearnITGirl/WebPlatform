@@ -25,6 +25,8 @@ class EmailTemplateMailer < ApplicationMailer
       MailerParser::Mentee.new(template, user)
     elsif user.instance_of? MentorApplication
       MailerParser::MentorApplication.new(template, user)
+    elsif user.instance_of? MenteeApplication
+      MailerParser::MenteeApplication.new(template, user)
     end
   end
 end

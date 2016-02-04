@@ -42,6 +42,10 @@ class MenteeApplication < ActiveRecord::Base
     pending.no_evaluator_assigned
   end
 
+  def self.not_enough_points
+    evaluated.where("evaluations.score < ?", 10)
+  end
+
   def done?
     build_step.to_s == "done"
   end

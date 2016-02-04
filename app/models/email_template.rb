@@ -31,6 +31,8 @@ class EmailTemplate < ActiveRecord::Base
       MentorApplication.waiting_list
     when :rejected_mentors
       MentorApplication.rejected + MentorApplication.not_enough_points
+    when :rejected_mentees
+      MenteeApplication.rejected + MenteeApplication.not_enough_points
     else
       User.none
     end
