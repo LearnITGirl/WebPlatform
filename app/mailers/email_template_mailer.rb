@@ -19,8 +19,10 @@ class EmailTemplateMailer < ApplicationMailer
   end
 
   def choose_parser(template, user)
-    if user.instance_of? User
-      MailerParser::User.new(template, user)
+    if user.instance_of?(User) && user.mentor?
+      MailerParser::Mentor.new(template, user)
+    elsif user.instance_of?(User) && user.mentee?
+      MailerParser::Mentee.new(template, user)
     elsif user.instance_of? MentorApplication
       MailerParser::MentorApplication.new(template, user)
     end

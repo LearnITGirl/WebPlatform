@@ -1,4 +1,4 @@
-class MailerParser::User
+class MailerParser::Mentor
   include Rails.application.routes.url_helpers
 
   attr_reader :template, :application, :allowed_attributes
@@ -18,7 +18,7 @@ class MailerParser::User
     when "mentee_email"
       application.partner.email
     when "project_description"
-      MenteeApplication.find_by(email: application.partner.email).try(:project_proposal)
+      MenteeApplication.find_by(email: application.partner.email).try(:project_proposal) || "mentor should help mentee come up with a proposal"
     when "registration_link"
       edit_user_registration_url(id: application.registration_token)
     else
