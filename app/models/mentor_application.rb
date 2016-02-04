@@ -44,6 +44,10 @@ class MentorApplication < ActiveRecord::Base
       .order("evaluations.score DESC")
   end
 
+  def self.not_enough_points
+    evaluated.where("evaluations.score < ?", 40)
+  end
+
   def done?
     build_step.to_s == "done"
   end

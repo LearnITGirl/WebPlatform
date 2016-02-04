@@ -1,7 +1,7 @@
 class EmailTemplate < ActiveRecord::Base
   enum recipients: {
     accepted_mentees: 0,
-    not_accepted_mentees: 1,
+    rejected_mentees: 1,
     accepted_mentors: 2,
     mentees_running_late: 3,
     mentors_missing: 4,
@@ -10,7 +10,8 @@ class EmailTemplate < ActiveRecord::Base
     mentees_abandoned: 7,
     passed_mentees: 8,
     failed_mentees: 9,
-    mentors_on_waiting_list: 10
+    mentors_on_waiting_list: 10,
+    rejected_mentors: 11
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -28,6 +29,8 @@ class EmailTemplate < ActiveRecord::Base
       User.mentor
     when :mentors_on_waiting_list
       MentorApplication.waiting_list
+    when :rejected_mentors
+      MentorApplication.rejected + MentorApplication.not_enough_points
     else
       User.none
     end
