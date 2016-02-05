@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   validates :email,  uniqueness: { case_sensitive: false } , presence: true,  format: { with: REGEXP_EMAIL }
   validates :first_name, :last_name, :country, presence: true, on: :update
 
-  before_create :create_organiser_token
+  before_create :create_token
 
   def full_name
     "#{first_name} #{last_name}"
@@ -43,7 +43,12 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_organiser_token
-    self.organiser_token = SecureRandom.hex(8) if role == 'organizer'
+  def create_token
+    token = SecureRandom.hex(8)
+    if role == 'organizer'
+      self.organiser_token = token
+    else
+      self.registration_token = token
+    end
   end
 end

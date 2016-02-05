@@ -1,5 +1,8 @@
 .page-header
-  h3.text-center.green-text Congratulations! You were selected as a Mentor. 
+  - if @user.mentor?
+    h3.text-center.green-text Congratulations! You were selected as a Mentor.
+  - else
+    h3.text-center.green-text Congratulations! You were selected as a Scholar.
 
   h4.text-center Welcome on board ! 
   p.text-center Please fill the fields to create your account
