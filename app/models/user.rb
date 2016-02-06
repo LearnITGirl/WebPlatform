@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: -> { password || password_confirmation }
   validates :email,  uniqueness: { case_sensitive: false } , presence: true,  format: { with: REGEXP_EMAIL }
   validates :first_name, :last_name, :country, presence: true, on: :update
+  validates :avatar, file_size: { less_than_or_equal_to: 2.megabytes }
 
   before_create :create_token
 
