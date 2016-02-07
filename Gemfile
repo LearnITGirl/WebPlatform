@@ -9,6 +9,7 @@ gem 'unicorn'
 
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'file_validators'
 gem "fog"
 
 gem 'sass-rails', '~> 5.0'
