@@ -1,34 +1,4 @@
-class MenteeProfilesController < ApplicationController
-  before_action :require_mentee, except: [ :show ]
-  before_action :require_login, only: [:show]
-
-  def show
-    @mentee = User.find(params[:id])
-    @mentor = @mentee.partner
-    @project = Project.find_by(mentee_id: params[:id])
-  end
-
-  def dashboard
-    @partner = current_user.partner
-    @project = Project.find_by(mentee_id: current_user.id)
-    @week = find_week
-    @tasks = @week.nil? ? @project.tasks : @project.week_tasks(@week.number)
-  end
-
-  def edit
-    @project = Project.find_by(mentee_id: current_user.id)
-  end
-
-  def update
-    @project = Project.find_by(mentee_id: current_user.id)
-
-    if current_user.update_attributes(user_params)
-      redirect_to mentee_profile_path, notice: "Details have been succesfuly updated."
-    else
-      render "edit"
-    end
-  end
-
+class MenteeProfilesController < UsersController
   def missing_mentor
     @user = current_user
     @mentor = current_user.partner
@@ -41,11 +11,10 @@ class MenteeProfilesController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(
-      :first_name, :last_name, :country, :program_country, :timezone, :avatar,
-      :mentee_project_attributes => [:id, :title,:language,:description,:github_link]
-    )
+  def setup_project
+    @project = Project.find_by(mentee_id: current_user.id)
+    @project_symbol = :mentee_project
+    @edit_url = edit_mentee_profile_path(current_user)
+    @partner_label = "Mentor:"
   end
 end
