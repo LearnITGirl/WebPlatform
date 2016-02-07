@@ -1,20 +1,4 @@
-class MentorProfilesController < ApplicationController
-  before_action :require_mentor, except: [ :show ]
-  before_action :require_login, only: [:show]
-
-  def dashboard
-    @partner = current_user.partner
-    @project = Project.find_by(mentor_id: current_user.id)
-    @week = find_week
-    @tasks = @week.nil? ? @project.tasks : @project.week_tasks(@week.number)
-  end
-
-  def show
-    @mentor = User.find(params[:id])
-    @mentee = @mentor.partner
-    @project = Project.find_by(mentor_id: params[:id])
-  end
-
+class MentorProfilesController < UsersController
   def missing_mentee
     @user = current_user
     @mentee = current_user.partner
@@ -24,5 +8,13 @@ class MentorProfilesController < ApplicationController
     else
       redirect_to dashboard_mentor_profiles_path, notice: 'Couldnt send mail'
     end
+  end
+
+  private
+  def setup_project
+    @project = Project.find_by(mentor_id: current_user.id)
+    @project_symbol = :mentor_project
+    @edit_url = edit_mentor_profile_path(current_user)
+    @partner_label = "Mentee:"
   end
 end

@@ -40,20 +40,25 @@
                   label.col-sm-6.col-xs-12.control-label Current time zone:
                   .col-sm-6.col-xs-12
                     = f.select :timezone, options_for_select(timezone_options, selected: f.object.timezone), {prompt: "Choose your timezone"}, class: "form-control"
+
       h4.pink-text Project
       .row
         .col-xs-12.normal-form
-          = f.fields_for :mentee_project do |proj|
+          = f.fields_for @project_symbol do |proj|
             .ordinary-field
               = proj.text_field :title, class: "form-control", placeholder: "Title"
             .ordinary-field
-              label.control-label = proj.object.language
+              label.control-label = proj.object.title
             .ordinary-field
               = proj.text_area :description, class: "form-control", rows: 7, placeholder: "Description"
+            .row.ordinary-field
+              label.col-md-2.col-sm-3.control-label Language:
+              .col-md-10.col-sm-9
+                = proj.text_field :language, class: "form-control"
             .row
-              label.col-md-2.col-sm-3.control-label Country from:
+              label.col-md-2.col-sm-3.control-label Github link:
               .col-md-10.col-sm-9
                 = proj.text_field :github_link, class: "form-control", placeholder: "GitHub link"
       .pull-right
-        = link_to "Cancel", mentee_profile_path , class: "btn btn-pink-border"
+        = link_to "Cancel", :back , class: "btn btn-pink-border"
         = f.submit "Save", class: "btn btn-pink no-right-margin"
