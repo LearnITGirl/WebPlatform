@@ -11,4 +11,7 @@ class LearningMaterialsController < ApplicationController
 
   def python
   end
+
+  def c_plus_plus
+  end
 end
