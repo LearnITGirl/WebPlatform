@@ -39,7 +39,7 @@ class EmailTemplatesController < ApplicationController
     @email_template.users.each do |user|
       EmailTemplateMailer.custom(@email_template, user).deliver
     end
-    redirect_to :back, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
+    redirect_to email_templates_path, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
   end
 
   private
