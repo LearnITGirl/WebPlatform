@@ -18,7 +18,7 @@ class ProjectSetup
                         mentee: mentee,
                         description: '',
                         title: '',
-                        edition: @edition,
+                        edition_id: @edition.id,
                         github_link: nil)
       end
     end
