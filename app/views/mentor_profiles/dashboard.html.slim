@@ -1,6 +1,7 @@
-.row.top-space-40
-  .col-xs-12
-    = render partial: "shared/weeks_bar"
+- if edition_started?
+  .row.top-space-40
+    .col-xs-12
+      = render partial: "shared/weeks_bar"
 .row.top-space-20
   .col-md-3
     h3.green-text
@@ -22,7 +23,8 @@
           i.fa.fa-github
           span See on Github
   .col-md-6
-    = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks}
+    - if edition_started?
+      = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks}
   .col-md-3.right-left-text
     h3.green-text
       | Mentee:
@@ -32,6 +34,6 @@
         = image_tag display_avatar(@partner), alt: "Mentee's avatar", class: "profile-icon"
     p
       strong  = @partner.email
-- unless @partner.is_missing
+- if edition_started? && !@partner.is_missing
   .pull-right
     = button_to "Report Abandoned Project", missing_mentee_mentor_profiles_path, data: {confirm: "Are you sure you want to report your mentee is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"

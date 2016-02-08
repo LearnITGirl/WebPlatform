@@ -14,6 +14,18 @@ module ApplicationHelper
     end
   end
 
+  def edit_profile
+    case current_user.try(:role)
+    when "mentor" then edit_mentor_profile_path(current_user)
+    when "mentee" then edit_mentee_profile_path(current_user)
+    when "organizer" then edit_organiser_path(current_user)
+    end
+  end
+
+  def edition_started?
+    current_edition.start_date <= DateTime.now
+  end
+
   def menu_links
     links = []
     if current_user && current_user.organizer?
