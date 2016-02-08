@@ -45,11 +45,14 @@ class User < ActiveRecord::Base
   private
 
   def create_token
-    token = SecureRandom.hex(8)
     if role == 'organizer'
-      self.organiser_token = token
+      begin
+        self.organiser_token = SecureRandom.hex(10)
+      end while self.class.exists?(organiser_token: organiser_token)
     else
-      self.registration_token = token
+      begin
+        self.registration_token = SecureRandom.hex(10)
+      end while self.class.exists?(registration_token: registration_token)
     end
   end
 end
