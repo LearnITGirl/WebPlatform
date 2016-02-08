@@ -14,4 +14,7 @@ class LearningMaterialsController < ApplicationController
 
   def c_plus_plus
   end
+
+  def html_css_javascript
+  end
 end
