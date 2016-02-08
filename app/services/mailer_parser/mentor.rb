@@ -18,7 +18,7 @@ class MailerParser::Mentor
     when "mentee_email"
       application.partner.email
     when "project_description"
-      MenteeApplication.find_by(email: application.partner.email).try(:project_proposal) || "mentor should help mentee come up with a proposal"
+      MenteeApplication.find_by(email: application.partner.email).try(:project_proposal).presence || "mentor should help mentee come up with a proposal"
     when "registration_link"
       edit_user_registration_url(id: application.registration_token)
     else
