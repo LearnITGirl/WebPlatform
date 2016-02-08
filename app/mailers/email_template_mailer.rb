@@ -3,7 +3,7 @@ class EmailTemplateMailer < ApplicationMailer
 
   def custom(template, user)
     mail(to: user.email, subject: template.subject) do |format|
-      format.html { render html: simple_format(parse_content(template, user)) }
+      format.html { render html: simple_format(parse_content(template.reload, user)) }
     end
   end
 
