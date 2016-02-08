@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203184359) do
+ActiveRecord::Schema.define(version: 20160208185711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160203184359) do
     t.integer  "state",                            limit: 2, default: 1
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
+    t.datetime "results_send_at"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160203184359) do
     t.integer  "state",                      limit: 2, default: 1
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
+    t.datetime "results_send_at"
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160203184359) do
     t.integer  "edition_id"
     t.string   "registration_token"
     t.datetime "missing_since"
+    t.datetime "results_send_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

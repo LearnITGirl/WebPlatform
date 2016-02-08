@@ -38,6 +38,7 @@ class EmailTemplatesController < ApplicationController
 
     @email_template.users.each do |user|
       EmailTemplateMailer.custom(@email_template, user).deliver
+      user.update_column :results_send_at, DateTime.now
     end
     redirect_to email_templates_path, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
   end

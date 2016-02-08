@@ -24,15 +24,15 @@ class EmailTemplate < ActiveRecord::Base
   def users
     case recipients.to_sym
     when :accepted_mentees
-      User.mentee
+      User.mentee.where(results_send_at: nil)
     when :accepted_mentors
-      User.mentor
+      User.mentor.where(results_send_at: nil)
     when :mentors_on_waiting_list
-      MentorApplication.waiting_list
+      MentorApplication.waiting_list.where(results_send_at: nil)
     when :rejected_mentors
-      MentorApplication.rejected + MentorApplication.not_enough_points
+      MentorApplication.rejected.where(results_send_at: nil) + MentorApplication.not_enough_points.where(results_send_at: nil)
     when :rejected_mentees
-      MenteeApplication.rejected + MenteeApplication.not_enough_points
+      MenteeApplication.rejected.where(results_send_at: nil) + MenteeApplication.not_enough_points.where(results_send_at: nil)
     else
       User.none
     end

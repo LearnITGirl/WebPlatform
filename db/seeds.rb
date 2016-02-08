@@ -8,6 +8,7 @@
 #
 #
 =begin
+=end
 edition = Edition.create(start_date: DateTime.new(2016, 2, 15), end_date: DateTime.new(2016, 5, 8), name: "second")
 Week.create(start: DateTime.new(2016, 2, 15), end: DateTime.new(2016, 2, 21), number: 1, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 2, 22), end: DateTime.new(2016, 2, 28), number: 2, edition_id: edition.id)
@@ -21,7 +22,6 @@ Week.create(start: DateTime.new(2016, 4, 11), end: DateTime.new(2016, 4, 17), nu
 Week.create(start: DateTime.new(2016, 2, 18), end: DateTime.new(2016, 4, 24), number: 10, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 4, 25), end: DateTime.new(2016, 5, 1), number: 11, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 5, 2), end: DateTime.new(2016, 5, 8), number: 12, edition_id: edition.id)
-=end
 
 EmailTemplate.create(
 subject: "[Learn IT, Girl] Mentor application results",
