@@ -9,6 +9,9 @@ class LearningMaterialsController < ApplicationController
   def android
   end
 
+  def java
+  end
+
   def python
   end
 
