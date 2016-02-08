@@ -1,7 +1,7 @@
 class EmailTemplate < ActiveRecord::Base
   enum recipients: {
     accepted_mentees: 0,
-    not_accepted_mentees: 1,
+    rejected_mentees: 1,
     accepted_mentors: 2,
     mentees_running_late: 3,
     mentors_missing: 4,
@@ -9,7 +9,9 @@ class EmailTemplate < ActiveRecord::Base
     mentors_not_registered: 6,
     mentees_abandoned: 7,
     passed_mentees: 8,
-    failed_mentees: 9
+    failed_mentees: 9,
+    mentors_on_waiting_list: 10,
+    rejected_mentors: 11
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -21,11 +23,16 @@ class EmailTemplate < ActiveRecord::Base
 
   def users
     case recipients.to_sym
-    when :accepted_mentees, :not_accepted_mentees, :mentees_running_late, :mentees_not_registered,
-         :mentees_abandoned, :passed_mentees, :failed_mentees
-      User.mentee
-    when :accepted_mentors, :mentors_missing, :mentors_not_registered
-      User.mentor
+    when :accepted_mentees
+      User.mentee.where(results_send_at: nil)
+    when :accepted_mentors
+      User.mentor.where(results_send_at: nil)
+    when :mentors_on_waiting_list
+      MentorApplication.waiting_list.where(results_send_at: nil)
+    when :rejected_mentors
+      MentorApplication.rejected.where(results_send_at: nil) + MentorApplication.not_enough_points.where(results_send_at: nil)
+    when :rejected_mentees
+      MenteeApplication.rejected.where(results_send_at: nil) + MenteeApplication.not_enough_points.where(results_send_at: nil)
     else
       User.none
     end

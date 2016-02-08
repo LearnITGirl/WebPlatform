@@ -1,0 +1,31 @@
+@import "variables";
+
+body.mentee_profiles-controller, body.mentor_profiles-controller {
+  .profile-icon {
+    width: 100%;
+    max-width: 150px;
+  }
+
+  a.github {
+    font-size: 14px;
+
+    .fa {
+      font-size: 40px;
+      margin-right: 10px;
+    }
+
+    span {
+      position: relative;
+      top: -10px;
+    }
+  }
+
+  .right-left-text {
+    @media (min-width: 992px) {
+      text-align: right;
+    }
+  }
+
+  .btn.missing {margin-right: 0;}
+}
+

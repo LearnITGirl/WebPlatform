@@ -30,14 +30,17 @@ class EmailTemplatesController < ApplicationController
 
   def destroy
     @email_template.delete
-    redirect_to :back, notice: "Deleted successfully!"
+    redirect_to email_templates_path, notice: "Deleted successfully!"
   end
 
   def deliver
+    return redirect_to(:back, alert: "There are no users in '#{@email_template.recipients.humanize}' list") unless @email_template.users.present?
+
     @email_template.users.each do |user|
       EmailTemplateMailer.custom(@email_template, user).deliver
+      user.update_column :results_send_at, DateTime.now
     end
-    redirect_to :back, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
+    redirect_to email_templates_path, notice: "Email '#{@email_template.subject}' sent to #{@email_template.recipients.humanize}!"
   end
 
   private

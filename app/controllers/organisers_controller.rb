@@ -6,6 +6,7 @@ class OrganisersController < ApplicationController
                                 .active.not_evaluated.know_english.have_time_to_learn
     @mentors = MentorApplication.where.not(email: current_user.email)
                                 .active.not_evaluated.know_english.have_time_to_learn
+    render current_dashboard_view
   end
 
   def index
@@ -46,6 +47,10 @@ class OrganisersController < ApplicationController
     @organizer.delete
     redirect_to :back, notice: "Deleted successfully!"
   end
+  
+  def problematic_projects
+    @projects = User.where(is_missing: true).map{|user| user.project}.uniq.compact
+  end
 
   private
 
@@ -59,5 +64,16 @@ class OrganisersController < ApplicationController
 
   def organizer_params
     params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation, :avatar)
+  end
+
+  def current_dashboard_view
+    if (@mentees.length > 0 or @mentors.length > 0)
+       'evaluate_projects'
+    elsif (@mentees.length <= 0 and @mentors.length <= 0)
+       @projects = Project.all
+       'ongoing_projects'
+    # else if (current_date > edition date)
+       #'project_evaluate'
+    end
   end
 end

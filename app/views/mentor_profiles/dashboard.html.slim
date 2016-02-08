@@ -1,2 +1,39 @@
-h1 MentorProfiles#dashboard
-p Find me in app/views/mentor_profiles/dashboard.html.slim
+- if edition_started?
+  .row.top-space-40
+    .col-xs-12
+      = render partial: "shared/weeks_bar"
+.row.top-space-20
+  .col-md-3
+    h3.green-text
+      = current_user.first_name
+    .row
+      .col-xs-12
+        = image_tag display_avatar(current_user), alt: "Mentor's avatar", class: "profile-icon"
+    h3.litg-pink Project
+    p
+      strong = @project.try(:title)
+    p
+      = @project.try(:language)
+    p.top-space-20.dot-dot-dot
+      = @project.try(:description)
+      = link_to "read more", mentor_profile_path(current_user), class: "read-more"
+    .row.top-space-20
+      .col-xs-12
+        = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
+          i.fa.fa-github
+          span See on Github
+  .col-md-6
+    - if edition_started?
+      = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks}
+  .col-md-3.right-left-text
+    h3.green-text
+      | Mentee:
+      =< link_to @partner.full_name, mentee_profile_path(@partner), class: "green-text"
+    .row
+      .col-xs-12
+        = image_tag display_avatar(@partner), alt: "Mentee's avatar", class: "profile-icon"
+    p
+      strong  = @partner.email
+- if edition_started? && !@partner.is_missing
+  .pull-right
+    = button_to "Report Abandoned Project", missing_mentee_mentor_profiles_path, data: {confirm: "Are you sure you want to report your mentee is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"

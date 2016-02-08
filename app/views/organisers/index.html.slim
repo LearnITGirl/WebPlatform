@@ -9,25 +9,26 @@
 
 .row
   .col-xs-12
-    table.table.table-striped.table-bordered
-      thead
-        tr
-          th.col-md-4 Name
-          th.col-md-4 Country
-          th.col-md-2 Email
-          th.col-md-1
-      tbody
-        - @organisers.each do |organiser|
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
           tr
-            td
-              = image_tag display_avatar(organiser)
-              span
-                = organiser.full_name
-            td = organiser.country
-            td = organiser.email
-            td
-              = link_to glyphicon(:pencil), edit_organiser_path(organiser) if organiser == current_user
-              = link_to glyphicon(:trash), organiser_path(organiser), method: :delete, data: { confirm: "Are you sure you want to delete this organiser?" }
+            th.col-md-4 Name
+            th.col-md-4 Country
+            th.col-md-2 Email
+            th.col-md-1
+        tbody
+          - @organisers.each do |organiser|
+            tr
+              td
+                = image_tag display_avatar(organiser)
+                span
+                  = organiser.full_name
+              td = Carmen::Country.coded(organiser.country)
+              td = organiser.email
+              td
+                = link_to glyphicon(:pencil), edit_organiser_path(organiser) if organiser == current_user
+                = link_to glyphicon(:trash), organiser_path(organiser), method: :delete, data: { confirm: "Are you sure you want to delete this organiser?" }
 
 h3.text-left.green-text Pending Organizers
 

@@ -24,16 +24,28 @@ class MentorApplication < ActiveRecord::Base
   enum state: {pending: 1, skipped: 2, rejected: 3, evaluated: 4}
 
   scope :done, -> { where(build_step: 'done') }
-  scope :not_evaluated, -> { done.eager_load(:evaluations).where('evaluations IS NULL') }
-  scope :evaluated, -> { done.eager_load(:evaluations).where.not('evaluations IS NULL') }
+  scope :not_rejected, -> { where.not(state: 3).where.not(state: 'rejected') }
+  scope :not_evaluated, -> { done.not_rejected.eager_load(:evaluations).where('evaluations IS NULL') }
+  scope :evaluated, -> { done.not_rejected.eager_load(:evaluations).where.not('evaluations IS NULL') }
 
   scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 2) }
+
   scope :pending, -> { where(state: 1) }
   scope :no_evaluator_assigned, -> { where(evaluator_id: nil) }
 
   def self.active
     pending.no_evaluator_assigned
+  end
+
+  def self.waiting_list
+    evaluated.where("evaluations.score >= ?", 40)
+      .where.not(id: ApplicationMatch.pluck(:mentor_application_id))
+      .order("evaluations.score DESC")
+  end
+
+  def self.not_enough_points
+    evaluated.where("evaluations.score < ?", 40)
   end
 
   def done?
@@ -57,7 +69,8 @@ class MentorApplication < ActiveRecord::Base
   end
 
   def evaluation_score
-    evaluations.map(&:score).sum / evaluations.size
+    percentage = ((evaluations.sum(:score)/evaluations.size)/80)*100
+    "#{percentage.to_f.round(1)}%"
   end
 
   private

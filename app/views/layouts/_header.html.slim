@@ -16,7 +16,7 @@
         ul.nav.navbar-nav.navbar-right
           - if current_user
             li
-              a href="#"
+              = link_to edit_profile do
                 span.glyphicon.glyphicon-user
                 =< current_user.email
             li.no-image

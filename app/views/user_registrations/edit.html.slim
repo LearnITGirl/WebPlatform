@@ -1,0 +1,24 @@
+.page-header
+  - if @user.mentor?
+    h3.text-center.green-text Congratulations! You were selected as a Mentor.
+  - else
+    h3.text-center.green-text Congratulations! You were selected as a Scholar.
+
+  h4.text-center Welcome on board ! 
+  p.text-center Please fill the fields to create your account
+
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_for @user, url: user_registration_path(@token), html: {method: :put} do |f|
+      - if @user.errors.any?
+        .alert.alert-danger
+          = @user.errors.full_messages.join(", ")
+      .form-group
+        = f.text_field :email, value: @user.email, class: "form-control text-center", disabled: true
+      .form-group
+        = f.password_field :password, class: "form-control text-center", placeholder: "Password"
+      .form-group
+        = f.password_field :password_confirmation, class: "form-control text-center", placeholder: "Password confirmation"
+      .form-group.text-center
+        = f.submit "Sign up", class: "btn btn-pink"
+

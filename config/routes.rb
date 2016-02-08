@@ -1,9 +1,11 @@
 Webplatform::Application.routes.draw do
 
+
   root 'home#index'
   resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
     collection do
       get :dashboard
+      get :problematic_projects
     end
   end
 
@@ -19,11 +21,24 @@ Webplatform::Application.routes.draw do
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
   get "faq" => "home#faq"
   get "timeline" => "home#timeline"
+  get "roadmap_example" => "home#roadmap_example"
+  get "learning_materials/git" => "learning_materials#git"
+  get "learning_materials/php" => "learning_materials#php"
+  get "learning_materials/android" => "learning_materials#android"
+  get "learning_materials/python" => "learning_materials#python"
+  get "learning_materials/c_plus_plus" => "learning_materials#c_plus_plus"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
+      post :dashboard
       post :missing_mentor
+    end
+  end
+
+  resources :tasks do
+    member do
+      put :accept
     end
   end
 
@@ -35,9 +50,10 @@ Webplatform::Application.routes.draw do
   patch "evaluation/reject_mentee" => "evaluations#reject_mentee", as: :reject_mentee_application
   patch "evaluation/reject_mentor" => "evaluations#reject_mentor", as: :reject_mentor_application
 
-  resource :mentor_profile, only: [:show] do
+  resources :mentor_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
+      post :missing_mentee
     end
   end
 
@@ -47,6 +63,18 @@ Webplatform::Application.routes.draw do
 
   resources :mentee_applications do
     resources :build, controller: 'mentee_applications/build'
+  end
+
+  resources :user_registrations
+  resources :mentor_to_mentee_matchers do
+    collection do
+      post :match
+    end
+    member do
+      put :accept_pair
+      put :reject_mentee
+      put :reject_mentor
+    end
   end
 
   resources :password_resets

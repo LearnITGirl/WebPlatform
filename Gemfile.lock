@@ -6,6 +6,13 @@ GIT
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
 
+GIT
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: a2018ab8893cdeeeffaae407368ed1a20ea72b30
+  specs:
+    data-confirm-modal (1.1.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +116,9 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    file_validators (2.0.2)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.36.0)
@@ -394,9 +404,11 @@ DEPENDENCIES
   carmen-rails
   carrierwave
   coffee-rails (~> 4.1.0)
+  data-confirm-modal!
   database_cleaner
   dotenv-rails
   factory_girl_rails
+  file_validators
   fog
   font-awesome-sass
   gibbon!
@@ -420,4 +432,4 @@ DEPENDENCIES
   wicked
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

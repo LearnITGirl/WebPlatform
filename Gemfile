@@ -9,6 +9,7 @@ gem 'unicorn'
 
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'file_validators'
 gem "fog"
 
 gem 'sass-rails', '~> 5.0'
@@ -33,6 +34,7 @@ gem 'font-awesome-sass'
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
 gem 'rollbar', '~> 2.4.0'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 group :development, :test do
   gem 'pry-rails'
