@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login
   def show
-    authorized_user1
     @user = User.find(params[:id])
     setup_project_show
   end
@@ -38,11 +37,6 @@ class UsersController < ApplicationController
 
   def authorized_user
     unless User.find(params[:id]) == current_user
-      redirect_to root_path, alert: "You don't have permission to access this site", status: 401
-    end
-  end
-  def authorized_user1
-    unless (User.find(params[:id]) == current_user || current_user.organizer?)
       redirect_to root_path, alert: "You don't have permission to access this site", status: 401
     end
   end
