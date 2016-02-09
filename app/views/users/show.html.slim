@@ -1,23 +1,23 @@
 .row.top-space-40
   .col-md-2.col-md-offset-2.col-sm-3.col-xs-5
-    = image_tag display_avatar(current_user), alt: "Mentee's avatar", class: "profile-icon"
+    = image_tag display_avatar(@user), alt: "Mentee's avatar", class: "profile-icon"
   .col-md-8.col-sm-9.col-xs-7
       h3.green-text
-       = current_user.full_name
+       = @user.full_name
        - if current_user == current_user
          .pull-right
            = link_to @edit_url do
              .fa.fa-pencil
-       - if current_user.role == "organizer" && current_user.is_missing
+       - if current_user.role == "organizer" && @user.is_missing
          .pull-right.red-text
            | Abandoned since 
-           = current_user.missing_since.strftime("%B %d, %Y")
+           = @user.missing_since.strftime("%B %d, %Y")
       p
-        = "From: #{Carmen::Country.coded(current_user.country)}"
+        = "From: #{Carmen::Country.coded(@user.country)}"
       p
-        = "Currently in: #{Carmen::Country.coded(current_user.program_country)}"
+        = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
       p
-        = "Current time zone: #{display_timezone(current_user.timezone)}"
+        = "Current time zone: #{display_timezone(@user.timezone)}"
 
 .row.top-space-20
   .col-md-10.col-md-offset-2.col-xs-12
@@ -34,10 +34,10 @@
         span See on Github
     p.top-space-20
       strong = @partner_label
-      =< link_to current_user.partner.full_name, mentor_profile_path(current_user.partner)
-      - if current_user.role == "organizer" && current_user.partner.is_missing
+      =< link_to @user.partner.full_name, mentor_profile_path(@user.partner)
+      - if current_user.role == "organizer" && @user.partner.is_missing
         .pull-right.red-text
           | Missing since 
-          = current_user.partner.missing_since.strftime("%B %d, %Y")
+          = @user.partner.missing_since.strftime("%B %d, %Y")
 
-    p = current_user.partner.email
+    p = @user.partner.email

@@ -11,6 +11,12 @@ class MentorProfilesController < UsersController
   end
 
   private
+  def setup_project_show
+    @project = Project.find_by(mentor_id: params[:id])
+    @project_symbol = :mentor_project
+    @edit_url = edit_mentor_profile_path(current_user)
+    @partner_label = "Mentee:"
+  end
   def setup_project
     @project = Project.find_by(mentor_id: current_user.id)
     @project_symbol = :mentor_project
