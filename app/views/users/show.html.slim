@@ -4,7 +4,7 @@
   .col-md-8.col-sm-9.col-xs-7
       h3.green-text
        = @user.full_name
-       - if current_user == current_user
+       - if current_user == @user
          .pull-right
            = link_to @edit_url do
              .fa.fa-pencil
