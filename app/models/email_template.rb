@@ -30,9 +30,9 @@ class EmailTemplate < ActiveRecord::Base
     when :mentors_on_waiting_list
       MentorApplication.waiting_list.where(results_send_at: nil)
     when :rejected_mentors
-      MentorApplication.rejected.where(results_send_at: nil) + MentorApplication.not_enough_points.where(results_send_at: nil) + MentorApplication.where(results_send_at: nil, state: [1, 2])
+      MentorApplication.all_rejected_candidates
     when :rejected_mentees
-      MenteeApplication.rejected.where(results_send_at: nil) + MenteeApplication.not_enough_points.where(results_send_at: nil)
+      MenteeApplication.all_rejected_candidates
     else
       User.none
     end

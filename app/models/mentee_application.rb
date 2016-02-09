@@ -46,6 +46,10 @@ class MenteeApplication < ActiveRecord::Base
     evaluated.where("evaluations.score < ?", 10)
   end
 
+  def self.all_rejected_candidates
+    rejected.where(results_send_at: nil) + not_enough_points.where(results_send_at: nil) + done.where(results_send_at: nil, state: [1, 2])
+  end
+
   def done?
     build_step.to_s == "done"
   end
