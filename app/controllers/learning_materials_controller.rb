@@ -3,6 +3,9 @@ class LearningMaterialsController < ApplicationController
   def git
   end
 
+  def ruby
+  end
+
   def php
   end
 
