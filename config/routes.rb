@@ -23,6 +23,7 @@ Webplatform::Application.routes.draw do
   get "timeline" => "home#timeline"
   get "roadmap_example" => "home#roadmap_example"
   get "learning_materials/git" => "learning_materials#git"
+  get "learning_materials/ruby" => "learning_materials#ruby"
   get "learning_materials/php" => "learning_materials#php"
   get "learning_materials/java" => "learning_materials#java"
   get "learning_materials/android" => "learning_materials#android"
