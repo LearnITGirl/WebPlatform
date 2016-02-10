@@ -2,18 +2,21 @@ namespace :registration_reminder do
   
   desc "send email reminder to unregistered mentors"
   task mentor_registration_reminder: :environment do
-  	unregistered_mentors = User.mentor.where.not(registration_token: nil)
-  	unregistered_mentors.each do |mentor|
-  		UserRegistrations.user_registration_reminder(mentor).deliver
-  	end
+    email_template = EmailTemplate.find_by(recipients: 14)
+
+    email_template.users.each do |user|
+      binding.pry
+      EmailTemplateMailer.custom(email_template, user).deliver
+    end
   end
 
   desc "send email reminder to unregistered mentees"
   task mentee_registration_reminder: :environment do
-  	unregistered_mentees = User.mentee.where.not(registration_token: nil)
-  	unregistered_mentees.each do |mentee|
-  		UserRegistrations.user_registration_reminder(mentee).deliver
-  	end
+    email_template = EmailTemplate.find_by(recipients: 13)
+
+    email_template.users.each do |user|
+      EmailTemplateMailer.custom(email_template, user).deliver
+    end
   end
 
 end
