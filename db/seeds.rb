@@ -8,7 +8,6 @@
 #
 #
 =begin
-=end
 edition = Edition.create(start_date: DateTime.new(2016, 2, 15), end_date: DateTime.new(2016, 5, 8), name: "second")
 Week.create(start: DateTime.new(2016, 2, 15), end: DateTime.new(2016, 2, 21), number: 1, edition_id: edition.id)
 Week.create(start: DateTime.new(2016, 2, 22), end: DateTime.new(2016, 2, 28), number: 2, edition_id: edition.id)
@@ -52,4 +51,11 @@ EmailTemplate.create(
   subject: "[Learn IT, Girl] Mentee application results",
   recipients: 1,
   body: "Dear %{first_name},\r\n\r\nIt has been great to have you applying to “Learn IT, Girl” second edition. We have had a big number of applications to evaluate and we have valued motivation, communication skills and details in the answers. Unfortunately, your application hasn’t been successful, mostly due to the shortness in the answers, so we will not be able to accept you at “Learn IT, Girl” this time.\r\n\r\nEven if you didn’t get accepted this time, we loved the fact that you applied to join us! Don’t get discouraged! We love the fact that you want to learn IT and work on a project. You can still join <a href=\"https://www.facebook.com/groups/learnitgirl/\" target=\"_blank\"> our Facebook group </a> and be part of our community.\r\n\r\nWe would also love you to give us feedback on our application process. You can fill in <a target=\"_blank\"href=\"https://docs.google.com/forms/d/1K6i_vy_8_aC1EXL1TzprN5QGxIC52lO8BPcTiF_2hZM/viewform?usp=send_form\">this survey</a> telling us what you think about our application process so we can make it better next time.\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>\r\n"
+)
+=end
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl] Mentee application results",
+  recipients: 12,
+  body: "Dear %{first_name},\r\n\r\nIt has been great to have you applying to “Learn IT, Girl” second edition. We have had a big number of applications and we were not able to match every mentee with a mentor, so we will not be able to accept you at “Learn IT, Girl” this time. However, this is not the end! We will keep you in our waiting list in case we find a mentor for you in the next month.\r\n\r\nEven if you didn’t get accepted this time, we loved the fact that you applied to join us! Don’t get discouraged! We love the fact that you want to learn IT and work on a project. You can still join <a href=\"https://www.facebook.com/groups/learnitgirl/\" target=\"_blank\"> our Facebook group </a> and be part of our community.\r\n\r\nWe would also love you to give us feedback on our application process. You can fill in <a target=\"_blank\"href=\"https://docs.google.com/forms/d/1jMiiq3m2KYutFB4ANTJKmOrzm8uqBeadhgQKEdB9_Co/viewform?c=0&w=1\">this survey</a> telling us what you think about our application process so we can make it better next time.\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"
 )

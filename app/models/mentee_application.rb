@@ -50,6 +50,12 @@ class MenteeApplication < ActiveRecord::Base
     rejected.where(results_send_at: nil) + not_enough_points.where(results_send_at: nil) + done.where(results_send_at: nil, state: [1, 2])
   end
 
+  def self.waiting_list
+    evaluated.where("evaluations.score >= ?", 10)
+      .where.not(id: ApplicationMatch.pluck(:mentee_application_id))
+      .order("evaluations.score DESC")
+  end
+
   def done?
     build_step.to_s == "done"
   end

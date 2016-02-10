@@ -11,7 +11,8 @@ class EmailTemplate < ActiveRecord::Base
     passed_mentees: 8,
     failed_mentees: 9,
     mentors_on_waiting_list: 10,
-    rejected_mentors: 11
+    rejected_mentors: 11,
+    mentees_on_waiting_list: 12,
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -33,6 +34,8 @@ class EmailTemplate < ActiveRecord::Base
       MentorApplication.all_rejected_candidates
     when :rejected_mentees
       MenteeApplication.all_rejected_candidates
+    when :mentees_on_waiting_list
+      MenteeApplication.waiting_list.where(results_send_at: nil)
     else
       User.none
     end
