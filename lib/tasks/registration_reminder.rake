@@ -5,7 +5,7 @@ namespace :registration_reminder do
     email_template = EmailTemplate.find_by(recipients: 14)
 
     email_template.users.each do |user|
-      EmailTemplateMailer.custom(email_template, user).deliver
+      EmailTemplateMailer.custom(email_template, user).deliver_now
     end
   end
 
@@ -14,7 +14,7 @@ namespace :registration_reminder do
     email_template = EmailTemplate.find_by(recipients: 13)
 
     email_template.users.each do |user|
-      EmailTemplateMailer.custom(email_template, user).deliver
+      EmailTemplateMailer.custom(email_template, user).deliver_now
     end
   end
 
