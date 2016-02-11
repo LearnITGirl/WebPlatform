@@ -5,7 +5,6 @@ namespace :registration_reminder do
     email_template = EmailTemplate.find_by(recipients: 14)
 
     email_template.users.each do |user|
-      binding.pry
       EmailTemplateMailer.custom(email_template, user).deliver
     end
   end
