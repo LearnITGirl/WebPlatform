@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208185711) do
+ActiveRecord::Schema.define(version: 20160211135142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,13 +159,18 @@ ActiveRecord::Schema.define(version: 20160208185711) do
     t.boolean  "is_missing"
     t.string   "program_country"
     t.string   "timezone"
-    t.integer  "edition_id"
     t.string   "registration_token"
+    t.integer  "edition_id"
     t.datetime "missing_since"
     t.datetime "results_send_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
   create_table "weeks", force: :cascade do |t|
