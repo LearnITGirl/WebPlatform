@@ -1,20 +1,31 @@
 - tasks.unfinished(current_user).order(:id).each do |task|
   = form_for task do |t|
     .row
-      .col-md-2.col-xs-3.pink-text
-        - if require_confirmation?(t.object)
-          span.confirmation-left
+      .col-md-2.col-xs-3.text-center
+        - if awaits_confirmation?(t.object)
+          span.confirmation-left.green-text
+            | WAITING
+            br
+            | CONFIRMATION
+        - elsif require_confirmation?(t.object)
+          span.confirmation-left.pink-text
             = link_to accept_task_path(t.object), method: :put do
               |CONFIRM
               br
               |COMPLETION
-        - if awaits_confirmation?(t.object)
-          span.confirmation-left
-            | WAITING
-            br
-            | CONFIRMATION
+        - elsif confirm_removal?(t.object)
+          span.confirmation-left.pink-text
+            = link_to task_path(t.object), method: :delete do
+              |CONFIRM
+              br
+              |REMOVAL
       .col-md-10.col-xs-9
         .checkbox
-          = t.check_box :status, {checked: checked(t.object), disabled: t.object.accepted?}, checked_task_status, unchecked_task_status
-          label
+          = t.check_box :status, {checked: checked(t.object), disabled: is_disabled(t.object)}, checked_task_status, unchecked_task_status
+          label class="#{t.object.trash? && 'strike-through'}"
             = t.object.title
+
+          - if t.object.status != "trash"
+            i.fa.fa-trash.trash-task.pull-right.green-text data-id="#{t.object.id}"
+          - elsif (t.object.creator == current_user && t.object.status == "trash")
+            i.fa.fa-undo.undo-trash-task.pull-right.green-text data-id="#{t.object.id}"

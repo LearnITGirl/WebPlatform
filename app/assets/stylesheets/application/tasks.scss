@@ -31,5 +31,16 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
     right: 0;
     left: 0
   }
+
+  .fa-trash.remove-task, .fa-trash.trash-task, .fa-undo.undo-trash-task {
+    font-size: 22px;
+    position: relative;
+    top: -4px;
+    cursor: pointer;
+  }
+
+  label.strike-through {
+    text-decoration: line-through;
+  }
 }
 

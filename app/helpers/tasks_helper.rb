@@ -4,6 +4,10 @@ module TasksHelper
     mentee_checked_task_status
   end
 
+  def is_disabled(task)
+    task.accepted? || task.trash?
+  end
+
   def unchecked_task_status
     "not_done"
   end
@@ -21,11 +25,15 @@ module TasksHelper
   end
 
   def awaits_confirmation?(task)
-    !task.accepted? && task.creator != current_user && task.finished?
+    !task.accepted? && task.creator != current_user && (task.finished? || task.trash?)
   end
 
   def require_confirmation?(task)
     !task.accepted? && task.creator == current_user && task.finished?
+  end
+
+  def confirm_removal?(task)
+    task.creator == current_user && task.trash?
   end
 
   def week_url(week_number)

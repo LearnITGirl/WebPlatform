@@ -19,13 +19,13 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes task_params
-    redirect_to :back
+    request.xhr? ? (head :ok) : (redirect_to :back)
   end
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to dashboard_mentee_profiles_path, notice: "Deleted successfully!"
+    @task.update_column :deleted_at, DateTime.now
+    redirect_to :back, notice: "Deleted successfully!"
   end
 
   def accept
