@@ -11,6 +11,6 @@ class Task < ActiveRecord::Base
   end
 
   def self.unfinished(user)
-    where("(status = 1) or (creator_id = :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
+    where("(status = 1) or (creator_id = :user_id and finished_by != :user_id and status = 2) or (creator_id != :user_id and finished_by = :user_id and status = 2)", {user_id: user.id})
   end
 end

@@ -1,23 +1,20 @@
 - tasks.unfinished(current_user).order(:id).each do |task|
   = form_for task do |t|
     .row
-      - if current_user.mentee?
-        .col-md-2.col-xs-3.pink-text
-          - if awaits_confirmation?(t.object)
-            span.confirmation-left
-              | WAITING
+      .col-md-2.col-xs-3.pink-text
+        - if require_confirmation?(t.object)
+          span.confirmation-left
+            = link_to accept_task_path(t.object), method: :put do
+              |CONFIRM
               br
-              | CONFIRMATION
+              |COMPLETION
+        - if awaits_confirmation?(t.object)
+          span.confirmation-left
+            | WAITING
+            br
+            | CONFIRMATION
       .col-md-10.col-xs-9
         .checkbox
           = t.check_box :status, {checked: checked(t.object), disabled: t.object.accepted?}, checked_task_status, unchecked_task_status
           label
             = t.object.title
-      - if current_user.mentor?
-        .col-md-2.col-xs-3.pink-text
-          - if require_confirmation?(t.object)
-            span.confirmation-right
-              = link_to accept_task_path(t.object), method: :put do
-                |CONFIRM
-                br
-                |COMPLETION
