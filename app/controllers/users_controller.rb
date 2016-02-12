@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_login
   def show
-    authorized_user
-    setup_project
+    @user = User.find(params[:id])
+    setup_project_show
   end
 
   def edit
