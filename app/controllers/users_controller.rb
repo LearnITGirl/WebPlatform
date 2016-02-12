@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     setup_project
     @partner = current_user.partner
     @week = find_week
-    @tasks = @week.nil? ? @project.tasks : @project.week_tasks(@week.number)
+    @tasks = @week.nil? ? @project.tasks.not_deleted : @project.week_tasks(@week.number).not_deleted
   end
 
   def update

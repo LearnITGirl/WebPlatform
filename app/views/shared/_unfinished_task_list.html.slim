@@ -1,23 +1,34 @@
 - tasks.unfinished(current_user).order(:id).each do |task|
   = form_for task do |t|
     .row
-      - if current_user.mentee?
-        .col-md-2.col-xs-3.pink-text
-          - if awaits_confirmation?(t.object)
-            span.confirmation-left
-              | WAITING
+      .col-md-2.col-xs-3.text-center
+        - if awaits_confirmation?(t.object)
+          span.confirmation-left.green-text
+            | WAITING
+            br
+            | CONFIRMATION
+        - elsif require_confirmation?(t.object)
+          span.confirmation-left.pink-text
+            = link_to accept_task_path(t.object), method: :put do
+              |CONFIRM
               br
-              | CONFIRMATION
+              |COMPLETION
+        - elsif confirm_removal?(t.object)
+          span.confirmation-left.pink-text
+            = link_to task_path(t.object), method: :delete, data: { confirm: "Are you sure you want to delete this task?"} do
+              |CONFIRM
+              br
+              |REMOVAL
       .col-md-10.col-xs-9
         .checkbox
-          = t.check_box :status, {checked: checked(t.object), disabled: t.object.accepted?}, checked_task_status, unchecked_task_status
-          label
+          = t.check_box :status, {checked: checked(t.object), disabled: is_disabled(t.object)}, checked_task_status, unchecked_task_status
+          label class="#{t.object.trash? && 'strike-through'}"
             = t.object.title
-      - if current_user.mentor?
-        .col-md-2.col-xs-3.pink-text
-          - if require_confirmation?(t.object)
-            span.confirmation-right
-              = link_to accept_task_path(t.object), method: :put do
-                |CONFIRM
-                br
-                |COMPLETION
+
+          - if current_user != t.object.creator && t.object.status != "trash"
+            i.fa.fa-trash.trash-task.pull-right.green-text data-id="#{t.object.id}" data-toggle="tooltip" data-placement="top" title="Delete task"
+          - elsif current_user == t.object.creator && t.object.status != "trash"
+            = link_to task_path(t.object), method: :delete, data: { confirm: "Are you sure you want to delete this task?"} do
+              i.fa.fa-trash.remove-task.pull-right.green-text data-toggle="tooltip" data-placement="top" title="Remove task"
+          - elsif (t.object.creator == current_user && t.object.status == "trash")
+            i.fa.fa-undo.undo-trash-task.pull-right.green-text data-id="#{t.object.id}" data-toggle="tooltip" data-placement="top" title="Undo removal"

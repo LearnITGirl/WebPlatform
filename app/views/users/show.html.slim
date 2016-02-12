@@ -10,7 +10,7 @@
              .fa.fa-pencil
        - if current_user.role == "organizer" && current_user.is_missing
          .pull-right.red-text
-           | Abandoned since 
+           | Abandoned since
            = current_user.missing_since.strftime("%B %d, %Y")
       p
         = "From: #{Carmen::Country.coded(current_user.country)}"
@@ -37,7 +37,7 @@
       =< link_to current_user.partner.full_name, mentor_profile_path(current_user.partner)
       - if current_user.role == "organizer" && current_user.partner.is_missing
         .pull-right.red-text
-          | Missing since 
+          | Missing since
           = current_user.partner.missing_since.strftime("%B %d, %Y")
 
     p = current_user.partner.email
