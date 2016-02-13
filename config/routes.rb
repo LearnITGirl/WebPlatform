@@ -30,6 +30,11 @@ Webplatform::Application.routes.draw do
   get "learning_materials/python" => "learning_materials#python"
   get "learning_materials/c_plus_plus" => "learning_materials#c_plus_plus"
   get "learning_materials/html_css_javascript" => "learning_materials#html_css_javascript"
+  get "learning_materials/r" => "learning_materials#r"
+  get "learning_materials/c" => "learning_materials#c"
+  get "learning_materials/sql" => "learning_materials#sql"
+  get "learning_materials/swift" => "learning_materials#swift"
+  get "learning_materials/mongo_db" => "learning_materials#mongo_db"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
