@@ -8,22 +8,29 @@
       thead
         tr
           th.col-md-4 Mentee
+          th.col-md-2 Last Seen
           th.col-md-4 Mentor
+          th.col-md-3 Last Seen
           th.col-md-2 Project
           th.col-md-2 GitHub Link
           th.col-md-2 Missing
       tbody
-        - @projects.each do |project| 
+        - @projects.each do |project|
           tr
            td
              = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
            td
+             = project.mentee.last_activity_at ? distance_of_time_in_words(Time.now, project.mentee.last_activity_at) : "never"
+           td
              = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
-           td = project.try(:title)
+           td
+             = project.mentor.last_activity_at ? distance_of_time_in_words(Time.now, project.mentor.last_activity_at) : "never"
+           td
+             = project.try(:title)
            td
              = link_to url_with_protocol(project.github_link), target: "_blank" do
                i.fa.fa-github.fa-3
-           td 
+           td
              - if (project.mentee.is_missing  && project.mentor.is_missing )
                | Both
              - elsif (project.mentee.is_missing)
