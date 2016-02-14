@@ -42,6 +42,6 @@ class LearningMaterialsController < ApplicationController
   def c_sharp
   end
 
-  def VBdotNET
+  def vb_dot_net
   end
 end
