@@ -13,38 +13,38 @@
         ul.nav.navbar-nav
           - menu_links.each do |link|
             = link
-          li.dropdown
-            = link_to "Learning Materials", "#"
+          li.dropdown.no-image
+            a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" Learning Materials
             ul.dropdown-menu
-              li.no-image
+              li
                 = link_to "Android", android_learning_materials_path
-              li.no-image
+              li
                 = link_to "C", c_learning_materials_path
-              li.no-image
+              li
                 = link_to "C++", c_plus_plus_learning_materials_path
-              li.no-image
+              li
                 = link_to "C#", c_sharp_learning_materials_path
-              li.no-image
+              li
                 = link_to "Git", git_learning_materials_path
-              li.no-image
+              li
                 = link_to "HTML/CSS/JavaScript", html_css_javascript_learning_materials_path
-              li.no-image
+              li
                 = link_to "Java", java_learning_materials_path
-              li.no-image
+              li
                 = link_to "MongoDB", mongo_db_learning_materials_path
-              li.no-image
+              li
                 = link_to "PHP", php_learning_materials_path
-              li.no-image
+              li
                 = link_to "Python", python_learning_materials_path
-              li.no-image
+              li
                 = link_to "R", r_learning_materials_path
-              li.no-image
+              li
                 = link_to "Ruby", ruby_learning_materials_path
-              li.no-image
+              li
                 = link_to "SQL", sql_learning_materials_path
-              li.no-image
+              li
                 = link_to "Swift", swift_learning_materials_path
-              li.no-image
+              li
                 = link_to "VB.NET", vb_dot_net_learning_materials_path
         ul.nav.navbar-nav.navbar-right
           - if current_user

@@ -227,3 +227,22 @@ div.centered {
 }
 
 .no-left-padding {padding-left: 0;}
+
+header .container-fluid nav.navbar li.dropdown {
+  a.dropdown-toggle {
+    &, &:active, &:hover, &:focus {
+      background: transparent;
+    }
+  }
+
+  ul.dropdown-menu {
+    background: #3d4759;
+    li a{
+      padding: 10px 10px 5px 10px;
+
+      &:hover {
+        background-color: #F19EAE;
+      }
+    }
+  }
+}
