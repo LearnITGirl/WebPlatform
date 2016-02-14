@@ -48,4 +48,12 @@ class MenteeProfilesController < ApplicationController
       :mentee_project_attributes => [:id, :title,:language,:description,:github_link]
     )
   end
+
+  def setup_project(user)
+    @project = Project.find_by(mentee_id: user.id)
+    @project_symbol = :mentee_project
+    @edit_url = edit_mentee_profile_path(user)
+    @after_update_path = mentee_profile_path(user)
+    @partner_label = "Mentor:"
+  end
 end
