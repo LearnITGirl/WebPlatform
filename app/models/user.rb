@@ -55,25 +55,4 @@ class User < ActiveRecord::Base
       end while self.class.exists?(registration_token: registration_token)
     end
   end
-
-  def newtask
-   Project.tasks.where("(status = 1 and created_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now ) 
-  end
-
-  def deletedtask
-    Project.tasks.where("(status = 5 and deleted_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
-  end
- 
-  def completedtask
-    Project.tasks.where("(status = 3 and updated_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
-  end
-
-  def confirm_completed
-    User.project.tasks.where("(status = 2  and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
-  end
-
-  def confirm_delete
-     User.project.tasks.where("(status = 4 and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
-  end
-
 end
