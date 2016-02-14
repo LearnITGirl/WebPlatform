@@ -47,7 +47,7 @@ class OrganisersController < ApplicationController
     @organizer.delete
     redirect_to :back, notice: "Deleted successfully!"
   end
-  
+
   def problematic_projects
     @projects = User.where("is_missing = ? OR last_activity_at <= ?", true, DateTime.now - 15).map{|user| user.project}.uniq.compact
   end
