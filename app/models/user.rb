@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def self.newtask(project)
-    where("(project_id = 1 and status = 1 and created_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
+    where("(project_id = project.id and status = 1 and created_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
   end
 
   def self.deletedtask(project)
