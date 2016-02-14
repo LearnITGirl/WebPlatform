@@ -39,4 +39,9 @@ class LearningMaterialsController < ApplicationController
   def mongo_db
   end
 
+  def c_sharp
+  end
+
+  def VBdotNET
+  end
 end
