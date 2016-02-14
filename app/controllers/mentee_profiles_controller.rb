@@ -17,4 +17,12 @@ class MenteeProfilesController < UsersController
     @edit_url = edit_mentee_profile_path(current_user)
     @partner_label = "Mentor:"
   end
+
+  def setup_project(user)
+    @project = Project.find_by(mentee_id: user.id)
+    @project_symbol = :mentee_project
+    @edit_url = edit_mentee_profile_path(user)
+    @after_update_path = mentee_profile_path(user)
+    @partner_label = "Mentor:"
+  end
 end
