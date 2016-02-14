@@ -30,6 +30,8 @@ Webplatform::Application.routes.draw do
   get "learning_materials/python" => "learning_materials#python"
   get "learning_materials/c_plus_plus" => "learning_materials#c_plus_plus"
   get "learning_materials/html_css_javascript" => "learning_materials#html_css_javascript"
+  get "learning_materials/c_hash" => "learning_materials#c_hash"
+  get "learning_materials/VBdotNET" => "learning_materials#VBdotNET"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
