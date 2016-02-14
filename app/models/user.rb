@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
   def deletedtask
     Project.tasks.where("(status = 5 and deleted_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
   end
+ 
+  def completedtask
+    Project.tasks.where("(status = 3 and updated_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
+  end
 
   def confirm_completed
     User.project.tasks.where("(status = 2  and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
