@@ -33,7 +33,10 @@ class LearningMaterialsController < ApplicationController
   def swift
   end
 
+  def sql
+  end
+
   def mongo_db
   end
-  
+
 end
