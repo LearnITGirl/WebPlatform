@@ -23,4 +23,10 @@ class LearningMaterialsController < ApplicationController
 
   def html_css_javascript
   end
+  
+  def c_hash
+  end
+  
+  def VBdotNET
+  end
 end
