@@ -1,4 +1,5 @@
 class MentorProfilesController < UsersController
+
   def missing_mentee
     @user = current_user
     @mentee = current_user.partner

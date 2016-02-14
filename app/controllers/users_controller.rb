@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login
+
   def show
     authorized_user
     @user = User.find(params[:id])
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
   def update
     setup_project(current_user)
+
     if current_user.update_attributes(user_params)
       redirect_to @after_update_path, notice: "Details have been succesfuly updated."
     else
