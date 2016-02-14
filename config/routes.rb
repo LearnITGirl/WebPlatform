@@ -35,6 +35,8 @@ Webplatform::Application.routes.draw do
   get "learning_materials/sql" => "learning_materials#sql"
   get "learning_materials/swift" => "learning_materials#swift"
   get "learning_materials/mongo_db" => "learning_materials#mongo_db"
+  get "learning_materials/c_hash" => "learning_materials#c_hash"
+  get "learning_materials/VBdotNET" => "learning_materials#VBdotNET"
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
