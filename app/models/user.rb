@@ -56,20 +56,20 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.newtask(project)
-    where("(project_id = project.id and status = 1 and created_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
+  def newtask
+    Project.tasks.where("(project_id = project.id and status = 1 and created_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
   end
 
-  def self.deletedtask(project)
-    where("(project_id = project.id and status = 5 and deleted_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now) 
+  def deletedtask
+    Project.tasks.where("(project_id = project.id and status = 5 and deleted_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now) 
   end
 
-  def self.confirm_completed(user)
-    where("(status = 2 and (creator_id = user.id and creator_id != finished_by) and updated_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
+  def confirm_completed
+    User.project.tasks.where("(status = 2 and (creator_id = user.id and creator_id != finished_by) and updated_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
   end
 
-  def self.confirm_delete(user)
-     where("(status = 4 and (creator_id = user.id and creator_id != finished_by) and updated_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
+  def confirm_delete
+     User.project.tasks.where("(status = 4 and (creator_id = user.id and creator_id != finished_by) and updated_at IN (?) )", (DateTime.now - 24.hours)..DateTime.now)
   end
 
 end
