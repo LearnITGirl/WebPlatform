@@ -6,10 +6,10 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:session][:email], params[:session][:password])
+    if @user = login(params[:session][:email].downcase, params[:session][:password])
       redirect_to user_dashboard_path, notice: "Login Succesful!"
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:alert] = "Email and password don't match"
       render action: 'new'
     end
   end

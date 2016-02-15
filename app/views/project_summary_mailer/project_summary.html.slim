@@ -3,10 +3,31 @@ h3
 p
   | Here is a summary of the changed in your board
 p
-  - if @newtask?
-     |NEW TASKS 
-     - @newtask.each do |newtask|
-       = newtask.title
+  - unless @user.new_tasks.empty?
+    |NEW TASKS 
+    - @user.new_tasks.each do |newtask|
+        = newtask.title
+        
+  - unless @user.deleted_tasks.empty?
+    |DELETED TASKS 
+    - @user.deleted_tasks.each do |deletetask|
+        = deletetask.title
+
+  - unless @user.completed_tasks.empty?
+    |COMPLETED TASKS 
+    - @user.completed_tasks.each do |completetask|
+        = completetask.title
+
+  - unless @user.unconfirmed_completed_tasks.empty?
+    |PENDING COMPLETED TASKS CONFIRMATIONS
+    - @user.unconfirmed_completed_tasks.each do |complete_confirm|
+        = complete_confirm.title
+
+  - unless @user.unconfirmed_deleted_tasks.empty?
+    |PENDING COMPLETED TASKS CONFIRMATIONS
+    - @user.unconfirmed_deleted_tasks.each do |delete_confirm|
+        = delete_confirm.title
+
 p
   |Best regards,
   br

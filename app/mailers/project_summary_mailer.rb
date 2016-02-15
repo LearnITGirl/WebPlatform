@@ -2,7 +2,6 @@ class ProjectSummaryMailer < ApplicationMailer
 
   def project_summary(user)
     @user = user
-    @newtask = @user.newtask
-    mail(to: user.email, subject: "[Learn IT, Girl] Daily summary of your board")
+    mail(to: user.email, subject: "[Learn IT, Girl] Daily summary of your board", sent: DateTime.now)
   end
 end

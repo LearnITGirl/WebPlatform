@@ -2,7 +2,7 @@ class PasswordResetsController < ApplicationController
   skip_before_filter :require_login
 
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.where("lower(email) = ?", params[:email].downcase).first
 
     if @user
       @user.deliver_reset_password_instructions!
@@ -34,6 +34,7 @@ class PasswordResetsController < ApplicationController
 
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password!(params[:user][:password])
+      login(@user.email, params[:user][:password])
       redirect_to root_path, notice: 'Password was successfully updated'
     else
       render "edit"

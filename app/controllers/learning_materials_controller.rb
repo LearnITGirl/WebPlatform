@@ -23,4 +23,25 @@ class LearningMaterialsController < ApplicationController
 
   def html_css_javascript
   end
+
+  def r
+  end
+
+  def c
+  end
+
+  def swift
+  end
+
+  def sql
+  end
+
+  def mongo_db
+  end
+
+  def c_sharp
+  end
+
+  def vb_dot_net
+  end
 end
