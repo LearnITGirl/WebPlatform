@@ -3,12 +3,41 @@ h3
 p
   | Here is a summary of the changed in your board
 p
-  - if @newtask?
-     |NEW TASKS 
-     - @newtask.each do |newtask|
-       = newtask.title
+  - unless @user.new_tasks.empty?
+    p NEW TASKS 
+    - @user.new_tasks.each do |newtask|
+      p  = newtask.title
+  - unless @user.deleted_tasks.empty?
+    p DELETED TASKS 
+    - @user.deleted_tasks.each do |deletetask|
+      p  = deletetask.title
+
+  - unless @user.completed_tasks.empty?
+    p COMPLETED TASKS 
+    - @user.completed_tasks.each do |completetask|
+      p  = completetask.title
+
+  - unless @user.unconfirmed_completed_tasks.empty?
+    p PENDING COMPLETED TASKS CONFIRMATIONS
+    - @user.unconfirmed_completed_tasks.each do |complete_confirm|
+      p  = complete_confirm.title
+
+  - unless @user.unconfirmed_deleted_tasks.empty?
+    p PENDING COMPLETED TASKS CONFIRMATIONS
+    - @user.unconfirmed_deleted_tasks.each do |delete_confirm|
+      p  = delete_confirm.title
+
 p
   |Best regards,
-  br
+  p
   i
     | The "Learn IT, Girl" team
+  p 
+    a href="https://www.learnitgirl.com" target="_blank" =< "Learn It, Girl!"
+    =< "|"
+    a href="https://twitter.com/learnitgirl" target="_blank" =< "Follow us on Twitter"
+    =< "|"
+    a href="https://www.facebook.com/learnitgirl" target="_blank" =< "Like us on Facebook"
+    =< "|"
+    a href= "https://learnitgirl.wordpress.com/" target="_blank" =< "Read our blog"
+
