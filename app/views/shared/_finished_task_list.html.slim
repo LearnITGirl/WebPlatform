@@ -1,7 +1,8 @@
 - tasks.finished(current_user).order(:id).each do |task|
-  .row
-    .col-xs-12
-      .checkbox
-        = check_box_tag :status, 'accepted', true, disabled: true
-        label
-          = task.title
+  = form_for task do |t|
+    .row
+      .col-xs-12
+        .checkbox
+          = t.check_box :status, {disabled: !is_creator?(t.object)}, finished_status(t.object) , "not_done"
+          label
+            = task.title
