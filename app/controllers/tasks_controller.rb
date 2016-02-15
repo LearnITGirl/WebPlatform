@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     )
 
     if @task.save
-      redirect_to (current_user.mentee? ? dashboard_mentee_profiles_path(week: @task.week) : dashboard_mentor_profiles_path(week: @task.week))
+      redirect_to dashboard_path
     else
       render (current_user.mentee? ? "mentee_profiles/dashboard" : "mentor_profiles/dashboard")
     end
@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes task_params
-    request.xhr? ? (head :ok) : (redirect_to :back)
+    request.xhr? ? (head :ok) : (redirect_to dashboard_path)
   end
 
   def destroy
@@ -30,8 +30,8 @@ class TasksController < ApplicationController
 
   def accept
     @task = Task.find(params[:id])
-    @task.update_column :status, 3
-    redirect_to :back
+    @task.update_columns status: 3, week: find_week.number
+    redirect_to dashboard_path
   end
 
   private
@@ -40,6 +40,11 @@ class TasksController < ApplicationController
     params.require(:task).permit(:status, :week).tap do |task|
       task[:status] = Task.statuses[task["status"]]
       task[:finished_by] = current_user.id
+      task[:week] = find_week.number
     end
+  end
+
+  def dashboard_path
+    current_user.mentee? ? dashboard_mentee_profiles_path(week: @task.week) : dashboard_mentor_profiles_path(week: @task.week)
   end
 end
