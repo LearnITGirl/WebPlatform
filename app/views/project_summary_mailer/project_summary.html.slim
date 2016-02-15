@@ -4,32 +4,41 @@ p
   | Here is a summary of the changed in your board
 p
   - unless @user.new_tasks.empty?
-    |NEW TASKS 
+    p NEW TASKS 
     - @user.new_tasks.each do |newtask|
-        = newtask.title
+      p  = newtask.title
         
   - unless @user.deleted_tasks.empty?
-    |DELETED TASKS 
+    p DELETED TASKS 
     - @user.deleted_tasks.each do |deletetask|
-        = deletetask.title
+      p  = deletetask.title
 
   - unless @user.completed_tasks.empty?
-    |COMPLETED TASKS 
+    p COMPLETED TASKS 
     - @user.completed_tasks.each do |completetask|
-        = completetask.title
+      p  = completetask.title
 
   - unless @user.unconfirmed_completed_tasks.empty?
-    |PENDING COMPLETED TASKS CONFIRMATIONS
+    p PENDING COMPLETED TASKS CONFIRMATIONS
     - @user.unconfirmed_completed_tasks.each do |complete_confirm|
-        = complete_confirm.title
+      p  = complete_confirm.title
 
   - unless @user.unconfirmed_deleted_tasks.empty?
-    |PENDING COMPLETED TASKS CONFIRMATIONS
+    p PENDING COMPLETED TASKS CONFIRMATIONS
     - @user.unconfirmed_deleted_tasks.each do |delete_confirm|
-        = delete_confirm.title
+      p  = delete_confirm.title
 
 p
   |Best regards,
-  br
+  p
   i
     | The "Learn IT, Girl" team
+  p 
+    a href="https://www.learnitgirl.com" target="_blank" =< "Learn It, Girl!"
+    =< "|"
+    a href="https://twitter.com/learnitgirl" target="_blank" =< "Follow us on Twitter"
+    =< "|"
+    a href="https://www.facebook.com/learnitgirl" target="_blank" =< "Like us on Facebook"
+    =< "|"
+    a href= "https://learnitgirl.wordpress.com/" target="_blank" =< "Read our blog"
+
