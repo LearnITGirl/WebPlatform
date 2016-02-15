@@ -42,26 +42,12 @@ class User < ActiveRecord::Base
     role == "mentee" ? project.mentor : project.mentee
   end
 
-  private
-
-  def create_token
-    if role == 'organizer'
-      begin
-        self.organiser_token = SecureRandom.hex(10)
-      end while self.class.exists?(organiser_token: organiser_token)
-    else
-      begin
-        self.registration_token = SecureRandom.hex(10)
-      end while self.class.exists?(registration_token: registration_token)
-    end
-  end
-
   def newtask
-   Project.tasks.where("(status = 1 and created_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now ) 
+    User.tasks.where("(status = 1 and created_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now ) 
   end
 
   def deletedtask
-    Project.tasks.where("(status = 5 and deleted_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
+    User.project.tasks.where("(status = 5 and deleted_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
   end
  
   def completedtask
@@ -74,6 +60,20 @@ class User < ActiveRecord::Base
 
   def confirm_delete
      User.project.tasks.where("(status = 4 and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
+  end
+
+  private
+
+  def create_token
+    if role == 'organizer'
+      begin
+        self.organiser_token = SecureRandom.hex(10)
+      end while self.class.exists?(organiser_token: organiser_token)
+    else
+      begin
+        self.registration_token = SecureRandom.hex(10)
+      end while self.class.exists?(registration_token: registration_token)
+    end
   end
 
 end

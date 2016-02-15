@@ -1,0 +1,14 @@
+h3
+  = "Dear, #{@user.full_name}"
+p
+  | Here is a summary of the changed in your board
+p
+  - if @newtask?
+     |NEW TASKS 
+     - @newtask.each do |newtask|
+       = newtask.title
+p
+  |Best regards,
+  br
+  i
+    | The "Learn IT, Girl" team
