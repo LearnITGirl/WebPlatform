@@ -3,6 +3,6 @@
     .row
       .col-xs-12
         .checkbox
-          = t.check_box :status, {disabled: !is_creator?(t.object)}, finished_status(t.object) , "not_done"
+          = t.check_box :status, {disabled: !is_creator?(t.object)}, t.object.status , "not_done"
           label
             = task.title

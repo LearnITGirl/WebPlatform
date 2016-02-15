@@ -20,10 +20,6 @@ module TasksHelper
     "accepted"
   end
 
-  def finished_status(task)
-    current_user == task.creator ? "finished" : "accepted"
-  end
-
   def checked(task)
     task.finished? || task.accepted?
   end
