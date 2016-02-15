@@ -20,6 +20,10 @@ module TasksHelper
     "accepted"
   end
 
+  def finished_status(task)
+    current_user == task.creator ? "finished" : "accepted"
+  end
+
   def checked(task)
     task.finished? || task.accepted?
   end
@@ -42,5 +46,9 @@ module TasksHelper
 
   def user_dashboard_path
     current_user.mentee? ? dashboard_mentee_profiles_path(week: 'all') : dashboard_mentor_profiles_path(week: 'all')
+  end
+
+  def is_creator?(task)
+    current_user == task.creator
   end
 end
