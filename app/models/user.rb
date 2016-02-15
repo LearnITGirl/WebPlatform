@@ -42,6 +42,27 @@ class User < ActiveRecord::Base
     role == "mentee" ? project.mentor : project.mentee
   end
 
+  def new_tasks
+   project.tasks.where(status: 1, created_at: ((DateTime.now - 24.hours)..DateTime.now))
+  end
+
+  def deleted_tasks
+    project.tasks.where(status: 5, deleted_at: ((DateTime.now - 24.hours)..DateTime.now))
+  end
+
+  def completed_tasks
+    project.tasks.where(updated_at: ((DateTime.now - 24.hours)..DateTime.now)).
+      where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: id})
+  end
+
+  def unconfirmed_completed_tasks
+    project.tasks.where("(status = 2 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, (DateTime.now - 24.hours), DateTime.now)
+  end
+
+  def unconfirmed_deleted_tasks
+    project.tasks.where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, (DateTime.now - 24.hours), DateTime.now)
+  end
+
   private
 
   def create_token
@@ -55,25 +76,4 @@ class User < ActiveRecord::Base
       end while self.class.exists?(registration_token: registration_token)
     end
   end
-
-  def newtask
-   Project.tasks.where("(status = 1 and created_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now ) 
-  end
-
-  def deletedtask
-    Project.tasks.where("(status = 5 and deleted_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
-  end
- 
-  def completedtask
-    Project.tasks.where("(status = 3 and updated_at BETWEEN ? AND ?)" , (DateTime.now - 24.hours), DateTime.now )  
-  end
-
-  def confirm_completed
-    User.project.tasks.where("(status = 2  and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
-  end
-
-  def confirm_delete
-     User.project.tasks.where("(status = 4 and creator_id != finished_by and updated_at BETWEEN ? AND ? )", (DateTime.now - 24.hours), DateTime.now)
-  end
-
 end
