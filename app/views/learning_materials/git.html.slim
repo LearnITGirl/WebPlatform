@@ -1,6 +1,69 @@
-.row#home-page
-  .col-xs-12
+.row
+  .col-sm-6.col-sm-offset-3.col-xs-12
     .page-header
       h1.green-text.text-center Git
+      h3.black-text.text-center Github tutorials
       p = link_to "Hello world - Git basics", "https://guides.github.com/activities/hello-world/", target: "_blank"
       p = link_to "Understanding the GitHub flow", "https://guides.github.com/introduction/flow/", target: "_blank"
+
+.row
+  .col-sm-6.col-sm-offset-3.col-xs-12
+      h3.black-text.text-center Command line Git
+      p Using git from terminal is very easy and it will give you a lot of control and freedom!
+      p = link_to "Download", "https://git-scm.com/downloads", target: "_blank"
+      p = link_to "Git cheat sheet", "https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf", target: "_blank"
+
+.row
+  .col-sm-6.col-sm-offset-3.col-xs-12
+      h4.green-text.text-center Moving through your folders
+      p Before executing any git commands, make sure you are in the folder you want your code to be into
+      p Moving through your folders is very easy
+      p
+        => "Type"
+        kbd ls
+        |  to see all the files in the folder you are in now
+      p
+        => "Type"
+        kbd cd folder_name
+        |  to go into a folder
+      p
+        => "Type"
+        kbd cd ..
+        |  to go out of the folder to its parent one
+.row
+  .col-sm-6.col-sm-offset-3.col-xs-12
+      h4.green-text.text-center Cloning your repository
+      p After you have created your repository on Github, you should clone it in your computer to make changes to your code
+      p
+        kbd git clone https://github.com/your_name/your_repo_name
+.row
+  .col-sm-6.col-sm-offset-3.col-xs-12
+      h4.green-text.text-center Uploading your changes to Github
+      p Once you have made your changes, you will want to upload them to Github. To do this, you should follow these super easy three steps
+      p First, you need to tell git which files you want to upload. For each file you want to add, you will need to do this:
+      p
+        kbd git add file_name
+      p Alternatively, if you want to add all the files in the folder you are in you can type
+      p
+        kbd git add .
+      p However, you wanna be careful! There may be files you will not want to upload such as password files or binary files. Check this with your mentor
+
+      p When all your files are added, you will want to group them in a commit. A commit groups your files and specifies which changes they correspond to
+      p
+        kbd git commit -m "Message explaining what you have done"
+
+      p
+        => "Now your changes are grouped together and changed in your computer, but they are not up yet. To put them up you will need to code"
+        kbd git push
+
+      h4.green-text.text-center Amending an error
+      p
+        => "Great! Now your changes are up. Oh but you forgot to upload a file or make a change! No worries. Go back to make your changes and add your files as before using"
+        kbd git add file_name
+      p
+        => "When you have done this, instead of creating a new group of files, you can do"
+        kbd git commit --amend
+      p This will change your previous commit instead of creating a new one
+      p
+        => "Now you can upload it again doing"
+        kbd git push
