@@ -3,28 +3,28 @@ h3
 p
   | Here is a summary of the changed in your board
 p
-  - unless @user.new_tasks.empty?
+  - unless @user.new_tasks(@date).empty?
     p NEW TASKS 
-    - @user.new_tasks.each do |newtask|
+    - @user.new_tasks(@date).each do |newtask|
       p  = newtask.title
-  - unless @user.deleted_tasks.empty?
+  - unless @user.deleted_tasks(@date).empty?
     p DELETED TASKS 
-    - @user.deleted_tasks.each do |deletetask|
+    - @user.deleted_tasks(@date).each do |deletetask|
       p  = deletetask.title
 
-  - unless @user.completed_tasks.empty?
+  - unless @user.completed_tasks(@date).empty?
     p COMPLETED TASKS 
-    - @user.completed_tasks.each do |completetask|
+    - @user.completed_tasks(@date).each do |completetask|
       p  = completetask.title
 
-  - unless @user.unconfirmed_completed_tasks.empty?
+  - unless @user.unconfirmed_completed_tasks(@date).empty?
     p PENDING COMPLETED TASKS CONFIRMATIONS
-    - @user.unconfirmed_completed_tasks.each do |complete_confirm|
+    - @user.unconfirmed_completed_tasks(@date).each do |complete_confirm|
       p  = complete_confirm.title
 
-  - unless @user.unconfirmed_deleted_tasks.empty?
+  - unless @user.unconfirmed_deleted_tasks(@date).empty?
     p PENDING COMPLETED TASKS CONFIRMATIONS
-    - @user.unconfirmed_deleted_tasks.each do |delete_confirm|
+    - @user.unconfirmed_deleted_tasks(@date).each do |delete_confirm|
       p  = delete_confirm.title
 
 p

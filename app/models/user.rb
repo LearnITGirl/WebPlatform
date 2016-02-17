@@ -42,25 +42,29 @@ class User < ActiveRecord::Base
     role == "mentee" ? project.mentor : project.mentee
   end
 
-  def new_tasks
-   project.tasks.where(status: 1, created_at: ((DateTime.now - 24.hours)..DateTime.now))
+  def last_week_tasks(date)
+    project.tasks.where(updated_at: (date.beginning_of_week..date.end_of_week))
   end
 
-  def deleted_tasks
-    project.tasks.where(status: 5, deleted_at: ((DateTime.now - 24.hours)..DateTime.now))
+  def new_tasks(date)
+    project.tasks.where(status:1, created_at: (date.beginning_of_week..date.end_of_week))
   end
 
-  def completed_tasks
-    project.tasks.where(updated_at: ((DateTime.now - 24.hours)..DateTime.now)).
+  def deleted_tasks(date)
+    project.tasks.where(status: 5, deleted_at: (date.beginning_of_week..date.end_of_week))
+  end
+
+  def completed_tasks(date)
+    project.tasks.where(updated_at: (date.beginning_of_week..date.end_of_week)).
       where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: id})
   end
 
-  def unconfirmed_completed_tasks
-    project.tasks.where("(status = 2 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, (DateTime.now - 24.hours), DateTime.now)
+  def unconfirmed_completed_tasks(date)
+    project.tasks.where("(status = 2 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, date.beginning_of_week, date.end_of_week)
   end
 
-  def unconfirmed_deleted_tasks
-    project.tasks.where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, (DateTime.now - 24.hours), DateTime.now)
+  def unconfirmed_deleted_tasks(date)
+    project.tasks.where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, date.beginning_of_week, date.end_of_week)
   end
 
   private
