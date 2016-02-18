@@ -1,8 +1,9 @@
 class ProjectSummaryMailer < ApplicationMailer
 
-  def project_summary(user, date)
+  def weekly_summary(user, date)
     @user = user
     @date = date
-    mail(to: user.email, subject: "[Learn IT, Girl] Daily summary of your board - #{DateTime.now.strftime("%d %b %Y")}")
+    @tasks = user.last_week_tasks(date.last_week)
+    mail(to: user.email, subject: "[Learn IT, Girl] Daily summary of your board")
   end
 end
