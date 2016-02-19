@@ -18,23 +18,23 @@
           label How much time can you dedicate to teaching during the program?
           - MentorApplication.time_availabilities.each do |k, v|
             .radio
+              = f.radio_button :time_availability, v, checked: f.object.time_availability == k
               label
-                = f.radio_button :time_availability, v, checked: f.object.time_availability == k
                 = t("activerecord.attributes.mentor_application.time_availability.#{k}")
         .form-group
           label Do you have any other engagements during the 3-month program period? Check all that apply
           - available_engagements.each do |k, v|
             .checkbox
+              = check_box_tag "engagements[]", k, f.object.engagements && f.object.engagements.include?(k.to_s)
               label
-                = check_box_tag "engagements[]", k, f.object.engagements && f.object.engagements.include?(k.to_s)
                 = v
         .form-group
           label Where did you find out about the program?
           .sources
             - program_sources.except(:gwcrfg, :gwcrfp).each do |k, v|
               .checkbox
+                = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k.to_s)
                 label
-                  = check_box_tag "sources[]", k, f.object.sources && f.object.sources.include?(k.to_s)
                   = v
         .form-group.buttons.text-center
           = link_to "Back", previous_wizard_path, class: "btn btn-pink"
