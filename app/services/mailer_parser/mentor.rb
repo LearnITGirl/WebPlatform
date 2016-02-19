@@ -29,6 +29,6 @@ class MailerParser::Mentor
   private
 
   def allowed_fields
-    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description)
+    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description registration_link)
   end
 end
