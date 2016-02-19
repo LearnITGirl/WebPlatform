@@ -13,40 +13,40 @@
         .form-group
           label Can you read and write in English?
           .radio
+            = f.radio_button :english_level, "very well"
             label
-              = f.radio_button :english_level, "very well"
               | Very well
           .radio
+            = f.radio_button :english_level, "not so well"
             label
-              = f.radio_button :english_level, "not so well"
               | Not so well
           .radio
+            = f.radio_button :english_level, "good enough"
             label
-              = f.radio_button :english_level, "good enough"
               | Good enough
           .radio
+            = f.radio_button :english_level, "no"
             label
-              = f.radio_button :english_level, "no"
               | No
         .form-group
           label Would you like to teach absolute beginners or women who want to learn a new language?
           .checkbox
+            = check_box_tag "mentee_level[]", "beginners", f.object.mentee_level && f.object.mentee_level.include?("beginners")
             label
-              = check_box_tag "mentee_level[]", "beginners", f.object.mentee_level && f.object.mentee_level.include?("beginners")
               | Absolute beginners
           .checkbox
+            = check_box_tag "mentee_level[]", "with experience", f.object.mentee_level && f.object.mentee_level.include?("with experience")
             label
-              = check_box_tag "mentee_level[]", "with experience", f.object.mentee_level && f.object.mentee_level.include?("with experience")
               | Women who already know a language and would like to learn another
         .form-group
           label Have you ever mentored someone or taught classes?
           .radio
+            = f.radio_button :experienced, true
             label
-              = f.radio_button :experienced, true
               | Yes
           .radio
+            = f.radio_button :experienced, false
             label
-              = f.radio_button :experienced, false
               | No
         .form-group
           label Tell us about your experience

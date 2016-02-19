@@ -14,12 +14,12 @@
         .form-group
           label Are you familiar with Git, GitHub or BitBucket?
           .radio
+            = f.radio_button :git, 1, checked: f.object.git == true
             label
-              = f.radio_button :git, 1, checked: f.object.git == true
               | Yes
           .radio
+            = f.radio_button :git, 0, checked: f.object.git == false
             label
-              = f.radio_button :git, 0, checked: f.object.git == false
               | No
           p Be aware that if you get accepted, you'll need to learn Git so you can work remotely with your mentee
         .form-group
@@ -27,12 +27,12 @@
           h5 Please check all that apply. You will only teach one of the selected ones.
           - available_languages.each do |k, v|
             .checkbox
+              = check_box_tag "programming_languages[]", k, f.object.programming_languages.include?(k)
               label
-                = check_box_tag "programming_languages[]", k, f.object.programming_languages.include?(k)
                 = v
           .checkbox
+            = check_box_tag "programming_languages[]", "other", f.object.programming_languages.include?("other")
             label
-              = check_box_tag "programming_languages[]", "other", f.object.programming_languages.include?("other")
               | Other
               - if @mentor.errors.present? && @mentor.errors[:other_programming_language].present?
                 .field_with_errors
