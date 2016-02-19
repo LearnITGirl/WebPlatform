@@ -18,16 +18,16 @@
         .form-group
           label Gender:
           .radio
+            = f.radio_button :gender, :female
             label
-              = f.radio_button :gender, :female
               | Female
           .radio
+            = f.radio_button :gender, :male
             label
-              = f.radio_button :gender, :male
               | Male
           .radio
+            = f.radio_button :gender, :other
             label
-              = f.radio_button :gender, :other
               | Other
         .form-group
           label.bottom-space Where are you from?
