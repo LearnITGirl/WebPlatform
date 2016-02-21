@@ -4,7 +4,7 @@ p.text-center
 .row.top-space-40
   .col-xs-12
     = render partial: "shared/unfinished_task_list", locals: {tasks: tasks}
-- if week.end > DateTime.now
+- if week.end.end_of_day > DateTime.now
   .row
     .col-xs-12
       = render partial: "shared/task_form"
