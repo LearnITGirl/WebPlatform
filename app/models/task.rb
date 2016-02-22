@@ -26,17 +26,17 @@ class Task < ActiveRecord::Base
     where(status: 5, deleted_at: (date.beginning_of_week..date.end_of_week))
   end
 
-  def self.completed_tasks(date)
+  def self.completed_tasks(date, user)
     where(updated_at: (date.beginning_of_week..date.end_of_week)).
-      where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: id})
+      where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
   end
 
-  def self.unconfirmed_completed_tasks(date)
-    where("(status = 2 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, date.beginning_of_week, date.end_of_week)
+  def self.unconfirmed_completed_tasks(date, user)
+    where("(status = 2 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", user.id, date.beginning_of_week, date.end_of_week)
   end
 
-  def self.unconfirmed_deleted_tasks(date)
-    where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", id, date.beginning_of_week, date.end_of_week)
+  def self.unconfirmed_deleted_tasks(date, user)
+    where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", user.id, date.beginning_of_week, date.end_of_week)
   end
 
 

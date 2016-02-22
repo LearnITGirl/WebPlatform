@@ -7,8 +7,8 @@ namespace :project_summary do
     if date.wday == 1
       @users = User.where(role: [2,3])
       @users.each do |user|
-        next if missing_or_no_tasks(user, date)
-        ProjectSummaryMailer.project_summary(user, date.last_week).deliver_now
+        next if missing_or_no_tasks?(user, date)
+        ProjectSummaryMailer.weekly(user, date.last_week).deliver_now
       end
     end
   end
@@ -16,6 +16,6 @@ namespace :project_summary do
   private
 
   def missing_or_no_tasks?(user, date)
-    user.last_week_tasks(date.last_week).empty? || user.is_missing || user.partner.is_missing
+    user.last_week_tasks(date.last_week).empty? || user.is_missing || (user.partner && user.partner.is_missing)
   end
 end
