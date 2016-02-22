@@ -4,7 +4,7 @@ namespace :project_summary do
   task send: :environment do
     date = DateTime.now
 
-    if date.wday == 1
+    if date.wday == 2
       @users = User.where(role: [2,3])
       @users.each do |user|
         next if missing_or_no_tasks?(user, date)
