@@ -1,0 +1,68 @@
+h4
+  = "Dear, #{@user.first_name}"
+p
+  = "Here is a summary of all changes in your board during last week #{@date.beginning_of_week.strftime('%B %d')} - #{@date.end_of_week.strftime('%B %d')}"
+p
+p
+  strong New tasks
+- tasks = @tasks.new_tasks(@date)
+- if tasks.empty?
+  | No new tasks
+- else
+  - tasks.each do |task|
+    = task.title
+    br
+p
+p
+  strong Deleted tasks
+- tasks = @tasks.deleted_tasks(@date)
+- if tasks.empty?
+  | No tasks were deleted
+- else
+  - tasks.each do |task|
+    = task.title
+    br
+p
+p
+  strong Completed tasks
+- tasks = @tasks.completed_tasks(@date, @user)
+- if tasks.empty?
+  | No tasks were completed
+-else
+  - tasks.each do |task|
+    = task.title
+    br
+p
+p
+  strong Confirm completed tasks
+- tasks = @tasks.unconfirmed_completed_tasks(@date, @user)
+- if tasks.empty?
+  | No tasks require your acceptance
+- else
+  - tasks.each do |task|
+    = task.title
+    br
+p
+p
+  strong Confirm removal of tasks
+- tasks = @tasks.unconfirmed_deleted_tasks(@date, @user)
+- if tasks.empty?
+  | No tasks set for removal
+- else
+  - tasks.each do |task|
+    = task.title
+    br
+p
+p
+  |Best regards,
+  p
+  i
+    | The "Learn IT, Girl" team
+  p
+    a href="https://www.learnitgirl.com" target="_blank" =< "Learn It, Girl!"
+    =< "|"
+    a href="https://twitter.com/learnitgirl" target="_blank" =< "Follow us on Twitter"
+    =< "|"
+    a href="https://www.facebook.com/learnitgirl" target="_blank" =< "Like us on Facebook"
+    =< "|"
+    a href= "https://learnitgirl.wordpress.com/" target="_blank" =< "Read our blog"
