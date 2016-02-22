@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:session][:email].downcase, params[:session][:password])
-      redirect_to user_dashboard_path, notice: "Login Succesful!"
+      check_partner
     else
       flash.now[:alert] = "Email and password don't match"
       render action: 'new'
@@ -25,7 +25,16 @@ class UserSessionsController < ApplicationController
     case current_user.role
     when "mentee" then dashboard_mentee_profiles_path
     when "organizer" then dashboard_organisers_path
-    else root_path #we also don't have mentor dashboard yet
+    else dashboard_mentor_profiles_path
+    end
+  end
+
+  def check_partner
+    if @user.partner
+      redirect_to user_dashboard_path, notice: "Login Succesful!"
+    else
+      logout
+      redirect_to root_path, notice: "You currently have no mentor/mentee assigned - please wait until LITG organizer contacts you before accessing the platform again."
     end
   end
 end
