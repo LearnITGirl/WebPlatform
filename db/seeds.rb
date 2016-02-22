@@ -1,6 +1,5 @@
-# This file should contain all the record creation needed to seed the database
-# with its default values. The data can then be loaded with the rake db:seed (or
-# created alongside the db with db:setup).
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
 #
@@ -59,6 +58,7 @@ EmailTemplate.create(
   recipients: 12,
   body: "Dear %{first_name},\r\n\r\nIt has been great to have you applying to “Learn IT, Girl” second edition. We have had a big number of applications and we were not able to match every mentee with a mentor, so we will not be able to accept you at “Learn IT, Girl” this time. However, this is not the end! We will keep you in our waiting list in case we find a mentor for you in the next month.\r\n\r\nEven if you didn’t get accepted this time, we loved the fact that you applied to join us! Don’t get discouraged! We love the fact that you want to learn IT and work on a project. You can still join <a href=\"https://www.facebook.com/groups/learnitgirl/\" target=\"_blank\"> our Facebook group </a> and be part of our community.\r\n\r\nWe would also love you to give us feedback on our application process. You can fill in <a target=\"_blank\"href=\"https://docs.google.com/forms/d/1jMiiq3m2KYutFB4ANTJKmOrzm8uqBeadhgQKEdB9_Co/viewform?c=0&w=1\">this survey</a> telling us what you think about our application process so we can make it better next time.\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"
 )
+=end
 
 EmailTemplate.create(
   subject: "[Learn IT, Girl] Warning. Registration not complete. Action required",
@@ -70,17 +70,4 @@ EmailTemplate.create(
   subject: "[Learn IT, Girl] Warning. Registration not complete. Action required",
   recipients: 14,
   body: "Dear %{first_name},\r\n\r\nThis is a friendly reminder from “Learn IT, Girl”. You have not registered into our website after being accepted as a mentor into the “Learn IT, Girl” program. You can do so by clicking <a href=%{registration_link} target=\"_blank\">here</a>.\r\n\r\nWe need to secure the mentor spots before releasing the mentee acceptance notes, so we need you to register no later than Saturday February 13 in order for your mentee to enroll into the program.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
-)
-=end
-
-EmailTemplate.create(
-  subject: "[Learn IT, Girl] First week tasks not complete. Action required",
-  recipients: 15,
-  body: "Dear %{first_name},\r\n\r\nThis is a friendly reminder from “Learn IT, Girl”. We have seen that you have not updated your profile with your GitHub repository link and your updated project description in our website. To do so, you can go to your profile and click on “edit”.\r\n\r\nAs this was part of the tasks for the first week of the program, you have to complete it by the end of this week (February 28) for the project not to be considered behind schedule.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nBest regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
-)
-
-EmailTemplate.create(
-  subject: "[Learn IT, Girl] First week tasks not complete. Action required",
-  recipients: 16,
-  body: "Dear %{first_name},\r\n\r\nThis is a friendly reminder from “Learn IT, Girl”. We have seen that your mentee has not updated her profile with her GitHub repository link and her updated project description in our website. To do so, she can go to her profile and click on “edit”.\r\n\r\nAs this was part of the tasks for the first week of the program, she has to do this by the end of this week (February 28) for the project not to be considered behind schedule.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nBest regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
 )
