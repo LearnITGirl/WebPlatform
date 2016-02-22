@@ -13,4 +13,27 @@ class Project < ActiveRecord::Base
   def week_tasks(week)
     tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
   end
+
+  def has_mentee_missing?
+    self.mentee.is_missing == true
+  end
+
+  def has_mentor_missing?
+    self.mentor.is_missing == true
+  end
+
+  def is_not_final?
+    self.title.blank? || self.language.blank? || self.description.blank? || self.github_link.blank?
+  end
+
+  def self.get_users_missing_project_setup
+    projects, users_missing_project_setup = Project.all, []
+    projects.each do |project|
+      next if project.has_mentee_missing? || project.has_mentor_missing?
+      if project.is_not_final?
+        users_missing_project_setup << project.mentee << project.mentor
+      end
+    end
+    users_missing_project_setup
+  end
 end

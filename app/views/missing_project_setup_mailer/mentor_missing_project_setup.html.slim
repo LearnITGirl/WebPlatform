@@ -1,0 +1,12 @@
+p
+  = "Dear #{@mentor.first_name},"
+p
+  |This is a friendly reminder from “Learn IT, Girl”. We have seen that your mentee has not
+  =< "updated her profile with her GitHub repository link and her updated project description"
+  =< "in our website. To do so, she can go to her profile and click on “edit”."
+p
+  = "As this was part of the tasks for the first week of the program, she has to do this by the"
+  =< "end of this week (February 28) for the project not to be considered behind schedule."
+p
+  |Please let us know if you have any questions, problems or doubts. We will be happy to help!
+= render partial: "shared/mailer_footer_default"
