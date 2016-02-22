@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    @task.update_column :deleted_at, DateTime.now
+    @task.update_columns deleted_at: DateTime.now, status: 5
     redirect_to :back, notice: "Deleted successfully!"
   end
 
