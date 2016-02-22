@@ -13,4 +13,16 @@ class Project < ActiveRecord::Base
   def week_tasks(week)
     tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
   end
+
+  def has_mentee_missing?
+    self.mentee.is_missing == true
+  end
+
+  def has_mentor_missing?
+    self.mentor.is_missing == true
+  end
+
+  def is_not_final?
+    self.title.blank? || self.language.blank? || self.description.blank? || self.github_link.blank?
+  end
 end

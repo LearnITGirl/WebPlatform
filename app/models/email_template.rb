@@ -14,7 +14,9 @@ class EmailTemplate < ActiveRecord::Base
     rejected_mentors: 11,
     mentees_on_waiting_list: 12,
     unregistered_mentees: 13,
-    unregistered_mentors: 14
+    unregistered_mentors: 14,
+    missing_project_setup_mentees: 15,
+    missing_project_setup_mentors: 16
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -25,6 +27,14 @@ class EmailTemplate < ActiveRecord::Base
   end
 
   def users
+    projects, mentors_for_warning_emails, mentees_for_warning_emails = Project.all, [], []
+    projects.each do |project|
+      next if project.has_mentee_missing? || project.has_mentor_missing?
+      if project.is_not_final?
+        mentees_for_warning_emails << project.mentee
+        mentors_for_warning_emails << project.mentor
+      end
+    end
     case recipients.to_sym
     when :accepted_mentees
       User.mentee.where(results_send_at: nil)
@@ -42,6 +52,10 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee.where.not(registration_token: nil)
     when :unregistered_mentors
       User.mentor.where.not(registration_token: nil)
+    when :missing_project_setup_mentees
+      mentees_for_warning_emails
+    when :missing_project_setup_mentors
+      mentors_for_warning_emails
     else
       User.none
     end
