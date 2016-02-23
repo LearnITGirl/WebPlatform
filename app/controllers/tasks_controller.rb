@@ -12,7 +12,9 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to dashboard_path
     else
-      render (current_user.mentee? ? "mentee_profiles/dashboard" : "mentor_profiles/dashboard")
+      @week = find_week
+      @tasks = @week.nil? ? @project.tasks.not_deleted : @project.week_tasks(@week.number).not_deleted
+      render (current_user.mentee? ? "users/dashboard" : "mentor_profiles/dashboard")
     end
   end
 
