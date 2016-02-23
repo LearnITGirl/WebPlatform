@@ -1,6 +1,6 @@
 @import "variables";
 
-body.mentee_profiles-controller, body.mentor_profiles-controller {
+body.mentee_profiles-controller, body.mentor_profiles-controller, body.tasks-controller {
   .task-form {
     input {
       border: none;
@@ -8,6 +8,11 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
       -webkit-box-shadow: none;
       box-shadow: none;
       margin: 15px 0;
+    }
+
+    .field_with_errors input {
+      border: 1px solid #CE2D29;
+      margin: 0;
     }
 
     .btn-pink {margin: 15px 0 0;}
