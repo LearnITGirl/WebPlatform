@@ -16,6 +16,6 @@ namespace :project_summary do
   private
 
   def missing_or_no_tasks?(user, date)
-    user.last_week_tasks(date.last_week).empty? || user.is_missing || (user.partner && user.partner.is_missing)
+    user.last_week_tasks(date.last_week).empty? || user.is_missing || user.partner.nil? || user.partner.is_missing
   end
 end
