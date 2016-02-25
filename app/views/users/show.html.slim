@@ -18,6 +18,8 @@
         = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
       p
         = "Current time zone: #{display_timezone(@user.timezone)}"
+      p
+        = @user.email
 
 .row.top-space-20
   .col-md-10.col-md-offset-2.col-xs-12
@@ -39,5 +41,3 @@
         .pull-right.red-text
           | Missing since
           = @user.partner.missing_since.strftime("%B %d, %Y")
-
-    p = @user.partner.email
