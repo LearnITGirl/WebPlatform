@@ -30,7 +30,7 @@ class UserSessionsController < ApplicationController
   end
 
   def check_partner
-    if @user.role == "organizer" || (@user.role != "organizer" && @user.partner.present?)
+    if @user.role == "organizer" || (@user.role != "organizer" && @user.project.present? && @user.partner.present?)
       redirect_to user_dashboard_path, notice: "Login Succesful!"
     else
       logout
