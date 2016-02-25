@@ -46,7 +46,6 @@ class User < ActiveRecord::Base
     project.tasks.where(updated_at: (date.beginning_of_week..date.end_of_week))
   end
 
-
   private
 
   def create_token

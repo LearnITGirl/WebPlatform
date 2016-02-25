@@ -6,6 +6,7 @@ class MenteeProfilesController < UsersController
 
     if @mentor.update_attributes(is_missing: true, missing_since: DateTime.now)
       MissingPersonsMailer.missing_mentor(@user).deliver_now
+      send_email_to_missing_mentor
       redirect_to dashboard_mentee_profiles_path, notice: 'Organsiers Have been notified about the missing mentor'
     else
       redirect_to dashboard_mentee_profiles_path, notice: 'Couldnt send mail'
@@ -28,4 +29,9 @@ class MenteeProfilesController < UsersController
     @after_update_path = mentee_profile_path(user)
     @partner_label = "Mentor:"
   end
+  def send_email_to_missing_mentor
+    email_template = EmailTemplate.find_by(recipients: 5)
+    EmailTemplateMailer.custom(email_template, current_user.partner).deliver_now
+  end
+
 end
