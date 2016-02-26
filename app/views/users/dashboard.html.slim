@@ -34,7 +34,7 @@
         = image_tag display_avatar(@partner), alt: "Mentor's avatar", class: "profile-icon"
     p
       strong  = @partner.email
-- if edition_started? && !@partner.is_missing
+- if first_month? && not_missing_yet?(@partner)
   .pull-right
     = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 
