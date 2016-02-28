@@ -43,7 +43,8 @@ class EmailTemplate < ActiveRecord::Base
     when :unregistered_mentors
       User.mentor.where.not(registration_token: nil)
     when :abandoned_mails_mentors
-      User.mentor.where(is_missing: true).where(missing_since: ((Time.now - 10.days)..Time.now))    when :abandoned_mails_mentees
+      User.mentor.where(is_missing: true).where(missing_since: ((Time.now - 10.days)..Time.now))   
+    when :abandoned_mails_mentees
       User.mentee.where(is_missing: true).where(missing_since: ((Time.now - 10.days)..Time.now))
     else
       User.none
