@@ -4,10 +4,10 @@ class EmailTemplate < ActiveRecord::Base
     rejected_mentees: 1,
     accepted_mentors: 2,
     mentees_running_late: 3,
-    mentors_missing: 4,
-    mentees_not_registered: 5,
-    mentors_not_registered: 6,
-    mentees_abandoned: 7,
+    missing_mentors: 4,
+    missing_mentees: 5,
+    abandoned_mails_mentors: 6,
+    abandoned_mails_mentees: 7,
     passed_mentees: 8,
     failed_mentees: 9,
     mentors_on_waiting_list: 10,
@@ -42,6 +42,9 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee.where.not(registration_token: nil)
     when :unregistered_mentors
       User.mentor.where.not(registration_token: nil)
+    when :abandoned_mails_mentors
+      User.mentor.where(is_missing: true).where(missing_since: ((Time.now - 10.days)..Time.now))    when :abandoned_mails_mentees
+      User.mentee.where(is_missing: true).where(missing_since: ((Time.now - 10.days)..Time.now))
     else
       User.none
     end

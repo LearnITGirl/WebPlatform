@@ -71,3 +71,14 @@ EmailTemplate.create(
   recipients: 14,
   body: "Dear %{first_name},\r\n\r\nThis is a friendly reminder from “Learn IT, Girl”. You have not registered into our website after being accepted as a mentor into the “Learn IT, Girl” program. You can do so by clicking <a href=%{registration_link} target=\"_blank\">here</a>.\r\n\r\nWe need to secure the mentor spots before releasing the mentee acceptance notes, so we need you to register no later than Saturday February 13 in order for your mentee to enroll into the program.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
 )
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl] Abandoned project", 
+  recipients: 6,
+  body: "Dear %{first_name} %{last_name}\r\nYou have been missing from “Learn IT, Girl” for a long time and you have not replied to any of our warning emails. Therefore, we are sad to let you know we will be reassigning your mentee to a new mentor.\r\n\r\nLet us know if you have any feedback. We will be very happy to hear it.\r\n\r\nBest regards,\r\nThe “Learn IT, Girl” team\r\n<a href=\"http://www.learnitgirl.com\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
+)
+EmailTemplate.create(
+  subject: "[Learn IT, Girl] Abandoned project",
+  recipients: 7,
+  body: "Dear %{first_name} %{last_name}\r\nYou have been missing from “Learn IT, Girl” for a long time and you have not replied to any of our warning emails. Therefore, we are sad to let you know that your project is now considered as abandoned.\r\n\r\nLet us know if you have any feedback. We will be very happy to hear it.\r\n\r\n\r\nBest regards,\r\nThe “Learn IT, Girl” team\r\n<a href=\"http://www.learnitgirl.com\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
+)
