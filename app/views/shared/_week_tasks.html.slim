@@ -1,4 +1,8 @@
-h1.text-center.green-text Current week
+h1.text-center.green-text
+  - if DateTime.now > week.start && DateTime.now <= week.end.end_of_day
+    | Current week
+  - else
+    = "Week #{week.number}"
 p.text-center
   = "#{week.start.strftime('%B %d')} - #{week.end.strftime('%B %d')}"
 .row.top-space-40
