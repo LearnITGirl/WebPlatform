@@ -36,7 +36,10 @@
         span See on Github
     p.top-space-20
       strong = @partner_label
-      =< link_to @user.partner.full_name, mentor_profile_path(@user.partner)
+      - if @user.mentee?
+        =< link_to @user.partner.full_name, mentor_profile_path(@user.partner)
+      - elsif @user.mentor?
+        =< link_to @user.partner.full_name, mentee_profile_path(@user.partner)
       - if current_user.role == "organizer" && @user.partner.is_missing
         .pull-right.red-text
           | Missing since
