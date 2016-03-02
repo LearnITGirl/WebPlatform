@@ -49,7 +49,7 @@ class OrganisersController < ApplicationController
   end
 
   def problematic_projects
-    @projects = User.where("is_missing = ? OR last_activity_at <= ?", true, DateTime.now - 15).map{|user| user.project}.uniq.compact
+    @projects = User.where("is_missing = (?) OR last_activity_at is null or last_activity_at <= (?)", true, 15.days.ago).map{|user| user.project}.uniq.compact
   end
 
   private
