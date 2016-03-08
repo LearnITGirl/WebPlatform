@@ -18,9 +18,19 @@ class TasksController < ApplicationController
     end
   end
 
-  def update
+  def edit
     @task = Task.find(params[:id])
-    @task.update_attributes task_params
+    @week = find_week
+    respond_to do |format|
+      format.html.slim
+      format.js.coffee
+    end
+  end
+
+  def update
+    binding.pry
+    @task = Task.find(params[:id])
+    @task.update_attributes title: params[:task][:title]
     request.xhr? ? (head :ok) : (redirect_to dashboard_path)
   end
 
