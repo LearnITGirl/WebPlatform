@@ -53,6 +53,16 @@ class User < ActiveRecord::Base
     mentee? ? mentee_midterm_evaluation : mentor_midterm_evaluation
   end
 
+  def self.mentees_missing_on_website
+    mentees_missing = User.mentee.where("last_activity_at is null or last_activity_at >= (?)", 15.days.ago)
+    mentees_missing.where.not("is_missing = (?) OR (send_warning_email_after is not null AND send_warning_email_after > (?))", true, Date.today)
+  end
+
+  def self.mentors_missing_on_website
+    mentors_missing = User.mentor.where("last_activity_at is null or last_activity_at >= (?)", 15.days.ago)
+    mentors_missing.where.not("is_missing = (?) OR (send_warning_email_after is not null AND send_warning_email_after > (?))", true, Date.today)
+  end
+
   private
 
   def create_token
