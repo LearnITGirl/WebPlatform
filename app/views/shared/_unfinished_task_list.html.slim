@@ -33,7 +33,7 @@
           - elsif (t.object.creator == current_user && t.object.status == "trash")
             i.fa.fa-undo.undo-trash-task.pull-right.green-text data-id="#{t.object.id}" data-toggle="tooltip" data-placement="top" title="Undo removal"
 
-          = link_to edit_task_path(t.object), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit-window'} do
+          = link_to edit_task_path(t.object), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit-window', class: "edit-task"} do
             i.fa.fa-pencil.pull-right.green-text
 
 #edit-window.modal.fade tabindex="-1" role="dialog" aria-labelledby="editTask"

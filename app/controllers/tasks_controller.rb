@@ -21,10 +21,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @week = find_week
-    respond_to do |format|
-      format.html.slim
-      format.js.coffee
-    end
+    render partial: 'edit_modal', layout: false
   end
 
   def update
