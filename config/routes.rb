@@ -6,6 +6,8 @@ Webplatform::Application.routes.draw do
     collection do
       get :dashboard
       get :problematic_projects
+      get :user_status
+      post :user_status
     end
   end
 

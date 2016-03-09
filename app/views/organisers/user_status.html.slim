@@ -1,0 +1,11 @@
+.page-header
+  h2.text-center.green-text User Status
+
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+    = form_tag user_status_organisers_path, class: "form-inline text-center" do
+      .form-group
+        = text_field_tag :email, params[:email], class: "form-control", placeholder: "Enter EmailID"
+      .form-group
+        = text_field_tag :send_warning_email_after, nil, type: :date
+      = submit_tag "Change Warning email date", class: "btn btn-pink"
