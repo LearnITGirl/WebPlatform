@@ -29,7 +29,7 @@
     p.top-space-20
       = "Language: #{@project.try(:language) || '--'}"
     p.top-space-20
-      = @project.try(:description)
+      = simple_format @project.try(:description)
     p.top-space-20
       = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
         i.fa.fa-github

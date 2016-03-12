@@ -4,6 +4,6 @@ class ProjectSummaryMailer < ApplicationMailer
     @user = user
     @date = date
     @tasks = user.last_week_tasks(date)
-    mail(to: user.email, subject: "[Learn IT, Girl] Daily summary of your board")
+    mail(to: user.email, subject: "[Learn IT, Girl] Weekly summary of your board")
   end
 end
