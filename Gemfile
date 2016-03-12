@@ -35,6 +35,7 @@ gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
 gem 'rollbar', '~> 2.4.0'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+gem "github_api"
 
 group :development, :test do
   gem 'pry-rails'
