@@ -33,7 +33,7 @@ gem 'font-awesome-sass'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
-gem 'rollbar', '~> 2.4.0'
+gem 'rollbar'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem "github_api"
 
