@@ -319,7 +319,7 @@ GEM
       builder
       nokogiri (>= 1.4.1)
       trollop
-    rollbar (2.4.0)
+    rollbar (2.8.3)
       multi_json
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
@@ -429,7 +429,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails_12factor
   rails_stdout_logging
-  rollbar (~> 2.4.0)
+  rollbar
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   selenium-webdriver (= 2.45.0)
