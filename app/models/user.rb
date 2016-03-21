@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_one :mentor_project, foreign_key: "mentor_id", class_name: "Project"
   has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
 
+  has_one :mentee_midterm_evaluation, foreign_key: "mentee_id", class_name: "MenteeMidtermEvaluation"
+
   belongs_to :edition
 
   accepts_nested_attributes_for :mentee_project

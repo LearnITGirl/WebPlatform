@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302185434) do
+ActiveRecord::Schema.define(version: 20160320194643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 20160302185434) do
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
     t.datetime "results_send_at"
+  end
+
+  create_table "mentee_midterm_evaluations", force: :cascade do |t|
+    t.integer  "mentee_id"
+    t.text     "project_progress"
+    t.text     "language_progress"
+    t.text     "positive_aspects"
+    t.text     "future_plans"
+    t.integer  "weekly_hours"
+    t.text     "mentor_impression"
+    t.text     "extra_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -144,7 +157,7 @@ ActiveRecord::Schema.define(version: 20160302185434) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                     null: false
+    t.string   "email",                                                     null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
