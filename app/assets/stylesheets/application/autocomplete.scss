@@ -1,0 +1,18 @@
+#participants-autocomplete{
+  width: 300px;
+  text-align: center;
+}
+
+.autocomplete-suggestions{
+  padding: 5px 0;
+  background: #fff;
+  border: 1px solid;
+}
+
+.autocomplete-suggestion{
+  padding: 2px 5px;
+  cursor: pointer;
+  &:hover{
+    background: #E2E2E1;
+  }
+}
