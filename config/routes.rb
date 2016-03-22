@@ -97,4 +97,5 @@ Webplatform::Application.routes.draw do
       post :deliver
     end
   end
+  resource :mentee_midterm_evaluations
 end

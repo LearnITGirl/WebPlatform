@@ -1,0 +1,32 @@
+.page-header
+  h1.text-center.green-text Mentee midterm self-evaluation
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      = form_for @self_evaluation do |f|
+        - if @self_evaluation.errors.present?
+          .alert.alert-danger.text-center
+            = @self_evaluation.errors.full_messages.join(", ")
+        .form-group
+          label.bottom-space What have you done in your project so far? Tell us what you've been working on and what you have achieved.
+          = f.text_area :project_progress, class: "form-control"
+        .form-group
+          label.bottom-space What have you learned so far? What technologies/programming language you're working with, what is your work environment (IDE, text editor, etc.), any algorithms/design patterns/techniques that you learned.
+          = f.text_area :language_progress, class: "form-control"
+        .form-group
+          label.bottom-space What are three positive aspects of your work on the project?
+          = f.text_area :positive_aspects, class: "form-control"
+        .form-group
+          label.bottom-space What are three things that you plan on doing better in the following weeks?
+          = f.text_area :future_plans, class: "form-control"
+        .form-group
+          label.bottom-space How many hours a week do you spend on your project?
+          = f.select :weekly_hours, options_for_select(1..20, selected: @self_evaluation.weekly_hours), {}, {class: "form-control"}
+        .form-group
+          label.bottom-space How does the mentoring process work for you? What are the positives and negatives in the interaction with your mentor?
+          = f.text_area :mentor_impression, class: "form-control"
+        .form-group
+          label.bottom-space Is there anything else you would like to share with us?
+          = f.text_area :extra_info, class: "form-control"
+        .form-group.buttons.text-center
+          = f.submit 'Send', class: "btn btn-pink"
