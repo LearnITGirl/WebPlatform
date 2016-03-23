@@ -97,5 +97,8 @@ Webplatform::Application.routes.draw do
       post :deliver
     end
   end
+
   resource :mentee_midterm_evaluations
+
+  get 'search/participants', to: 'search#participants', as: :search_participants
 end
