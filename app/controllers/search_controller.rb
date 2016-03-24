@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  before_action :require_organiser
+
   def participants
     if params[:query].present?
       mentors_sql = User.joins(:mentor_project)
