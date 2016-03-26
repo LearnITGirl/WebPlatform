@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
 
   has_one :mentee_midterm_evaluation, foreign_key: "mentee_id", class_name: "MenteeMidtermEvaluation"
-  has_one :mentor_midterm_evaluation, foreign_key: "mentor_id", class_name: "MenteeMidtermEvaluation"
+  has_one :mentor_midterm_evaluation, foreign_key: "mentor_id", class_name: "MentorMidtermEvaluation"
 
   belongs_to :edition
 

@@ -1,0 +1,29 @@
+.page-header
+  h1.text-center.green-text Mentor midterm self-evaluation
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      = form_for @self_evaluation do |f|
+        - if @self_evaluation.errors.present?
+          .alert.alert-danger.text-center
+            = @self_evaluation.errors.full_messages.join(", ")
+        .form-group
+          label.bottom-space How is your scholar making progress on her project? Is she following the learning plan you established, is she working enough hours per week, etc.
+          = f.text_area :project_progress, class: "form-control"
+        .form-group
+          label.bottom-space What did your scholar do well in the first part of the program?
+          = f.text_area :positive_aspects, class: "form-control"
+        .form-group
+          label.bottom-space What do you plan to work on with your scholar in the following weeks? Both technical details about the project and skill development are welcome.
+          = f.text_area :future_plans, class: "form-control"
+        .form-group
+          label.bottom-space How many hours per week does the "Learn IT, Girl!" program take of your time?
+          = f.select :weekly_hours, options_for_select(1..20, selected: @self_evaluation.weekly_hours), {}, {class: "form-control"}
+        .form-group
+          label.bottom-space How does the mentoring process work for you? What are the positives and negatives in the interaction with your scholar?
+          = f.text_area :mentee_impression, class: "form-control"
+        .form-group
+          label.bottom-space Is there anything else you would like to share with us?
+          = f.text_area :extra_info, class: "form-control"
+        .form-group.buttons.text-center
+          = f.submit 'Send', class: "btn btn-pink"

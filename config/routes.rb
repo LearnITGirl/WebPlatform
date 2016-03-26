@@ -98,7 +98,8 @@ Webplatform::Application.routes.draw do
     end
   end
 
-  resource :mentee_midterm_evaluations
+  resource :mentee_midterm_evaluations, only: [:new, :create]
+  resource :mentor_midterm_evaluations, only: [:new, :create]
 
   get 'search/participants', to: 'search#participants', as: :search_participants
 end
