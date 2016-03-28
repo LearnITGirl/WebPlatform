@@ -25,6 +25,9 @@ class HomeController < ApplicationController
   def roadmap
   end
 
+  def about_us
+  end
+
   private
 
   def current_home_page
