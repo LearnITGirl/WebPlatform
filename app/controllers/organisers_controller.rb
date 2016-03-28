@@ -52,17 +52,6 @@ class OrganisersController < ApplicationController
     @projects = User.where("is_missing = (?) OR last_activity_at is null or last_activity_at <= (?)", true, 15.days.ago).map{|user| user.project}.uniq.compact
   end
 
-  def user_status
-    if request.post?
-      @user = User.where("lower(email) = ?", params[:email].downcase).first
-      if @user && params[:send_warning_email_after].present? && @user.update_attribute(:send_warning_email_after, params[:send_warning_email_after])
-        flash.now[:notice] = 'User details updated successfully'
-      else
-        flash.now[:alert] = "User or Date invalid"
-      end
-    end
-  end
-
   private
 
   def display_organisers

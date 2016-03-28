@@ -6,8 +6,6 @@ Webplatform::Application.routes.draw do
     collection do
       get :dashboard
       get :problematic_projects
-      get :user_status
-      post :user_status
     end
   end
 
@@ -46,6 +44,8 @@ Webplatform::Application.routes.draw do
       post :dashboard
       post :missing_mentor
     end
+    get "user_status" => "mentee_profiles#user_status"
+    post "user_status" => "mentee_profiles#user_status"
   end
 
   resources :tasks do
@@ -67,6 +67,8 @@ Webplatform::Application.routes.draw do
       get :dashboard
       post :missing_mentee
     end
+    get "user_status" => "mentor_profiles#user_status"
+    post "user_status" => "mentor_profiles#user_status"
   end
 
   resources :mentor_applications do
