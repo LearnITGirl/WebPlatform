@@ -14,7 +14,7 @@
                | Task can't be empty
           .form-group
             .col-xs-9.no-left-padding
-              = f.text_field :title, value: params[:title], class: "form-control", placeholder: @task.title
+              = f.text_field :title, value: @task.title, class: "form-control"
         .modal-footer
           .col-xs-3
             button.btn.btn-default data-dismiss="modal" type="button"  Close
