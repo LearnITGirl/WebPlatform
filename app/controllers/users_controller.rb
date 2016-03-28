@@ -38,11 +38,7 @@ class UsersController < ApplicationController
         flash[:alert] = "User or Date invalid"
       end
     end
-    redirect_to case @user.role
-    when "mentee" then mentee_profile_path(@user)
-    when "mentor" then mentor_profile_path(@user)
-    when "organizer" then organisers_path
-    end
+    redirect_to :back
   end
 
   private
