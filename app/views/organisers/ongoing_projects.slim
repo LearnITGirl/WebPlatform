@@ -1,6 +1,8 @@
 .page-header
   h2.text-center.green-text Projects
 
+  input#participants-autocomplete.pull-right type="text"
+
 = link_to "See problematic projects dashboard", problematic_projects_organisers_path
 .row
   .col-xs-12
@@ -23,5 +25,6 @@
                  = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
               td = project.title
               td.text-center
+                - if project.github_link.present?
                  = link_to url_with_protocol(project.github_link), target: "_blank", class: "green-text github-link-big" do
                    i.fa.fa-github

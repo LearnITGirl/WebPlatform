@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_one :mentor_project, foreign_key: "mentor_id", class_name: "Project"
   has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
 
+  has_one :mentee_midterm_evaluation, foreign_key: "mentee_id", class_name: "MenteeMidtermEvaluation"
+  has_one :mentor_midterm_evaluation, foreign_key: "mentor_id", class_name: "MentorMidtermEvaluation"
+
   belongs_to :edition
 
   accepts_nested_attributes_for :mentee_project
@@ -46,6 +49,9 @@ class User < ActiveRecord::Base
     project.tasks.where(updated_at: (date.beginning_of_week..date.end_of_week))
   end
 
+  def midterm_self_evaluation
+    mentee? ? mentee_midterm_evaluation : mentor_midterm_evaluation
+  end
 
   private
 
