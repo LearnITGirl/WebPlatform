@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.6'
 
 gem 'pg'
 gem 'unicorn'
@@ -33,7 +33,7 @@ gem 'font-awesome-sass'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
-gem 'rollbar', '~> 2.4.0'
+gem 'rollbar'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 group :development, :test do

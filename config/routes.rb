@@ -22,6 +22,8 @@ Webplatform::Application.routes.draw do
   get "faq" => "home#faq"
   get "timeline" => "home#timeline"
   get "roadmap_example" => "home#roadmap_example"
+  get "about_us" => "home#about_us"
+
   get "learning_materials/git" => "learning_materials#git", as: "git_learning_materials"
   get "learning_materials/ruby" => "learning_materials#ruby", as: "ruby_learning_materials"
   get "learning_materials/php" => "learning_materials#php", as: "php_learning_materials"
@@ -97,4 +99,9 @@ Webplatform::Application.routes.draw do
       post :deliver
     end
   end
+
+  resource :mentee_midterm_evaluations, only: [:new, :create]
+  resource :mentor_midterm_evaluations, only: [:new, :create]
+
+  get 'search/participants', to: 'search#participants', as: :search_participants
 end

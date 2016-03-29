@@ -20,6 +20,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_mentee
+    unless current_user && current_user.mentee?
+      redirect_to root_path, alert: "Login again as mentee!"
+    end
+  end
+
+  def require_mentor
+    unless current_user && current_user.mentor?
+      redirect_to root_path, alert: "Login again as mentor!"
+    end
+  end
+
   def find_week
     if params[:week] == "all"
       nil

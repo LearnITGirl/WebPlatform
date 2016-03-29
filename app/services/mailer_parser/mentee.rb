@@ -6,7 +6,7 @@ class MailerParser::Mentee
   def initialize(template, mentee)
     @mentee = mentee
     @template = template
-    @allowed_attributes = allowed_fields
+    @allowed_attributes = choose_attributes
   end
 
   def parse_attribute record, attribute
@@ -21,6 +21,8 @@ class MailerParser::Mentee
       edit_user_registration_url(id: mentee.registration_token)
     when "roadmap_link"
       roadmap_example_url
+    when "midterm_evaluation_url"
+      new_mentee_midterm_evaluations_url
     else
       mentee.send(attribute)
     end
@@ -28,7 +30,16 @@ class MailerParser::Mentee
 
   private
 
+  def choose_attributes
+    ["accepted_mentees", "mentees_not_registered", "unregistered_mentees"].include?(@template.recipients) ?
+      allowed_fields_with_link : allowed_fields
+  end
+
   def allowed_fields
-    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link registration_link)
+    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link midterm_evaluation_url)
+  end
+
+  def allowed_fields_with_link
+    allowed_fields << "registration_link"
   end
 end
