@@ -21,6 +21,8 @@ class MailerParser::Mentee
       edit_user_registration_url(id: mentee.registration_token)
     when "roadmap_link"
       roadmap_example_url
+    when "midterm_evaluation_url"
+      new_mentee_midterm_evaluations_url
     else
       mentee.send(attribute)
     end
@@ -34,7 +36,7 @@ class MailerParser::Mentee
   end
 
   def allowed_fields
-    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link)
+    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link midterm_evaluation_url)
   end
 
   def allowed_fields_with_link

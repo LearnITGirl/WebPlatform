@@ -14,7 +14,9 @@ class EmailTemplate < ActiveRecord::Base
     rejected_mentors: 11,
     mentees_on_waiting_list: 12,
     unregistered_mentees: 13,
-    unregistered_mentors: 14
+    unregistered_mentors: 14,
+    mentor_midterm_evaluation: 15,
+    mentee_midterm_evaluation: 16
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -42,6 +44,10 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee.where.not(registration_token: nil)
     when :unregistered_mentors
       User.mentor.where.not(registration_token: nil)
+    when :mentor_midterm_evaluation
+      User.mentor.joins(:mentor_project)
+    when :mentee_midterm_evaluation
+      User.mentee.joins(:mentee_project)
     else
       User.none
     end

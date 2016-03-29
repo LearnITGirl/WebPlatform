@@ -21,6 +21,8 @@ class MailerParser::Mentor
       ::MenteeApplication.find_by(email: application.partner.email).try(:project_proposal).presence || "mentor should help mentee come up with a proposal"
     when "registration_link"
       edit_user_registration_url(id: application.registration_token)
+    when "midterm_evaluation_url"
+      new_mentor_midterm_evaluations_url
     else
       application.send(attribute)
     end
@@ -34,7 +36,7 @@ class MailerParser::Mentor
   end
 
   def allowed_fields
-    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description)
+    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description midterm_evaluation_url)
   end
 
   def allowed_fields_with_link
