@@ -1,6 +1,10 @@
 - if notice
   .alert.alert-success
     = notice
--if alert
+- if alert
   .alert.alert-danger
     = alert
+- if flash[:warning]
+  .alert.alert-warning
+    strong
+      = flash[:warning].html_safe
