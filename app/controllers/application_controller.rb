@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_edition
 
+  before_action :check_midterm_self_evaluation
+
   def current_edition
     Edition.find_by(name: "second")
   end
@@ -29,6 +31,14 @@ class ApplicationController < ActionController::Base
   def require_mentor
     unless current_user && current_user.mentor?
       redirect_to root_path, alert: "Login again as mentor!"
+    end
+  end
+
+  def check_midterm_self_evaluation
+    if current_user && !current_user.organizer? && current_user.midterm_self_evaluation.blank?
+      url = current_user.mentor? ? new_mentor_midterm_evaluations_path : new_mentee_midterm_evaluations_path
+      text = "You haven't filled in your midterm survey. Please click #{view_context.link_to('here', url)}"
+      flash[:warning] = text if request.path != url
     end
   end
 
