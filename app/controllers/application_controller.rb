@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     if current_user && !current_user.organizer? && current_user.midterm_self_evaluation.blank?
       url = current_user.mentor? ? new_mentor_midterm_evaluations_path : new_mentee_midterm_evaluations_path
       text = "You haven't filled in your midterm survey. Please click #{view_context.link_to('here', url)}"
-      flash[:warning] = text if request.path != url
+      flash.now[:warning] = text unless request.original_url.match "^#{request.base_url}/#{current_user.role}.midterm_evaluations"
     end
   end
 
