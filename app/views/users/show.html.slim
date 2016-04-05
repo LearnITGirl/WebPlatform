@@ -48,8 +48,8 @@
 - if current_user.role == "organizer"
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
-      = form_for @user, url: mentee_profile_user_status_path(@user), method: "user_status", class: "form-inline text-center" do |f|
+      = form_for @user, url: mentee_profile_user_status_path(@user), method: "user_status", html: {class: "form-inline"} do |f|
         .form-group
-          = f.label "Warning email date:"
-          = f.text_field :warning_email_date, type: :date, class: "form-inline date-picker", value: @user.send_warning_email_after
-          = f.submit "Save new date", class: "btn btn-pink"
+          = f.label "User unavailable until:"
+          = f.text_field :warning_email_date, type: :date, class: "date-picker form-control", value: @user.send_warning_email_after
+        = f.submit "Save new date", class: "btn btn-pink"
