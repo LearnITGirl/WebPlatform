@@ -46,7 +46,6 @@ Webplatform::Application.routes.draw do
       post :dashboard
       post :missing_mentor
     end
-    get "user_status" => "mentee_profiles#user_status"
     post "user_status" => "mentee_profiles#user_status"
   end
 
@@ -69,7 +68,6 @@ Webplatform::Application.routes.draw do
       get :dashboard
       post :missing_mentee
     end
-    get "user_status" => "mentor_profiles#user_status"
     post "user_status" => "mentor_profiles#user_status"
   end
 
