@@ -29,6 +29,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_status
+    @user = User.find(params[:mentee_profile_id].to_i) || User.find(params[:mentor_profile_id].to_i)
+    if request.post?
+      if @user && params[:user][:warning_email_date].present? && @user.update_attribute(:send_warning_email_after, params[:user][:warning_email_date])
+        flash[:notice] = 'User details updated successfully'
+      else
+        flash[:alert] = "User or Date invalid"
+      end
+    end
+    redirect_to :back
+  end
+
   private
 
   def user_params
