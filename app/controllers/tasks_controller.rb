@@ -25,13 +25,13 @@ class TasksController < ApplicationController
   end
 
   def update
+    binding.pry
     @task = Task.find(params[:id])
     if @task.update_attributes title: params[:task][:title]
-      flash[:notice] = "Task updated successfully!"
+      head :ok
     else
-      flash[:alert] = @task.errors.full_messages.join(',')
+      render json: {msg: @task.errors.full_messages.join(',')}, status: 422
     end
-    request.xhr? ? (head :ok) : (redirect_to dashboard_path)
   end
 
   def destroy

@@ -5,7 +5,7 @@
         span aria-hidden="true" &times;
       h4#editTask.modal-title Edit Task
 
-      = form_for @task, html: {class: "horizontal-form task-form"} do |f|
+      = form_for @task, remote: true, html: {class: "horizontal-form task-form"} do |f|
         .modal-body
           = f.hidden_field :week, value: @week.number
           = f.hidden_field :finished_by, value: current_user.id
