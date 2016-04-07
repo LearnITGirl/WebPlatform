@@ -85,7 +85,7 @@ class EvaluationsController < ApplicationController
 
   def require_organiser
     unless current_user && current_user.role =='organizer'
-      redirect_to root_path, notice: "Login again as a organiser"
+      redirect_to root_path, notice: "Login again as an organiser"
     end
   end
 
