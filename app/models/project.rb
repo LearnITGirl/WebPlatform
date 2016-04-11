@@ -45,7 +45,6 @@ class Project < ActiveRecord::Base
         pair_matched_at = ApplicationMatch.find_by(mentee_application_id: mentee_application.id).created_at
       end
     end
-    binding.pry
     pair_matched_at
   end
 end

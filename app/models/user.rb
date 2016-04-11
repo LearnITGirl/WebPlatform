@@ -59,13 +59,11 @@ class User < ActiveRecord::Base
     # Exclude mentees just matched or rematched
     projects = Project.where("mentee_id IN (?)", mentees_missing.pluck(:id))
     mentees_just_matched = []
-    binding.pry
     projects.each do |project|
       if project.pair_matched_at >= 10.days.ago
         mentees_just_matched << project.mentee_id
       end
     end
-    binding.pry
     mentees_missing.where.not("id IN (?)", mentees_just_matched)
   end
 
@@ -80,7 +78,6 @@ class User < ActiveRecord::Base
         mentors_just_matched << project.mentor_id
       end
     end
-    binding.pry
     mentors_missing.where.not("id IN (?)", mentors_just_matched)
   end
 
