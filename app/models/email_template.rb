@@ -17,6 +17,8 @@ class EmailTemplate < ActiveRecord::Base
     unregistered_mentors: 14,
     mentor_midterm_evaluation: 15,
     mentee_midterm_evaluation: 16
+    mentees_missing_on_website: 17,
+    mentors_missing_on_website: 18
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -48,6 +50,10 @@ class EmailTemplate < ActiveRecord::Base
       User.mentor.joins(:mentor_project)
     when :mentee_midterm_evaluation
       User.mentee.joins(:mentee_project)
+    when :mentees_missing_on_website
+      User.mentees_missing_on_website
+    when :mentors_missing_on_website
+      User.mentors_missing_on_website
     else
       User.none
     end
