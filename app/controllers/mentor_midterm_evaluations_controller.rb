@@ -7,10 +7,12 @@ class MentorMidtermEvaluationsController < ApplicationController
 
   def create
     @self_evaluation = MentorMidtermEvaluation.new(
-      evaluation_param.merge({edition_id: current_edition.id, mentor_id: current_user.id})
+      evaluation_param.merge({edition_id: current_edition.id, mentor_id: current_user.id, project_id: current_user.project.id})
     )
 
     if @self_evaluation.save
+      current_user.project.update_attribute(:mentor_midterm_evaluation_id, @self_evaluation.id)
+
       redirect_to dashboard_mentor_profiles_path, notice: "Thank you for filling in your midterm self-evaluation!."
     else
       render "new"

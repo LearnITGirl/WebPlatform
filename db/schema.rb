@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324211148) do
+ActiveRecord::Schema.define(version: 20160413202801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160324211148) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "edition_id"
+    t.integer  "project_id"
   end
 
   create_table "mentor_applications", force: :cascade do |t|
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(version: 20160324211148) do
     t.text     "extra_info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -156,7 +158,17 @@ ActiveRecord::Schema.define(version: 20160324211148) do
     t.integer "mentor_id"
     t.integer "mentee_id"
     t.integer "edition_id"
+    t.integer "mentor_midterm_evaluation_id"
+    t.integer "mentee_midterm_evaluation_id"
+    t.boolean "midterm_evaluation_completed",   default: false
+    t.string  "mentor_evaluation"
+    t.string  "how_is_mentee_doing"
+    t.string  "mentor_work_is_as_he_described"
+    t.string  "github_evaluation"
   end
+
+  add_index "projects", ["mentee_midterm_evaluation_id"], name: "index_projects_on_mentee_midterm_evaluation_id", using: :btree
+  add_index "projects", ["mentor_midterm_evaluation_id"], name: "index_projects_on_mentor_midterm_evaluation_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
@@ -196,6 +208,7 @@ ActiveRecord::Schema.define(version: 20160324211148) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.date     "send_warning_email_after"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
