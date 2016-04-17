@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_edition
 
-  before_action :check_midterm_self_evaluation
-
   def current_edition
     Edition.find_by(name: "second")
   end
