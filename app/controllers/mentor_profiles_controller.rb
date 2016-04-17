@@ -5,9 +5,9 @@ class MentorProfilesController < UsersController
     @mentee = current_user.partner
     if @mentee.update_attributes(is_missing: true, missing_since: DateTime.now)
       MissingPersonsMailer.missing_mentee(@user).deliver_now
-      redirect_to dashboard_mentor_profiles_path, notice: 'Organsiers Have been notified about the missing mentee'
+      redirect_to dashboard_mentor_profiles_path, notice: 'Organisers Have been notified about the missing mentee.'
     else
-      redirect_to dashboard_mentor_profiles_path, notice: 'Couldnt send mail'
+      redirect_to dashboard_mentor_profiles_path, notice: 'Failed to send email'
     end
   end
 

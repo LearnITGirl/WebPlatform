@@ -11,7 +11,7 @@ class MenteeMidtermEvaluationsController < ApplicationController
     )
 
     if @self_evaluation.save
-      redirect_to dashboard_mentee_profiles_path, notice: "Thank you for filling in your midterm self-evaluation!."
+      redirect_to dashboard_mentee_profiles_path, notice: "Thank you for filling in your midterm self-evaluation!"
     else
       render "new"
     end
@@ -28,7 +28,7 @@ class MenteeMidtermEvaluationsController < ApplicationController
 
   def already_submitted
     if current_user.midterm_self_evaluation.present?
-      redirect_to dashboard_mentee_profiles_path, notice: "You've already filled in your midterm self-evaluation!."
+      redirect_to dashboard_mentee_profiles_path, notice: "You've already filled in your midterm self-evaluation!"
     end
   end
 end

@@ -5,7 +5,7 @@ class MentorApplications::BuildController < ApplicationController
 
   def show
     @mentor = MentorApplication.find_by(id: params[:mentor_application_id])
-    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentor
+    return (redirect_to root_path, notice:  "Incomplete applications are deleted after 24 hours. Please apply again.") unless @mentor
 
     case step
     when :done
@@ -19,7 +19,7 @@ class MentorApplications::BuildController < ApplicationController
 
   def update
     @mentor = MentorApplication.find_by(id: params[:mentor_application_id])
-    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentor
+    return (redirect_to root_path, notice:  "Incomplete applications are deleted after 24 hours. Please apply again.") unless @mentor
 
     case step
     when :experience
