@@ -5,7 +5,7 @@ class MenteeApplications::BuildController < ApplicationController
 
   def show
     @mentee = MenteeApplication.find_by(id: params[:mentee_application_id])
-    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentee
+    return (redirect_to root_path, notice:  "Incomplete applications are deleted after 24 hours. Please apply again.") unless @mentee
 
     case step
     when :done
@@ -19,7 +19,7 @@ class MenteeApplications::BuildController < ApplicationController
 
   def update
     @mentee = MenteeApplication.find_by(id: params[:mentee_application_id])
-    return (redirect_to root_path, notice:  "Incompleted application are deleted after 24 hours - please apply again") unless @mentee
+    return (redirect_to root_path, notice:  "Incomplete applications are deleted after 24 hours. Please apply again.") unless @mentee
 
     case step
     when :programming_experience
