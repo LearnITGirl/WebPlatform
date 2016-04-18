@@ -9,13 +9,11 @@
         .modal-body
           = f.hidden_field :week, value: @week.number
           = f.hidden_field :finished_by, value: current_user.id
-          - if @task.errors.any?
-            .alert.alert-danger
-               | Task can't be empty
+          .alert.alert-danger.hidden
+             | Task can't be empty
           .form-group
-            .col-xs-9.no-left-padding
-              = f.text_field :title, value: @task.title, class: "form-control"
+            = f.text_field :title, value: @task.title, class: "form-control"
         .modal-footer
-          .col-xs-3
+          .form-group.buttons
             button.btn.btn-default data-dismiss="modal" type="button"  Close
             = f.submit "Edit Task", class: "btn btn-pink", style: "#{@task.errors.any? and 'margin: 0px;'}"
