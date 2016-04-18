@@ -53,6 +53,34 @@ class User < ActiveRecord::Base
     mentee? ? mentee_midterm_evaluation : mentor_midterm_evaluation
   end
 
+  def self.mentees_missing_on_website
+    mentees_missing = User.mentee.where("last_activity_at is null or last_activity_at <= (?)", 15.days.ago)
+    mentees_missing = mentees_missing.where.not("is_missing = (?) OR (send_warning_email_after is not null AND send_warning_email_after > (?))", true, Date.today)
+    # Exclude mentees just matched or rematched
+    projects = Project.where("mentee_id IN (?)", mentees_missing.pluck(:id))
+    mentees_just_matched = []
+    projects.each do |project|
+      if project.pair_matched_at >= 10.days.ago
+        mentees_just_matched << project.mentee_id
+      end
+    end
+    mentees_missing.where.not("id IN (?)", mentees_just_matched)
+  end
+
+  def self.mentors_missing_on_website
+    mentors_missing = User.mentor.where("last_activity_at is null or last_activity_at <= (?)", 15.days.ago)
+    mentors_missing = mentors_missing.where.not("is_missing = (?) OR (send_warning_email_after is not null AND send_warning_email_after > (?))", true, Date.today)
+    # Exclude mentors just matched or rematched
+    projects = Project.where("mentor_id IN (?)", mentors_missing.pluck(:id))
+    mentors_just_matched = []
+    projects.each do |project|
+      if project.pair_matched_at >= 10.days.ago
+        mentors_just_matched << project.mentor_id
+      end
+    end
+    mentors_missing.where.not("id IN (?)", mentors_just_matched)
+  end
+
   private
 
   def create_token

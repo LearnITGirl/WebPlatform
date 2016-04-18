@@ -37,7 +37,7 @@ body.mentee_profiles-controller, body.mentor_profiles-controller, body.tasks-con
     left: 0
   }
 
-  .fa-trash.remove-task, .fa-trash.trash-task, .fa-undo.undo-trash-task {
+  .fa-trash.remove-task, .fa-trash.trash-task, .fa-undo.undo-trash-task, .fa-pencil {
     font-size: 22px;
     position: relative;
     top: -4px;
@@ -49,3 +49,9 @@ body.mentee_profiles-controller, body.mentor_profiles-controller, body.tasks-con
   }
 }
 
+
+#edit-task-modal {
+  .modal-footer {padding-bottom: 0;}
+  .btn {margin-top: 0;}
+  .btn-default {margin: 0 15px 0 0;}
+}

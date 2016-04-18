@@ -36,4 +36,15 @@ class Project < ActiveRecord::Base
     end
     users_missing_project_setup
   end
+
+  def pair_matched_at
+    pair_matched_at = nil
+    if self.mentee.present?
+      mentee_application = MenteeApplication.find_by_email(self.mentee.email)
+      if mentee_application.present?
+        pair_matched_at = ApplicationMatch.find_by(mentee_application_id: mentee_application.id).created_at
+      end
+    end
+    pair_matched_at
+  end
 end
