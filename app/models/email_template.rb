@@ -16,7 +16,7 @@ class EmailTemplate < ActiveRecord::Base
     unregistered_mentees: 13,
     unregistered_mentors: 14,
     mentor_midterm_evaluation: 15,
-    mentee_midterm_evaluation: 16
+    mentee_midterm_evaluation: 16,
     mentees_missing_on_website: 17,
     mentors_missing_on_website: 18
   }
