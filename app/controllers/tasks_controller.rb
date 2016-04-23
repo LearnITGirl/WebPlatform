@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:status, :title).tap do |task|
       if task[:status].present?
         task[:status] = Task.statuses[task["status"]]
-        task[:finished_by] = current_user.id if task[:status] == Task.statuses["finished"]
+        task[:finished_by] = current_user.id
         task[:week] = find_week.number
       end
     end
