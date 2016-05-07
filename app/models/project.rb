@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_one :mentee_midterm_evaluation
   has_one :mentor_midterm_evaluation
+  has_one :final_survey
 
   belongs_to :edition
 
