@@ -2,7 +2,7 @@ class FinalSurveysController < ApplicationController
   before_action :require_mentee_or_mentor, :already_submitted
 
   def new
-    @survey = MenteeFinalSurveyForm.new({}, current_user)
+    @survey = form(true)
   end
 
   def create
@@ -18,11 +18,13 @@ class FinalSurveysController < ApplicationController
 
   private
 
-  def form
+  def form(is_empty=false)
     if current_user.mentee?
-      MenteeFinalSurveyForm.new(mentee_survey_param, current_user)
+      attrs = is_empty ? {} : mentee_survey_param
+      MenteeFinalSurveyForm.new(attrs, current_user)
     else
-      MentorFinalSurveyForm.new(mentor_survey_param, current_user)
+      attrs = is_empty ? {} : mentor_survey_param
+      MentorFinalSurveyForm.new(attrs, current_user)
     end
   end
 
