@@ -23,6 +23,8 @@ class MailerParser::Mentee
       roadmap_example_url
     when "midterm_evaluation_url"
       new_mentee_midterm_evaluations_url
+    when "final_survey_url"
+      new_final_survey_url
     else
       mentee.send(attribute)
     end
@@ -36,7 +38,7 @@ class MailerParser::Mentee
   end
 
   def allowed_fields
-    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link midterm_evaluation_url)
+    %w(first_name last_name mentor_full_name mentor_email mentor_country roadmap_link midterm_evaluation_url final_survey_url)
   end
 
   def allowed_fields_with_link

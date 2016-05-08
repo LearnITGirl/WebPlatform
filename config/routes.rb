@@ -9,6 +9,8 @@ Webplatform::Application.routes.draw do
     end
   end
 
+  resources :midterm_evaluations, only: [:edit, :index, :update]
+
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
@@ -104,6 +106,7 @@ Webplatform::Application.routes.draw do
 
   resource :mentee_midterm_evaluations, only: [:new, :create]
   resource :mentor_midterm_evaluations, only: [:new, :create]
+  resource :final_survey
 
   get 'search/participants', to: 'search#participants', as: :search_participants
 end

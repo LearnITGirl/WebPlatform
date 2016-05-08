@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_one :mentor_project, foreign_key: "mentor_id", class_name: "Project"
   has_one :mentee_project, foreign_key: "mentee_id", class_name: "Project"
 
+  has_one :mentor_final_survey, foreign_key: "mentor_id", class_name: "FinalSurvey"
+  has_one :mentee_final_survey, foreign_key: "mentee_id", class_name: "FinalSurvey"
+
   has_one :mentee_midterm_evaluation, foreign_key: "mentee_id", class_name: "MenteeMidtermEvaluation"
   has_one :mentor_midterm_evaluation, foreign_key: "mentor_id", class_name: "MentorMidtermEvaluation"
 
@@ -51,6 +54,10 @@ class User < ActiveRecord::Base
 
   def midterm_self_evaluation
     mentee? ? mentee_midterm_evaluation : mentor_midterm_evaluation
+  end
+
+  def final_survey
+    role == "mentee" ? mentee_final_survey : mentor_final_survey
   end
 
   def self.mentees_missing_on_website
