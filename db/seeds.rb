@@ -96,7 +96,7 @@ EmailTemplate.create(
 )
 =end
 
-EmailTempla.create(
+EmailTemplate.create(
   subject: "[Learn IT, Girl] It’s the end of the program! Please fill in the final evaluation",
   recipients: 19,
    body: "Hi %{first_name},\r\n\r\nWe are very moved to see that this edition of “Learn IT, Girl” has reached its end. We have been very happy to see the great progress you have all made and the great projects you have been working on.\r\n\r\nWe hope this experience has been great for you and we wish that you will continue learning and never stop coding. Now it is time to fill in the final evaluation so we can asses your work and award diplomas. Click <a href=%{final_survey_url} target=\"_blank\">here</a> to fill it in now.\r\n\r\nWe would like to showcase some mentee stories in our blog. If you would be interested in collaborating for this, please let us know.\r\n\r\nWe would love to continue working on further editions of “Learn IT, Girl” in the future. If you would like to contribute to the program as an organizer or platform developer, please send us an email.\r\n\r\nBest regards and let’s keep coding,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"

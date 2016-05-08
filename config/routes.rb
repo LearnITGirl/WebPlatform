@@ -9,8 +9,6 @@ Webplatform::Application.routes.draw do
     end
   end
 
-  resources :midterm_evaluations, only: [:edit, :index, :update]
-
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
