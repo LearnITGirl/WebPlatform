@@ -8,11 +8,11 @@
         = simple_form_for :email_template, url: search_email_templates_path, html: {id: "search_form"} do |f|
           = f.input :subject, label: false, placeholder: "search", input_html: {value: params[:email_template].try(:[], :subject)}
 
+    .row
+      .col-sm-3.col-sm-offset-9
+        = link_to "ADD NEW", new_email_template_path, class: "add-new btn btn-primary btn-block bottom10"
+
     - if @email_templates.present?
       = render @email_templates
     - else
       h3.text-center No templates found!
-
-    .row
-      .col-sm-3.col-sm-offset-9
-        = link_to "ADD NEW", new_email_template_path, class: "add-new btn btn-primary btn-block"
