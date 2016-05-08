@@ -23,6 +23,8 @@ class MailerParser::Mentor
       edit_user_registration_url(id: application.registration_token)
     when "midterm_evaluation_url"
       new_mentor_midterm_evaluations_url
+    when "final_survey_url"
+      new_final_survey_url
     else
       application.send(attribute)
     end
@@ -36,7 +38,7 @@ class MailerParser::Mentor
   end
 
   def allowed_fields
-    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description midterm_evaluation_url)
+    %w(first_name last_name mentee_full_name mentee_email mentee_country project_description midterm_evaluation_url final_survey_url)
   end
 
   def allowed_fields_with_link
