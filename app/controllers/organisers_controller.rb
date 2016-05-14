@@ -67,13 +67,15 @@ class OrganisersController < ApplicationController
   end
 
   def current_dashboard_view
-    if (@mentees.length > 0 or @mentors.length > 0)
-       'evaluate_projects'
+    if (Date.today > current_edition.end_date)
+      @projects = Project.all
+      'final_project_evaluation'
+    elsif (@mentees.length > 0 or @mentors.length > 0)
+     'evaluate_projects'
     elsif (@mentees.length <= 0 and @mentors.length <= 0)
-       @projects = Project.all
-       'ongoing_projects'
-    # else if (current_date > edition date)
-       #'project_evaluate'
+      @projects = Project.all
+      'ongoing_projects'
     end
   end
+
 end
