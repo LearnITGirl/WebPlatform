@@ -10,6 +10,8 @@
           .alert.alert-danger.text-center
             = @project.errors.full_messages.join(", ")
 
+        = link_to "See tasks", project_path(@project.id), target: "_blank"
+
         = render partial: "midterm_evaluations/mentor_response"
 
         .form-group
