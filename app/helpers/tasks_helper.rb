@@ -5,6 +5,7 @@ module TasksHelper
   end
 
   def is_disabled(task)
+    return true if current_user.organizer?
     task.accepted? || task.trash?
   end
 
@@ -45,6 +46,7 @@ module TasksHelper
   end
 
   def is_creator?(task)
+    return false if current_user.organizer?
     current_user == task.creator
   end
 end
