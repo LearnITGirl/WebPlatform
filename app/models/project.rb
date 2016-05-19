@@ -14,6 +14,40 @@ class Project < ActiveRecord::Base
 
   validates :github_link, format: { with: GITHUB_REGEXP }, on: :update
 
+  validates :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status, presence: true,
+  if: -> { mentor_evaluation || mentee_feedback || mentee_project_status || github_repo_status}
+
+  enum mentor_evaluation: {
+    "The mentor is doing an excellent work": 1,
+    "The mentor is doing well": 2,
+    "The mentor is working, but should improve": 3,
+    "The mentor is not working": 4
+  }
+
+  enum mentee_feedback: {
+    "The mentee says she has worked less than her mentor described": 1,
+    "The mentee description of her work is according to what her mentor said": 2,
+    "The mentee says she has worked more than her mentor described": 3
+  }
+
+  enum mentee_project_status: {
+    "The mentee has done an outstanding work": 1,
+    "The mentee has worked well": 2,
+    "The mentee hasn't finished the project, but has progressed and worked constantly": 3,
+    "The mentee has not worked or stopped working during the programme": 4
+  }
+
+  enum github_repo_status: {
+    "Contains all the work described": 1,
+    "Contains most of the work described": 2,
+    "Contains only part of the work described here": 3,
+    "Contains a different work than the one described here": 4,
+    "Doesn't contain any work": 5,
+    "The link is wrong": 6
+  }
+
+  enum midterm_evaluation_status: { midterm_evaluation_pending: 0, midterm_evaluation_completed: 1 }
+
   def week_tasks(week)
     tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
   end

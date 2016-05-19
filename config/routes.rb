@@ -107,4 +107,8 @@ Webplatform::Application.routes.draw do
   resource :final_survey
 
   get 'search/participants', to: 'search#participants', as: :search_participants
+  get "midterm_evaluations/:project_id" => "midterm_evaluations#evaluate_project", as: "midterm_evaluation"
+  patch "midterm_evaluations/:project_id" => "midterm_evaluations#update_project"
+  
+  resources :projects, only: [:show]
 end

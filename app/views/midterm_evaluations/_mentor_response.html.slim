@@ -1,0 +1,40 @@
+h4.text-justify Mentor Midterm Evaluation <hr>
+
+b How is your scholar making progress on her project? Is she following the learning plan you established, is she working enough hours per week, etc.
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.project_progress : "Didn't fill in survey"
+
+b What did your scholar do well in the first part of the program?
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.positive_aspects : "Didn't fill in survey"
+
+b What do you plan to work on with your scholar in the following weeks? Both technical details about the project and skill development are welcome.
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.future_plans : "Didn't fill in survey"
+
+b How many hours per week does the "Learn IT, Girl!" program take of your time?
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.weekly_hours : "Didn't fill in survey"
+
+b How does the mentoring process work for you? What are the positives and negatives in the interaction with your scholar?
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.mentee_impression : "Didn't fill in survey"
+
+b Is there anything else you would like to share with us?
+p = @mentor_midterm_evaluation.present? ? @mentor_midterm_evaluation.extra_info : "Didn't fill in survey"
+
+
+h4.text-justify Mentor Final Survey <hr>
+
+b How do you feel at the end of the programme?
+p = @mentor_final_survey.present? ? @mentor_final_survey.mentor_impression : "Didn't fill in survey"
+
+b What were your expectations regarding to the program? Were they met?
+p = @mentor_final_survey.present? ? @mentor_final_survey.mentor_expectations : "Didn't fill in survey"
+
+b Did your mentee finish your project? Give us a short summary of its current state.
+p = @mentor_final_survey.present? ? @mentor_final_survey.mentor_project_summary : "Didn't fill in survey"
+
+b Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
+p = @mentor_final_survey.present? ? @mentor_final_survey.mentor_feedback : "Didn't fill in survey"
+
+b Was the program too long? How many weeks should it last?
+p = @mentor_final_survey.present? ? @mentor_final_survey.mentor_program_duration : "Didn't fill in survey"
+
+<hr>
+
