@@ -9,6 +9,8 @@ class MidtermEvaluationsController < ApplicationController
 
 		if @project.midterm_evaluation_completed?
 			redirect_to dashboard_organisers_path, notice: "Midterm Application for this project has already been filled"
+		elsif @project.mentor.email.split('+mentor').join == current_user.email
+			redirect_to dashboard_organisers_path, notice: "You can't evaluate yourself! Let others do it for you :)"
 		end
 	end
 
