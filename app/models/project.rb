@@ -9,13 +9,17 @@ class Project < ActiveRecord::Base
   belongs_to :mentor_midterm_evaluation, class_name: 'User', foreign_key: "mentor_id"
   belongs_to :mentee_midterm_evaluation, class_name: 'User', foreign_key: "mentee_id"
 
-  validates :mentee_id, presence: true, on: :update
-  validates :title, :language, :description, :github_link, presence: true, on: :update
+  validates :mentee_id, presence: true, on: :update,
+  if: -> {!mentor_evaluation || !mentee_feedback || !mentee_project_status || !github_repo_status}
 
-  validates :github_link, format: { with: GITHUB_REGEXP }, on: :update
+  validates :title, :language, :description, :github_link, presence: true, on: :update,
+  unless: "midterm_evaluation_pending?"
+
+  validates :github_link, format: { with: GITHUB_REGEXP }, on: :update,
+  unless: "midterm_evaluation_pending?"
 
   validates :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status, presence: true,
-  if: -> { mentor_evaluation || mentee_feedback || mentee_project_status || github_repo_status}
+  if: "midterm_evaluation_pending?"
 
   enum mentor_evaluation: {
     "The mentor is doing an excellent work": 1,
@@ -46,7 +50,7 @@ class Project < ActiveRecord::Base
     "The link is wrong": 6
   }
 
-  enum midterm_evaluation_status: { midterm_evaluation_pending: 0, midterm_evaluation_completed: 1 }
+  enum midterm_evaluation_status: { unstarted: 0, midterm_evaluation_pending: 1, midterm_evaluation_completed: 2 }
 
   def week_tasks(week)
     tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
