@@ -25,7 +25,7 @@
                  = link_to project.mentor.full_name, mentor_profile_path(project.mentor.id)
               td = project.title
               td
-                - if project.midterm_evaluation_pending?
+                - if project.midterm_evaluation_unstarted?
                   = link_to "Final Evaluation", midterm_evaluation_path(project.id)
                 - else
                   .green-text
