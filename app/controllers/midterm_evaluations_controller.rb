@@ -33,6 +33,7 @@ class MidtermEvaluationsController < ApplicationController
       :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status
     ).tap do |param|
     	param.map{|key, value| param[key] = value.to_i if value.present?}
+      param[:midterm_evaluation_status] = 1
     end
   end
 
