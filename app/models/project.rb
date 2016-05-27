@@ -50,7 +50,7 @@ class Project < ActiveRecord::Base
     "The link is wrong": 6
   }
 
-  enum midterm_evaluation_status: { unstarted: 0, midterm_evaluation_pending: 1, midterm_evaluation_completed: 2 }
+  enum midterm_evaluation_status: { midterm_evaluation_unstarted: 0, midterm_evaluation_pending: 1, midterm_evaluation_completed: 2 }
 
   def week_tasks(week)
     tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
