@@ -3,7 +3,7 @@ class MidtermEvaluationsController < ApplicationController
 	def evaluate_project
 		@project = Project.find(params[:project_id])
 		@mentee_midterm_evaluation = @project.mentee.mentee_midterm_evaluation
-		@mentor_midterm_evaluation = @project.mentee.mentor_midterm_evaluation
+		@mentor_midterm_evaluation = @project.mentor.mentor_midterm_evaluation
 		@mentee_final_survey = @project.mentee.mentee_final_survey
 		@mentor_final_survey = @project.mentor.mentor_final_survey
 
