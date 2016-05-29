@@ -19,7 +19,7 @@ class MidtermEvaluationsController < ApplicationController
 		if @project.midterm_evaluation_completed?
 			redirect_to dashboard_organisers_path, notice: "Midterm Application for this project has already been filled"
 		elsif @project.update_attributes(evaluation_params)
-			@project.update_attribute(:midterm_evaluation_status, 2)
+			@project.update_attribute(:midterm_evaluation_status, 1)
 			redirect_to dashboard_organisers_path, notice: "Midterm Evaluation submitted successfully!"
 		else
 			render 'evaluate_project'
