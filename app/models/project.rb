@@ -31,7 +31,8 @@ class Project < ActiveRecord::Base
   enum mentee_feedback: {
     "The mentee says she has worked less than her mentor described": 1,
     "The mentee description of her work is according to what her mentor said": 2,
-    "The mentee says she has worked more than her mentor described": 3
+    "The mentee says she has worked more than her mentor described": 3,
+    "Not applicable": 4
   }
 
   enum mentee_project_status: {
