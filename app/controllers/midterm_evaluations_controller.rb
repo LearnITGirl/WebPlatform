@@ -22,7 +22,8 @@ class MidtermEvaluationsController < ApplicationController
 			@project.update_attribute(:midterm_evaluation_status, 2)
 			redirect_to dashboard_organisers_path, notice: "Midterm Evaluation submitted successfully!"
 		else
-			render 'evaluate_project'
+			flash[:alert] = @project.errors.full_messages.join(", ")
+			redirect_to action: 'evaluate_project'
 		end
 	end
 
