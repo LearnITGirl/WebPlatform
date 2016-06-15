@@ -60,6 +60,14 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee.joins(:mentee_project)
     when :final_mentors
       User.mentor.joins(:mentor_project)
+    when :final_passing_mentors
+      Project.with_passing_mentors.map{|p| p.mentor}
+    when :final_failed_mentors
+      Project.with_failed_mentors.map{|p| p.mentor}
+    when :final_passing_mentees
+      Project.with_passing_mentees.map{|p| p.mentee}
+    when :final_failed_mentees
+      Project.with_failed_mentees.map{|p| p.mentee}
     else
       User.none
     end
