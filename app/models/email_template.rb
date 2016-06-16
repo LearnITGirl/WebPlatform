@@ -20,7 +20,11 @@ class EmailTemplate < ActiveRecord::Base
     mentees_missing_on_website: 17,
     mentors_missing_on_website: 18,
     final_mentees: 19,
-    final_mentors: 20
+    final_mentors: 20,
+    final_passing_mentors: 21,
+    final_failed_mentors: 22,
+    final_passing_mentees: 23,
+    final_failed_mentees: 24
   }
 
   validates :subject, :body, :recipients, presence: true

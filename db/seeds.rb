@@ -94,7 +94,6 @@ EmailTemplate.create(
   recipients: 18,
   body: "Dear %{first_name},\r\n\r\nWe have recently noticed that you have not logged into the “Learn IT, Girl” platform in the last two weeks. Mentors are key part of “Learn IT, Girl”, as they help make the dream of learning to code come true for their mentee. For this dream to become true, communication and planning are essential.\r\n\r\nIf there is any problem or issue causing this, please, let us know. We will do our best to help and remove any roadblocks! <b>In order for your status not be marked as “abandoned” you should contact us AND log into the platform in the next ten days.</b>\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nBest regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a> | <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a> | <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
 )
-=end
 
 EmailTemplate.create(
   subject: "[Learn IT, Girl] It’s the end of the program! Please fill in the final evaluation",
@@ -106,4 +105,30 @@ EmailTemplate.create(
   subject: "[Learn IT, Girl] It’s the end of the program! Please fill in the final evaluation",
   recipients: 20,
   body: "Hi %{first_name},\r\n\r\nWe are very moved to see that this edition of “Learn IT, Girl” has reached its end. We have been very happy to see the progress mentees have made with your mentorship and the wonderful projects they have worked on.\r\n\r\nWe hope this experience has been great for you and your mentee and we wish you to see you again at “Learn IT, Girl”. Now it is time to fill in the final evaluation so we can asses your mentee´s work and award diplomas to you both. Click <a href=%{final_survey_url} target=\"_blank\">here</a> to fill it in now.\r\n\r\nWe would like to showcase some mentor stories in our blog. If you would be interested in collaborating for this, please let us know.\r\n\r\nWe would love to continue working on further editions of “Learn IT, Girl” in the future. If you would like to contribute to the program as an organizer or platform developer, please send us an email.\r\n\r\nBest regards and let’s keep coding,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"
+)
+=end
+
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl!] Evaluation results",
+  body: "Dear %{first_name},\r\n\r\nIt has been great to have you as part of “Learn IT, Girl”. We love people joining to learn a new programming language. However, we are sad to say after evaluating your final self­-evaluation form and your project, we cannot award you a diploma. \r\n\r\nIf you think there has been an error in the result, please contact us by replying to this email. Make sure all your code has been uploaded to your repository on time and you filled in the final self­-evaluation survey.\r\n\r\nWe hope you had a good experience with “Learn IT, Girl” and hope you continue your journey through coding.\r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>",
+  recipients: 24
+)
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl!] Evaluation results",
+  recipients: 22,
+  body: "Dear %{first_name},\r\n\r\nIt has been great to have you as part of “Learn IT, Girl”. We love people helping women learn how to code. However, we are sad to say after evaluating your final self­-evaluation form, we cannot award you a diploma.\r\n\r\nIf you think there has been an error in the result, please contact us by replying to this email. Make sure you  filled in the final self­-evaluation survey.\r\n\r\nWe hope you had a good experience with “Learn IT, Girl” and hope you continue to help women learn how to code in the future.\r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
+)
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl!] Evaluation results congratulations!",
+  recipients: 23,
+  body: "Dear %{first_name},\r\n\r\nWe are happy to have had you in the program and we are very proud of how you have worked in your project. Congratulations on passing the program!\r\n\r\nWe will be issuing diplomas for each graduated mentee and mentors, through our partners, <a href=\"https://www.accredible.com/\" target=\"_blank\">Accredible</a>. Expect to receive your diploma on this email in the following weeks.\r\n\r\nWe hope you had a wonderful experience with us!\r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
+)
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl!] Evaluation results congratulations! ",
+  recipients: 21,
+  body: "Dear %{first_name},\r\n\r\nWe are happy to have had you in the program and we are very proud of the effort you have made to help your mentee. Congratulations on passing the program!\r\n\r\nWe will be issuing diplomas for each graduated mentee and mentors, through our partners, <a href=\"https://www.accredible.com/\" target=\"_blank\">Accredible</a>.  Expect to receive your diploma on this email in the following weeks. \r\n\r\nWe hope you had a wonderful experience with us! \r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
 )
