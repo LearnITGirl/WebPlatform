@@ -69,6 +69,22 @@ class Project < ActiveRecord::Base
     self.title.blank? || self.language.blank? || self.description.blank? || self.github_link.blank?
   end
 
+  def self.with_passing_mentors
+    where.not(mentor_evaluation: 4)
+  end
+
+  def self.with_failed_mentors
+    where(mentor_evaluation: 4)
+  end
+
+  def self.with_passing_mentees
+    where("mentee_project_status in (?) and github_repo_status in (?)", [1, 2, 3], [1, 2])
+  end
+
+  def self.with_failed_mentees
+    where.not(id: with_passing_mentees)
+  end
+
   def self.get_users_missing_project_setup
     projects, users_missing_project_setup = Project.all, []
     projects.each do |project|

@@ -20,7 +20,11 @@ class EmailTemplate < ActiveRecord::Base
     mentees_missing_on_website: 17,
     mentors_missing_on_website: 18,
     final_mentees: 19,
-    final_mentors: 20
+    final_mentors: 20,
+    final_passing_mentors: 21,
+    final_failed_mentors: 22,
+    final_passing_mentees: 23,
+    final_failed_mentees: 24
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -60,6 +64,14 @@ class EmailTemplate < ActiveRecord::Base
       User.mentee.joins(:mentee_project)
     when :final_mentors
       User.mentor.joins(:mentor_project)
+    when :final_passing_mentors
+      Project.with_passing_mentors.map{|p| p.mentor}
+    when :final_failed_mentors
+      Project.with_failed_mentors.map{|p| p.mentor}
+    when :final_passing_mentees
+      Project.with_passing_mentees.map{|p| p.mentee}
+    when :final_failed_mentees
+      Project.with_failed_mentees.map{|p| p.mentee}
     else
       User.none
     end
