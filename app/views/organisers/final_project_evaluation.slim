@@ -26,7 +26,6 @@
               td = project.title
               td
                 - if project.midterm_evaluation_unstarted?
-                  = link_to "Final Evaluation", midterm_evaluation_path(project.id)
+                  = link_to "Final Evaluation", edit_midterm_evaluation_path(project.id)
                 - else
-                  .green-text
-                    = "Project evaluated"
+                  = link_to "Project Evaluated", midterm_evaluation_path(project.id), class: "green-text"
