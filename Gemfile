@@ -38,6 +38,8 @@ gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 gem 'rollbar'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
+gem 'spreadsheet'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'letter_opener'

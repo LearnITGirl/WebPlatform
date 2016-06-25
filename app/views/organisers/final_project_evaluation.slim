@@ -14,7 +14,9 @@
             th.col-xs-3 Mentee
             th.col-xs-3 Mentor
             th.col-xs-3 Project
-            th.col-xs-2 Evaluation Link
+            th.col-xs-2
+              | Evaluation Link&nbsp;
+              = link_to "export", surveys_exports_path(format: "xls")
         tbody
           - @projects.order(:id).each_with_index do |project, index|
             tr
