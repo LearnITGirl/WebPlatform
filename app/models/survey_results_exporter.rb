@@ -8,8 +8,9 @@ class SurveyResultsExporter
   def to_xls
     populate_a_worksheet(MentorMidtermEvaluation.all, 'Midterm mentors survey', %w{extra_info})
     populate_a_worksheet(MenteeMidtermEvaluation.all, 'Midterm mentees survey', %w{extra_info})
-    populate_a_worksheet(FinalSurvey.all, 'Final survey', %w{mentee_impression  mentor_impression mentee_expectations 
-                                                             mentor_expectations mentee_project_summary
+    populate_a_worksheet(FinalSurvey.all, 'Final survey', %w{mentee_program_duration mentor_program_duration
+                                                             mentee_impression mentor_impression
+                                                             mentee_expectations mentor_expectations mentee_project_summary
                                                              mentor_project_summary mentee_feedback mentor_feedback} )
 
     @xls_file
