@@ -40,6 +40,9 @@ gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 gem 'spreadsheet'
 
+gem 'react-rails'
+gem 'react_component'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'letter_opener'
