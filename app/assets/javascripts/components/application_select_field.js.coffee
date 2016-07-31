@@ -1,4 +1,4 @@
-@MenteeApplicationSelectField= React.createClass
+@ApplicationSelectField= React.createClass
   getInitialState: ->
     application: @props.application
     field: @props.field

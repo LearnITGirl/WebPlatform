@@ -19,6 +19,17 @@ module MentorApplicationsHelper
   }
   end
 
+  def time_availabilities
+    {
+      "1": "Under one hour per week",
+      "2": "1-2 hours per week",
+      "3": "3-5 hours per week",
+      "4": "6-7 hours per week",
+      "5": "8-10 hours per week"
+    }
+
+  end
+
   def available_languages
     {
       "c" => "C", "c_plus_plus" => "C++", "java" => "Java", "python" => "Python",

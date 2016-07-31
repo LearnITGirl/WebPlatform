@@ -1,4 +1,4 @@
-@MenteeApplicationRadioGroup = React.createClass
+@ApplicationRadioGroup = React.createClass
   getInitialState: ->
     application: @props.application
     field: @props.field
@@ -18,13 +18,13 @@
       for option in @state.options
         React.DOM.div
           className: "radio"
-          key: option
+          key: option.value
           React.DOM.label null
             React.DOM.input
               type: 'radio'
               name: @state.field
-              value: option
+              value: option.value
               onChange: @changeValue
-            option
+            option.name
 
 
