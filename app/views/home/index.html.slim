@@ -4,6 +4,20 @@
 
   .col-xs-12
     .page-header
+      .head-text.green-text.text-center
+        | Stay tuned!
+        .head-subtext.green-text.text-center
+          |Third edition will start soon. 
+      .row
+        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+          #status-message.alert.hidden
+          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
+            .form-group
+              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
+            .form-group
+              = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+
+    .page-header
       .head-text.green-text.text-center What is Learn IT Girl?
     p
       = "Our aim is to help women learn a programming language while doing an awesome"
@@ -32,17 +46,3 @@
     .row
       .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
         = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"
-
-    .page-header
-      .head-text.green-text.text-center
-        | Stay tuned!
-        div
-          |Third edition will start soon. 
-      .row
-        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          #status-message.alert.hidden
-          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
-            .form-group
-              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
-            .form-group
-              = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
