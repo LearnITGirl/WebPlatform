@@ -1,0 +1,7 @@
+.radio input[type="radio"]:focus + label::before{
+  outline: none !important;
+}
+
+.radio label::after{
+  background-color: #3d4759;
+}

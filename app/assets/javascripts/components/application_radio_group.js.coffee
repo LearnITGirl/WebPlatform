@@ -10,6 +10,9 @@
     @state.application[@state.field] = e.target.value
     console.log @state.application
 
+  checkedValue: (value) ->
+    @state.application[@state.field] == value
+
   render: ->
     React.DOM.div
       className: 'form-group'
@@ -19,12 +22,15 @@
         React.DOM.div
           className: "radio"
           key: option.value
-          React.DOM.label null
-            React.DOM.input
-              type: 'radio'
-              name: @state.field
-              value: option.value
-              onChange: @changeValue
+          React.DOM.input
+            id: option.value
+            type: 'radio'
+            name: @state.field
+            value: option.value
+            defaultChecked: @checkedValue(option.value)
+            onChange: @changeValue
+          React.DOM.label
+            htmlFor: option.value
             option.name
 
 

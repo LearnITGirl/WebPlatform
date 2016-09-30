@@ -9,6 +9,10 @@
 
   changeValue: (e) ->
     @state.application[@state.field] = e.target.value
+    console.log e.target.value
+
+  checkedValue: (value) ->
+    @state.application[@state.field] == value
 
   render: ->
     React.DOM.div
@@ -28,5 +32,4 @@
             key: option.value
             value: option.value
             option.name
-
 

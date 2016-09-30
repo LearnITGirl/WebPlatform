@@ -19,6 +19,9 @@
     if @state.sources
       " sources"
 
+  checkedValue: (value) ->
+    @state.application[@state.field].indexOf(value) > -1
+
   render: ->
     React.DOM.div
       className: 'form-group'
@@ -30,10 +33,13 @@
             React.DOM.div
               className: "checkbox"
               key: option.value
-              React.DOM.label null
-                React.DOM.input
-                  type: 'checkbox'
-                  name: @state.field
-                  value: option.value || []
-                  onChange: @changeValue
+              React.DOM.input
+                id: option.value
+                type: 'checkbox'
+                name: @state.field
+                value: option.value || []
+                defaultChecked: @checkedValue(option.value)
+                onChange: @changeValue
+              React.DOM.label
+                htmlFor: option.value
                 option.name
