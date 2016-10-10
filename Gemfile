@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.6'
 
 gem 'pg'
 gem 'unicorn'
@@ -11,6 +11,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'file_validators'
 gem "fog"
+
+gem 'virtus'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -33,8 +35,13 @@ gem 'font-awesome-sass'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
-gem 'rollbar', '~> 2.4.0'
+gem 'rollbar'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+
+gem 'spreadsheet'
+
+gem 'react-rails'
+gem 'react_component'
 
 group :development, :test do
   gem 'pry-rails'

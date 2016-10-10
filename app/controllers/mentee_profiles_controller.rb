@@ -9,7 +9,7 @@ class MenteeProfilesController < UsersController
       send_email_to_missing_mentor
       redirect_to dashboard_mentee_profiles_path, notice: 'Organsiers Have been notified about the missing mentor'
     else
-      redirect_to dashboard_mentee_profiles_path, notice: 'Couldnt send mail'
+      redirect_to dashboard_mentee_profiles_path, notice: 'Failed to send email'
     end
   end
 

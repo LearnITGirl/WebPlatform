@@ -1,43 +1,13 @@
 .row#home-page
+  h1.hidden
+    | A mentorship program for women around the globe!
+
   .col-xs-12
     .page-header
-      h1.green-text.text-center What is Learn IT Girl?
-    p
-      = "Our aim is to help women learn a programming language while doing an awesome"
-      =< "project! But don't worry, you're not alone in this journey, each scholar has"
-      =< "a mentor that guides them on their path. There are many roads you can take"
-      =< "and we will make sure you go on the one that is best for you - without"
-      =< "missing out on the important features of the chosen language."
-
-    .page-header
-      h1.green-text.text-center How does it work?
-    p
-      = "Each accepted mentee gets a mentor to help them through discovering their"
-      =< "new language and coding their great project. Don't worry if you don't"
-      =< "know which language to choose: we will help you! During 3 months, the"
-      =< "mentee will work on their code on GitHub to be able to show their"
-      =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
-
-    .page-header
-      h1.green-text.text-center When will it happen?
-    p
-      = "This second edition of the program will take place from February 15 to May 6"
-      =< "2016. If you have applied, you will receive an email by February 8 (mentors) or February 11 (mentees)"
-
-    .page-header
-      h1.green-text.text-center How can I get involved?
-      = render partial: "application_closed"
-
-    .page-header
-      h1.green-text.text-center Want to get inspired?
-    p
-      = "Check some first edition mentees and their projects"
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"
-
-    .page-header
-      h1.green-text.text-center Want to stay informed?
+      .head-text.green-text.text-center
+        | Stay tuned!
+        .head-subtext.green-text.text-center
+          |Third edition will start soon. 
       .row
         .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
           #status-message.alert.hidden
@@ -46,3 +16,33 @@
               = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
             .form-group
               = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+
+    .page-header
+      .head-text.green-text.text-center What is Learn IT Girl?
+    p
+      = "Our aim is to help women learn a programming language while doing an awesome"
+      =< "project! But don't worry, you're not alone in this journey, each scholar has"
+      =< "a mentor that guides them on their path. There are many roads you can take"
+      =< "and we will make sure you go on the one that is best for you - without"
+      =< "missing out on the important features of the chosen language."
+
+    .page-header
+      .head-text.green-text.text-center How does it work?
+    p
+      = "Each accepted mentee gets a mentor to help them through discovering their"
+      =< "new language and coding their great project. Don't worry if you don't"
+      =< "know which language to choose: we will help you! During 3 months, the"
+      =< "mentee will work on their code on GitHub to be able to show their"
+      =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
+
+    .page-header
+      .head-text.green-text.text-center How can I get involved?
+      = render partial: "application_closed"
+
+    .page-header
+      .head-text.green-text.text-center Want to get inspired?
+    p
+      = "Check some first edition mentees and their projects"
+    .row
+      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+        = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"

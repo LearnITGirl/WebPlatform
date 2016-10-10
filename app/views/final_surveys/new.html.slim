@@ -1,0 +1,53 @@
+.page-header
+  h1.text-center.green-text Final Evaluation
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      p Hi! It's been a great journey so far and we hope that you've enjoyed it as much as we did!
+      p Since this is the last week of the programme, we would like to hear about your experience with "Learn IT, Girl!".
+      - if current_user.mentee?
+        p We're also looking for scholars to write a short article for the blog, so if you would like to share your thoughts with the world, please email learnitgirl.office@gmail.com.
+      p Thank you for your time!
+
+      = form_for @survey, url: final_survey_path, html: {class: "top-space"} do |f|
+        - if @survey.errors.present?
+          .alert.alert-danger.text-center
+            = @survey.errors.full_messages.join(", ")
+        - if current_user.mentor?
+          .form-group
+            label.bottom-space How do you feel at the end of the programme?
+            = f.text_area :mentor_impression, class: "form-control"
+          .form-group
+            label.bottom-space What were your expectations regarding to the program? Were they met?
+            = f.text_area :mentor_expectations, class: "form-control"
+          .form-group
+            label.bottom-space Did your mentee finish your project? Give us a short summary of its current state.
+            = f.text_area :mentor_project_summary, class: "form-control"
+          .form-group
+            label.bottom-space Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
+            = f.text_area :mentor_feedback, class: "form-control"
+          .form-group
+            label.bottom-space Was the program too long? How many weeks should it last?
+            = f.select :mentor_program_duration, options_for_select(6..12, selected: @survey.mentor_program_duration), {include_blank: true}, {class: "form-control"}
+        - else
+          .form-group
+            label.bottom-space How do you feel at the end of the programme?
+            = f.text_area :mentee_impression, class: "form-control"
+          .form-group
+            label.bottom-space What were your expectations regarding to the program? Were they met?
+            = f.text_area :mentee_expectations, class: "form-control"
+          .form-group
+            label.bottom-space Did you finish your project? Give us a short summary of its current state.
+            = f.text_area :mentee_project_summary, class: "form-control"
+          .form-group
+            label.bottom-space What are you up to next? E.g.: university courses, looking for other programs, continuing working on the project, starting a new one etc.
+            = f.text_area :mentee_future_plans, class: "form-control"
+          .form-group
+            label.bottom-space Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
+            = f.text_area :mentee_feedback, class: "form-control"
+          .form-group
+            label.bottom-space Was the program too long? How many weeks should it last?
+            = f.select :mentee_program_duration, options_for_select(6..12, selected: @survey.mentee_program_duration), {include_blank: true}, {class: "form-control"}
+
+        .form-group.buttons.text-center
+          = f.submit 'Send', class: "btn btn-pink"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214094041) do
+ActiveRecord::Schema.define(version: 20160507162638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 20160214094041) do
     t.integer "mentor_application_id"
     t.integer "mentee_application_id"
     t.integer "user_id"
+  end
+
+  create_table "final_surveys", force: :cascade do |t|
+    t.integer  "edition_id"
+    t.integer  "mentor_id"
+    t.integer  "mentee_id"
+    t.integer  "project_id"
+    t.text     "mentee_impression"
+    t.text     "mentor_impression"
+    t.text     "mentee_expectations"
+    t.text     "mentor_expectations"
+    t.text     "mentee_project_summary"
+    t.text     "mentor_project_summary"
+    t.text     "mentee_feedback"
+    t.text     "mentor_feedback"
+    t.text     "mentee_future_plans"
+    t.string   "mentee_program_duration"
+    t.string   "mentor_program_duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mentee_applications", force: :cascade do |t|
@@ -77,6 +97,20 @@ ActiveRecord::Schema.define(version: 20160214094041) do
     t.datetime "results_send_at"
   end
 
+  create_table "mentee_midterm_evaluations", force: :cascade do |t|
+    t.integer  "mentee_id"
+    t.text     "project_progress"
+    t.text     "language_progress"
+    t.text     "positive_aspects"
+    t.text     "future_plans"
+    t.integer  "weekly_hours"
+    t.text     "mentor_impression"
+    t.text     "extra_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "edition_id"
+  end
+
   create_table "mentor_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -107,6 +141,19 @@ ActiveRecord::Schema.define(version: 20160214094041) do
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
     t.datetime "results_send_at"
+  end
+
+  create_table "mentor_midterm_evaluations", force: :cascade do |t|
+    t.integer  "mentor_id"
+    t.integer  "edition_id"
+    t.text     "project_progress"
+    t.text     "positive_aspects"
+    t.integer  "weekly_hours"
+    t.text     "future_plans"
+    t.text     "mentee_impression"
+    t.text     "extra_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -144,7 +191,7 @@ ActiveRecord::Schema.define(version: 20160214094041) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                     null: false
+    t.string   "email",                                                     null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -158,7 +205,7 @@ ActiveRecord::Schema.define(version: 20160214094041) do
     t.string   "country"
     t.string   "organiser_token"
     t.string   "avatar"
-    t.boolean  "is_missing"
+    t.boolean  "is_missing",                                default: false
     t.string   "program_country"
     t.string   "timezone"
     t.string   "registration_token"

@@ -18,6 +18,8 @@
         = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
       p
         = "Current time zone: #{display_timezone(@user.timezone)}"
+      p
+        = @user.email
 
 .row.top-space-20
   .col-md-10.col-md-offset-2.col-xs-12
@@ -27,17 +29,27 @@
     p.top-space-20
       = "Language: #{@project.try(:language) || '--'}"
     p.top-space-20
-      = @project.try(:description)
+      = simple_format @project.try(:description)
     p.top-space-20
       = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
         i.fa.fa-github
         span See on Github
     p.top-space-20
       strong = @partner_label
-      =< link_to @user.partner.full_name, mentor_profile_path(@user.partner)
+      - if @user.mentee?
+        =< link_to @user.partner.full_name, mentor_profile_path(@user.partner)
+      - elsif @user.mentor?
+        =< link_to @user.partner.full_name, mentee_profile_path(@user.partner)
       - if current_user.role == "organizer" && @user.partner.is_missing
         .pull-right.red-text
           | Missing since
           = @user.partner.missing_since.strftime("%B %d, %Y")
 
-    p = @user.partner.email
+- if current_user.role == "organizer"
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      = form_for @user, url: mentee_profile_user_status_path(@user), method: "user_status", html: {class: "form-inline"} do |f|
+        .form-group
+          = f.label "User unavailable until:"
+          = f.text_field :warning_email_date, type: :date, class: "date-picker form-control", value: @user.send_warning_email_after
+        = f.submit "Save new date", class: "btn btn-pink"

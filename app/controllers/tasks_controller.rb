@@ -18,10 +18,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    @task = Task.find(params[:id])
+    @week = find_week
+    render partial: 'edit_modal', layout: false
+  end
+
   def update
     @task = Task.find(params[:id])
-    @task.update_attributes task_params
-    request.xhr? ? (head :ok) : (redirect_to dashboard_path)
+    if @task.update_attributes task_params
+      request.xhr? ? (head :ok) : (redirect_to dashboard_path)
+    else
+      render json: {msg: @task.errors.full_messages.join(',')}, status: 422
+    end
   end
 
   def destroy
@@ -39,10 +48,12 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:status, :week).tap do |task|
-      task[:status] = Task.statuses[task["status"]]
-      task[:finished_by] = current_user.id
-      task[:week] = find_week.number
+    params.require(:task).permit(:status, :title).tap do |task|
+      if task[:status].present?
+        task[:status] = Task.statuses[task["status"]]
+        task[:finished_by] = current_user.id
+        task[:week] = find_week.number
+      end
     end
   end
 
