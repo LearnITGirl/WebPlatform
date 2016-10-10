@@ -13,27 +13,12 @@ namespace :git_commits do
       begin
         repos= Github::Client::Repos.new :client_id => 'c1e144121ec161136a4a', :client_secret => 'cf3290b0f2524e5e5e34e8cd0c6c29d48d9d58f1', :oauth_token => 'be324e907d1fc1c1b0a7081ce2d8cc8b160a19ac'  
       
-        branches_info = {} 
-        all_branches = repos.branches user: owner, repo: repo_name 
-        puts "ratelimit", all_branches.headers.ratelimit_remaining
-        if all_branches.empty?
-          puts "no branches/commit"
-        elsif all_branches.success? 
-          all_branches.body.each do |branch|
-             branches_info["#{branch.name}".to_s] = "#{branch.commit.sha}"
-          end
-          puts branches_info
-          commits_list = []
-          branches_info.each  do |branch, sha|
-            commits = repos.commits.get owner, repo_name, sha
-            commits_list.push ( Time.parse(commits[:commit][:author][:date]))
-          end
-          project.update_attributes(last_commit: commits_list.max)
-          puts project.last_commit
-        else 
-           puts "redirection url", all_branches.url
+        commits_list= get_lastcommits_of_allbranch(repos, owner, repo_name)
+	if !( commits_list.nil? || commits_list.empty?)
+        	project.update_attributes(last_commit: commits_list.max)
+        	puts project.last_commit
         end
-      rescue Github::Error::GithubError => e
+        rescue Github::Error::GithubError => e
          puts e.message
 
          if e.is_a? Github::Error::ServiceError
@@ -60,4 +45,26 @@ namespace :git_commits do
       gitname.push(repo_name)
       return gitname
   end
+
+  def get_lastcommits_of_allbranch(repos, owner, repo_name) 
+         branches_info = {}
+        all_branches = repos.branches user: owner, repo: repo_name
+        #puts "ratelimit" + all_branches.headers.ratelimit_remaining
+        if all_branches.empty?
+          puts "no branches/commit: Nothing will be commited"
+        elsif all_branches.success?
+          all_branches.body.each do |branch|
+             branches_info["#{branch.name}".to_s] = "#{branch.commit.sha}"
+          end          
+	  #puts branches_info
+          commits_list = []
+          branches_info.each  do |branch, sha|
+            commits = repos.commits.get owner, repo_name, sha
+            commits_list.push ( Time.parse(commits[:commit][:author][:date]))
+	  end
+   	else
+           puts "redirection url: Please open and manually update the last commit", all_branches.url
+        end
+        return commits_list
+  end 
 end
