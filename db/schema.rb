@@ -169,13 +169,14 @@ ActiveRecord::Schema.define(version: 20160507162638) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string  "title"
-    t.string  "language"
-    t.text    "description"
-    t.string  "github_link"
-    t.integer "mentor_id"
-    t.integer "mentee_id"
-    t.integer "edition_id"
+    t.string   "title"
+    t.string   "language"
+    t.text     "description"
+    t.string   "github_link"
+    t.integer  "mentor_id"
+    t.integer  "mentee_id"
+    t.integer  "edition_id"
+    t.datetime "last_commit"
   end
 
   create_table "tasks", force: :cascade do |t|
