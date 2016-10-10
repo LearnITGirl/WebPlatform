@@ -22,6 +22,8 @@ Webplatform::Application.routes.draw do
   get "faq" => "home#faq"
   get "timeline" => "home#timeline"
   get "roadmap_example" => "home#roadmap_example"
+  get "about_us" => "home#about_us"
+
   get "learning_materials/git" => "learning_materials#git", as: "git_learning_materials"
   get "learning_materials/ruby" => "learning_materials#ruby", as: "ruby_learning_materials"
   get "learning_materials/php" => "learning_materials#php", as: "php_learning_materials"
@@ -44,6 +46,7 @@ Webplatform::Application.routes.draw do
       post :dashboard
       post :missing_mentor
     end
+    post "user_status" => "mentee_profiles#user_status"
   end
 
   resources :tasks do
@@ -65,6 +68,7 @@ Webplatform::Application.routes.draw do
       get :dashboard
       post :missing_mentee
     end
+    post "user_status" => "mentor_profiles#user_status"
   end
 
   resources :mentor_applications do
@@ -100,6 +104,16 @@ Webplatform::Application.routes.draw do
 
   resource :mentee_midterm_evaluations, only: [:new, :create]
   resource :mentor_midterm_evaluations, only: [:new, :create]
+  resource :final_survey
 
   get 'search/participants', to: 'search#participants', as: :search_participants
+
+  resources :midterm_evaluations
+
+  resources :projects, only: [:show]
+  resources :exports, only: [] do
+    collection do
+      get :surveys
+    end
+  end
 end

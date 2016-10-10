@@ -16,7 +16,7 @@
             th.col-xs-3 Project
             th.col-xs-1 GitHub Link
         tbody
-          - @projects.each_with_index do |project, index|
+          - @projects.order(:id).each_with_index do |project, index|
             tr
               td = index+1
               td

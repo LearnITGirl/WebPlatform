@@ -1,0 +1,46 @@
+h4.text-justify Mentee Midterm Evaluation <hr>
+
+b What have you done in your project so far? Tell us what you've been working on and what you have achieved.
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.project_progress : "Didn't fill in survey"
+
+b What have you learned so far? What technologies/programming language you're working with, what is your work environment (IDE, text editor, etc.), any algorithms/design patterns/techniques that you learned.
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.language_progress : "Didn't fill in survey"
+
+b What are three positive aspects of your work on the project?
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.positive_aspects : "Didn't fill in survey"
+
+
+b What are three things that you plan on doing better in the following weeks?
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.future_plans : "Didn't fill in survey"
+
+b How many hours a week do you spend on your project?
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.weekly_hours : "Didn't fill in survey"
+
+b How does the mentoring process work for you? What are the positives and negatives in the interaction with your mentor?
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.mentor_impression : "Didn't fill in survey"
+
+b Is there anything else you would like to share with us?
+p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.extra_info : "Didn't fill in survey"
+
+
+h4.text-justify Mentee Final Survey <hr>
+
+b How do you feel at the end of the programme?
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_impression : "Didn't fill in survey"
+
+b What were your expectations regarding to the program? Were they met?
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_expectations : "Didn't fill in survey"
+
+b Did you finish your project? Give us a short summary of its current state.
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_project_summary : "Didn't fill in survey"
+
+b What are you up to next? E.g.: university courses, looking for other programs, continuing working on the project, starting a new one etc.
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_future_plans : "Didn't fill in survey"
+
+b Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_feedback : "Didn't fill in survey"
+
+b Was the program too long? How many weeks should it last?
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_program_duration : "Didn't fill in survey"
+
+<hr>

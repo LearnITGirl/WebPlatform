@@ -1,0 +1,39 @@
+.page-header
+  h1.text-center.green-text Final Evaluation
+  h6.text-center Pair created on <b>#{@project.pair_matched_at.try(:strftime, "%d %B %Y")}</b><hr>
+
+.wizard
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      = link_to "See tasks", project_path(@project.id), target: "_blank"
+
+      .pull-right
+        = link_to "Github Repository", url_with_protocol(@project.github_link), target: "_blank"
+
+      = render partial: "midterm_evaluations/mentor_response"
+
+      .jumbotron
+        h4.text-center.green-text Organizer's evaluation of mentor
+        .form-group
+          strong The mentor evaluation is independent of the mentee's work. If the mentor is making efforts, even if the mentee is not working, they should receive a good evaluation.
+        .form-group.bottom-space
+          = @project.mentor_evaluation
+
+      = render partial: "midterm_evaluations/mentee_response"
+
+      .jumbotron
+        h4.text-center.bottom-space.green-text Organizer's evaluation of mentee
+        .form-group
+          strong Does the mentee work as the mentor described?
+        .form-group.bottom-space
+          = @project.mentee_feedback
+        .form-group
+          strong How is the mentee's project?
+        .form-group.bottom-space
+          = @project.mentee_project_status
+        .form-group
+          strong The github repository
+        .form-group.bottom-space
+          = @project.github_repo_status
+      .form-group.buttons.text-center
+        = link_to 'Back', dashboard_organisers_path, class: "btn btn-pink"

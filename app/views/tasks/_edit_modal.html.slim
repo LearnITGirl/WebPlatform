@@ -1,0 +1,19 @@
+.modal-dialog role="document"
+  .modal-content
+    .modal-header
+      button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        span aria-hidden="true" &times;
+      h4#editTask.modal-title Edit Task
+
+      = form_for @task, remote: true, html: {class: "horizontal-form task-form"} do |f|
+        .modal-body
+          = f.hidden_field :week, value: @week.number
+          = f.hidden_field :finished_by, value: current_user.id
+          .alert.alert-danger.hidden
+             | Task can't be empty
+          .form-group
+            = f.text_field :title, value: @task.title, class: "form-control"
+        .modal-footer
+          .form-group.buttons
+            button.btn.btn-default data-dismiss="modal" type="button"  Close
+            = f.submit "Edit Task", class: "btn btn-pink", style: "#{@task.errors.any? and 'margin: 0px;'}"

@@ -12,4 +12,22 @@ namespace :deadline_reminder do
     end
   end
 
+  desc "send warning emails to mentees who did not use app for two weeks"
+  task mentee_missing_from_website_warning: :environment do
+    mentee_email_template = EmailTemplate.find_by(recipients: 15)
+
+    mentee_email_template.users.each do |mentee|
+      EmailTemplateMailer.custom(mentee_email_template, mentee).deliver_now
+    end
+  end
+
+  desc "send warning emails to mentors who did not use app for two weeks"
+  task mentor_missing_from_website_warning: :environment do
+    mentor_email_template = EmailTemplate.find_by(recipients: 16)
+
+    mentor_email_template.users.each do |mentor|
+      EmailTemplateMailer.custom(mentor_email_template, mentor).deliver_now
+    end
+  end
+
 end
