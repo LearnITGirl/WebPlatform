@@ -1,33 +1,24 @@
 @ApplicationSelectField= React.createClass
-  getInitialState: ->
-    application: @props.application
-    field: @props.field
-    placeholder: @props.placeholder
-    label: @props.label
-    value: @props.application[@props.field]
-    options: @props.options
-
   changeValue: (e) ->
-    @state.application[@state.field] = e.target.value
-    console.log e.target.value
+    @props.setApplicationField(@props.field, e.target.value)
 
   checkedValue: (value) ->
-    @state.application[@state.field] == value
+    @props.application[@props.field] == value
 
   render: ->
     React.DOM.div
       className: 'form-group'
       React.DOM.label
         className: 'bottom-space'
-        @state.label
+        @props.label
       React.DOM.select
         className: 'form-control'
-        value: @state.value
+        defaultValue: @props.value || ''
         onChange: @changeValue
         React.DOM.option
           defaultValue: ''
-          @state.placeholder
-        for option in @state.options
+          @props.placeholder
+        for option in @props.options
           React.DOM.option
             key: option.value
             value: option.value

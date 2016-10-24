@@ -1,43 +1,39 @@
 @ApplicationCheckboxGroup= React.createClass
-  getInitialState: ->
-    application: @props.application
-    field: @props.field
-    placeholder: @props.placeholder
-    value: @props.application[@props.field] || []
-    options: @props.options
-    sources: @props.sources || false
-
   changeValue: (e) ->
+    options = @props.application[@props.field] || []
     if $(e.target).is(":checked")
-      @state.application[@state.field].push(e.target.value)
+      options.push(e.target.value)
     else
-      index = @state.application[@state.field].indexOf(e.target.value)
-      @state.application[@state.field].splice(index,1)
-    console.log @state.application[@state.field]
+      index = options.indexOf(e.target.value)
+      options.splice(index,1)
+    @props.setApplicationField(@props.field, options)
 
   scrollableList: ->
-    if @state.sources
+    if @props.sources
       " sources"
 
   checkedValue: (value) ->
-    @state.application[@state.field].indexOf(value) > -1
+    if @props.application[@props.field]
+      @props.application[@props.field].indexOf(value) > -1
+    else
+      false
 
   render: ->
     React.DOM.div
       className: 'form-group'
       React.DOM.label null
-        @state.placeholder
+        @props.placeholder
         React.DOM.div
           className: ""+@scrollableList()
-          for option in @state.options
+          for option in @props.options
             React.DOM.div
               className: "checkbox"
               key: option.value
               React.DOM.input
                 id: option.value
                 type: 'checkbox'
-                name: @state.field
-                value: option.value || []
+                name: @props.field
+                defaultValue: option.value || []
                 defaultChecked: @checkedValue(option.value)
                 onChange: @changeValue
               React.DOM.label

@@ -8,19 +8,19 @@
           onClick: @props.previousStep
           "Back"
 
-      if @props.step < 4
+      if @props.step < 3
         React.DOM.button
           type: 'submit'
           className: "btn btn-pink"
           onClick: @props.nextStep
           "Next step"
 
-      if @props.step == 4
+      if @props.step == 3
         React.DOM.button
           type: 'submit'
           className: "btn btn-pink"
-          onClick: @props.nextStep
+          onClick: @props.sendApplication
           "Finish"
 
       React.DOM.p null
-        "Step #{@props.step}/4"
+        "Step #{@props.step}/3"

@@ -1,25 +1,11 @@
 @MenteeApplicationStep2 = React.createClass
-  getInitialState: ->
-    application: @props.application
-    countries: @props.countries
-    timezones: @props.timezones
-    step: 2
-
-  englishLevelOptions: ->
-    [
-     {name:'Very well', value: 'very well'},
-     {name: 'Not so well', value: 'not so well'},
-     {name: 'Good enough', value: 'good enough'},
-     {name: 'No', value: 'no'}
-    ]
-
   render: ->
     React.DOM.div
       className: 'fields'
-      if @state.application.errors
+      if @props.application.errors
         React.DOM.div
           className: "alert alert-danger text-center"
           @application.errors.full_messages.join(", ")
-      React.createElement(ApplicationTextArea, key: 'motivation', field: 'motivation', label: "What motivated you to become a scholar?", application: @state.application)
-      React.createElement(ApplicationRadioGroup, key: 'english_level', field: 'english_level', options: @englishLevelOptions(), placeholder: "Can you read and write in English?", application: @state.application)
-      React.createElement(ApplicationTextArea, key: 'experience', field: 'experience', label: "Do you have any experience working as a team or collaborating with others? Tell us about it. What was the project or task? What was your role? Tell us as many things as you want.", application: @state.application)
+      React.createElement(ApplicationTextArea, key: 'motivation', field: 'motivation', label: "Why do you want to be a part of Learn IT Girl? Tell us about your motivation! (app. 100 words)", application: @props.application, setApplicationField: @props.setApplicationField)
+      React.createElement(ApplicationTextArea, key: 'background', field: 'background', label: "What is your background? Tell us about your education and - if you have - about your professional experience. It does not have to be related to programing. (app. 100 words)", application: @props.application, setApplicationField: @props.setApplicationField)
+      React.createElement(ApplicationTextArea, key: 'team_work_experience', field: 'team_work_experience', label: "Tell us about a time where you collaborated with others in a team. What was the project or task that you worked on? What was your role in the team? How was your experience? (app. 100 words)", application: @props.application, setApplicationField: @props.setApplicationField)
