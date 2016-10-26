@@ -5,3 +5,28 @@
 .radio label::after{
   background-color: #3d4759;
 }
+
+.error:not(.radio){
+  border: 2px solid red;
+}
+.error.radio label::before {
+  border: 2px solid red;
+}
+
+.error-message{
+  color: red;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.mentee-application{
+  .form-group{
+    position: relative;
+  }
+}
+
+.hint-message{
+  padding: 10px 0 20px;
+  text-align: center;
+  color: #01b2ac; 
+}

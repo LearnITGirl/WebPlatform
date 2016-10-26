@@ -1,8 +1,9 @@
 class MenteeApplicationValidation
-  EMAIL_REGEX = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  def initialize(params)
+  def initialize(params, step:)
     @params = params
+    @step = step
   end
 
   def valid?
@@ -23,39 +24,51 @@ class MenteeApplicationValidation
     @params
   end
 
-  def validate
-    @validate ||= dry_validation_schema.(params)
+  def step
+    @step
   end
 
-  def dry_validation_schema
-    Dry::Validation.Schema do
-      required(:first_name).filled
-      required(:last_name).filled
-      required(:email).filled(format?: EMAIL_REGEX)
-      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other'))}
-      required(:country).filled
-      required(:program_country).filled
-      required(:time_zone).filled
-
-      required(:motivation).filled
-      required(:english_level) { filled? & (eql?('very well') | eql?('not so well') | eql?('good enough') | eql?('no')) }
-      required(:experience).filled
-
-      required(:programming_level) { filled? & (eql?('begginer') | eql?('medium') | eql?('advanced'))}
-      required(:background).filled
-      required(:programming_language).filled
-      required(:project_proposal).filled
-      required(:roadmap).filled
-
-      required(:time_availability).filled
-      required(:engagements).filled
-      required(:sources).filled
-
-      required(:known_programming_languages).filled
-      required(:programming_experience).filled
-      required(:other_programming_language).filled
-      required(:other_known_programming_language).filled
+  def validate
+    case step
+    when 1
+      dry_validation_step_1.(params)
+    when 2
+      dry_validation_step_2.(params)
+    when 3
+      dry_validation_step_3.(params)
     end
   end
 
+  def dry_validation_step_1
+    Dry::Validation.Schema do
+      required(:first_name).filled(:str?)
+      required(:last_name).filled(:str?)
+      required(:email).filled(format?: EMAIL_REGEX)
+      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other'))}
+      required(:country).filled(:str?)
+      required(:program_country).filled(:str?)
+      required(:time_zone).filled(:str?)
+      required(:communicating_in_english).filled
+    end
+  end
+
+  def dry_validation_step_2
+    Dry::Validation.Schema do
+      required(:motivation).filled(:str?)
+      required(:background).filled(:str?)
+      required(:team_work_experience).filled(:str?)
+    end
+  end
+
+  def dry_validation_step_3
+    Dry::Validation.Schema do
+      required(:programming_language).filled(:str?)
+      required(:previous_programming_experience).filled(:bool?)
+      required(:operating_system).filled(:str?)
+      required(:project_proposal).filled(:str?)
+      required(:time_availability).filled
+      required(:roadmap).filled
+      optional(:engagements).each(:filled?)
+    end
+  end
 end

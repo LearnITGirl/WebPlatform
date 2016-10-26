@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024203344) do
+ActiveRecord::Schema.define(version: 20161026223037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,14 +78,14 @@ ActiveRecord::Schema.define(version: 20161024203344) do
     t.text     "experience"
     t.string   "programming_level"
     t.text     "background"
-    t.string   "known_programming_languages",                default: [],    array: true
+    t.string   "known_programming_languages",                default: [], array: true
     t.string   "programming_language"
     t.text     "project_proposal"
     t.text     "programming_experience"
     t.text     "roadmap"
     t.integer  "time_availability",                limit: 2
-    t.string   "engagements",                                default: [],    array: true
-    t.string   "sources",                                    default: [],    array: true
+    t.string   "engagements",                                default: [], array: true
+    t.string   "sources",                                    default: [], array: true
     t.string   "build_step"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 20161024203344) do
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
     t.datetime "results_send_at"
-    t.boolean  "communicating_in_english",                   default: false
-    t.boolean  "send_to_mentor_confirmed",                   default: false
+    t.boolean  "communicating_in_english"
+    t.boolean  "send_to_mentor_confirmed"
     t.string   "operating_system"
     t.string   "team_work_experience"
-    t.boolean  "previous_programming_experience",            default: false
+    t.boolean  "previous_programming_experience"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|

@@ -5,6 +5,12 @@
   checkedValue: (value) ->
     @props.application[@props.field] == value
 
+  errorClass: ->
+    if @props.application.errors && @props.application.errors.keys.indexOf(@props.field) > -1
+      ' error'
+    else
+      ''
+
   render: ->
     React.DOM.div
       className: 'form-group'
@@ -12,7 +18,7 @@
         className: 'bottom-space'
         @props.label
       React.DOM.select
-        className: 'form-control'
+        className: 'form-control'+@errorClass()
         defaultValue: @props.value || ''
         onChange: @changeValue
         React.DOM.option
