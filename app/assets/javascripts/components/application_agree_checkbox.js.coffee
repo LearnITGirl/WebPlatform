@@ -1,9 +1,6 @@
 @ApplicationAgreeCheckbox= React.createClass
   changeValue: (e) ->
-    if $(e.target).is(":checked")
-      @props.setApplicationField(@props.field, true)
-    else
-      @props.setApplicationField(@props.field, false)
+    @props.setApplicationField(@props.field, $(e.target).is(":checked"))
 
   checkedValue: (value) ->
     @props.application[@props.field] == value

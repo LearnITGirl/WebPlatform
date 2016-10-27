@@ -43,8 +43,9 @@
         @setState application: application
         if @state.step == @state.steps
           window.location.replace("/")
-        @nextStep()
-        @setState uploading: false
+        else
+          @nextStep()
+          @setState uploading: false
       error: (data) =>
         application = @state.application
         if data.responseJSON

@@ -1,4 +1,5 @@
 class MenteeApplicationValidation
+  attr_reader :params, :step
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   def initialize(params, step:)
@@ -19,14 +20,6 @@ class MenteeApplicationValidation
   end
 
   private
-
-  def params
-    @params
-  end
-
-  def step
-    @step
-  end
 
   def validate
     case step
