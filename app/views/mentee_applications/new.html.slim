@@ -1,0 +1,12 @@
+.page-header
+  h1.text-center.green-text Apply to become a LITG mentee
+.mentee-application
+  .row
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      = react_component 'MenteeApplication', { mentee_application: @mentee_application,
+        countries: Carmen::Country.all.sort_by{|c| c.name}.map{|c| {name: c.name, value: c.code}},
+        timezones: timezone_options.map{|t| {name: t[0], value: t[1]}},
+        programming_languages: available_languages.map{|k, v| {value: k, name: v}},
+        time_availabilities: time_availabilities.map{|k, v| {name: v, value: k}},
+        engagements: available_engagements.map{|k, v| {name: v, value: k}}}
+

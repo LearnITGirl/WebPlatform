@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507162638) do
+ActiveRecord::Schema.define(version: 20161026223037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,11 @@ ActiveRecord::Schema.define(version: 20160507162638) do
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
     t.datetime "results_send_at"
+    t.boolean  "communicating_in_english"
+    t.boolean  "send_to_mentor_confirmed"
+    t.string   "operating_system"
+    t.string   "team_work_experience"
+    t.boolean  "previous_programming_experience"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
@@ -176,6 +181,11 @@ ActiveRecord::Schema.define(version: 20160507162638) do
     t.integer "mentor_id"
     t.integer "mentee_id"
     t.integer "edition_id"
+    t.integer "mentor_evaluation"
+    t.integer "mentee_feedback"
+    t.integer "mentee_project_status"
+    t.integer "github_repo_status"
+    t.integer "midterm_evaluation_status", default: 0
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -216,6 +226,7 @@ ActiveRecord::Schema.define(version: 20160507162638) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
+    t.date     "send_warning_email_after"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

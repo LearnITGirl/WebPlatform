@@ -1,5 +1,11 @@
-Webplatform::Application.routes.draw do
+class ActionDispatch::Routing::Mapper
+  def draw(routes_name)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  end
+end
 
+Webplatform::Application.routes.draw do
+  draw :api
 
   root 'home#index'
   resources :organisers, only: [:index, :create, :destroy, :edit, :update] do
@@ -24,21 +30,10 @@ Webplatform::Application.routes.draw do
   get "roadmap_example" => "home#roadmap_example"
   get "about_us" => "home#about_us"
 
-  get "learning_materials/git" => "learning_materials#git", as: "git_learning_materials"
-  get "learning_materials/ruby" => "learning_materials#ruby", as: "ruby_learning_materials"
-  get "learning_materials/php" => "learning_materials#php", as: "php_learning_materials"
-  get "learning_materials/java" => "learning_materials#java", as: "java_learning_materials"
-  get "learning_materials/android" => "learning_materials#android", as: "android_learning_materials"
-  get "learning_materials/python" => "learning_materials#python", as: "python_learning_materials"
-  get "learning_materials/c_plus_plus" => "learning_materials#c_plus_plus", as: "c_plus_plus_learning_materials"
-  get "learning_materials/html_css_javascript" => "learning_materials#html_css_javascript", as: "html_css_javascript_learning_materials"
-  get "learning_materials/r" => "learning_materials#r", as: "r_learning_materials"
-  get "learning_materials/c" => "learning_materials#c", as: "c_learning_materials"
-  get "learning_materials/sql" => "learning_materials#sql", as: "sql_learning_materials"
-  get "learning_materials/swift" => "learning_materials#swift", as: "swift_learning_materials"
-  get "learning_materials/mongo_db" => "learning_materials#mongo_db", as: "mongo_db_learning_materials"
-  get "learning_materials/c_sharp" => "learning_materials#c_sharp", as: "c_sharp_learning_materials"
-  get "learning_materials/vb_dot_net" => "learning_materials#vb_dot_net", as: "vb_dot_net_learning_materials"
+  (%w'git ruby php java android python c_plus_plus html_css_javascript
+   r c sql sqift mongo_db c_sharp vb_dot_net swift').each do |language|
+    get "learning_materials/#{language}" => "learning_materials##{language}", as: "#{language}_learning_materials"
+  end
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do

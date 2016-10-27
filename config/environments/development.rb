@@ -27,6 +27,7 @@ Webplatform::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.action_mailer.delivery_method = :letter_opener
+  config.action_controller.action_on_unpermitted_parameters = :log
 
   Rails.application.default_url_options[:host] = 'localhost:3000'
 end
