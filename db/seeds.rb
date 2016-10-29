@@ -72,6 +72,18 @@ EmailTemplate.create(
 )
 
 EmailTemplate.create(
+  subject: "[Learn IT, Girl] Reported as missing. Action required",
+  recipients: 4,
+  body: "Dear %{first_name} %{last_name}\r\nYour mentee has reported you as missing in “Learn IT, Girl” as she has been unable to get in touch with you. Mentors are key part of “Learn IT, Girl”, as they help make the dream of learning to code come true for their mentee. For this dream to become true, communication is essential.\r\n\r\nIf there is any problem or issue causing this, please, let us know. We will do our best to help and remove any roadblocks! In order for your status not be marked as “abandoned” you should contact your mentee and AND log into the platform in the next ten days.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nBest regards,\r\nThe “Learn IT, Girl” team\r\n<a href=\"http://www.learnitgirl.com\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
+)
+
+EmailTemplate.create(
+  subject: "[Learn IT, Girl] Reported as missing. Action required",
+  recipients: 5,
+  body: "Dear %{first_name} %{last_name}\r\nYour mentor has reported you as missing in “Learn IT, Girl” as they have been unable to get in touch with you. For successfully learning a new language and receiving the “Learn IT, Girl” diploma of completion, you must work regularly together with your mentor.\r\n\r\nIf there is any problem or issue causing this, please, let us know. We will do our best to help and remove any roadblocks! In order for your project not be marked as “abandoned” you should contact your mentor AND log into the platform in the next ten days.\r\n\r\nPlease let us know if you have any questions, problems or doubts. We will be happy to help!\r\n\r\nBest regards,\r\nThe “Learn IT, Girl” team\r\n<a href=\"http://www.learnitgirl.com\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl\" target=\"_blank\">Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com\" target=\"_blank\">Read our blog</a>"
+)
+
+EmailTemplate.create(
   subject: "[Learn IT, Girl] Midterm survey. Action required.",
   recipients: 15,
   body: "Hi %{first_name},\r\n\r\nWe hope you are great! We can’t believe that after all this hard work helping your mentee, we are already half-way through the program! \r\n\r\nIt is time for you to fill the midterm survey to let us know how the process is going for you and your mentee and any other feedback you have. You can access the survey <a href=%{midterm_evaluation_url} target=\"_blank\">here</a>.\r\n\r\nYou have until Sunday April 3 to fill it in.\r\n\r\nKind regards,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"

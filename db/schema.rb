@@ -218,8 +218,8 @@ ActiveRecord::Schema.define(version: 20161026223037) do
     t.boolean  "is_missing",                                default: false
     t.string   "program_country"
     t.string   "timezone"
-    t.integer  "edition_id"
     t.string   "registration_token"
+    t.integer  "edition_id"
     t.datetime "missing_since"
     t.datetime "results_send_at"
     t.datetime "last_login_at"
