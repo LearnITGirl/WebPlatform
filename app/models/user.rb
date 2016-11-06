@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :mentor_applications, foreign_key: "evaluator_id"
   has_many :tasks, foreign_key: "creator_id"
 
+  has_and_belongs_to_many :badges
+
   mount_uploader :avatar, AvatarUploader
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
