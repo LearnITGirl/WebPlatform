@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106055111) do
+ActiveRecord::Schema.define(version: 20170327233521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,9 @@ ActiveRecord::Schema.define(version: 20161106055111) do
     t.text     "rejection_reason"
     t.integer  "evaluator_id"
     t.datetime "results_send_at"
+    t.boolean  "communicating_in_english"
+    t.jsonb    "programming_languages_info"
+    t.string   "operating_system"
   end
 
   create_table "mentor_midterm_evaluations", force: :cascade do |t|
@@ -232,8 +235,8 @@ ActiveRecord::Schema.define(version: 20161106055111) do
     t.boolean  "is_missing",                                default: false
     t.string   "program_country"
     t.string   "timezone"
-    t.string   "registration_token"
     t.integer  "edition_id"
+    t.string   "registration_token"
     t.datetime "missing_since"
     t.datetime "results_send_at"
     t.datetime "last_login_at"
