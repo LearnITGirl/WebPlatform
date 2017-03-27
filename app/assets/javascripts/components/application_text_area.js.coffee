@@ -7,16 +7,20 @@
       ' error'
     else
       ''
+  renderLabel: (option) ->
+    if @props.label
+      React.DOM.label null,
+        @props.label
 
   render: ->
     React.DOM.div
       className: 'form-group'
-      React.DOM.label null
-        @props.label
+      @renderLabel()
       React.DOM.textarea
         className: "form-control"+@errorClass()
         defaultValue: @props.application[@props.field]
         onChange: @changeValue
+        placeholder: @props.placeholder
         rows: 5
 
 

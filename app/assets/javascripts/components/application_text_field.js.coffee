@@ -3,7 +3,6 @@
     @props.setApplicationField(@props.field, e.target.value)
 
   errorClass: ->
-    console.log
     if @props.application.errors && @props.application.errors.keys.indexOf(@props.field) > -1
       ' error'
     else
