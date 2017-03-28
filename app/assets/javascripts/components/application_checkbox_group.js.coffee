@@ -18,6 +18,16 @@
     else
       false
 
+  setHintValue: (field, value) ->
+    hint_field = @props.application[@props.hint_field] || {}
+    hint_field[field] = value
+    @props.setApplicationField(@props.hint_field, hint_field)
+
+  renderInfo: (option) ->
+    if @props.hint_field && @props.application[@props.field].indexOf(option.value) > -1
+      React.DOM.div null,
+        React.createElement(ApplicationTextArea, field: option.value, placeholder: "Tell us about projects that you have worked on. Paste a link to the code if you want/have.", application: @props.hint_field, setApplicationField: @setHintValue)
+
   render: ->
     React.DOM.div
       className: 'form-group'
@@ -39,3 +49,4 @@
               React.DOM.label
                 htmlFor: option.value
                 option.name
+              @renderInfo(option)

@@ -66,13 +66,8 @@ Webplatform::Application.routes.draw do
     post "user_status" => "mentor_profiles#user_status"
   end
 
-  resources :mentor_applications do
-    resources :build, controller: 'mentor_applications/build'
-  end
-
-  resources :mentee_applications do
-    resources :build, controller: 'mentee_applications/build'
-  end
+  resources :mentor_applications, only: [:new]
+  resources :mentee_applications, only: [:new]
 
   resources :user_registrations
   resources :mentor_to_mentee_matchers do

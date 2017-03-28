@@ -11,8 +11,8 @@ class Api::MenteeApplicationsController < ApiController
       status = :unprocessable_entity
     end
 
-    if mentee_application_validation.valid? && params[:step] == 3
-      MenteeApplication.create(mentee_application_validation.attrs)
+    if mentee_application_validation.valid? && params[:step] == params[:steps]
+      MenteeApplication.create(mentee_application_params)
       flash[:notice] = 'Thank you for your application!'
     end
 
@@ -27,6 +27,7 @@ class Api::MenteeApplicationsController < ApiController
     params[:application][:send_to_mentor_confirmed] = eval params[:application][:send_to_mentor_confirmed]
     params[:application][:previous_programming_experience] = eval params[:application][:previous_programming_experience]
     params[:step] = params[:step].to_i
+    params[:steps] = params[:steps].to_i
   end
 
   def mentee_application_params
@@ -36,6 +37,6 @@ class Api::MenteeApplicationsController < ApiController
                   :motivation, :background, :team_work_experience,
                   :programming_language, :previous_programming_experience, :experience,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
-                  :engagements).symbolize_keys
+                  engagements: []).symbolize_keys
   end
 end
