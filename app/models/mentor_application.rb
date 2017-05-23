@@ -1,5 +1,6 @@
 class MentorApplication < ActiveRecord::Base
   has_many :evaluations, dependent: :destroy
+  has_and_belongs_to_many :programming_languages
   belongs_to :evaluator, class_name: 'User', foreign_key: "evaluator_id"
 
   validates :first_name, :last_name, :email, :gender, :country, :program_country,
