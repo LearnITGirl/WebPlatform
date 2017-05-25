@@ -13,6 +13,14 @@ namespace :db do
     restore_localy
   end
 
+  task count_rows: :environment do
+    x=[]
+    ActiveRecord::Base.connection.tables
+      .each {|t| x << {name: t, result: ActiveRecord::Base.connection.execute("SELECT count(*) from #{t}")}}
+
+    x.each{|r| r[:result].each {|z| p "#{r[:name]} - #{z.map{|k,v| v}.max}"}}
+  end
+
   private
 
   def dump_production
