@@ -118,7 +118,6 @@ EmailTemplate.create(
   recipients: 20,
   body: "Hi %{first_name},\r\n\r\nWe are very moved to see that this edition of “Learn IT, Girl” has reached its end. We have been very happy to see the progress mentees have made with your mentorship and the wonderful projects they have worked on.\r\n\r\nWe hope this experience has been great for you and your mentee and we wish you to see you again at “Learn IT, Girl”. Now it is time to fill in the final evaluation so we can asses your mentee´s work and award diplomas to you both. Click <a href=%{final_survey_url} target=\"_blank\">here</a> to fill it in now.\r\n\r\nWe would like to showcase some mentor stories in our blog. If you would be interested in collaborating for this, please let us know.\r\n\r\nWe would love to continue working on further editions of “Learn IT, Girl” in the future. If you would like to contribute to the program as an organizer or platform developer, please send us an email.\r\n\r\nBest regards and let’s keep coding,\r\n<i>The \"Learn IT, Girl!\" team</i>\r\n<a href=\"http://www.learnitgirl.com/\" target=\"_blank\">\"Learn IT, Girl\"</a> | <a href=\"https://twitter.com/learnitgirl\" target=\"_blank\">Follow us on Twitter </a>| <a href=\"https://www.facebook.com/learnitgirl/\" target=\"_blank'>Like us on Facebook </a>| <a href=\"https://learnitgirl.wordpress.com/\" target=\"_blank\">Read our blog</a>"
 )
-=end
 
 
 EmailTemplate.create(
@@ -144,3 +143,16 @@ EmailTemplate.create(
   recipients: 21,
   body: "Dear %{first_name},\r\n\r\nWe are happy to have had you in the program and we are very proud of the effort you have made to help your mentee. Congratulations on passing the program!\r\n\r\nWe will be issuing diplomas for each graduated mentee and mentors, through our partners, <a href=\"https://www.accredible.com/\" target=\"_blank\">Accredible</a>.  Expect to receive your diploma on this email in the following weeks. \r\n\r\nWe hope you had a wonderful experience with us! \r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
 )
+=end
+
+ProgrammingLanguage.create(name: "C", slug: "c")
+ProgrammingLanguage.create(name: "C++", slug: "c_plus_plus")
+ProgrammingLanguage.create(name: "Java", slug: "java")
+ProgrammingLanguage.create(name: "Python", slug: "python")
+ProgrammingLanguage.create(name: "C#", slug: "c_sharp")
+ProgrammingLanguage.create(name: ".NET", slug: "dot_net")
+ProgrammingLanguage.create(name: "HTML, CSS", slug: "html_css")
+ProgrammingLanguage.create(name: "Javascript", slug: "javascript")
+ProgrammingLanguage.create(name: "Ruby", slug: "ruby")
+ProgrammingLanguage.create(name: "PHP", slug: "php")
+
