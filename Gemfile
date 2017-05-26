@@ -29,7 +29,6 @@ gem 'sorcery'
 
 gem 'bower-rails', '~> 0.10.0'
 
-gem 'wicked'
 gem 'carmen-rails'
 
 gem 'font-awesome-sass'
