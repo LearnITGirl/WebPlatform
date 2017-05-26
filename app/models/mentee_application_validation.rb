@@ -34,9 +34,17 @@ class MenteeApplicationValidation
 
   def dry_validation_step_1
     Dry::Validation.Schema do
+      configure do
+        config.messages_file = 'config/locales/dry.en.yml'
+
+        def unique?(attr_name, value)
+          MenteeApplication.where(attr_name => value).empty?
+        end
+      end
+
       required(:first_name).filled(:str?)
       required(:last_name).filled(:str?)
-      required(:email).filled(format?: EMAIL_REGEX)
+      required(:email).filled(format?: EMAIL_REGEX, unique?: :email)
       required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other'))}
       required(:country).filled(:str?)
       required(:program_country).filled(:str?)
