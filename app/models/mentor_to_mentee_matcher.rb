@@ -13,7 +13,7 @@ class MentorToMenteeMatcher
     mentors.each do |mentor|
       languages = count_languages
       languages.each do |language|
-        if mentor.programming_languages.include?(language[:name])
+        if mentor.programming_languages.pluck(:slug).include?(language[:slug])
           break unless mentees(language, mentor.mentee_level, mentor.country).each do |mentee|
             if !with_time_zone || (timezone_difference(mentor.time_zone, mentee.time_zone) <= 2)
               ApplicationMatch.create!(mentor_application_id: mentor.id, mentee_application_id: mentee.id)
@@ -26,10 +26,12 @@ class MentorToMenteeMatcher
   end
 
   def count_languages
-    mentors.pluck(:programming_languages)
+    ProgrammingLanguage.joins(:mentor_applications)
+           .where(mentor_applications: {id: mentors.pluck(:id)})
+           .pluck(:slug)
            .flatten
            .group_by {|x| x }
-           .map {|x, match| {name: x, number: match.count} }
+           .map {|x, match| {slug: x, number: match.count} }
            .sort_by { |x| x[:number] }
   end
 
@@ -41,7 +43,8 @@ class MentorToMenteeMatcher
 
   def mentees(language, level, country)
     mentees = MenteeApplication.evaluated.where("evaluations.score >= ?", 10)
-                               .where(programming_language: language[:name].downcase)
+                               .joins(:programming_language)
+                               .where(programming_languages: {slug: language[:slug].downcase})
                                .order("evaluations.score DESC")
                                .where.not(id: ApplicationMatch.pluck(:mentee_application_id))
                                .where(programming_level: experience(level))

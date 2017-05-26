@@ -8,7 +8,7 @@
         application: @mentor_application,
         countries: Carmen::Country.all.sort_by{|c| c.name}.map{|c| {name: c.name, value: c.code}},
         timezones: timezone_options.map{|t| {name: t[0], value: t[1]}},
-        programming_languages: available_languages.map{|k, v| {value: k, name: v}},
+        programming_languages: ProgrammingLanguage.all.map{|pl| {value: pl.slug, name: pl.name}},
         time_availabilities: time_availabilities.map{|k, v| {name: v, value: k}},
         engagements: available_engagements.map{|k, v| {name: v, value: k}}}
 

@@ -2,7 +2,8 @@ class Api::MentorApplicationsController < ApiController
   def create
     sanitize_params
 
-    mentor_application_validation = MentorApplicationValidation.new(mentor_application_params, step: params[:step])
+    mentor_application_validation = MentorApplicationValidation.new(validation_params, step: params[:step])
+
     if mentor_application_validation.valid?
       status = :ok
     else
@@ -12,7 +13,9 @@ class Api::MentorApplicationsController < ApiController
     end
 
     if mentor_application_validation.valid? && params[:step] == params[:steps]
-      MentorApplication.create(mentor_application_params)
+      mentor_application = MentorApplication.create(mentor_application_params)
+      add_programming_languages(mentor_application)
+
       flash[:notice] = 'Thank you for your application!'
     end
 
@@ -37,10 +40,24 @@ class Api::MentorApplicationsController < ApiController
                   :application_idea, :concept_explanation,
                   :time_availability,
                   programming_languages_info: programming_languages_info_keys,
-                  engagements: [], programming_languages: []).symbolize_keys
+                  engagements: []).symbolize_keys
+  end
+
+  def validation_params
+    mentor_application_params.merge params.require(:application).permit(programming_languages: []).symbolize_keys
   end
 
   def programming_languages_info_keys
     params[:application][:programming_languages_info].try(:keys)
+  end
+
+  def add_programming_languages(mentor_application)
+    return unless validation_params[:programming_languages]
+
+    validation_params[:programming_languages].each do |pl|
+      pl = ProgrammingLanguage.where(slug: pl).first
+      mentor_application.programming_languages << pl unless pl.nil?
+      mentor_application.save
+    end
   end
 end

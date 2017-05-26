@@ -28,7 +28,7 @@
   p
     strong Chosen programming language
     br
-      - language = application.programming_language
+      - language = application.programming_language.name
       = available_languages.key?(language) ? available_languages[language] : language
 .form-group
   p
