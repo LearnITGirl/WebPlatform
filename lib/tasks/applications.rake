@@ -8,6 +8,7 @@ namespace :applications do
     end
     MenteeApplication.where.not(old_programming_language: nil).each do |application|
       application.programming_language = ProgrammingLanguage.where(slug: application[:old_programming_language]).first
+      application.save
     end
   end
 end
