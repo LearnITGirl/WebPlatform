@@ -18,7 +18,7 @@
   p
     strong Programming languages
     br
-      = known_languages(application.programming_languages)
+      = application.programming_languages.pluck(:name).join(', ')
 .form-group
   p
     strong Background

@@ -1,0 +1,3 @@
+en:
+  errors:
+    unique?: 'was already used in different application'

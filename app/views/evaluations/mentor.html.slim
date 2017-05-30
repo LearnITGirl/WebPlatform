@@ -54,7 +54,7 @@
               - application.programming_languages.each do |language|
                 .language.row
                   .col-xs-2
-                    | - #{language}
+                    | - #{language.name}
                   .col-xs-2
                     = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
         = hidden_field_tag :mentor_application_id, application.id

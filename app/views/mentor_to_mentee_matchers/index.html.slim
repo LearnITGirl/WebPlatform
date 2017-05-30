@@ -26,11 +26,11 @@ br
         |&nbsp;
         = pair.mentor_application.last_name
       br
-      = known_languages(pair.mentor_application.programming_languages)
+      = pair.mentor_application.programming_languages.pluck(:name).join(', ')
     p.col-xs-6.text-left
       strong
         = pair.mentee_application.first_name
         |&nbsp;
         = pair.mentee_application.last_name
       br
-      | #{pair.mentee_application.programming_language.titleize}
+      | #{pair.mentee_application.programming_language.name.titleize}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327233521) do
+ActiveRecord::Schema.define(version: 20170530075340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170327233521) do
     t.string   "programming_level"
     t.text     "background"
     t.string   "known_programming_languages",                default: [], array: true
-    t.string   "programming_language"
+    t.string   "old_programming_language"
     t.text     "project_proposal"
     t.text     "programming_experience"
     t.text     "roadmap"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 20170327233521) do
     t.string   "operating_system"
     t.string   "team_work_experience"
     t.boolean  "previous_programming_experience"
+    t.integer  "programming_language_id"
+    t.integer  "edition_id"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
@@ -145,7 +147,7 @@ ActiveRecord::Schema.define(version: 20170327233521) do
     t.text     "mentor_experience"
     t.text     "background"
     t.boolean  "git",                                  default: false
-    t.string   "programming_languages",                default: [],    array: true
+    t.string   "old_programming_languages",            default: [],    array: true
     t.text     "programming_experience"
     t.text     "application_idea"
     t.text     "concept_explanation"
@@ -163,6 +165,12 @@ ActiveRecord::Schema.define(version: 20170327233521) do
     t.boolean  "communicating_in_english"
     t.jsonb    "programming_languages_info"
     t.string   "operating_system"
+    t.integer  "edition_id"
+  end
+
+  create_table "mentor_applications_programming_languages", id: false, force: :cascade do |t|
+    t.integer "mentor_application_id",   null: false
+    t.integer "programming_language_id", null: false
   end
 
   create_table "mentor_midterm_evaluations", force: :cascade do |t|
@@ -188,6 +196,13 @@ ActiveRecord::Schema.define(version: 20170327233521) do
     t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "programming_languages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|

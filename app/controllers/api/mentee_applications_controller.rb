@@ -2,7 +2,7 @@ class Api::MenteeApplicationsController < ApiController
   def create
     sanitize_params
 
-    mentee_application_validation = MenteeApplicationValidation.new(mentee_application_params, step: params[:step])
+    mentee_application_validation = MenteeApplicationValidation.new(validation_params, step: params[:step])
     if mentee_application_validation.valid?
       status = :ok
     else
@@ -12,7 +12,8 @@ class Api::MenteeApplicationsController < ApiController
     end
 
     if mentee_application_validation.valid? && params[:step] == params[:steps]
-      MenteeApplication.create(mentee_application_params)
+      mentee_application = MenteeApplication.create(mentee_application_params)
+      add_programming_language(mentee_application)
       flash[:notice] = 'Thank you for your application!'
     end
 
@@ -35,8 +36,19 @@ class Api::MenteeApplicationsController < ApiController
           .permit(:first_name, :last_name, :email, :gender, :country, :program_country,
                   :time_zone, :communicating_in_english, :send_to_mentor_confirmed,
                   :motivation, :background, :team_work_experience,
-                  :programming_language, :previous_programming_experience, :experience,
+                  :previous_programming_experience, :experience,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
                   engagements: []).symbolize_keys
+  end
+
+  def validation_params
+    mentee_application_params.merge params.require(:application).permit(:programming_language).symbolize_keys
+  end
+
+  def add_programming_language(mentee_application)
+    return unless validation_params[:programming_language]
+    pl = ProgrammingLanguage.where(slug: validation_params[:programming_language]).first
+    mentee_application.programming_language = pl unless pl.nil?
+    mentee_application.save
   end
 end
