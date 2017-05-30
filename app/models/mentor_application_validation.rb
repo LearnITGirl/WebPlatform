@@ -42,7 +42,9 @@ class MentorApplicationValidation
         config.messages_file = 'config/locales/dry.en.yml'
 
         def unique?(attr_name, value)
-          MentorApplication.where(attr_name => value).empty?
+          edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
+          MentorApplication.where(attr_name => value)
+            .where(edition_id: edition.id).empty?
         end
       end
 

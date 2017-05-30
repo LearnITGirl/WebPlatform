@@ -2,6 +2,7 @@ class MenteeApplication < ActiveRecord::Base
   has_many :evaluations, dependent: :destroy
   belongs_to :programming_language
   belongs_to :evaluator, class_name: 'User', foreign_key: "evaluator_id"
+  belongs_to :edition
 
   validates :rejection_reason, presence: true, on: :update, if: "state == 'rejected'"
 
@@ -16,6 +17,8 @@ class MenteeApplication < ActiveRecord::Base
   scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
   scope :no_evaluator_assigned, -> { where(evaluator_id: nil) }
   scope :pending, -> { where(state: 1) }
+
+  before_save :set_edition
 
   def self.active
     pending.no_evaluator_assigned
@@ -38,5 +41,10 @@ class MenteeApplication < ActiveRecord::Base
   def evaluation_score
     percentage = ((evaluations.sum(:score)/evaluations.size)/20)*100
     "#{percentage.to_f.round(1)}%"
+  end
+
+  def set_edition
+    return if self.edition.present?
+    self.edition = Edition.where(name: ENV["ACTUAL_EDITION"]).first
   end
 end

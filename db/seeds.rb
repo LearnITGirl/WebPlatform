@@ -156,3 +156,4 @@ ProgrammingLanguage.create(name: "Javascript", slug: "javascript")
 ProgrammingLanguage.create(name: "Ruby", slug: "ruby")
 ProgrammingLanguage.create(name: "PHP", slug: "php")
 
+Edition.create(name: "third")
