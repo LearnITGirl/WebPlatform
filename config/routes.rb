@@ -5,6 +5,7 @@ class ActionDispatch::Routing::Mapper
 end
 
 Webplatform::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   draw :api
 
   root 'home#index'
