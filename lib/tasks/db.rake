@@ -21,6 +21,31 @@ namespace :db do
     x.each{|r| r[:result].each {|z| p "#{r[:name]} - #{z.map{|k,v| v}.max}"}}
   end
 
+  task clean_actual_edition_data: :environment do
+    input = ''
+    STDOUT.puts "Are you sure? Type: 'yes I am' If you already backup DB and You want to delete all data"
+    input = STDIN.gets.chomp
+
+    return puts "Backup database and try again" unless input == "yes I am"
+
+    ActiveRecord::Base.transaction do
+      Evaluation.delete_all
+      FinalSurvey.delete_all
+      MenteeApplication.delete_all
+      MentorApplication.delete_all
+      MenteeMidtermEvaluation.delete_all
+      MentorMidtermEvaluation.delete_all
+      Poll.delete_all
+      Newsletter.delete_all
+      Project.delete_all
+      Task.delete_all
+      ApplicationMatch.delete_all
+      User.where.not(role: 1).delete_all
+
+      puts "Database clear"
+    end
+  end
+
   private
 
   def dump_production
