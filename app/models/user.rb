@@ -89,6 +89,11 @@ class User < ActiveRecord::Base
     end
     mentors_missing.where.not("id IN (?)", mentors_just_matched)
   end
+
+  def organizer?
+    self.role == 'organizer'
+  end
+
   private
 
   def create_token

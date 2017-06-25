@@ -8,6 +8,8 @@ gem 'dry-validation'
 gem 'pg'
 gem 'unicorn'
 
+gem 'rails_admin', '~> 1.2'
+
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'file_validators'
