@@ -5,18 +5,9 @@
   .col-xs-12
     .page-header
       .head-text.green-text.text-center
-        | Stay tuned!
+        |Registration for mentees and mentors opens next Monday - 24th of July
         .head-subtext.green-text.text-center
-          |Third edition will start soon. 
-      .row
-        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-          #status-message.alert.hidden
-          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
-            .form-group
-              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
-            .form-group
-              = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
-
+          |Make sure to apply!
     .page-header
       .head-text.green-text.text-center What is Learn IT Girl?
     p
@@ -37,7 +28,7 @@
 
     .page-header
       .head-text.green-text.text-center How can I get involved?
-      = render partial: "application_open"
+      = render partial: "before_application"
 
     .page-header
       .head-text.green-text.text-center Want to get inspired?
@@ -46,3 +37,15 @@
     .row
       .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
         = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"
+
+    .page-header
+      .head-text.green-text.text-center Subscribe to our newsletter
+    .row
+      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+        #status-message.alert.hidden
+        = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
+          .form-group
+            = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
+          .form-group
+            = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+
