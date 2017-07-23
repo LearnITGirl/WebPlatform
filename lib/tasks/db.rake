@@ -22,11 +22,11 @@ namespace :db do
   end
 
   task clean_actual_edition_data: :environment do
-    input = ''
-    STDOUT.puts "Are you sure? Type: 'yes I am' If you already backup DB and You want to delete all data"
-    input = STDIN.gets.chomp
+    #input = ''
+    #STDOUT.puts "Are you sure? Type: 'yes I am' If you already backup DB and You want to delete all data"
+    #input = STDIN.gets.chomp
 
-    return puts "Backup database and try again" unless input == "yes I am"
+    #return puts "Backup database and try again" unless input == "yes I am"
 
     ActiveRecord::Base.transaction do
       Evaluation.delete_all
