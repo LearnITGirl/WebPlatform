@@ -5,7 +5,8 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_user.try(:organizer?)
   end
 
-  config.included_models = ["ProgrammingLanguage", "Badge", "Edition", "User"]
+  config.included_models = ["ProgrammingLanguage", "Badge", "Edition", "User",
+                            "MenteeApplication", "MentorApplication", "Week"]
 
   config.model 'User' do
     list do
