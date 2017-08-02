@@ -18,6 +18,23 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model "MenteeApplication" do
+    base do
+      fields do
+        read_only true
+      end
+    end
+  end
+
+  config.model "MentorApplication" do
+    base do
+      fields do
+        read_only true
+      end
+    end
+  end
+
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
