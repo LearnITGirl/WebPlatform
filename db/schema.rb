@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530075340) do
+ActiveRecord::Schema.define(version: 20170802145943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170530075340) do
     t.boolean  "previous_programming_experience"
     t.integer  "programming_language_id"
     t.integer  "edition_id"
+    t.datetime "confirmation_email_sent_at"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20170530075340) do
     t.jsonb    "programming_languages_info"
     t.string   "operating_system"
     t.integer  "edition_id"
+    t.datetime "confirmation_email_sent_at"
   end
 
   create_table "mentor_applications_programming_languages", id: false, force: :cascade do |t|
