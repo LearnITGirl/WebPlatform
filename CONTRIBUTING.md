@@ -2,7 +2,7 @@
 
 Learn IT, Girl web platform welcomes all contributors.
 
-First, make sure you have `Ruby on Rails` (we're using v 4.2.1) and `PostgreSQL` installed.
+First, make sure you have `Ruby on Rails` (we're using v 4.2.6) and `PostgreSQL` installed. (https://gorails.com/setup)
 
 Then, you'll need to install gem dependencies:
 
