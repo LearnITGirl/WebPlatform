@@ -25,3 +25,4 @@ __MACOSX
 */.DS_Store
 .DS_Store
 .DS_Store?
+spec/examples.txt

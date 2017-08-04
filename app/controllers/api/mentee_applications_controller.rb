@@ -14,6 +14,7 @@ class Api::MenteeApplicationsController < ApiController
     if mentee_application_validation.valid? && params[:step] == params[:steps]
       mentee_application = MenteeApplication.create(mentee_application_params)
       add_programming_language(mentee_application)
+      send_confirmation_email(mentee_application)
       flash[:notice] = 'Thank you for your application!'
     end
 
@@ -50,5 +51,11 @@ class Api::MenteeApplicationsController < ApiController
     pl = ProgrammingLanguage.where(slug: validation_params[:programming_language]).first
     mentee_application.programming_language = pl unless pl.nil?
     mentee_application.save
+  end
+
+  def send_confirmation_email(mentee_application)
+    if MenteeApplicationMailer.confirm_application(mentee_application).deliver_now
+      mentee_application.update_attributes(confirmation_email_sent_at: Time.now)
+    end
   end
 end
