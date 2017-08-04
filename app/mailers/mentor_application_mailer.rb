@@ -1,7 +1,8 @@
 class MentorApplicationMailer < ApplicationMailer
+  add_template_helper(MentorApplicationsHelper)
 
-  def confirm_application(mentor)
-    @mentor = mentor
-    mail(to: @mentor.email, subject: "Learn IT Girl - Thank you for your application")
+  def confirm_application(application)
+    @application = application
+    mail(to: application.email, subject: "Learn IT Girl - Thank you for your application")
   end
 end
