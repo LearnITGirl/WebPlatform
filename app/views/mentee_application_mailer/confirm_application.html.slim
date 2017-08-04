@@ -1,12 +1,12 @@
 p
-  = "Dear #{@mentee.first_name},"
+  = "Dear #{@application.first_name},"
 
 p
-  |Thank you for applying to "Learn IT, Girl" second edition! It is great to know you want to build 
+  |Thank you for applying to "Learn IT, Girl" third edition! It is great to know you want to build 
   | an awesome project while learning a language!
 p
   = "We will be reviewing applications in the following weeks and get back to you before"
-  =< "the end of January to let you know whether we have a mentor for you."
+  =< "the end of September to let you know whether we have a mentor for you."
 p
   |Meanwhile, you can follow us on our
   a href="https://www.facebook.com/learnitgirl" target="_blank"
@@ -18,3 +18,98 @@ p
   br
   i
     | The "Learn IT, Girl" team
+
+p
+  div
+    | Ps. Look again on you application below. If you'll notice anything that should be changed,
+    | please, contact us.
+  div
+    | Ps2. Especially, take a look on Programming Language, if it's the one that you choose.
+
+p
+  hr
+
+scss:
+  .application-content {
+    div strong { margin-right: 5px; }
+    h3 {padding-top: 20px;}
+    .paragraph {padding: 10px 0 10px 15px;}
+  }
+p
+  div.application-content
+    h3 Personal information
+    .paragraph
+      div
+        strong First name:
+        span #{@application.first_name}
+      div
+        strong Last name:
+        span #{@application.last_name}
+      div
+        strong Country:
+        span #{@application.country}
+      div
+        strong Program Country:
+        span #{@application.program_country}&nbsp;
+      div
+        strong Timezone:
+        span #{@application.time_zone}
+      div
+        strong English communication:
+        span #{@application.communicating_in_english ? "Yes" : "No"}
+      - if @application.engagements
+        br
+        div
+          strong Actually, you are:
+          - @application.engagements.each do |engagement|
+            div
+              | - #{available_engagements[engagement.to_sym].gsub("I am ", "") }
+
+    h3 Your motivation and experience
+    .paragraph
+      div
+        strong Your motivation to become a part of Learn IT Girl:
+      div
+        | #{@application.motivation}
+      br
+      div
+        strong Your experience:
+      div
+        | #{@application.background}
+      br
+      div
+        strong Your team work experience:
+      div
+        | #{@application.team_work_experience}
+
+    h3 Technical information
+    .paragraph
+      div
+        strong You want to learn:
+        span #{@application.programming_language.try(:name)}
+      div
+        strong You can spend
+        - x = MenteeApplication.time_availabilities[@application.time_availability]
+        - time_availability_sentence = time_availabilities[x.to_s.to_sym]
+        span #{time_availability_sentence}
+        strong &nbsp;for learning
+      div
+        strong Operation sytem you are using:
+        span #{@application.operating_system}
+      br
+      div
+        - if  @application.previous_programming_experience
+          strong Your previous experience in programming:
+          = simple_format @application.experience, {}, wrapper_tag: 'div'
+        - else
+          strong You don't have any previous programming experience
+      br
+      div
+        strong You would like to work on:
+        div
+          | #{@application.project_proposal}
+      br
+      div
+        strong Your plans for that project roadmap:
+        div
+          | #{@application.roadmap}
