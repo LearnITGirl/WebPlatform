@@ -56,6 +56,8 @@ group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'selenium-webdriver', '2.45.0'
   gem 'factory_girl_rails'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :production, :staging do
