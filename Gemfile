@@ -57,7 +57,7 @@ group :test do
   gem 'selenium-webdriver', '2.45.0'
   gem 'factory_girl_rails'
   gem 'fabrication'
-  gem 'faker'
+  gem 'faker' , '~> 1.8.4'
 end
 
 group :production, :staging do
