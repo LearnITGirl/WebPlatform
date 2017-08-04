@@ -15,7 +15,7 @@ class Api::MentorApplicationsController < ApiController
     if mentor_application_validation.valid? && params[:step] == params[:steps]
       mentor_application = MentorApplication.create(mentor_application_params)
       add_programming_languages(mentor_application)
-
+      send_confirmation_email(mentor_application)
       flash[:notice] = 'Thank you for your application!'
     end
 
@@ -58,6 +58,12 @@ class Api::MentorApplicationsController < ApiController
       pl = ProgrammingLanguage.where(slug: pl).first
       mentor_application.programming_languages << pl unless pl.nil?
       mentor_application.save
+    end
+  end
+
+  def send_confirmation_email(mentor_application)
+    if MentorApplicationMailer.confirm_application(mentor_application).deliver_now
+      mentor_application.update_attributes(confirmation_email_sent_at: Time.now)
     end
   end
 end

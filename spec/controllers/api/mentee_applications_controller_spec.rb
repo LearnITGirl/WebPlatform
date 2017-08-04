@@ -7,7 +7,7 @@ describe Api::MenteeApplicationsController, type: :controller do
     end
 
     it "should create new mentee application for proper params" do
-      application_number = MenteeApplication.count
+      applications_number = MenteeApplication.count
 
       expect(ActionMailer::Base.deliveries.count).to eq(0)
 
@@ -21,7 +21,7 @@ describe Api::MenteeApplicationsController, type: :controller do
 
       expect(ActionMailer::Base.deliveries.count).to eq(1)
       expect(ActionMailer::Base.deliveries.first.to).to include MenteeApplication.last.email
-      expect(MenteeApplication.count).to eq(application_number + 1)
+      expect(MenteeApplication.count).to eq(applications_number + 1)
     end
   end
 end
