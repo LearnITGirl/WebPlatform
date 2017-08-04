@@ -16,8 +16,9 @@ Fabricator(:mentee_application) do
   operating_system { ['windows', 'linux', 'mac_os'].sample }
   team_work_experience { Faker::Hobbit.thorins_company }
   previous_programming_experience { [true, false].sample }
-  edition { Edition.last }
+  edition_id { Edition.last.id }
   programming_language_id { ProgrammingLanguage.pluck(:id).sample }
+  send_to_mentor_confirmed { true }
 end
 
 Fabricator(:mentee_pending_application, from: :mentee_application) do
