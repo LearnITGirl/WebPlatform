@@ -46,10 +46,10 @@ p
         span #{@application.last_name}
       div
         strong Country:
-        span #{@application.country}
+        span #{Carmen::Country.coded(@application.country).try(:name) || @application.country}
       div
         strong Program Country:
-        span #{@application.program_country}&nbsp;
+        span #{Carmen::Country.coded(@application.program_country).try(:name) || @application.program_country}&nbsp;
       div
         strong Timezone:
         span #{@application.time_zone}
