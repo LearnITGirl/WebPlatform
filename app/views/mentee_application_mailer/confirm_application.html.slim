@@ -29,87 +29,81 @@ p
 p
   hr
 
-scss:
-  .application-content {
-    div strong { margin-right: 5px; }
-    h3 {padding-top: 20px;}
-    .paragraph {padding: 10px 0 10px 15px;}
-  }
 p
   div.application-content
-    h3 Personal information
-    .paragraph
+    h3 style="padding-top: 20px;" Personal information
+    .paragraph style="padding: 10px 0 10px 15px;"
       div
-        strong First name:
+        strong style="margin-right: 5px;" First name:
         span #{@application.first_name}
       div
-        strong Last name:
+        strong style="margin-right: 5px;" Last name:
         span #{@application.last_name}
       div
-        strong Country:
+        strong style="margin-right: 5px;" Country:
         span #{Carmen::Country.coded(@application.country).try(:name) || @application.country}
       div
-        strong Program Country:
+        strong style="margin-right: 5px;" Program Country:
         span #{Carmen::Country.coded(@application.program_country).try(:name) || @application.program_country}&nbsp;
       div
-        strong Timezone:
+        strong style="margin-right: 5px;" Timezone:
         span #{@application.time_zone}
       div
-        strong English communication:
+        strong style="margin-right: 5px;" English communication:
         span #{@application.communicating_in_english ? "Yes" : "No"}
       - if @application.engagements
         br
         div
-          strong Actually, you are:
+          strong style="margin-right: 5px;" Actually, you are:
           - @application.engagements.each do |engagement|
             div
               | - #{available_engagements[engagement.to_sym].gsub("I am ", "") }
 
-    h3 Your motivation and experience
-    .paragraph
+    h3 style="padding-top: 20px;" Your motivation and experience
+    .paragraph style="padding: 10px 0 10px 15px;"
       div
-        strong Your motivation to become a part of Learn IT Girl:
+        strong style="margin-right: 5px;" Your motivation to become a part of Learn IT Girl:
       div
         | #{@application.motivation}
       br
       div
-        strong Your experience:
+        strong style="margin-right: 5px;" Your experience:
       div
         | #{@application.background}
       br
       div
-        strong Your team work experience:
+        strong style="margin-right: 5px;" Your team work experience:
       div
         | #{@application.team_work_experience}
 
-    h3 Technical information
-    .paragraph
+    h3 style="padding-top: 20px;" Technical information
+    .paragraph style="padding: 10px 0 10px 15px;"
       div
-        strong You want to learn:
+        strong style="margin-right: 5px;" You want to learn:
         span #{@application.programming_language.try(:name)}
       div
-        strong You can spend
+        strong style="margin-right: 5px;" You can spend
         - x = MenteeApplication.time_availabilities[@application.time_availability]
         - time_availability_sentence = time_availabilities[x.to_s.to_sym]
         span #{time_availability_sentence}
-        strong &nbsp;for learning
+        strong style="margin-right: 5px;" &nbsp;for learning
       div
-        strong Operation sytem you are using:
+        strong style="margin-right: 5px;" Operation sytem you are using:
         span #{@application.operating_system}
       br
       div
         - if  @application.previous_programming_experience
-          strong Your previous experience in programming:
+          strong style="margin-right: 5px;" Your previous experience in programming:
           = simple_format @application.experience, {}, wrapper_tag: 'div'
         - else
-          strong You don't have any previous programming experience
+          strong style="margin-right: 5px;" You don't have any previous programming experience
       br
       div
-        strong You would like to work on:
+        strong style="margin-right: 5px;" You would like to work on:
         div
           | #{@application.project_proposal}
       br
       div
-        strong Your plans for that project roadmap:
+        strong style="margin-right: 5px;" Your plans for that project roadmap:
         div
           | #{@application.roadmap}
