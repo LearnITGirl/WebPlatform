@@ -23,6 +23,7 @@ module Webplatform
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
+    config.autoload_paths << Rails.root.join('lib')
 
     config.active_record.raise_in_transactional_callbacks = true
   end
