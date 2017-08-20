@@ -30,12 +30,29 @@ module GithubAPI
     GRAPHQL
 
     def check_latest_commit
-      results = GithubAPI::Client.query(CommitsQuery, variables: {owner: "Powerglove", repoName: "Thinkerinnen"})
-      if results.errors.any?
-        raise QueryError.new(response.errors[:data].join(", "))
-      else
+      params = parse_github_link
+      return unless params
+
+      results = GithubAPI::Client.query(CommitsQuery, variables: params)
+
+      unless results.errors.any?
         commits = results.data.repository.ref.target.history.edges
         assign_badge if commits.length == 1 && commits.first.node.authoredByCommitter
+      end
+    end
+
+    private
+
+    def parse_github_link
+      match = @project.github_link.match(GITHUB_REGEXP)
+      return unless match
+
+      {owner: match[3], repoName: match[4]}
+    end
+
+    def assign_badge
+      unless @project.mentee.badges.coder.any?
+        @project.mentee.badges << Badge.find_by(name: 10)
       end
     end
   end
