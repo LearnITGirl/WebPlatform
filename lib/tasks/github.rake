@@ -1,7 +1,7 @@
 namespace :github do
 
   desc "Pull latest commit info from github repo"
-  task :dump do
+  task latest_commit: :environment do
     Project.current_edition.each do |project|
       next unless project.github_link.present?
 
