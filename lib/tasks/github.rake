@@ -1,0 +1,12 @@
+namespace :github do
+
+  desc "Pull latest commit info from github repo"
+  task :dump do
+    Project.current_edition.each do |project|
+      next unless project.github_link.present?
+
+      fetcher = GithubAPI::Fetcher.new(project)
+      fetcher.check_latest_commit
+    end
+  end
+end
