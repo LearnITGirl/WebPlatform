@@ -52,7 +52,7 @@ module GithubAPI
 
     def assign_badge
       unless @project.mentee.badges.coder.any?
-        @project.mentee.badges << Badge.find_by(name: 10)
+        @project.mentee.badges << Badge.coder
       end
     end
   end
