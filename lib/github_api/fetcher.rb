@@ -17,6 +17,7 @@ module GithubAPI
                     edges {
                       node {
                         oid
+                        committedDate
                         messageHeadline
                         authoredByCommitter
                       }
@@ -37,7 +38,11 @@ module GithubAPI
 
       unless results.errors.any?
         commits = results.data.repository.ref.target.history.edges
-        assign_badge if commits.length == 1 && commits.first.node.authoredByCommitter
+
+        if commits.length == 1
+          assign_badge if commits.first.node.authoredByCommitter
+          @project.update_column :last_commit, commits.first.node.committedDate
+        end
       end
     end
 
