@@ -19,7 +19,7 @@
         .col-xs-12
           .section.row
             - question = questions["teamwork_leadership"]["teamwork"]
-            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "L[0]"}
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["team_work_experience"], f: f, field: "L[0]"}
       .row.evaluations
         .col-xs-12
           .section.row
@@ -30,7 +30,7 @@
           .col-xs-12
             .section.row
               - question = questions["experience"]
-              = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["programming_experience"], f: f, field: "E[0]"}
+              = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "E[0]"}
       .row.evaluations
         .col-xs-12
           .section.row
