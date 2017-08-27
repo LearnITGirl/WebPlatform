@@ -161,6 +161,7 @@ Edition.first_or_create(name: "second")
 Edition.first_or_create(name: "third")
 
 
+<<<<<<< HEAD
 Badge.create(name: 1, image: "badges/midterm.png", description: "Badge awarded when mentee completed midterm survey")
 Badge.create(name: 2, image: "badges/final.png", description: "Badge awarded when mentee completed final survey")
 Badge.create(name: 3, image: "badges/blogger.png", description: "Badge awarded when mentee makes 1st wiki entry")
@@ -172,4 +173,14 @@ Badge.create(name: 8, image: "badges/novice.png", description: "Badge awarded wh
 Badge.create(name: 9, image: "badges/perfectionist.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
 Badge.create(name: 10, image: "badges/coder.png", description: "Badge awarded when mentee creates her first github commit")
 =end
-Badge.create(name: 11, image: "badges/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")
+Badge.create(name: 1, image: "badges/midterm.png", thumbnail: "badges/midterm_thumbail.png", description: "Badge awarded when mentee completed midterm survey")
+Badge.create(name: 2, image: "badges/final.png", thumbnail: "badges/final_thumbail.png", description: "Badge awarded when mentee completed final survey")
+Badge.create(name: 3, image: "badges/blogger.png", thumbnail: "badges/blogger_thumbail.png", description: "Badge awarded when mentee makes 1st wiki entry")
+Badge.create(name: 4, image: "badges/organized.png", thumbnail: "badges/organized_thumbail.png", description: "Badge awarded when mentee enters roadmap")
+Badge.create(name: 5, image: "badges/ambitious.png", thumbnail: "badges/ambitious_thumbnail.png")
+Badge.create(name: 6, image: "badges/energetic.png", thumbnail: "badges/energetic_thumbnail.png", description: "Badge awarded when mentee completes tasks from current and next weeks")
+Badge.create(name: 7, image: "badges/timekeeper.png", thumbnail: "badges/timekeeper_thumbnail.png",description: "Badge awarded when mentee completes all tasks for the current week")
+Badge.create(name: 8, image: "badges/novice.png", thumbnail: "badges/novice_thumbnail.png", description: "Badge awarded when mentee completes first task")
+Badge.create(name: 9, image: "badges/perfectionist.png", thumbnail: "badges/perfectionist_thumbnail.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
+Badge.create(name: 10, image: "badges/coder.png", thumbnail: "badges/coder_thumbnail.png", description: "Badge awarded when mentee creates her first github commit")
+Badge.create(name: 11, image: "badges/visionary.png", thumbnail: "badges/visionary_thumbnail.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")
