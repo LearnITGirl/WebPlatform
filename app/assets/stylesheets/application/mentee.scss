@@ -22,10 +22,29 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
 
   .right-left-text {
     @media (min-width: 992px) {
-      text-align: right;
+      text-align: left;
     }
   }
 
   .btn.missing {margin-right: 0;}
+
+  .badge-thumbnail {
+    position: relative;
+    float: left;
+    width: 100%;
+    max-width: 50px;
+  }
+
+  .badge-thumbnail:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
+  .show-badge {
+    display: inline-block;
+    width: 100%;
+    max-width: 100px;
+    margin-left: 3px;
+  }
 }
 
