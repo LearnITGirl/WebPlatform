@@ -74,14 +74,14 @@ abilities:
         score: 0
   application_idea:
     question: "Which idea/application would you suggest for a complete beginner to work on during 12 weeks (part-time)?"
-    max_score: 2
+    max_score: 5
     answers:
       - answer: "Specific ideas, combining the interests of the mentee"
         hint: "Clearly specify the ideas and also mentioning that they will combine the interest of mentee with the idea"
-        score: 2
+        score: 5
       - answer: "Specifying the idea along with why they choose it."
         hint: "For example, Learning through building a game like tic-tac-toe, she will learn through basic syntaxes. Them can move on to building memory games. "
-        score: 2
+        score: 5
       - answer: "General statement"
         hint: "Answer is more general statements like *identifying the interest and suggesting ideas accordingly*"
         score: 1
@@ -96,32 +96,32 @@ abilities:
         score: 0
       - answer: "Just mention the tools and languages to learn. "
         hint: ""
-        score: 0
+        score: 1
       - answer: "Something totally impractical or highly complex projects like building a search engine"
         hint: ""
         score: 0
   concept_explanation:
     question: "Looking back at the time when you were still a beginner - which concept do you remember was challenging for you to understand? Who or what helped you to finally grasp it?"
-    max_score: 3
+    max_score: 5
     answers:
       - answer: "Understand the concept explained provided you don't know about it before hand"
         hint: "Imagine you don't know any programming at all. Would you understand this without troubles?"
-        score:  3
+        score:  5
       - answer: "Explain using simple language without using many technical words"
         hint: ""
-        score: 3
+        score: 5
       - answer: "Helps you understand a concept by explaining it in an unusual way"
         hint: "For instance by using real-life examples (cars, movies, forks, something that everyone can understand from the real world)."
-        score: 3
+        score: 5
       - answer: "Copy-pasting a piece of code and explaining it how it works. "
         hint: ""
-        score: 2
+        score: 4
       - answer: "Explain how they would explain, instead of actually explaining "
         hint: "We don’t know how easily someone understands, because this skips some actual explanations"
-        score: 2
+        score: 4
       - answer: "Simple concepts present in any every language"
         hint: "Simple concepts like control statements, conditional statements, arithmetic operations, etc present in any every language"
-        score: 2
+        score: 4
       - answer: "The answers are too technical"
         hint: ""
         score: 0
