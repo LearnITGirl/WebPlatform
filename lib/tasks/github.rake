@@ -5,8 +5,13 @@ namespace :github do
     Project.current_edition.each do |project|
       next unless project.github_link.present?
 
-      fetcher = GithubAPI::Fetcher.new(project)
-      fetcher.check_latest_commit
+      begin
+        fetcher = GithubAPI::Fetcher.new(project)
+        fetcher.check_latest_commit
+      rescue GraphQL::ExecutionError => e
+        Rollbar.error(e, 'Obtaining Github commits with GraphQL failed')
+        next
+      end
     end
   end
 end

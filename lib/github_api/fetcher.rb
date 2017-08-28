@@ -36,7 +36,9 @@ module GithubAPI
 
       results = GithubAPI::Client.query(CommitsQuery, variables: params)
 
-      unless results.errors.any?
+      if results.errors.any?
+        raise GraphQL::ExecutionError, results.errors.join(", ")
+      else
         commits = results.data.repository.ref.target.history.edges
 
         if commits.length == 1
