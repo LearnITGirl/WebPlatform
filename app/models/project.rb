@@ -85,6 +85,10 @@ class Project < ActiveRecord::Base
     where.not(id: with_passing_mentees)
   end
 
+  def self.current_edition
+    where(edition_id: Edition.last.id)
+  end
+
   def self.get_users_missing_project_setup
     projects, users_missing_project_setup = Project.all, []
     projects.each do |project|
