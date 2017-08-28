@@ -38,7 +38,7 @@ motivation:
       score: 0
 abilities:
   experienced:
-    question: "Have they mentored someone or taught classes ?"
+    question: "Have you ever mentored someone or taught classes??"
     max_score: 2
     answers:
       - answer: 'Yes'
@@ -46,7 +46,7 @@ abilities:
       - answer: 'No'
         score: 0
   mentor_experience:
-    question: "Tell us about your experience"
+    question: "Tell us about your mentoring experience! Who did you teach/coach? What project did you work on? What languages/frameworks did you use?"
     max_score: 3
     answers:
       - answer: "Mentored in reputed and known programs"
@@ -70,8 +70,10 @@ abilities:
       - answer: "General answer"
         hint: "Answer like I teach some language to individuals who don't know programming, without specification"
         score: 0
+      - answer: "No mentoring experience"
+        score: 0
   application_idea:
-    question: "If you would need to help a friend learn how to program, what application would you suggest to her to create?"
+    question: "Which idea/application would you suggest for a complete beginner to work on during 12 weeks (part-time)?"
     max_score: 5
     answers:
       - answer: "Specific ideas, combining the interests of the mentee"
@@ -99,7 +101,7 @@ abilities:
         hint: ""
         score: 0
   concept_explanation:
-    question: "Explain, in your own words, a concept in programming that you consider hard."
+    question: "Looking back at the time when you were still a beginner - which concept do you remember was challenging for you to understand? Who or what helped you to finally grasp it?"
     max_score: 5
     answers:
       - answer: "Understand the concept explained provided you don't know about it before hand"

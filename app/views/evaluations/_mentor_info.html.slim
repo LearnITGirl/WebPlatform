@@ -5,25 +5,9 @@
       = application.gender.capitalize
 .form-group
   p
-    strong English level
-    br
-      = eng_level(application.english_level)
-.form-group
-  p
-    strong Who do you want to teach?
-    br
-      = mentee_level(application.mentee_level)
-
-.form-group
-  p
     strong Programming languages
     br
       = application.programming_languages.pluck(:name).join(', ')
-.form-group
-  p
-    strong Background
-    br
-      = application.background
 .form-group
   p
     strong Time availability

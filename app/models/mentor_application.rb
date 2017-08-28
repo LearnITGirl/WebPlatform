@@ -11,7 +11,7 @@ class MentorApplication < ActiveRecord::Base
   scope :not_evaluated, -> { not_rejected.eager_load(:evaluations).where('evaluations IS NULL') }
   scope :evaluated, -> { not_rejected.eager_load(:evaluations).where.not('evaluations IS NULL') }
 
-  scope :know_english, -> { where.not(english_level: 'not so well').where.not(english_level: nil) }
+  scope :know_english, -> { where(communicating_in_english: true) }
   scope :have_time_to_learn, -> { where("time_availability >= ?", 2) }
 
   scope :pending, -> { where(state: 1) }

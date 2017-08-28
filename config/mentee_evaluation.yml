@@ -1,6 +1,6 @@
 beginners:
  motivation:
-  question: "What motivated you to become a scholar?"
+  question: "Why do you want to be a part of Learn IT Girl? Tell us about your motivation!"
   max_score: "3"
   answers:
   - answer: "Their love for coding - have stated some examples of previous learning experience"
@@ -34,7 +34,7 @@ beginners:
     hint: "If they say they want to improve their English or pass an exam, or give conflicting statements"
     score: "0"
  creativity:
-  question: "Which project would you like to develop during the program?"
+  question: "What project would you like to develop during the program?"
   max_score: "2"
   answers:
   - answer: "They give unique and creative project proposal"
@@ -57,7 +57,7 @@ beginners:
     score: "0"
  teamwork_leadership:
    teamwork:
-    question: "Do you have experience working with a team or collaborating with others? Tell us about it. What was the project or task? What was your role? Tell us as many things you want."
+    question: "Tell us about a time where you collaborated with others in a team. What was the project or task that you worked on? What was your role in the team? How was your experience?"
     max_score: "2"
     answers: 
     - answer: "They share their experience and explain their role"
@@ -213,7 +213,7 @@ experienced:
       hint: "If they only state that they will decide the workflow and requirements of the application, or they just mention the timeline, without stating the steps."
       score: "0"
  experience:
-  question: "Tell us about your previous experience. What projects have you been working on? What was your role? What programming language did you use?"
+  question: "Do you have previous experience in any other programming language? Please name the language(s), your level of expertise (beginner, intermediate, professional) and tell us about the projects you have worked on."
   max_score: "2"
   answers: 
   - answer: "They have completed a project"
