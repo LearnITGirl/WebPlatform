@@ -1,5 +1,6 @@
 class Badge < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  has_many :assigned_badges
+  has_many :users, through: :assigned_badges
 
   enum name: {
     midterm_survey: 1, final_survey: 2, blogger: 3,
