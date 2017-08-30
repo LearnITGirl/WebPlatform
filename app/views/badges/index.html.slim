@@ -1,0 +1,20 @@
+.row
+  .col-xs-12
+    - @badges.each do |badge|
+      .col-xs-3
+        = image_tag asset_path(badge.thumbnail), class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", badge: asset_path(badge.image), description: badge.description}
+    = render partial: 'badge_info'
+
+javascript:
+  window.onload = function(event){ showBadgeInfo(); };
+
+  function showBadgeInfo() {
+    $('.badge-thumbnail').on('click', function() {
+      var badge = $(this).attr("data-badge")
+      var description = $(this).attr("data-description")
+      $('#badge-info').on('show.bs.modal', function () {
+        $(".show-badge").attr("src", badge);
+        document.getElementById("description").innerHTML = description
+      });
+    });
+  }

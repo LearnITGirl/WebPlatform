@@ -47,20 +47,11 @@
         - current_user.badges.each do |badge|
           .col-xs-4
             = image_tag asset_path(badge.thumbnail), class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", badge: asset_path(badge.image), description: badge.description}
+        = render partial: 'badges/badge_info'
 
 - if first_month? && not_missing_yet?(@partner)
   .pull-right
     = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor, class: "btn btn-pink missing"
-
-
-#badge-info.modal.fade role="dialog" tabindex="-1"
-  .modal-dialog
-    .modal-content
-      .modal-body
-        = image_tag asset_path(""), class: "show-badge"
-        .p#description
-      .modal-footer
-        button.btn.btn-danger type='button' data-dismiss='modal' Close
 
 
 javascript:
