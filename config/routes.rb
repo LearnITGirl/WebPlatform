@@ -14,12 +14,9 @@ Webplatform::Application.routes.draw do
       get :dashboard
       get :problematic_projects
       get :award_badges
-      post :award_badges
       post :award_badges_update
     end
   end
-
-  #resources :award_badges, only: [:index, :create, :update]
 
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login

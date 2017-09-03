@@ -8,12 +8,12 @@
       table.table.table-striped
         thead
           tr
-            th.col-md-1 #
-            th.col-md-2 Mentee
-            th.col-md-100 Project Description
-            th.col-md-6 
+            th.col-md-1.col-md-offset-2.col-sm-1.col-sm-offset-1.col-xs-1 #
+            th.col-md-2.col-md-offset-2.col-sm-2.col-sm-offset-1.col-xs-2 Mentee
+            th.col-md-100.col-md-offset-2.col-sm-100.col-sm-offset-1.col-xs-100 Project Description
+            th.col-md-6.col-md-offset-2.col-sm-6.col-sm-offset-1.col-xs-6 
         tbody
-        - if @projects != nil
+        - if @projects.any?
           - @projects.each_with_index do |project, index|
             tr
               td
@@ -25,5 +25,5 @@
               td
                 =  button_to "Award Visionary Badge", award_badges_update_organisers_path, data: {confirm: "Are you sure you want to award mentee badge?"}, method: :post, action: :award_badges_update, controller:  "organisers", class: "btn btn-pink", params: {id: project.id}
         - else
-          h3.green-text
+          h3.text-center.green-text
             | Visionary badges awarded to all mentees
