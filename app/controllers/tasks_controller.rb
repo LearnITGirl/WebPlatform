@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  after_action :award_novice_badge
+  
   def create
     @project = current_user.project
     @partner = current_user.partner
@@ -60,4 +62,24 @@ class TasksController < ApplicationController
   def dashboard_path
     current_user.mentee? ? dashboard_mentee_profiles_path(week: @task.week) : dashboard_mentor_profiles_path(week: @task.week)
   end
+
+  def award_novice_badge
+      if @task.project.tasks.finished(current_user).count >= 1
+           assign_novice_badge
+      else unassign_novice_badge
+      end
+  end
+
+  def assign_novice_badge
+    unless @task.project.mentee.badges.novice.any?
+       @task.project.mentee.badges << Badge.novice
+    end
+  end
+
+  def unassign_novice_badge
+    unless @task.project.mentee.badges.novice.any?
+       @task.project.mentee.badges.delete(Badge.novice)
+    end
+  end
+
 end
