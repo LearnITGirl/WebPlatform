@@ -52,7 +52,25 @@ class OrganisersController < ApplicationController
     @projects = User.where("is_missing = (?) OR last_activity_at is null or last_activity_at <= (?)", true, 15.days.ago).map{|user| user.project}.uniq.compact
   end
 
+  def award_badges
+    @projects = Project.where.not(mentee_id: Badge.visionary.joins(:users).uniq.pluck("users.id"))
+  end
+
+  def award_badges_update
+    @project = Project.find(params[:id])
+    assign_visionary_badge
+    redirect_to award_badges_organisers_path
+  end
+
+
   private
+
+  def assign_visionary_badge
+      unless @project.mentee.badges.visionary.any?
+        @project.mentee.badges << Badge.visionary
+      end
+  end
+
 
   def display_organisers
     @organisers = User.where(role: 1, organiser_token:nil)

@@ -3,14 +3,14 @@
 
 = link_to "Back to All projects", dashboard_organisers_path
 .row
-  .col-xs-12
+  .col-xs-30
     .table-responsive
       table.table.table-striped
         thead
           tr
             th.col-md-1 #
             th.col-md-2 Mentee
-            th.col-md-2 Project Description
+            th.col-md-100 Project Description
             th.col-md-6 
         tbody
         - if @projects != nil
@@ -23,5 +23,7 @@
               td
                 = project.try(:description)
               td
-                =  button_to "Award Visionary Badge", award_badges_path, data: {confirm: "Are you sure you want to award mentee badge?"}, method: :post, class: "btn btn-pink", params: {proj_id: project.id}
-
+                =  button_to "Award Visionary Badge", award_badges_update_organisers_path, data: {confirm: "Are you sure you want to award mentee badge?"}, method: :post, action: :award_badges_update, controller:  "organisers", class: "btn btn-pink", params: {id: project.id}
+        - else
+          h3.green-text
+            | Visionary badges awarded to all mentees
