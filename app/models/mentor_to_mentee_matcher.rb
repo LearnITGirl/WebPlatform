@@ -14,7 +14,7 @@ class MentorToMenteeMatcher
       languages = count_languages
       languages.each do |language|
         if mentor.programming_languages.pluck(:slug).include?(language[:slug])
-          break unless mentees(language, mentor.mentee_level, mentor.country).each do |mentee|
+          break unless mentees(language, mentor.country).each do |mentee|
             if !with_time_zone || (timezone_difference(mentor.time_zone, mentee.time_zone) <= 2)
               ApplicationMatch.create!(mentor_application_id: mentor.id, mentee_application_id: mentee.id)
               break
@@ -41,26 +41,14 @@ class MentorToMenteeMatcher
         .order("evaluations.score DESC")
   end
 
-  def mentees(language, level, country)
+  def mentees(language, country)
     mentees = MenteeApplication.evaluated.where("evaluations.score >= ?", 10)
                                .joins(:programming_language)
                                .where(programming_languages: {slug: language[:slug].downcase})
                                .order("evaluations.score DESC")
                                .where.not(id: ApplicationMatch.pluck(:mentee_application_id))
-                               .where(programming_level: experience(level))
 
     mentees.where.not(country: country) + mentees.where(country: country) 
-  end
-
-  def experience(levels)
-    case levels
-    when ["beginners", "with experience"]
-      return ["beginner", "medium", "advanced"]
-    when ["with experience"]
-      return ["medium", "advanced"]
-    when ["beginners"]
-      return ["beginner", "medium"]
-    end
   end
 
   def timezone_difference(timezone1, timezone2)
