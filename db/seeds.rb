@@ -144,7 +144,7 @@ EmailTemplate.create(
   body: "Dear %{first_name},\r\n\r\nWe are happy to have had you in the program and we are very proud of the effort you have made to help your mentee. Congratulations on passing the program!\r\n\r\nWe will be issuing diplomas for each graduated mentee and mentors, through our partners, <a href=\"https://www.accredible.com/\" target=\"_blank\">Accredible</a>.  Expect to receive your diploma on this email in the following weeks. \r\n\r\nWe hope you had a wonderful experience with us! \r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
 )
 
-=end
+
 ProgrammingLanguage.find_or_create_by(name: "C", slug: "c")
 ProgrammingLanguage.find_or_create_by(name: "C++", slug: "c_plus_plus")
 ProgrammingLanguage.find_or_create_by(name: "Java", slug: "java")
@@ -171,4 +171,5 @@ Badge.create(name: 7, image: "badges/timekeeper.png", description: "Badge awarde
 Badge.create(name: 8, image: "badges/novice.png", description: "Badge awarded when mentee completes first task")
 Badge.create(name: 9, image: "badges/perfectionist.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
 Badge.create(name: 10, image: "badges/coder.png", description: "Badge awarded when mentee creates her first github commit")
+=end
 Badge.create(name: 11, image: "badges/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")

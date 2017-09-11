@@ -52,7 +52,6 @@ class OrganisersController < ApplicationController
     @projects = User.where("is_missing = (?) OR last_activity_at is null or last_activity_at <= (?)", true, 15.days.ago).map{|user| user.project}.uniq.compact
   end
 
-
   private
 
   def display_organisers
