@@ -13,15 +13,14 @@ Webplatform::Application.routes.draw do
     collection do
       get :dashboard
       get :problematic_projects
-      get :award_badges
-      post :award_badges_update
     end
   end
 
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
-
+  resources :award_badges, only: [:index, :create, :update]
+  
   resource :user_sessions, only: [:create]
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
