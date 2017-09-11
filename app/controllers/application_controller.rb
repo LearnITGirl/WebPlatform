@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_edition
 
   def current_edition
-    Edition.find_by(name: "second")
+    @current_edition ||= Edition.last
   end
 
   def get_user_home_page

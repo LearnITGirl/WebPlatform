@@ -45,6 +45,8 @@ gem 'spreadsheet'
 gem 'react-rails'
 gem 'react_component'
 
+gem 'graphql-client', '~> 0.8.6'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'letter_opener'

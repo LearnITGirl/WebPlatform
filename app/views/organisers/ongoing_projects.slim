@@ -16,8 +16,9 @@
             th.col-xs-1 #
             th.col-xs-3 Mentee
             th.col-xs-3 Mentor
-            th.col-xs-3 Project
+            th.col-xs-2 Project
             th.col-xs-1 GitHub Link
+            th.col-xs-1 Latest commit
         tbody
           - @projects.order(:id).each_with_index do |project, index|
             tr
@@ -31,3 +32,4 @@
                 - if project.github_link.present?
                  = link_to url_with_protocol(project.github_link), target: "_blank", class: "green-text github-link-big" do
                    i.fa.fa-github
+              td = project.last_commit&.strftime("%d/%m/%y")
