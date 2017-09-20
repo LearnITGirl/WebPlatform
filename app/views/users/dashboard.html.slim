@@ -46,7 +46,7 @@
       .col-xs-12
         - current_user.badges.each do |badge|
           .col-xs-4
-            = image_tag asset_path(badge.thumbnail), class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", badge: asset_path(badge.image), description: badge.description}
+            = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", badge: asset_path(badge.image), description: badge.description}
         = render partial: 'badges/badge_info'
 
 - if first_month? && not_missing_yet?(@partner)
