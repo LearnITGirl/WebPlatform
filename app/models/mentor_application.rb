@@ -37,6 +37,10 @@ class MentorApplication < ActiveRecord::Base
     rejected.where(results_send_at: nil) + not_enough_points.where(results_send_at: nil) + done.where(results_send_at: nil, state: [1, 2])
   end
 
+  def self.left_for_evaluation
+    active.not_evaluated.know_english.have_time_to_learn.count + skipped.count
+  end
+
   def evaluation_score
     percentage = ((evaluations.sum(:score)/evaluations.size)/80)*100
     "#{percentage.to_f.round(1)}%"

@@ -1,6 +1,7 @@
 class MentorToMenteeMatchersController < ApplicationController
   def index
     locals={
+      all_applications_evaluated: all_applications_evaluated?,
       matched_paires: ApplicationMatch.all.order("created_at DESC")
     }
 
@@ -23,5 +24,11 @@ class MentorToMenteeMatchersController < ApplicationController
     respond_to do |format|
       format.json { render json: {number: number.abs}, status: :ok }
     end
+  end
+
+  private
+
+  def all_applications_evaluated?
+    (MenteeApplication.left_for_evaluation + MentorApplication.left_for_evaluation) == 0
   end
 end

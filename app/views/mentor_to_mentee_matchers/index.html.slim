@@ -2,10 +2,11 @@
   h1.text-center.green-text Mentors and Mentees pairs
 .row
   .col-xs-4.col-xs-offset-4.text-center
-    = form_for(:match, remote:true, url: { action: 'match'}, html: {id: 'match-form'}) do |f|
-      = f.submit 'Match!', class: 'btn btn-pink', data: { disable_with: "Matching in progress..." }
-      .row
-        .col-xs-12.text-center.info
+    - if all_applications_evaluated
+      = form_for(:match, remote:true, url: { action: 'match'}, html: {id: 'match-form'}) do |f|
+        = f.submit 'Match!', class: 'btn btn-pink', data: { disable_with: "Matching in progress..." }
+        .row
+          .col-xs-12.text-center.info
 br
 .row
   .col-xs-12.text-center

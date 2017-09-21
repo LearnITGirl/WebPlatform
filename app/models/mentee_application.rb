@@ -38,6 +38,10 @@ class MenteeApplication < ActiveRecord::Base
       .order("evaluations.score DESC")
   end
 
+  def self.left_for_evaluation
+    active.not_evaluated.know_english.have_time_to_learn.count + skipped.count
+  end
+
   def evaluation_score
     percentage = ((evaluations.sum(:score)/evaluations.size)/20)*100
     "#{percentage.to_f.round(1)}%"
