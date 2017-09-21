@@ -49,4 +49,10 @@ class ApplicationController < ActionController::Base
       current_edition.weeks.find_by(start: (Time.zone.now).beginning_of_week)
     end
   end
+
+  def registration_open?
+    unless current_edition.registration_closed_at && current_edition.registration_closed_at > DateTime.now
+      redirect_to root_path, alert: "Registration is closed for this edition!"
+    end
+  end
 end
