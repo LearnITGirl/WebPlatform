@@ -1,8 +1,11 @@
 #badge-info.modal.fade role="dialog" tabindex="-1"
   .modal-dialog
     .modal-content
+      .modal-header
+        h3.modal-title.litg-green
       .modal-body
-        = image_tag asset_path(""), class: "show-badge"
-        .p#description
+        .text-center
+          img.show-badge
+        .badge-description
       .modal-footer
         button.btn.btn-danger type='button' data-dismiss='modal' Close

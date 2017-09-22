@@ -29,8 +29,13 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
   .btn.missing {margin-right: 0;}
 
   .badge-thumbnail {
-    height: 50px;
-    width: auto;
+    height: 55px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      height: 65px;
+    }
   }
 
   .badge-thumbnail:hover {
@@ -39,10 +44,13 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
   }
 
   .show-badge {
-    display: inline-block;
-    width: 100%;
-    max-width: 100px;
-    margin-left: 3px;
+    height: 100px;
+  }
+
+  .badge-description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
