@@ -254,3 +254,15 @@ header .container-fluid nav.navbar li.dropdown {
 .modal-content {
   border: 5px solid $litg-green;
 }
+
+#badge-info {
+  .show-badge {
+    height: 100px;
+  }
+
+  .badge-description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
