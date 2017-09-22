@@ -17,6 +17,7 @@ class MenteeApplication < ActiveRecord::Base
   scope :have_time_to_learn, -> { where("time_availability >= ?", 3) }
   scope :no_evaluator_assigned, -> { where(evaluator_id: nil) }
   scope :pending, -> { where(state: 1) }
+  scope :not_male, -> { where.not(gender: "male")}
 
   before_save :set_edition
 
@@ -39,7 +40,7 @@ class MenteeApplication < ActiveRecord::Base
   end
 
   def self.left_for_evaluation
-    active.not_evaluated.know_english.have_time_to_learn.count + skipped.count
+    active.not_evaluated.not_male.know_english.have_time_to_learn.count + skipped.count
   end
 
   def evaluation_score

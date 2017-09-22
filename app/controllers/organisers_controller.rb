@@ -3,7 +3,8 @@ class OrganisersController < ApplicationController
 
   def dashboard
     @mentees = MenteeApplication.where.not(email: current_user.email)
-                                .active.not_evaluated.know_english.have_time_to_learn
+                                .active.not_evaluated.know_english
+                                .have_time_to_learn.not_male
     @mentors = MentorApplication.where.not(email: current_user.email)
                                 .active.not_evaluated.know_english.have_time_to_learn
     render current_dashboard_view
