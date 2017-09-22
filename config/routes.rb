@@ -13,6 +13,7 @@ Webplatform::Application.routes.draw do
     collection do
       get :dashboard
       get :problematic_projects
+      resources :skipped_applications, only: [:index]
     end
   end
 
