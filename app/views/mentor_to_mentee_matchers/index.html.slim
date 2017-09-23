@@ -29,16 +29,18 @@ br
     .col-xs-8.col-xs-offset-2
       hr
     p.col-xs-6.text-right
-      strong
-        = pair.mentor_application.first_name
-        |&nbsp;
-        = pair.mentor_application.last_name
+      a href="#{ mentor_profile_path(id: pair.mentor_application.user.id ) }"
+        strong
+          = pair.mentor_application.first_name
+          |&nbsp;
+          = pair.mentor_application.last_name
       br
       = pair.mentor_application.programming_languages.pluck(:name).join(', ')
     p.col-xs-6.text-left
-      strong
-        = pair.mentee_application.first_name
-        |&nbsp;
-        = pair.mentee_application.last_name
+      a href="#{ mentee_profile_path(id: pair.mentee_application.user.id ) }"
+        strong
+          = pair.mentee_application.first_name
+          |&nbsp;
+          = pair.mentee_application.last_name
       br
       | #{pair.mentee_application.programming_language.name.titleize}

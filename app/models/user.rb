@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_one :mentor_midterm_evaluation, foreign_key: "mentor_id", class_name: "MentorMidtermEvaluation"
 
   belongs_to :edition
+  belongs_to :mentor_application
+  belongs_to :mentee_application
 
   accepts_nested_attributes_for :mentee_project
   accepts_nested_attributes_for :mentor_project

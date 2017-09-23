@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923192121) do
+ActiveRecord::Schema.define(version: 20170923203720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,10 +265,14 @@ ActiveRecord::Schema.define(version: 20170923192121) do
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
     t.date     "send_warning_email_after"
+    t.integer  "mentee_application_id"
+    t.integer  "mentor_application_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
+  add_index "users", ["mentee_application_id"], name: "index_users_on_mentee_application_id", using: :btree
+  add_index "users", ["mentor_application_id"], name: "index_users_on_mentor_application_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
   create_table "weeks", force: :cascade do |t|
