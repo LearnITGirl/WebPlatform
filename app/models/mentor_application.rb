@@ -3,9 +3,15 @@ class MentorApplication < ActiveRecord::Base
   has_and_belongs_to_many :programming_languages, uniq: true
   belongs_to :evaluator, class_name: 'User', foreign_key: "evaluator_id"
   belongs_to :edition
+  has_one :user
 
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
-  enum state: {pending: 1, skipped: 2, rejected: 3, evaluated: 4}
+  enum state: { pending: 1,
+                skipped: 2,
+                rejected: 3,
+                evaluated: 4,
+                waiting_for_rematch: 5,
+                rematched: 6 }
 
   scope :not_rejected, -> { where.not(state: 3).where.not(state: 'rejected') }
   scope :not_evaluated, -> { not_rejected.eager_load(:evaluations).where('evaluations IS NULL') }
