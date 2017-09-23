@@ -13,7 +13,8 @@ class ProjectSetup
       language = @mentee_application.programming_language
 
       if Project.where(mentor_id: mentor.id, mentee_id: mentee.id).empty?
-        Project.create!(language: language,
+        Project.create!(language: language.name,
+                        programming_language_id: language.id,
                         mentor: mentor,
                         mentee: mentee,
                         description: '',
