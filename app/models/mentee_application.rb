@@ -13,7 +13,8 @@ class MenteeApplication < ActiveRecord::Base
                 rejected: 3,
                 evaluated: 4,
                 waiting_for_rematch: 5,
-                rematched: 6 }
+                rematched: 6,
+                user_resigned: 7 }
 
   scope :not_rejected, -> { where.not(state: 3).where.not(state: 'rejected') }
   scope :not_evaluated, -> { not_rejected.eager_load(:evaluations).where('evaluations IS NULL') }

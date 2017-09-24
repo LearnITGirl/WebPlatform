@@ -3,15 +3,15 @@
     = image_tag display_avatar(@user), alt: "Mentee's avatar", class: "profile-icon"
   .col-md-8.col-sm-9.col-xs-7
       h3.green-text
-       = @user.full_name
-       - if @user == current_user
-         .pull-right
-           = link_to @edit_url do
-             .fa.fa-pencil
-       - if current_user.role == "organizer" && @user.is_missing
-         .pull-right.red-text
-           | Abandoned since
-           = @user.missing_since.strftime("%B %d, %Y")
+        = @user.full_name
+        - if @user == current_user
+          .pull-right
+            = link_to @edit_url do
+              .fa.fa-pencil
+        - if current_user.role == "organizer" && @user.is_missing
+          .pull-right.red-text
+            | Abandoned since
+            = @user.missing_since.strftime("%B %d, %Y")
       p
         = "From: #{Carmen::Country.coded(@user.country)}"
       p
@@ -53,3 +53,27 @@
           = f.label "User unavailable until:"
           = f.text_field :warning_email_date, type: :date, class: "date-picker form-control", value: @user.send_warning_email_after
         = f.submit "Save new date", class: "btn btn-pink"
+
+- if current_user.role == "organizer"
+  .row
+    .co-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
+      br
+      strong User Resigned: 
+      a.text-center href="javascript:$('#report-user-resign-modal').modal();" report
+
+#report-user-resign-modal.modal.fade role="dialog" tabindex="-1" 
+  .modal-dialog role="document"
+    .modal-content
+      = form_tag report_resignation_user_path(@user), method: :put
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Notify about user resignation
+      .modal-body
+        div By continuing, you will remove the user and project. You will also set this user partner on the waiting list for re-match
+        br
+        div Reason of resignation:
+        = text_area_tag :reason, nil, rows: 5, style: "min-width: 100%"
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+        = submit_tag "Save changes", class: "button btn btn-primary" 
