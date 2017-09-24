@@ -22,6 +22,8 @@ class MentorToMenteeMatcher
     rematch_for_waiting_mentees(with_time_zone: true)
     rematch_for_waiting_mentees(with_time_zone: false)
 
+    @mentor_evaluation_maximum_score = 40
+
     match(with_time_zone: true)
     match(with_time_zone: false)
   end
