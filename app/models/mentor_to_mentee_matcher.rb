@@ -1,6 +1,9 @@
 class MentorToMenteeMatcher
+  attr_reader :mentor_evaluation_maximum_score
 
   def run
+    @mentor_evaluation_maximum_score = 40
+
     match_algorithm(with_time_zone: true)
     match_algorithm(with_time_zone: false)
 
@@ -8,6 +11,8 @@ class MentorToMenteeMatcher
   end
 
   def rematch
+    @mentor_evaluation_maximum_score = 30
+
     rematch_for_waiting_mentors_and_mentees(with_time_zone: true)
     rematch_for_waiting_mentors_and_mentees(with_time_zone: false)
 
@@ -66,7 +71,7 @@ class MentorToMenteeMatcher
   end
 
   def all_mentors
-    MentorApplication.evaluated.where("evaluations.score >= ?", 40)
+    MentorApplication.evaluated.where("evaluations.score >= ?", mentor_evaluation_maximum_score)
       .where.not(id: ApplicationMatch.pluck(:mentor_application_id))
       .order("evaluations.score DESC")
       .where.not(state: MentorApplication.states[:user_resigned])
@@ -87,7 +92,7 @@ class MentorToMenteeMatcher
 
   def all_ordered_mentees(language, country)
     mentees = all_mentees(language, country)
-    mentees.where.not(country: country) + mentees.where(country: country) 
+    mentees.where.not(country: country) + mentees.where(country: country)
   end
 
   def mentees_waiting_for_rematch(language, country)
