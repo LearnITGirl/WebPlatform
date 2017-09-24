@@ -41,31 +41,13 @@
       = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks}
   .col-md-3.right-left-text
     h3.green-text
-      | Badges:
+      | Your Badges:
     .row
       - current_user.badges.each do |badge|
         .col-xs-4
-         = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+         = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
       = render partial: 'badges/badge_info'
 
 - if first_month? && not_missing_yet?(@partner)
   .pull-right
     = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor, class: "btn btn-pink missing"
-
-
-javascript:
-  window.onload = function(event){ showBadgeInfo(); };
-
-  function showBadgeInfo() {
-    $('.badge-thumbnail').on('click', function() {
-      var src = $(this).attr("data-src")
-      var description = $(this).attr("data-description")
-      var name = $(this).attr("data-name")
-      $('#badge-info').on('show.bs.modal', function () {
-        $(".show-badge").attr("src", src);
-        $(".modal-header .modal-title").text(name);
-        $(".badge-description").text(description)
-      });
-    });
-  }
-

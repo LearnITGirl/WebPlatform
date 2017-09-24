@@ -1,21 +1,5 @@
 .row.top-space-40
   - @badges.each do |badge|
     .col-md-3.col-sm-4.col-xs-6
-      = image_tag asset_path(badge.image), class: "badge-icon", data: {toggle: 'modal', target: "#badge-info", onclick: "showBadgeInfo(this);", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+      = image_tag asset_path(badge.image), class: "badge-icon badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
   = render partial: 'badge_info'
-
-javascript:
-  window.onload = function(event){ showBadgeInfo(); };
-
-  function showBadgeInfo() {
-    $('.badge-icon').on('click', function() {
-      var src = $(this).attr("data-src")
-      var description = $(this).attr("data-description")
-      var name = $(this).attr("data-name")
-      $('#badge-info').on('show.bs.modal', function () {
-        $(".show-badge").attr("src", src);
-        $(".modal-header .modal-title").text(name);
-        $(".badge-description").text(description)
-      });
-    });
-  }
