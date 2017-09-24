@@ -1,19 +1,62 @@
 .page-header
   h1.text-center.green-text Mentors and Mentees pairs
 
-- if all_applications_evaluated
+- if all_applications_evaluated && matched_paires.empty?
   .row
     .col-xs-4.col-xs-offset-4.text-center
       = form_for(:match, remote:true, url: { action: 'match'}, html: {id: 'match-form'}) do |f|
         = f.submit 'Match!', class: 'btn btn-pink', data: { disable_with: "Matching in progress..." }
         .row
           .col-xs-12.text-center.info
-- else
+- elsif !all_applications_evaluated
   h3 If you don't see matching button, that means there are still applications to evaluate. Check those pages:
   h4.text-center
     = link_to "Dashboard", dashboard_organisers_url
   h4.text-center
     = link_to "Skipped Applications", skipped_applications_url
+
+- if mentors_waiting_for_re_match.present? || mentees_waiting_for_re_match.present?
+  br
+  .row
+    .col-xs-12.text-center
+      h2
+        div
+          |Mentor - Mentee
+      h4
+        div
+          | #{mentors_waiting_for_re_match.count + mentees_waiting_for_re_match.count} 
+          | waiting for re-match
+
+  - mentors_waiting_for_re_match.each do |mentor_application|
+    .row
+      .col-xs-8.col-xs-offset-2
+        hr
+      p.col-xs-6.text-right
+        strong
+          = mentor_application.first_name
+          |&nbsp;
+          = mentor_application.last_name
+        br
+        = mentor_application.programming_languages.pluck(:name).join(', ')
+      p.col-xs-6.text-left
+        span ----
+
+  - mentees_waiting_for_re_match.each do |mentee_application|
+    .row
+      .col-xs-8.col-xs-offset-2
+        hr
+      p.col-xs-6.text-right
+        span ----
+      p.col-xs-6.text-left
+        strong
+          = mentee_application.first_name
+          |&nbsp;
+          = mentee_application.last_name
+        br
+        = mentee_application.programming_language.name
+
+
+
 br
 .row
   .col-xs-12.text-center

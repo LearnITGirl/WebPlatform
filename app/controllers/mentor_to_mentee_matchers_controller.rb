@@ -2,7 +2,9 @@ class MentorToMenteeMatchersController < ApplicationController
   def index
     locals={
       all_applications_evaluated: all_applications_evaluated?,
-      matched_paires: ApplicationMatch.all.order("created_at DESC")
+      matched_paires: ApplicationMatch.all.order("created_at DESC"),
+      mentors_waiting_for_re_match: MentorApplication.where(state: 5),
+      mentees_waiting_for_re_match: MenteeApplication.where(state: 5),
     }
 
     render 'index', locals: locals
