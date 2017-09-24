@@ -26,6 +26,10 @@
         div
           | #{mentors_waiting_for_re_match.count + mentees_waiting_for_re_match.count} 
           | waiting for re-match
+      = form_for(:rematch, remote:true, url: { action: 'rematch'}, html: {id: 'match-form'}) do |f|
+        = f.submit 'Re-match!', class: 'btn btn-pink', data: { disable_with: "Re-matching in progress..." }
+        .row
+          .col-xs-12.text-center.info
 
   - mentors_waiting_for_re_match.each do |mentor_application|
     .row

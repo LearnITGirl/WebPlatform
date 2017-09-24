@@ -82,6 +82,7 @@ Webplatform::Application.routes.draw do
   resources :mentor_to_mentee_matchers do
     collection do
       post :match
+      post :rematch
     end
   end
 
