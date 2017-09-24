@@ -24,26 +24,29 @@ class MentorToMenteeMatchersController < ApplicationController
   end
 
   def rematch
+    pairs_number = ApplicationMatch.all.count
+
     ActiveRecord::Base.transaction do
       MentorToMenteeMatcher.new.rematch
       create_projects
 
-      MenteeApplication.where(state: 5).each do |application|
+      MenteeApplication.waiting_for_rematch.each do |application|
         if application.user.project.present?
           application.update_attributes(state: :rematched)
         end
       end
 
-      MentorApplication.where(state: 5).each do |application|
+      MentorApplication.waiting_for_rematch.each do |application|
         if application.user.project.present?
           application.update_attributes(state: :rematched)
         end
       end
-
     end
 
+    pairs_number = ApplicationMatch.all.count - pairs_number
+
     respond_to do |format|
-      format.json { render json: {}, status: :ok }
+      format.json { render json: { number: pairs_number }, status: :ok }
     end
   end
 

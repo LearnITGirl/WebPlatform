@@ -67,13 +67,13 @@ class MentorToMenteeMatcher
 
   def all_mentors
     MentorApplication.evaluated.where("evaluations.score >= ?", 40)
-        .where.not(id: ApplicationMatch.pluck(:mentor_application_id))
-        .order("evaluations.score DESC")
-        .where.not(state: 7)
+      .where.not(id: ApplicationMatch.pluck(:mentor_application_id))
+      .order("evaluations.score DESC")
+      .where.not(state: MentorApplication.states[:user_resigned])
   end
 
   def mentors_waiting_for_rematch
-    all_mentors.where(state: 5)
+    all_mentors.waiting_for_rematch
   end
 
   def all_mentees(language, country)
@@ -82,7 +82,7 @@ class MentorToMenteeMatcher
       .where(programming_languages: {slug: language[:slug].downcase})
       .order("evaluations.score DESC")
       .where.not(id: ApplicationMatch.pluck(:mentee_application_id))
-      .where.not(state: 7)
+      .where.not(state: MenteeApplication.states[:user_resigned])
   end
 
   def all_ordered_mentees(language, country)
@@ -91,7 +91,7 @@ class MentorToMenteeMatcher
   end
 
   def mentees_waiting_for_rematch(language, country)
-    mentees = all_mentees(language, country).where(state: 5)
+    mentees = all_mentees(language, country).waiting_for_rematch
     mentees.where.not(country: country) + mentees.where(country: country) 
   end
 
