@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:session][:email].downcase, params[:session][:password])
-      redirect_to user_dashboard_path
+      check_partner
     else
       flash.now[:alert] = "Email and password don't match"
       render action: 'new'
