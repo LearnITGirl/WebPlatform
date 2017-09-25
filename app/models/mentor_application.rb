@@ -40,7 +40,7 @@ class MentorApplication < ActiveRecord::Base
   end
 
   def self.all_rejected_candidates
-    rejected.where(results_send_at: nil) + not_enough_points.where(results_send_at: nil) + done.where(results_send_at: nil, state: [1, 2])
+    rejected.where(results_send_at: nil) + not_enough_points.where(results_send_at: nil) + where(results_send_at: nil, state: [1, 2])
   end
 
   def self.left_for_evaluation
