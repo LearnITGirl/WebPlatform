@@ -45,6 +45,7 @@
       .row
         .col-xs-12.normal-form
           = f.fields_for @project_symbol do |proj|
+            = proj.hidden_field :current_user_role, value: current_user.role
             .ordinary-field
               = proj.text_field :title, class: "form-control", placeholder: "Title"
             .ordinary-field

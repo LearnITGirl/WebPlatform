@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  attr_accessor :current_user_role
+
   belongs_to :mentor, class_name: 'User', foreign_key: "mentor_id"
   belongs_to :mentee, class_name: 'User', foreign_key: "mentee_id"
   has_many :tasks, dependent: :destroy
@@ -12,11 +14,11 @@ class Project < ActiveRecord::Base
   validates :mentee_id, presence: true, on: :update,
   if: -> {!mentor_evaluation || !mentee_feedback || !mentee_project_status || !github_repo_status}
 
-  validates :title, :language, :description, :github_link, presence: true, on: :update,
+  validates :title, :language, :description,  presence: true, on: :update,
   unless: "midterm_evaluation_pending?"
 
-  validates :github_link, format: { with: GITHUB_REGEXP }, on: :update,
-  unless: "midterm_evaluation_pending?"
+  validates :github_link, format: { with: GITHUB_REGEXP }, presence: true, on: :update,
+  if: "validate_github?"
 
   validates :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status, presence: true,
   if: "midterm_evaluation_pending?"
@@ -109,5 +111,10 @@ class Project < ActiveRecord::Base
       end
     end
     pair_matched_at
+  end
+
+
+  def validate_github?
+    (github_link.present? && github_link_changed?) || (!current_user_role && !midterm_evaluation_pending?)
   end
 end
