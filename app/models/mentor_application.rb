@@ -56,4 +56,14 @@ class MentorApplication < ActiveRecord::Base
     return if self.edition.present?
     self.edition = Edition.where(name: ENV["ACTUAL_EDITION"]).first
   end
+
+  def status
+    if user
+      "accepted"
+    elsif MentorApplication.waiting_list.find_by_id(id)
+      "waiting list"
+    else
+      "rejected"
+    end
+  end
 end
