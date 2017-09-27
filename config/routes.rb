@@ -38,6 +38,12 @@ Webplatform::Application.routes.draw do
     get "learning_materials/#{language}" => "learning_materials##{language}", as: "#{language}_learning_materials"
   end
 
+  resources :users, only: [] do
+    member do
+      put :report_resignation
+    end
+  end
+
   resources :mentee_profiles, only: [:show, :edit, :update] do
     collection do
       get :dashboard
@@ -76,11 +82,7 @@ Webplatform::Application.routes.draw do
   resources :mentor_to_mentee_matchers do
     collection do
       post :match
-    end
-    member do
-      put :accept_pair
-      put :reject_mentee
-      put :reject_mentor
+      post :rematch
     end
   end
 

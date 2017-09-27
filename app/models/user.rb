@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
     role == "mentee" ? mentee_final_survey : mentor_final_survey
   end
 
+  def application
+    role == "mentee" ? mentee_application : mentor_application
+  end
+
   def self.mentees_missing_on_website
     mentees_missing = User.mentee.where("last_activity_at is null or last_activity_at <= (?)", 15.days.ago)
     mentees_missing = mentees_missing.where.not("is_missing = (?) OR (send_warning_email_after is not null AND send_warning_email_after > (?))", true, Date.today)
