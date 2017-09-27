@@ -62,7 +62,7 @@ class MenteeApplication < ActiveRecord::Base
   def status
     if user
       "accepted"
-    elsif MentorApplication.waiting_list.find_by_id(id)
+    elsif MenteeApplication.waiting_list.find_by_id(id)
       "waiting list"
     else
       "rejected"
