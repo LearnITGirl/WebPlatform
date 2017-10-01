@@ -1,0 +1,42 @@
+.page-header
+  h1.text-center.green-text Skipped Applications
+
+.page-header
+  h2.text-center.green-text Mentee Applications
+
+.row
+  .col-xs-12
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
+          tr
+            th Link to Application
+        tbody
+          - if mentees.any?
+            - mentees.each do |mentee|
+              tr
+                td
+                  = link_to mentee_evaluation_url(mentee), mentee_evaluation_path(mentee)
+          - else
+              tr
+                td No skipped mentee applications
+
+.page-header.top-space-100
+  h2.text-center.green-text Mentor Applications
+
+.row
+  .col-xs-12
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
+          tr
+            th Link to Application
+        tbody
+          - if mentors.any?
+            - mentors.each do |mentor|
+              tr
+                td
+                  = link_to mentor_evaluation_url(mentor), mentor_evaluation_path(mentor)
+          - else
+              tr
+                td No skipped mentor applications

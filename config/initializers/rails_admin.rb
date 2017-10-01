@@ -18,6 +18,24 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model MenteeApplication do
+    list do
+      field :first_name
+      field :last_name
+      field :email
+      field :status
+    end
+  end
+
+  config.model MentorApplication do
+    list do
+      field :first_name
+      field :last_name
+      field :email
+      field :status
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

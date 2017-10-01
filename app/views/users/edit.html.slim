@@ -45,6 +45,7 @@
       .row
         .col-xs-12.normal-form
           = f.fields_for @project_symbol do |proj|
+            = proj.hidden_field :current_user_role, value: current_user.role
             .ordinary-field
               = proj.text_field :title, class: "form-control", placeholder: "Title"
             .ordinary-field
@@ -56,7 +57,7 @@
               .col-md-10.col-sm-9
                 = proj.text_field :language, class: "form-control", disabled: true
             .row
-              label.col-md-2.col-sm-3.control-label Github link:
+              label.col-md-2.col-sm-3.control-label HTTPS link to your GitHub project (not your profile):
               .col-md-10.col-sm-9
                 = proj.text_field :github_link, class: "form-control", placeholder: "GitHub link"
       .pull-right

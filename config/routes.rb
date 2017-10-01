@@ -13,6 +13,7 @@ Webplatform::Application.routes.draw do
     collection do
       get :dashboard
       get :problematic_projects
+      resources :skipped_applications, only: [:index]
     end
   end
 
@@ -36,6 +37,12 @@ Webplatform::Application.routes.draw do
   (%w'git ruby php java android python c_plus_plus html_css_javascript
    r c sql sqift mongo_db c_sharp vb_dot_net swift').each do |language|
     get "learning_materials/#{language}" => "learning_materials##{language}", as: "#{language}_learning_materials"
+  end
+
+  resources :users, only: [] do
+    member do
+      put :report_resignation
+    end
   end
 
   resources :mentee_profiles, only: [:show, :edit, :update] do
@@ -76,11 +83,7 @@ Webplatform::Application.routes.draw do
   resources :mentor_to_mentee_matchers do
     collection do
       post :match
-    end
-    member do
-      put :accept_pair
-      put :reject_mentee
-      put :reject_mentor
+      post :rematch
     end
   end
 

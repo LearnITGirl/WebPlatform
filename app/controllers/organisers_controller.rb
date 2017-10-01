@@ -3,7 +3,8 @@ class OrganisersController < ApplicationController
 
   def dashboard
     @mentees = MenteeApplication.where.not(email: current_user.email)
-                                .active.not_evaluated.know_english.have_time_to_learn
+                                .active.not_evaluated.know_english
+                                .have_time_to_learn.not_male
     @mentors = MentorApplication.where.not(email: current_user.email)
                                 .active.not_evaluated.know_english.have_time_to_learn
     render current_dashboard_view
@@ -70,11 +71,11 @@ class OrganisersController < ApplicationController
     if (Date.today > current_edition.end_date)
       @projects = Project.all
       'final_project_evaluation'
-    elsif (@mentees.length > 0 or @mentors.length > 0)
-     'evaluate_projects'
-    elsif (@mentees.length <= 0 and @mentors.length <= 0)
+    elsif (@mentees.length <= 0 and @mentors.length <= 0 and Date.today >= current_edition.start_date)
       @projects = Project.all
       'ongoing_projects'
+    else
+      'evaluate_projects'
     end
   end
 

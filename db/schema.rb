@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821033849) do
+ActiveRecord::Schema.define(version: 20170924003656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170821033849) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "name"
+    t.datetime "registration_started_at"
+    t.datetime "registration_closed_at"
   end
 
   create_table "email_templates", force: :cascade do |t|
@@ -117,6 +119,8 @@ ActiveRecord::Schema.define(version: 20170821033849) do
     t.integer  "programming_language_id"
     t.integer  "edition_id"
     t.datetime "confirmation_email_sent_at"
+    t.text     "resignation_reason"
+    t.text     "rematch_reason"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
@@ -168,6 +172,8 @@ ActiveRecord::Schema.define(version: 20170821033849) do
     t.string   "operating_system"
     t.integer  "edition_id"
     t.datetime "confirmation_email_sent_at"
+    t.text     "resignation_reason"
+    t.text     "rematch_reason"
   end
 
   create_table "mentor_applications_programming_languages", id: false, force: :cascade do |t|
@@ -221,6 +227,7 @@ ActiveRecord::Schema.define(version: 20170821033849) do
     t.integer  "github_repo_status"
     t.integer  "midterm_evaluation_status", default: 0
     t.datetime "last_commit"
+    t.integer  "programming_language_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -262,10 +269,14 @@ ActiveRecord::Schema.define(version: 20170821033849) do
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
     t.date     "send_warning_email_after"
+    t.integer  "mentee_application_id"
+    t.integer  "mentor_application_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
+  add_index "users", ["mentee_application_id"], name: "index_users_on_mentee_application_id", using: :btree
+  add_index "users", ["mentor_application_id"], name: "index_users_on_mentor_application_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
   create_table "weeks", force: :cascade do |t|

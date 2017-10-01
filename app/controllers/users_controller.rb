@@ -41,6 +41,15 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def report_resignation
+    authorized_user
+    user = User.find(params[:id])
+
+    UserResignation.new(user: user).proceed(reason: params[:reason])
+
+    redirect_to mentor_to_mentee_matchers_path
+  end
+
   private
 
   def user_params

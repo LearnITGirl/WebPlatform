@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        project:
+          attributes:
+            github_link:
+              invalid: "is invalid. Please provide link in the following format https://github.com/your_username/your_project"

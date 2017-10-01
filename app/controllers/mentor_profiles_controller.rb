@@ -17,7 +17,7 @@ class MentorProfilesController < UsersController
   def user_params
     params.require(:user).permit(
       :first_name, :last_name, :country, :program_country, :timezone, :avatar,
-      :mentor_project_attributes => [:id, :title,:description,:github_link]
+      :mentor_project_attributes => [:id, :title,:description,:github_link, :current_user_role]
     )
   end
 
