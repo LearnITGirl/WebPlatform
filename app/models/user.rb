@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
 
   enum role: {organizer: 1, mentee: 2, mentor: 3}
 
+  scope :participants, -> { where(role: [2, 3]) }
+
   validates :password, length: { minimum: 6 }, if: -> { password || password_confirmation }
   validates :password, confirmation: true, if: -> { password || password_confirmation }
   validates :password_confirmation, presence: true, if: -> { password || password_confirmation }

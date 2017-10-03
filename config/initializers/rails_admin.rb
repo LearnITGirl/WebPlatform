@@ -10,11 +10,18 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     list do
+      scopes [:participants]
       field :first_name
       field :last_name
       field :email
       field :country
       field :role
+      field :registration_token do
+        label "Registered"
+        pretty_value do
+          bindings[:object].registration_token.nil? ? "yes" : "no"
+        end
+      end
     end
   end
 
