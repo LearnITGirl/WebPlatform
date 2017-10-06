@@ -8,6 +8,11 @@ Then, you'll need to install gem dependencies:
 
     bundle install
 
+If you have any problem with `data-confirm-modal` try to manually install the gem:
+
+		gem install data-confirm-modal
+
+
 and setup database:
 
 * copy config/database_template.yml to config/database.yml and fill it in using your postgreSQL's credentials
