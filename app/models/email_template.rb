@@ -87,13 +87,13 @@ class EmailTemplate < ActiveRecord::Base
     when :mentors_whose_partners_have_resigned
       MentorApplication.waiting_for_rematch
     when :mentees_who_got_partners_after_rematching
-      MenteeApplication.rematched
+      User.mentee.where(mentee_application_id: MenteeApplication.rematched)
     when :mentors_who_got_partners_after_rematching
-      MentorApplication.rematched
+      User.mentor.where(mentor_application_id: MentorApplication.rematched)
     when :mentees_from_waiting_list_who_got_partners_after_rematching
-      MenteeApplication.rematched_from_waiting_list
+      User.mentee.where(mentee_application_id: MenteeApplication.rematched_from_waiting_list)
     when :mentors_from_waiting_list_who_got_partners_after_rematching
-      MentorApplication.rematched_from_waiting_list
+      User.mentor.where(mentor_application_id: MentorApplication.rematched_from_waiting_list)
     else
       User.none
     end
