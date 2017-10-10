@@ -49,7 +49,7 @@ RailsAdmin.config do |config|
     new
     show
     edit do
-      if( YAML.load(ENV["APPLICATION_EDITION_DISABLED"] || true) )
+      if (ENV["APPLICATION_EDITION_DISABLED"] || true)
         except ['MentorApplication', 'MenteeApplication']
       end
     end
