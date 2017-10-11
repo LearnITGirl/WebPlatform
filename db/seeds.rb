@@ -177,7 +177,7 @@ Badge.create(name: 10, image: "badges/coder.png", description: "Badge awarded wh
 Badge.create(name: 1, image: "badges/midterm.png", thumbnail: "badges/thumbnails/midterm.png", description: "Badge awarded when mentee completed midterm survey")
 Badge.create(name: 2, image: "badges/finalterm.png", thumbnail: "badges/thumbnails/finalterm.png", description: "Badge awarded when mentee completed final survey")
 Badge.create(name: 3, image: "badges/organized.png", thumbnail: "badges/thumbnails/organized.png", description: "Badge awarded when mentee enters roadmap")
-Badge.create(name: 4, image: "badges/ambitious.png", thumbnail: "badges/thumbnails/ambitious.png")
+Badge.create(name: 4, image: "badges/ambitious.png", thumbnail: "badges/thumbnails/ambitious.png", description: "Badge awarded after completing tasks")
 Badge.create(name: 5, image: "badges/energetic.png", thumbnail: "badges/thumbnails/energetic.png", description: "Badge awarded when mentee completes tasks from current and next weeks")
 Badge.create(name: 6, image: "badges/timekeeper.png", thumbnail: "badges/thumbnails/timekeeper.png",description: "Badge awarded when mentee completes all tasks for the current week")
 Badge.create(name: 7, image: "badges/novice.png", thumbnail: "badges/thumbnails/novice.png", description: "Badge awarded when mentee completes first task")

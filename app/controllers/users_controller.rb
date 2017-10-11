@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @partner = current_user.partner
     @week = find_week
     @tasks = @week.nil? ? @project.tasks.not_deleted : @project.week_tasks(@week.number).not_deleted
+    @new_badge = current_user.badges.merge(AssignedBadge.not_displayed).first if current_user.mentee?
   end
 
   def update
