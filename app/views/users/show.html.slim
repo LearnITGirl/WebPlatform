@@ -2,24 +2,25 @@
   .col-md-2.col-md-offset-2.col-sm-3.col-xs-5
     = image_tag display_avatar(@user), alt: "Mentee's avatar", class: "profile-icon"
   .col-md-8.col-sm-9.col-xs-7
-      h3.green-text
-        = @user.full_name
-        - if @user == current_user
-          .pull-right
-            = link_to @edit_url do
-              .fa.fa-pencil
-        - if current_user.role == "organizer" && @user.is_missing
-          .pull-right.red-text
-            | Abandoned since
-            = @user.missing_since.strftime("%B %d, %Y")
-      p
-        = "From: #{Carmen::Country.coded(@user.country)}"
-      p
-        = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
-      p
-        = "Current time zone: #{display_timezone(@user.timezone)}"
-      p
-        = @user.email
+    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge), name: "Congratulations - you got new badge!"}
+    h3.green-text
+      = @user.full_name
+      - if @user == current_user
+        .pull-right
+          = link_to @edit_url do
+            .fa.fa-pencil
+      - if current_user.role == "organizer" && @user.is_missing
+        .pull-right.red-text
+          | Abandoned since
+          = @user.missing_since.strftime("%B %d, %Y")
+    p
+      = "From: #{Carmen::Country.coded(@user.country)}"
+    p
+      = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
+    p
+      = "Current time zone: #{display_timezone(@user.timezone)}"
+    p
+      = @user.email
 
 .row.top-space-20
   .col-md-10.col-md-offset-2.col-xs-12
@@ -45,6 +46,7 @@
           | Missing since
           = @user.partner.missing_since.strftime("%B %d, %Y")
 
+= render partial: 'badges/badge_info'
 - if current_user.role == "organizer"
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12

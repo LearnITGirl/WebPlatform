@@ -39,5 +39,5 @@ Task =
 window.litg.Task = Task
 
 $ ->
-  if $('.task-form').length
+  if $('.task-form').length > 0
     Task.init()
