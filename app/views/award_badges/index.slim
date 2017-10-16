@@ -3,15 +3,15 @@
 
 = link_to "Back to All projects", dashboard_organisers_path
 .row
-  .col-xs-30
+  .col-xs-12
     .table-responsive
       table.table.table-striped
         thead
           tr
-            th.col-md-1.col-md-offset-2.col-sm-1.col-sm-offset-1.col-xs-1 #
-            th.col-md-2.col-md-offset-2.col-sm-2.col-sm-offset-1.col-xs-2 Mentee
-            th.col-md-100.col-md-offset-2.col-sm-100.col-sm-offset-1.col-xs-100 Project Description
-            th.col-md-6.col-md-offset-2.col-sm-6.col-sm-offset-1.col-xs-6 
+            th.col-xs-1 #
+            th.col-xs-3 Mentee
+            th.col-xs-6 Project Description
+            th.col-xs-2
         tbody
           - if @projects.any?
             - @projects.each_with_index do |project, index|
