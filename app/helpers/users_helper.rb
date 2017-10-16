@@ -7,4 +7,9 @@ module UsersHelper
   def first_month?
     edition_started? && (DateTime.now > current_edition.weeks.find_by(number: 4).end.end_of_day)
   end
+
+  def new_badge_description(badge)
+    return unless badge
+    "Your new badge is called #{badge.name.titleize}. #{badge.description}"
+  end
 end
