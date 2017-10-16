@@ -1,0 +1,29 @@
+.page-header
+  h2.text-center.green-text Award Badges
+
+= link_to "Back to All projects", dashboard_organisers_path
+.row
+  .col-xs-12
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th.col-xs-1 #
+            th.col-xs-3 Mentee
+            th.col-xs-6 Project Description
+            th.col-xs-2
+        tbody
+          - if @projects.any?
+            - @projects.each_with_index do |project, index|
+              tr
+                td
+                  = index + 1
+                td
+                  = link_to project.mentee.full_name, mentee_profile_path(project.mentee_id)
+                td
+                  = project.try(:description)
+                td
+                  =  button_to "Award Visionary Badge", award_badges_path, data: {confirm: "Are you sure you want to award mentee badge?"}, method: :post, class: "btn btn-pink", params: {id: project.id}
+          - else
+            h3.text-center.green-text
+              | Visionary badges awarded to all mentees

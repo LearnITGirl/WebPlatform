@@ -144,6 +144,7 @@ EmailTemplate.create(
   body: "Dear %{first_name},\r\n\r\nWe are happy to have had you in the program and we are very proud of the effort you have made to help your mentee. Congratulations on passing the program!\r\n\r\nWe will be issuing diplomas for each graduated mentee and mentors, through our partners, <a href=\"https://www.accredible.com/\" target=\"_blank\">Accredible</a>.  Expect to receive your diploma on this email in the following weeks. \r\n\r\nWe hope you had a wonderful experience with us! \r\n\r\nBest wishes,\r\n<i>The \"Learn IT, Girl!\" team</i>"
 )
 
+
 ProgrammingLanguage.find_or_create_by(name: "C", slug: "c")
 ProgrammingLanguage.find_or_create_by(name: "C++", slug: "c_plus_plus")
 ProgrammingLanguage.find_or_create_by(name: "Java", slug: "java")
@@ -158,15 +159,17 @@ ProgrammingLanguage.find_or_create_by(name: "PHP", slug: "php")
 Edition.first_or_create(name: "first")
 Edition.first_or_create(name: "second")
 Edition.first_or_create(name: "third")
-=end
+
 
 Badge.create(name: 1, image: "badges/midterm.png", description: "Badge awarded when mentee completed midterm survey")
 Badge.create(name: 2, image: "badges/final.png", description: "Badge awarded when mentee completed final survey")
 Badge.create(name: 3, image: "badges/blogger.png", description: "Badge awarded when mentee makes 1st wiki entry")
-Badge.create(name: 4, image: "badges/organized.png", description: "Badge awarded when mentee enters roadmap")
+Badge.create(name: 4, image: "badges/organized.png", description: "Badge awarded when mentee enters a detailed roadmap")
 Badge.create(name: 5, image: "badges/ambitious.png")
 Badge.create(name: 6, image: "badges/energetic.png", description: "Badge awarded when mentee completes tasks from current and next weeks")
 Badge.create(name: 7, image: "badges/timekeeper.png", description: "Badge awarded when mentee completes all tasks for the current week")
 Badge.create(name: 8, image: "badges/novice.png", description: "Badge awarded when mentee completes first task")
 Badge.create(name: 9, image: "badges/perfectionist.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
 Badge.create(name: 10, image: "badges/coder.png", description: "Badge awarded when mentee creates her first github commit")
+=end
+Badge.create(name: 11, image: "badges/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")
