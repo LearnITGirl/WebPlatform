@@ -3,7 +3,7 @@
     .col-xs-12
 .row.top-space-20
   .col-md-3
-    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge), name: "Congratulations - you got new badge!"}
+    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
     h3.green-text
       = current_user.full_name
     .row

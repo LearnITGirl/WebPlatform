@@ -169,11 +169,10 @@ Badge.create(name: 3, image: "badges/blogger.png", description: "Badge awarded w
 Badge.create(name: 4, image: "badges/organized.png", description: "Badge awarded when mentee enters a detailed roadmap")
 Badge.create(name: 5, image: "badges/ambitious.png")
 Badge.create(name: 6, image: "badges/energetic.png", description: "Badge awarded when mentee completes tasks from current and next weeks")
-Badge.create(name: 7, image: "badges/timekeeper.png", description: "Badge awarded when mentee completes all tasks for the current week")
+
 Badge.create(name: 8, image: "badges/novice.png", description: "Badge awarded when mentee completes first task")
 Badge.create(name: 9, image: "badges/perfectionist.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
 Badge.create(name: 10, image: "badges/coder.png", description: "Badge awarded when mentee creates her first github commit")
-=end
 Badge.create(name: 1, image: "badges/midterm.png", thumbnail: "badges/thumbnails/midterm.png", description: "Badge awarded when mentee completed midterm survey")
 Badge.create(name: 2, image: "badges/finalterm.png", thumbnail: "badges/thumbnails/finalterm.png", description: "Badge awarded when mentee completed final survey")
 Badge.create(name: 3, image: "badges/organized.png", thumbnail: "badges/thumbnails/organized.png", description: "Badge awarded when mentee enters roadmap")
@@ -183,4 +182,5 @@ Badge.create(name: 6, image: "badges/timekeeper.png", thumbnail: "badges/thumbna
 Badge.create(name: 7, image: "badges/novice.png", thumbnail: "badges/thumbnails/novice.png", description: "Badge awarded when mentee completes first task")
 Badge.create(name: 8, image: "badges/perfectionist.png", thumbnail: "badges/thumbnails/perfectionist.png", description: "Badge awarded when mentee completes all tasks 3 weeks in a row")
 Badge.create(name: 9, image: "badges/coder.png", thumbnail: "badges/thumbnails/coder.png", description: "Badge awarded when mentee creates her first github commit")
-Badge.create(name: 11, image: "badges/visionary.png", thumbnail: "badges/thumbnails/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")
+=end
+Badge.create(name: 10, image: "badges/visionary.png", thumbnail: "badges/thumbnails/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")
