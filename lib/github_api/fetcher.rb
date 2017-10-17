@@ -51,10 +51,10 @@ module GithubAPI
     private
 
     def parse_github_link
-      match = @project.github_link.match(GITHUB_REGEXP)
-      return unless match
+      splitted = @project.github_link.split("/")
+      return unless splitted.length > 2
 
-      {owner: match[3], repoName: match[4]}
+      {owner: splitted[-2], repoName: splitted.last}
     end
 
     def assign_badge
