@@ -21,6 +21,7 @@ Webplatform::Application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
   resources :award_badges, only: [:index, :create, :update]
+  resources :assigned_badges, only: [:update]
   
   resource :user_sessions, only: [:create]
   resources :newsletters, only: [:create]
