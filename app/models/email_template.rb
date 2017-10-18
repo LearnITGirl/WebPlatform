@@ -22,7 +22,15 @@ class EmailTemplate < ActiveRecord::Base
     final_passing_mentors: 21,
     final_failed_mentors: 22,
     final_passing_mentees: 23,
-    final_failed_mentees: 24
+    final_failed_mentees: 24,
+    mentees_who_have_resigned: 25,
+    mentors_who_have_resigned: 26,
+    mentees_whose_partners_have_resigned: 27,
+    mentors_whose_partners_have_resigned: 28,
+    mentees_who_got_partners_after_rematching: 29,
+    mentors_who_got_partners_after_rematching: 30,
+    mentees_from_waiting_list_who_got_partners_after_rematching: 31,
+    mentors_from_waiting_list_who_got_partners_after_rematching: 32
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -70,6 +78,22 @@ class EmailTemplate < ActiveRecord::Base
       Project.with_passing_mentees.map{|p| p.mentee}
     when :final_failed_mentees
       Project.with_failed_mentees.map{|p| p.mentee}
+    when :mentees_who_have_resigned
+      MenteeApplication.user_resigned
+    when :mentors_who_have_resigned
+      MentorApplication.user_resigned
+    when :mentees_whose_partners_have_resigned
+      MenteeApplication.waiting_for_rematch
+    when :mentors_whose_partners_have_resigned
+      MentorApplication.waiting_for_rematch
+    when :mentees_who_got_partners_after_rematching
+      User.mentee.where(mentee_application_id: MenteeApplication.rematched)
+    when :mentors_who_got_partners_after_rematching
+      User.mentor.where(mentor_application_id: MentorApplication.rematched)
+    when :mentees_from_waiting_list_who_got_partners_after_rematching
+      User.mentee.where(mentee_application_id: MenteeApplication.rematched_from_waiting_list)
+    when :mentors_from_waiting_list_who_got_partners_after_rematching
+      User.mentor.where(mentor_application_id: MentorApplication.rematched_from_waiting_list)
     else
       User.none
     end

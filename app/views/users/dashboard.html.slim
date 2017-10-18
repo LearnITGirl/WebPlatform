@@ -4,12 +4,13 @@
       = render partial: "shared/weeks_bar"
 .row.top-space-20
   .col-md-3
+    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
     h3.green-text
-      = current_user.first_name
+      = current_user.full_name
     .row
       .col-xs-12
         = image_tag display_avatar(current_user), alt: "Mentee's avatar", class: "profile-icon"
-    h3.litg-pink Project
+    h4.litg-pink Project
     p
       strong = @project.try(:title)
     p
@@ -22,19 +23,32 @@
         = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
           i.fa.fa-github
           span See on Github
+
+    h4.green-text
+      | Mentor:
+    .row
+      .col-xs-12
+        = image_tag display_avatar(@partner), alt: "Mentor's avatar", class: "profile-icon"
+    = link_to @partner.full_name, mentor_profile_path(@partner), class: "green-text"
+    p
+      | Email:
+      =< @partner.email
+  - if first_month? && not_missing_yet?(@partner)
+    .pull-right
+      = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
+
   .col-md-6
     - if edition_started?
       = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks}
   .col-md-3.right-left-text
     h3.green-text
-      | Mentor:
-      =< link_to @partner.full_name, mentor_profile_path(@partner), class: "green-text"
+      | Your Badges:
     .row
-      .col-xs-12
-        = image_tag display_avatar(@partner), alt: "Mentor's avatar", class: "profile-icon"
-    p
-      strong  = @partner.email
+      - current_user.badges.each do |badge|
+        .col-xs-4
+         = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+      = render partial: 'badges/badge_info'
+
 - if first_month? && not_missing_yet?(@partner)
   .pull-right
-    = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
-
+    = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor, class: "btn btn-pink missing"

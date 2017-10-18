@@ -20,7 +20,9 @@ Webplatform::Application.routes.draw do
   resources :organiser_registrations, only: [ :edit, :update]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
-
+  resources :award_badges, only: [:index, :create, :update]
+  resources :assigned_badges, only: [:update]
+  
   resource :user_sessions, only: [:create]
   resources :newsletters, only: [:create]
   get  "first_edition" => "home#first_edition_projects"
@@ -111,4 +113,6 @@ Webplatform::Application.routes.draw do
       get :surveys
     end
   end
+
+  resources :badges, only: [:index]
 end

@@ -1,5 +1,5 @@
 .week-bar.text-center
-  - Edition.find_by(name: "second").weeks.each do |week|
+  - current_edition.weeks.order_by_number.each do |week|
     = link_to week_url(week.number) do
       - if @week && (week.number == @week.number)
         span.week-label

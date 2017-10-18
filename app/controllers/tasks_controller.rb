@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   after_action :award_novice_badge
-  
+
   def create
     @project = current_user.project
     @partner = current_user.partner
@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-    @week = find_week
+    @week = current_edition.weeks.find_by(number: @task.week) || find_week
     render partial: 'edit_modal', layout: false
   end
 

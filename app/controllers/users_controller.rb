@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     authorized_user
     @user = User.find(params[:id])
+    find_new_badge
     setup_project(@user)
   end
 
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
     @partner = current_user.partner
     @week = find_week
     @tasks = @week.nil? ? @project.tasks.not_deleted : @project.week_tasks(@week.number).not_deleted
+    find_new_badge
   end
 
   def update
@@ -62,6 +64,12 @@ class UsersController < ApplicationController
   def authorized_user
     unless User.find(params[:id]) == current_user || current_user.organizer? || current_user.partner.id == params[:id].to_i
       redirect_to root_path, alert: "You don't have permission to access this site", status: 401
+    end
+  end
+
+  def find_new_badge
+    if current_user.mentee?
+      @new_badge = current_user.badges.merge(AssignedBadge.not_displayed).first
     end
   end
 end

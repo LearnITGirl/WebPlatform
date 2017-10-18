@@ -57,9 +57,19 @@
               .col-md-10.col-sm-9
                 = proj.text_field :language, class: "form-control", disabled: true
             .row
-              label.col-md-2.col-sm-3.control-label HTTPS link to your GitHub project (not your profile):
-              .col-md-10.col-sm-9
-                = proj.text_field :github_link, class: "form-control", placeholder: "GitHub link"
+              - if current_user.mentee?
+                label.col-md-2.col-sm-3.control-label HTTPS link to your GitHub project (not your profile):
+                .col-md-10.col-sm-9
+                  = proj.text_field :github_link, class: "form-control", placeholder: "GitHub link"
+              - else
+                label.col-md-2.col-sm-3.control-label HTTPS link to GitHub project
+                label.col-md-10.col-sm-9.control-label
+                  - if proj.object.github_link
+                    = link_to proj.object.github_link, proj.object.github_link, target: "_blank"
+                  - else
+                    .pink-text
+                      | No link provided
+
       .pull-right
         = link_to "Cancel", :back , class: "btn btn-pink-border"
         = f.submit "Save", class: "btn btn-pink no-right-margin"

@@ -10,11 +10,18 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     list do
+      scopes [:participants]
       field :first_name
       field :last_name
       field :email
       field :country
       field :role
+      field :registration_token do
+        label "Registered"
+        pretty_value do
+          bindings[:object].registration_token.nil? ? "yes" : "no"
+        end
+      end
     end
   end
 
@@ -42,9 +49,9 @@ RailsAdmin.config do |config|
     new
     show
     edit do
- #     if( YAML.load(ENV["APPLICATION_EDITION_DISABLED"] || true) )
+      if (ENV["APPLICATION_EDITION_DISABLED"] || true)
         except ['MentorApplication', 'MenteeApplication']
- #     end
+     end
     end
     delete do
       except ['MentorApplication', 'MenteeApplication']

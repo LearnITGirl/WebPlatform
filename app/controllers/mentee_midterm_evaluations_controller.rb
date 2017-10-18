@@ -11,6 +11,7 @@ class MenteeMidtermEvaluationsController < ApplicationController
     )
 
     if @self_evaluation.save
+      current_user.badges << Badge.midterm_survey
       redirect_to dashboard_mentee_profiles_path, notice: "Thank you for filling in your midterm self-evaluation!"
     else
       render "new"

@@ -46,6 +46,7 @@
                 = link_to "Swift", swift_learning_materials_path
               li
                 = link_to "VB.NET", vb_dot_net_learning_materials_path
+          = content_tag :li, link_to('Badges', badges_path), class: "no-image"
         ul.nav.navbar-nav.navbar-right
           - if current_user
             li

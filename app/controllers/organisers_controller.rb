@@ -71,7 +71,7 @@ class OrganisersController < ApplicationController
     if (Date.today > current_edition.end_date)
       @projects = Project.all
       'final_project_evaluation'
-    elsif (@mentees.length <= 0 and @mentors.length <= 0 and Date.today >= current_edition.start_date)
+    elsif @mentees.blank? and @mentors.blank? and DateTime.current >= current_edition.start_date.beginning_of_day
       @projects = Project.all
       'ongoing_projects'
     else

@@ -27,6 +27,9 @@ body.email_templates-controller {
 
     .template-header {
       border-bottom: 1px solid $border-color;
+      .for-note{
+        line-height: 20px;
+      }
       padding: 10px 20px;
       &, h4 {
         line-height: 34px;

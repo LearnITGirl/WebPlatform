@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def edition_started?
-    current_edition.start_date <= DateTime.now
+    current_edition.start_date.beginning_of_day <= DateTime.current
   end
 
   def menu_links
