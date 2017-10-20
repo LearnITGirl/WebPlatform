@@ -29,18 +29,21 @@
         |  How can I get involved?
       = render partial: "application_closed"
 
-    .page-header
-      .head-text.green-text.text-center Want to get inspired?
-    p
-      = "Check some first edition mentees and their projects"
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        = link_to "First edition projects", first_edition_path, class: "btn btn-pink btn-block btn-lg"
-    p
-      = "Second edition mentees and their projects"
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        = link_to "Second edition projects", second_edition_path, class: "btn btn-pink btn-block btn-lg"
+    .body-content-element
+      h2.content-title.type1 
+        | Want to get inspired?
+      h3.content-subtitle
+        | Check out the last editions of Learn It Girl
+      .last-editions
+        .last-editon
+          h3.last-editon-title
+            | First Edition Projects
+          = link_to image_tag("showcasedProjects/edition1.jpeg", alt: "People working", title: "First Edition projects", width: "90%", height: "75%", class: "edition-image"), first_edition_path
+          
+        .last-editon
+          h3.last-editon-title
+            | Second Edition Projects
+          = link_to image_tag("showcasedProjects/edition2.jpeg", alt: "Hands Touching", title: "Second Edition projects", width: "90%", height: "75%", class: "edition-image"), first_edition_path
 
     .page-header
       .head-text.green-text.text-center Subscribe to our newsletter
