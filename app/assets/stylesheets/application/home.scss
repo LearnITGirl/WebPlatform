@@ -1,31 +1,27 @@
 @import "variables";
 
-
-.head-text{
-  font-size: 36px;
-  margin: 20px 0 10px;
-}
-.head-subtext{
-  font-size: 24px;
-}
-.fa-facebook-official {
-  font-size: 50px;
-  color:#3A559F;
-}
-#poll-form {
-  display: inline-block;
-  text-align: left;
-
-  .btn-pink {
-    margin-top: -5px;
+#home-page {
+  .head-text{
+    font-size: 36px;
+    margin: 20px 0 10px;
   }
-
-  #other_language {
-    left: 70px;
-    top: -35px;
-    display: none;
-    width: 100%;
-    padding: 0px;
+  .head-subtext{
+    font-size: 24px;
+  }
+  .fa-facebook-official {
+    font-size: 50px;
+    color: #3A559F;
+  }
+  #poll-form {
+    display: inline-block;
+    text-align: left;
+    #other_language {
+      left: 70px;
+      top: -35px;
+      display: none;
+      width: 100%;
+      padding: 0px;
+    }
   }
 }
 
