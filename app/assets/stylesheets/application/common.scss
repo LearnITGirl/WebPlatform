@@ -268,10 +268,6 @@ header .container-fluid nav.navbar li.dropdown {
     line-height: 1.5;
   }
 }
-
-
-
-
 .body-content {
   width: 92%;
   margin-top: 5%;
@@ -301,43 +297,6 @@ header .container-fluid nav.navbar li.dropdown {
   font-size: 190%;
   padding: 1% 0%;
   font-weight: 600;
-}
-.last-editions {
-  display: flex;
-  margin-bottom: -5%;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.last-editon {
-  width: 50%;
-}
-.last-editon-title {
-  position: absolute;
-  color: #3d3d3d;
-  z-index: 1;
-  font-size: 180%;
-  padding-top: 5px;
-  padding-right: 2%;
-  padding-left: 3%;
-  padding-bottom: 5px;
-  background-color: white;
-  border-radius: 50px;
-  font-weight: bold;
-  margin-top: 8%;
-}
-.edition-image {
-  margin-left: 5%;
-  opacity: 0.9;
-  filter: hue-rotate(10deg);
-  border-radius: 5px;
-  transition: opacity 0.3s;
-  cursor: pointer;
-}
-.edition-image:hover {
-  opacity: 0.4;
-  -webkit-filter: grayscale(80%);
-  filter: grayscale(80%);
 }
 .type1 { background-color: #ffaeda; color: #3E4659; }
 .type2 { background-color: #01b2ac; color: #fff; }
