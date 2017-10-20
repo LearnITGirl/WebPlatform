@@ -45,14 +45,16 @@
             | Second Edition Projects
           = link_to image_tag("showcasedProjects/edition2.jpeg", alt: "Hands Touching", title: "Second Edition projects", width: "90%", height: "75%", class: "edition-image"), first_edition_path
 
-    .page-header
-      .head-text.green-text.text-center Subscribe to our newsletter
-    .row
-      .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
-        #status-message.alert.hidden
-        = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
-          .form-group
-            = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "form-control"}
-          .form-group
-            = submit_tag("Subscribe to our newsletter", {class: "btn btn-pink btn-block btn-lg"})
+    .body-content-element          
+      br
+      .page-header
+        .head-text.green-text.text-center Subscribe to our newsletter
+      .row
+        .col-md-offset-4.col-md-4.col-sm-offset-3.col-sm-6.col-xs-12
+          #status-message.alert.hidden
+          = form_tag(newsletters_path, method: "post", id: "subscribe", remote: true) do
+            .form-group
+              = text_field_tag :email, nil, {id: "email", placeholder: "Email Address", class: "newsletter-input"}
+            .form-group
+              = submit_tag("Subscribe to our newsletter", {class: "submit-button"})
 
