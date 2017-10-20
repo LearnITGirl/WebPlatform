@@ -17,35 +17,35 @@
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" Learning Materials
             ul.dropdown-menu
               li
-                = link_to "Android", android_learning_materials_path
+                = link_to "Android", android_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "C", c_learning_materials_path
+                = link_to "C", c_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "C++", c_plus_plus_learning_materials_path
+                = link_to "C++", c_plus_plus_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "C#", c_sharp_learning_materials_path
+                = link_to "C#", c_sharp_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "Git", git_learning_materials_path
+                = link_to "Git", git_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "HTML/CSS/JavaScript", html_css_javascript_learning_materials_path
+                = link_to "HTML/CSS/JavaScript", html_css_javascript_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "Java", java_learning_materials_path
+                = link_to "Java", java_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "MongoDB", mongo_db_learning_materials_path
+                = link_to "MongoDB", mongo_db_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "PHP", php_learning_materials_path
+                = link_to "PHP", php_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "Python", python_learning_materials_path
+                = link_to "Python", python_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "R", r_learning_materials_path
+                = link_to "R", r_learning_materials_path, class: 'dropdown-link' 
               li
-                = link_to "Ruby", ruby_learning_materials_path
+                = link_to "Ruby", ruby_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "SQL", sql_learning_materials_path
+                = link_to "SQL", sql_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "Swift", swift_learning_materials_path
+                = link_to "Swift", swift_learning_materials_path, class: 'dropdown-link'
               li
-                = link_to "VB.NET", vb_dot_net_learning_materials_path
+                = link_to "VB.NET", vb_dot_net_learning_materials_path, class: 'dropdown-link'
           = content_tag :li, link_to('Badges', badges_path), class: "no-image"
         ul.nav.navbar-nav.navbar-right
           - if current_user
@@ -58,4 +58,4 @@
           - else
             li.no-image
               = link_to "Log in", login_path, class: "pull-right"
-  = image_tag "logo3.jpg"
+  = image_tag "logo4.jpg"
