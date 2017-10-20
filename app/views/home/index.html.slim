@@ -1,33 +1,32 @@
-.row#home-page
+.row
   h1.hidden
     | A mentorship program for women around the globe!
 
-  .col-xs-12
-    .page-header
-      .head-text.green-text.text-center
-        |Registration is closed!
-        .head-subtext.green-text.text-center
-          |Soon we'll be back with the results for this edition. Stay tuned!
-    .page-header
-      .head-text.green-text.text-center What is Learn IT Girl?
-    p
-      = "Our aim is to help women learn a programming language while doing an awesome"
-      =< "project! But don't worry, you're not alone in this journey, each scholar has"
-      =< "a mentor that guides them on their path. There are many roads you can take"
-      =< "and we will make sure you go on the one that is best for you - without"
-      =< "missing out on the important features of the chosen language."
+  .body-content
 
-    .page-header
-      .head-text.green-text.text-center How does it work?
-    p
-      = "Each accepted mentee gets a mentor to help them through discovering their"
-      =< "new language and coding their great project. Don't worry if you don't"
-      =< "know which language to choose: we will help you! During 3 months, the"
-      =< "mentee will work on their code on GitHub to be able to show their"
-      =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
+    .body-content-element
+      h2.content-title.type1 
+        | Last Info
+      h3.content-subtitle
+        | Registration is closed!
+      h3.content-subtitle
+        | Soon we'll be back with the results for this edition. Stay tuned!
 
-    .page-header
-      .head-text.green-text.text-center How can I get involved?
+    .body-content-element
+      h2.content-title.type2 
+        | What is Learn IT Girl?
+      p.content-paragraph
+        = "Our aim is to help women learn a programming language while doing an awesome project! But don't worry, you're not alone in this journey, each scholar has a mentor that guides them on their path. There are many roads you can take and we will make sure you go on the one that is best for you - without missing out on the important features of the chosen language."
+
+    .body-content-element
+      h2.content-title.type1 
+        |  How does it work? 
+      p.content-paragraph
+        = "Each accepted mentee gets a mentor to help them through discovering their new language and coding their great project. Don't worry if you don't know which language to choose: we will help you! During 3 months, the mentee will work on their code on GitHub to be able to show their amazing great in the end to the rest of the 'Learn IT, Girl' community"
+
+    .body-content-element
+      h2.content-title.type2
+        |  How can I get involved?
       = render partial: "application_closed"
 
     .page-header

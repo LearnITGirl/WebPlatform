@@ -1,6 +1,3 @@
-p
-  = "Join our facebook group to receive news about next edition."
-.row
-  .text-center
-    = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do
-      i.fa.fa-facebook-official
+p.content-paragraph
+  = "Join our facebook group to receive news about next edition."     
+  = link_to '<i class="fa fa-facebook-official"></i>'.html_safe, "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank"
