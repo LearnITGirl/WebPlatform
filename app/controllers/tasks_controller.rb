@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
 
   after_action :award_novice_badge
-  #:award_timekeeper_badge
 
   def create
     @project = current_user.project
@@ -86,21 +85,6 @@ class TasksController < ApplicationController
   def unassign_novice_badge
     unless @task.project.mentee.badges.novice.any?
        @task.project.mentee.badges.delete(Badge.novice)
-    end
-  end
-
- #def award_timekeeper_badge
-    #by start of next week, get all tasks of last week > 0, get all unfinished tasks of that week, they should be = 0 
-  #    @week = find_week
-  #    if (@week.end < DateTime.now && (@task.project.tasks.all_tasks_ofthat_week(@week.number - 1).count >= 1) && if (@task.project.tasks.unfinished_tasks_ofthat_week(@week.number - 1, current_user) == 0))
-  #         assign_timekeeper_badge
-  #    end
-  #end
-
-
-  def assign_timekeeper_badge
-    unless @task.project.mentee.badges.timekeeper.any?
-       @task.project.mentee.badges << Badge.timekeeper
     end
   end
 
