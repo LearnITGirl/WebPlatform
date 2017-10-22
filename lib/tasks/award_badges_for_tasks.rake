@@ -11,6 +11,7 @@ namespace :award_badges_for_tasks do
   	   elsif (is_task_of_current_week_completed(week.number))
   	   	assign_timekeeper_badge
        end
+     end
   end
 
   private
