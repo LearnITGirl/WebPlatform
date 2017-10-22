@@ -1,7 +1,10 @@
 .badges-controller {
   .badge-icon {
     width: 80%;
-    margin-bottom: 50px;
-    cursor: pointer;
+  }
+
+  .description {
+    margin: 15px 0 35px;
+    font-size: 15px;
   }
 }

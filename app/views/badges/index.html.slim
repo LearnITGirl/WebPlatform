@@ -1,5 +1,9 @@
 .row.top-space-40
   - @badges.each do |badge|
     .col-md-3.col-sm-4.col-xs-6
-      = image_tag asset_path(badge.image), class: "badge-icon badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
-  = render partial: 'badge_info'
+      .row
+        .col-xs-12.text-center
+          = image_tag asset_path(badge.image), class: "badge-icon"
+      .row
+        .col-xs-12.description.text-center
+          = badge.description
