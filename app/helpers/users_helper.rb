@@ -5,7 +5,7 @@ module UsersHelper
   end
 
   def first_month?
-    edition_started? && (DateTime.now > current_edition.weeks.find_by(number: 4).end.end_of_day)
+    edition_started? && (DateTime.current > current_edition.weeks.find_by(number: 4).end.end_of_day)
   end
 
   def new_badge_description(badge)

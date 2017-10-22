@@ -2,7 +2,7 @@ namespace :project_summary do
 
   desc "send weekly summary of projects on monday"
   task send: :environment do
-    date = DateTime.now
+    date = DateTime.current
 
     if date.wday == 1
       @users = User.where(role: [2,3])

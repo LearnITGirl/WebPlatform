@@ -5,7 +5,7 @@ namespace :mentor_results do
 
     email_template.users.each do |user|
       EmailTemplateMailer.custom(email_template, user).deliver_now
-      user.update_column :results_send_at, DateTime.now
+      user.update_column :results_send_at, DateTime.current
     end
   end
 
@@ -15,7 +15,7 @@ namespace :mentor_results do
 
     email_template.users.each do |user|
       EmailTemplateMailer.custom(email_template, user).deliver_now
-      user.update_column :results_send_at, DateTime.now
+      user.update_column :results_send_at, DateTime.current
     end
   end
 
@@ -25,7 +25,7 @@ namespace :mentor_results do
 
     email_template.users.each do |user|
       EmailTemplateMailer.custom(email_template, user).deliver_now
-      user.update_column :results_send_at, DateTime.now
+      user.update_column :results_send_at, DateTime.current
     end
   end
 end
