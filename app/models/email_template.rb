@@ -30,7 +30,9 @@ class EmailTemplate < ActiveRecord::Base
     mentees_who_got_partners_after_rematching: 29,
     mentors_who_got_partners_after_rematching: 30,
     mentees_from_waiting_list_who_got_partners_after_rematching: 31,
-    mentors_from_waiting_list_who_got_partners_after_rematching: 32
+    mentors_from_waiting_list_who_got_partners_after_rematching: 32,
+    missing_invalid_github_link_mentees: 33,
+    missing_invalid_github_link_mentors: 34,
   }
 
   validates :subject, :body, :recipients, presence: true
@@ -66,9 +68,9 @@ class EmailTemplate < ActiveRecord::Base
       User.mentees_missing_on_website
     when :mentors_missing_on_website
       User.mentors_missing_on_website
-    when :final_mentees
+    when :final_mentees, :missing_invalid_github_link_mentees
       User.mentee.joins(:mentee_project)
-    when :final_mentors
+    when :final_mentors, :missing_invalid_github_link_mentors
       User.mentor.joins(:mentor_project)
     when :final_passing_mentors
       Project.with_passing_mentors.map{|p| p.mentor}
