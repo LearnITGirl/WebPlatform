@@ -54,7 +54,6 @@ class TasksController < ApplicationController
       if task[:status].present?
         task[:status] = Task.statuses[task["status"]]
         task[:finished_by] = current_user.id
-        task[:week] = find_week.number
       end
     end
   end
