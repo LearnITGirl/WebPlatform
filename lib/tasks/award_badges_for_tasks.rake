@@ -3,27 +3,34 @@ namespace :award_badges_for_tasks do
   task ambitious_badge: :environment do
   	@projects = Project.all
   	@projects.each do |project|
-  	   #@week = (Date.now -1.day)
-  	   if (week.number >= 3 && is_task_of_current_week_completed(week.number) && is_task_of_current_week_completed(week.number - 1) && is_task_of_current_week_completed(week.number - 2) ) 
+  	   @week = get_current_week(Date.now -1.day)
+  	   if (@week.number >= 3 && is_task_of_current_week_completed(@week.number, project) && is_task_of_current_week_completed(@week.number - 1, project) && is_task_of_current_week_completed(@week.number - 2, project) ) 
   	   	 assign_amibitious_badge
-  	   elsif (week.number < {lastweekofEdition} && is_task_of_current_week_completed(week.number) && is_task_of_current_week_completed(week.number + 1))
+  	   end
+  	   #week.number < {lastweekofEdition} &&
+  	   if (is_task_of_current_week_completed(@week.number, project) && is_task_of_current_week_completed(@week.number + 1, project))
   	   	 assign_energetic_badge
-  	   elsif (is_task_of_current_week_completed(week.number))
+  	   elsif (is_task_of_current_week_completed(@week.number, project))
   	   	assign_timekeeper_badge
        end
      end
   end
 
+
   private
 
   def is_task_of_current_week_completed(week, project)
     
-    if ((project.tasks.all_tasks_ofthat_week(week.number).count >= 1) && if (@project.tasks.unfinished_tasks_ofthat_week(week, project.mentee) == 0))
-        return true
+    if ((project.tasks.all_tasks_ofthat_week(week.number).count >= 1) && (@project.tasks.unfinished_tasks_ofthat_week(week, project.mentee) == 0))
+       return true
     elsif false
     end
-
   end
+
+  def get_current_week(date)
+  	Week.where("edition_id = :edition_id and (start <= :curr_date)", {curr_date: date, edition_id: Edition.last}).first
+  end
+  #and end >= :curr_date
 
   def assign_amibitious_badge
 		@project.mentee.badges << Badge.ambitious
