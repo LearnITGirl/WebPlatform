@@ -35,6 +35,12 @@ Webplatform::Application.routes.draw do
   get "roadmap_example" => "home#roadmap_example"
   get "about_us" => "home#about_us"
 
+  resource :tutorial, only: [] do
+    collection do
+      get :tasks
+    end
+  end
+
   (%w'git ruby php java android python c_plus_plus html_css_javascript
    r c sql sqift mongo_db c_sharp vb_dot_net swift').each do |language|
     get "learning_materials/#{language}" => "learning_materials##{language}", as: "#{language}_learning_materials"
