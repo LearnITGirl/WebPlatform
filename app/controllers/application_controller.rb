@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def registration_open?
-    unless current_edition.registration_closed_at && current_edition.registration_closed_at > DateTime.now
+    unless current_edition.registration_closed_at && current_edition.registration_closed_at > DateTime.current
       redirect_to root_path, alert: "Registration is closed for this edition!"
     end
   end

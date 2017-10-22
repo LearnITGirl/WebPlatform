@@ -30,6 +30,14 @@ module GithubAPI
         }
     GRAPHQL
 
+    RepoQuery = GithubAPI::Client.parse <<-'GRAPHQL'
+      query($owner: String!, $repoName: String!) {
+        repository(owner: $owner, name: $repoName) {
+          id
+        }
+      }
+    GRAPHQL
+
     def check_latest_commit
       params = parse_github_link
       return unless params
@@ -45,6 +53,19 @@ module GithubAPI
           assign_badge if commits.first.node.authoredByCommitter
           @project.update_column :last_commit, commits.first.node.committedDate
         end
+      end
+    end
+
+    def repo_exists?
+      params = parse_github_link
+      return unless params
+
+      results = GithubAPI::Client.query(RepoQuery, variables: params)
+
+      if results.errors.any?
+        raise GraphQL::ExecutionError, results.errors.join(", ")
+      else
+        results.data.repository.present?
       end
     end
 
