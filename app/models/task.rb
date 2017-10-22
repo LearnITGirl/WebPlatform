@@ -41,12 +41,12 @@ class Task < ActiveRecord::Base
     where("(status = 4 and creator_id=(?) and creator_id != finished_by and updated_at BETWEEN (?) AND (?))", user.id, date.beginning_of_week, date.end_of_week)
   end
 
-  def self.all_tasks_ofthat_week(week)
-    where (week: week)
-  end
+  #def self.all_tasks_ofthat_week(curr_week)
+  #  where (week: curr_week)
+  #end
 
   def self.unfinished_tasks_ofthat_week(week, user) 
-    where("(week = :week) && ((status = 1) or (creator_id = :user_id and finished_by != :user_id and status = 2) or (creator_id != :user_id and finished_by = :user_id and status = 2) or (status = 4)", {week: week, user_id: user.id})
+    where("(week = :week) and ((status = 1) or (creator_id = :user_id and finished_by != :user_id and status = 2) or (creator_id != :user_id and finished_by = :user_id and status = 2) or (status = 4))", {week: week, user_id: user.id})
   end
 
 

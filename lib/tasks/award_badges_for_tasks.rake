@@ -22,9 +22,8 @@ namespace :award_badges_for_tasks do
   private
 
   def is_task_of_current_week_completed(week, project)
-    print week
-    print project.title
-    if (((project.tasks).all_tasks_ofthat_week(week).count >= 1) && (project.tasks.unfinished_tasks_ofthat_week(week, project.mentee) == 0))
+    @tasks = project.tasks;
+    if ((all_tasks_ofthat_week(week, project).count >= 1) && (@tasks.unfinished_tasks_ofthat_week(week, project.mentee) == 0))
        return true
     elsif false
     end
@@ -32,6 +31,10 @@ namespace :award_badges_for_tasks do
 
   def get_current_week(date)
   	Week.where("edition_id = :edition_id and (start <= :curr_date and 'end' >= :curr_date)", {curr_date: date, edition_id: Edition.last}).first
+  end
+
+  def all_tasks_ofthat_week(week, project)
+  	Task.where("project_id = (?) and week = (?)", project, week)
   end
  
 
