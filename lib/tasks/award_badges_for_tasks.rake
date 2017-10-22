@@ -20,7 +20,7 @@ namespace :award_badges_for_tasks do
     
     if ((project.tasks.all_tasks_ofthat_week(week.number).count >= 1) && if (@project.tasks.unfinished_tasks_ofthat_week(week, project.mentee) == 0))
         return true
-    else false
+    elsif false
     end
 
   end
