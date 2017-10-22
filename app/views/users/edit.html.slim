@@ -47,11 +47,11 @@
           = f.fields_for @project_symbol do |proj|
             = proj.hidden_field :current_user_role, value: current_user.role
             .ordinary-field
-              = proj.text_field :title, class: "form-control", placeholder: "Title"
+              = proj.text_field :title, class: "form-control", placeholder: "Title", disabled: !first_week?
             .ordinary-field
               label.control-label = proj.object.title
             .ordinary-field
-              = proj.text_area :description, class: "form-control", rows: 7, placeholder: "Description"
+              = proj.text_area :description, class: "form-control", rows: 7, placeholder: "Description", disabled: !first_week?
             .row.ordinary-field
               label.col-md-2.col-sm-3.control-label Language:
               .col-md-10.col-sm-9

@@ -12,4 +12,9 @@ module UsersHelper
     return unless badge
     "Your new badge is called #{badge.name.titleize}. #{badge.description}"
   end
+
+  def first_week?
+    week = current_edition.weeks.find_by(number: 1)
+    DateTime.current.between?(week.start, week.end)
+  end
 end
