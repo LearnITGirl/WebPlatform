@@ -3,7 +3,7 @@ class EmailTemplatesController < ApplicationController
   before_action :find_email_template, only: [:edit, :update, :destroy, :deliver]
 
   def index
-    @email_templates = EmailTemplate.all
+    @email_templates = EmailTemplate.order(id: :desc).all
   end
 
   def search
