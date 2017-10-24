@@ -1,7 +1,13 @@
 @import "variables";
 
 .tutorials-controller {
-  img {
+  h2 {
+    text-decoration: underline;
+    margin-bottom: 50px;
+  }
+  .screenshot {
     width: 60%;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
   }
 }
