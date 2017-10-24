@@ -44,9 +44,14 @@
     h3.green-text
       | Your Badges:
     .row
-      - current_user.badges.each do |badge|
-        .col-xs-4
-         = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+      - if current_user.badges.any?
+        - current_user.badges.each do |badge|
+          .col-xs-4
+           = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+      - else
+        .col-xs-12
+          | You don't have any badges yet. Read about badges
+          =< link_to "here", badges_path
       = render partial: 'badges/badge_info'
 
 - if first_month? && not_missing_yet?(@partner)
