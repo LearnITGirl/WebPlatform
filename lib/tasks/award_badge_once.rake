@@ -6,13 +6,14 @@ namespace :award_badge_once do
         @projects.each do |project|
         	is_organised_flag = true
           @edition.weeks.each do |week|
-            @tasks = project.tasks.where(week: week)
+              @tasks = project.tasks.where(week: week.number)
               if (@tasks.count < 1)
                 is_organised_flag = false
                 break
               end
 	  end
           if (is_organised_flag)
+             print project.title
 	    assign_organised_badge(project)
 	  end
         end
