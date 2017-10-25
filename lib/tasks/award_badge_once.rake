@@ -4,11 +4,11 @@ namespace :award_badge_once do
         @projects = Project.all
         @edition = Edition.last
         @projects.each do |project|
-        	is_organised_flag = false
+        	is_organised_flag = true
             @edition.weeks.each do |week|
                 @tasks = project.tasks.where(week: week)
                 if (@tasks.count < 1)
-                	is_organised_flag = true
+                	is_organised_flag = false
                 	break
                 end
 			end
