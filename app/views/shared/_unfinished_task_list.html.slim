@@ -24,6 +24,8 @@
           = t.check_box :status, {checked: checked(t.object), disabled: is_disabled(t.object)}, checked_task_status, unchecked_task_status
           label class="#{t.object.trash? && 'strike-through'}"
             = t.object.title
+            .creator-info
+              = creator_label(t.object)
 
           - if !current_user.organizer?
             - if current_user != t.object.creator && t.object.status != "trash"
