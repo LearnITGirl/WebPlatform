@@ -49,4 +49,14 @@ module TasksHelper
     return false if current_user.organizer?
     current_user == task.creator
   end
+
+  def creator_label(task)
+    if task.creator.mentor?
+      "Project task"
+    elsif task.creator.mentee? && current_user.mentee?
+      "My TODO"
+    else
+      "Created by mentee"
+    end
+  end
 end

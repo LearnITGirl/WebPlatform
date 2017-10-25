@@ -47,6 +47,11 @@ body.mentee_profiles-controller, body.mentor_profiles-controller, body.tasks-con
   label.strike-through {
     text-decoration: line-through;
   }
+
+  .creator-info {
+    font-size: 11px;
+    color: $litg-pink;
+  }
 }
 
 
