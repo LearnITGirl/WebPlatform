@@ -6,6 +6,8 @@ class Task < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :for_weeks, -> (to) { where(week: 1...to) }
+
   def self.finished(user)
     where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
   end
