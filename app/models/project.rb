@@ -56,7 +56,7 @@ class Project < ActiveRecord::Base
   enum midterm_evaluation_status: { midterm_evaluation_unstarted: 0, midterm_evaluation_pending: 1, midterm_evaluation_completed: 2 }
 
   def week_tasks(week)
-    tasks.where("week = :week_number or (status = 1 and week < :week_number)", {week_number: week})
+    tasks.where(week: 1..week)
   end
 
   def has_mentee_missing?
