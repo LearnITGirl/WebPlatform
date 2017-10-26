@@ -18,7 +18,7 @@ namespace :github do
   desc "Send email if github link is invalid/missing"
   task check_repos: :environment do
     Project.current_edition.each do |project|
-      if project.github_link.blank? || invalid_repo?(project)
+      if invalid_repo?(project)
         mentee_template = EmailTemplate.missing_invalid_github_link_mentees.first
         mentor_template = EmailTemplate.missing_invalid_github_link_mentors.first
 
@@ -32,6 +32,8 @@ namespace :github do
 
   def invalid_repo?(project)
     begin
+      return true if project.github_link.blank?
+
       fetcher = GithubAPI::Fetcher.new(project)
       !fetcher.repo_exists?
     rescue GraphQL::ExecutionError => e
