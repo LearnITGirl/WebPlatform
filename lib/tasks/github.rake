@@ -17,7 +17,7 @@ namespace :github do
 
   desc "Send email if github link is invalid/missing"
   task check_repos: :environment do
-    Project.current_edition.where.not(id: [518, 520]).each do |project|
+    Project.current_edition.each do |project|
       if invalid_repo?(project)
         mentee_template = EmailTemplate.missing_invalid_github_link_mentees.first
         mentor_template = EmailTemplate.missing_invalid_github_link_mentors.first
