@@ -14,8 +14,7 @@ class Project < ActiveRecord::Base
   validates :mentee_id, presence: true, on: :update,
   if: -> {!mentor_evaluation || !mentee_feedback || !mentee_project_status || !github_repo_status}
 
-  validates :title, :language, :description,  presence: true, on: :update,
-  unless: "midterm_evaluation_pending?"
+  validates :title, :description, presence: true, on: :update, if: -> {title.present? || description.present?}
 
   validates :github_link, format: { with: GITHUB_REGEXP }, presence: true, on: :update,
   if: "validate_github?"
