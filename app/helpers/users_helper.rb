@@ -8,9 +8,13 @@ module UsersHelper
     edition_started? && (DateTime.current > current_edition.weeks.find_by(number: 4).end.end_of_day)
   end
 
-  def new_badge_description(badge)
+  def new_badge_description(badge, upgrade_from_badge)
     return unless badge
-    "Your new badge is called #{badge.name.titleize}. #{badge.description}"
+    description = ""
+    if upgrade_from_badge.present?
+      description += "Your badge has been upgraded from #{upgrade_from_badge.name.titleize}. "
+    end
+    description += "Your new badge is called #{badge.name.titleize}. #{badge.description}"
   end
 
   def first_week?

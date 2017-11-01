@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :mentor_applications, foreign_key: "evaluator_id"
   has_many :tasks, foreign_key: "creator_id"
 
-  has_many :assigned_badges
+  has_many :assigned_badges, -> { where(active: true) }
   has_many :badges, through: :assigned_badges
   has_many :undisplayed_badges, -> { where('displayed = ?', false) }, through: :assigned_badges, source: :badge
 
