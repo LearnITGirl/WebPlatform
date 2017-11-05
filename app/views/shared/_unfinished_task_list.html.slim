@@ -26,6 +26,9 @@
             = t.object.title
             .creator-info
               = creator_label(t.object)
+            - if past_week?
+              .past-week
+                | Select current week on the timeline to mark task as completed
 
           - if !current_user.organizer?
             - if current_user != t.object.creator && t.object.status != "trash"

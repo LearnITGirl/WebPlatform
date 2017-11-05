@@ -6,7 +6,7 @@ module TasksHelper
 
   def is_disabled(task)
     return true if current_user.organizer?
-    task.accepted? || task.trash?
+    task.accepted? || task.trash? || past_week?
   end
 
   def unchecked_task_status
@@ -58,5 +58,14 @@ module TasksHelper
     else
       "Created by mentee"
     end
+  end
+
+  def past_week?
+    @week && @week.end.past?
+  end
+
+
+  def disable_finished_task?(task)
+    !is_creator?(task) || past_week?
   end
 end
