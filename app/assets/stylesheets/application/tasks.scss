@@ -52,6 +52,22 @@ body.mentee_profiles-controller, body.mentor_profiles-controller, body.tasks-con
     font-size: 11px;
     color: $litg-pink;
   }
+
+  .badge-thumbnail {
+    height: 55px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      height: 65px;
+    }
+  }
+
+  .badge-thumbnail:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
 }
 
 

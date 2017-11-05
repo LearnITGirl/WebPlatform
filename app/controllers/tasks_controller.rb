@@ -16,6 +16,7 @@ class TasksController < ApplicationController
     else
       @week = find_week
       @tasks = @week.nil? ? @project.tasks.not_deleted : @project.week_tasks(@week.number).not_deleted
+      @unfinished_tasks = @week.nil? ? @tasks.unfinished(current_user) : @project.tasks.for_weeks(@week.number).unfinished(current_user).not_deleted.order(:id) + @tasks.not_done.order(:id)
       render (current_user.mentee? ? "users/dashboard" : "mentor_profiles/dashboard")
     end
   end

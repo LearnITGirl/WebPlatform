@@ -28,20 +28,5 @@ body.mentee_profiles-controller, body.mentor_profiles-controller {
 
   .btn.missing {margin-right: 0;}
 
-  .badge-thumbnail {
-    height: 55px;
-    margin-bottom: 10px;
-    cursor: pointer;
-
-    @media (max-width: 768px) {
-      height: 65px;
-    }
-  }
-
-  .badge-thumbnail:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-
 }
 
