@@ -46,10 +46,10 @@ module GithubAPI
 
       if results.errors.any?
         raise GraphQL::ExecutionError, results.errors.join(", ")
-      else
-        commits = results.data.repository.ref.target.history.edges
+      elsif (ref = results.data.repository&.ref)
+        commits = ref.target.history.edges
 
-        if commits.length == 1
+        if commits.length > 0
           assign_badge if commits.first.node.authoredByCommitter
           @project.update_column :last_commit, commits.first.node.committedDate
         end
