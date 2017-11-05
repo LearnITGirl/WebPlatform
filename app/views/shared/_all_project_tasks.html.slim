@@ -1,7 +1,9 @@
 h1.text-center.green-text Entire project
-.row.top-space-40
-  .col-xs-12
-    = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
-.row.top-space-40
-  .col-xs-12
-    = render partial: "shared/finished_task_list", locals: {tasks: tasks}
+- if unfinished_tasks.present?
+  .row.top-space-40
+    .col-xs-12
+      = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
+- if tasks.present?
+  .row.top-space-40
+    .col-xs-12
+      = render partial: "shared/finished_task_list", locals: {tasks: tasks}

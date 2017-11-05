@@ -3,12 +3,12 @@ class Week < ActiveRecord::Base
 
   scope :order_by_number, -> { order(number: :asc) }
 
-  def self.get_previous_week_by_date(date)
-    week_for_date = Edition.current.weeks.find_by(start: date.beginning_of_week)
-    Edition.current.weeks.find_by(number: (week_for_date.number - 1))
+
+  def self.current
+    Edition.current.weeks.find_by(start: Date.current.beginning_of_week)
   end
 
-  def get_previous_week
+  def previous_week
     Edition.current.weeks.find_by(number: (self.number - 1))
   end
 end
