@@ -5,10 +5,9 @@ h1.text-center.green-text
     = "Week #{week.number}"
 p.text-center
   = "#{week.start.strftime('%B %d')} - #{week.end.strftime('%B %d')}"
-- unfinished_tasks.present?
-  .row.top-space-40
-    .col-xs-12
-      = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
+.row.top-space-40
+  .col-xs-12
+    = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
 - if week.end.end_of_day > DateTime.current
   .row
     .col-xs-12
