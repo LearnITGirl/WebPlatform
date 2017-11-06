@@ -70,7 +70,10 @@ class UsersController < ApplicationController
 
   def find_new_badge
     if current_user.mentee?
-      @new_badge = current_user.badges.merge(AssignedBadge.not_displayed).first
+      @new_badge = current_user.undisplayed_badges.first
+      return unless @new_badge.present?
+      assigned_badge = current_user.assigned_badges.where(badge_id: @new_badge.id).last
+      @upgrade_from_badge = Badge.find_by(id: assigned_badge.upgraded_from) if assigned_badge.present?
     end
   end
 end

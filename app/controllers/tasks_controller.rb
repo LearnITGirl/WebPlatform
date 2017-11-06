@@ -44,7 +44,7 @@ class TasksController < ApplicationController
 
   def accept
     @task = Task.find(params[:id])
-    @task.update_columns status: 3, week: find_week.number
+    @task.update_columns status: 3, week: find_week.number, completed_at: DateTime.current
     redirect_to dashboard_path
   end
 
@@ -54,7 +54,14 @@ class TasksController < ApplicationController
     params.require(:task).permit(:status, :title).tap do |task|
       if task[:status].present?
         task[:status] = Task.statuses[task["status"]]
-        task[:finished_by] = current_user.id
+        task[:week] = find_week.number
+        if (task[:status] == 2) 
+              task[:finished_by] = current_user.id
+              task[:completed_at] = DateTime.current
+         else  
+              task[:finished_by] = nil
+              task[:completed_at] = nil
+        end
       end
     end
   end

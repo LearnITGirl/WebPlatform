@@ -70,6 +70,11 @@ class Project < ActiveRecord::Base
     self.title.blank? || self.language.blank? || self.description.blank? || self.github_link.blank?
   end
 
+  def tasks_completed_for_week?(week_number)
+    tasks_for_week = tasks.where(week: week_number)
+    tasks_for_week.count > 0 && tasks_for_week.unfinished_tasks_for_week(week_number, mentee).any?
+  end
+
   def self.with_passing_mentors
     where.not(mentor_evaluation: 4)
   end

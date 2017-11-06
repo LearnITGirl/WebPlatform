@@ -4,7 +4,7 @@
       = render partial: "shared/weeks_bar"
 .row.top-space-20
   .col-md-3
-    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
+    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge, @upgrade_from_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
     h3.green-text
       = current_user.full_name
     .row
@@ -45,9 +45,9 @@
       | Your Badges:
     .row
       - if current_user.badges.any?
-        - current_user.badges.each do |badge|
+        - current_user.badges.uniq.each do |badge|
           .col-xs-4
-           = image_tag badge.thumbnail, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
+           = image_tag badge.thumbnail, title: badge.name, class: "badge-thumbnail", data: {toggle: 'modal', target: "#badge-info", src: asset_path(badge.image), description: badge.description, name: badge.name.humanize.titleize}
       - else
         .col-xs-12
           | You don't have any badges yet. Read about badges

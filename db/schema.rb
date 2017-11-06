@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924003656) do
+ActiveRecord::Schema.define(version: 20171020020329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,22 @@ ActiveRecord::Schema.define(version: 20170924003656) do
     t.datetime "updated_at"
   end
 
+  create_table "assigned_badges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "badge_id"
+    t.boolean  "displayed",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assigned_badges", ["badge_id", "user_id"], name: "index_assigned_badges_on_badge_id_and_user_id", using: :btree
+  add_index "assigned_badges", ["user_id", "badge_id"], name: "index_assigned_badges_on_user_id_and_badge_id", using: :btree
+
   create_table "badges", force: :cascade do |t|
     t.integer "name"
     t.string  "image"
     t.text    "description"
+    t.string  "thumbnail"
   end
 
   create_table "badges_users", id: false, force: :cascade do |t|
@@ -234,12 +246,13 @@ ActiveRecord::Schema.define(version: 20170924003656) do
     t.string   "title"
     t.integer  "creator_id"
     t.datetime "created_at"
-    t.integer  "status",      limit: 2
+    t.integer  "status",       limit: 2
     t.integer  "project_id"
     t.integer  "week"
     t.integer  "finished_by"
     t.datetime "deleted_at"
     t.datetime "updated_at"
+    t.datetime "completed_at"
   end
 
   create_table "users", force: :cascade do |t|
