@@ -4,8 +4,8 @@ class MentorToMenteeMatcher
   def run
     @mentor_evaluation_maximum_score = 40
 
-    match_algorithm(with_time_zone: true)
-    match_algorithm(with_time_zone: false)
+    match(with_time_zone: true)
+    match(with_time_zone: false)
 
     p ApplicationMatch.all.size
   end

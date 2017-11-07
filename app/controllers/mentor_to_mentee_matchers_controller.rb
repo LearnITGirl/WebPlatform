@@ -1,4 +1,6 @@
 class MentorToMenteeMatchersController < ApplicationController
+  before_action :require_organiser
+
   def index
     locals={
       all_applications_evaluated: all_applications_evaluated?,
