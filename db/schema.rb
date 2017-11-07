@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020020329) do
+ActiveRecord::Schema.define(version: 20171101181312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,13 @@ ActiveRecord::Schema.define(version: 20171020020329) do
   create_table "assigned_badges", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "badge_id"
-    t.boolean  "displayed",  default: false
+    t.boolean  "displayed",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "week_id"
+    t.boolean  "active",        default: true
+    t.boolean  "upgrade",       default: false
+    t.integer  "upgraded_from"
   end
 
   add_index "assigned_badges", ["badge_id", "user_id"], name: "index_assigned_badges_on_badge_id_and_user_id", using: :btree
