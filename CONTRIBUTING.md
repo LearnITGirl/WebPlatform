@@ -10,7 +10,7 @@ Then, you'll need to install gem dependencies:
 
 If you have any problem with `data-confirm-modal` try to manually install the gem:
 
-		gem install data-confirm-modal
+    gem install data-confirm-modal
 
 Now you can start server `rails s` and see this application in your browser on `localhost:3000`.
 
@@ -29,10 +29,10 @@ Learn IT Girl flow can be split onto few steps (listed below). We prepared some
 database seed files to make it easier for You to understand the flow and
 to contribute.
 
-* Application - `rake db:seed:applications` - `/mentor_applications/new`
-  or `/mentee_applications/new`
-* Application Evaluation-  `rake db:seed:evaluations` or `/organisers/dashboard`
-* Matching mentors to mentees - `/mentor_to_mentee_matchers`
+* Application `rake db:seed:applications` (go to `/mentor_applications/new`
+  or `/mentee_applications/new`)
+* Application Evaluation `rake db:seed:evaluations` (go to `/organisers/dashboard`)
+* Matching mentors to mentees (go to`/mentor_to_mentee_matchers`)
 * Edition start
 * Final evaluation (when edition ends)
 
