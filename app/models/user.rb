@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def last_week_tasks(date)
+    return [] unless project
     project.tasks.where(updated_at: (date.beginning_of_week..date.end_of_week))
   end
 
