@@ -6,7 +6,8 @@ RailsAdmin.config do |config|
   end
 
   config.included_models = ["ProgrammingLanguage", "Badge", "Edition", "User",
-                            "MenteeApplication", "MentorApplication", "Week"]
+                            "MenteeApplication", "MentorApplication", "Week",
+                            "MenteeMidtermEvaluation", "MentorMidtermEvaluation"]
 
   config.model 'User' do
     list do
@@ -50,11 +51,11 @@ RailsAdmin.config do |config|
     show
     edit do
       if (ENV["APPLICATION_EDITION_DISABLED"] || true)
-        except ['MentorApplication', 'MenteeApplication']
+        except ['MentorApplication', 'MenteeApplication', 'MentorMidtermEvaluation', 'MenteeMidtermEvaluation']
       end
     end
     delete do
-      except ['MentorApplication', 'MenteeApplication']
+      except ['MentorApplication', 'MenteeApplication', 'MentorMidtermEvaluation', 'MenteeMidtermEvaluation']
     end
     show_in_app
     #export
