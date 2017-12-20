@@ -8,6 +8,7 @@
 #
 !/log/.keep
 /log/*
+/coverage/*
 # Ignore bundler config.
 .env
 # or operating system, you probably want to add a global ignore instead:
