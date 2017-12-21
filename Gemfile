@@ -59,7 +59,7 @@ group :test do
 	gem 'rspec-rails', '~> 3.6'
 	gem 'simplecov', '~> 0.15.1'
   gem 'selenium-webdriver', '2.45.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'fabrication'
   gem 'faker' , '~> 1.8.4'
 end

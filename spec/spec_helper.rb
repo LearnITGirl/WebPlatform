@@ -1,15 +1,19 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-
-require 'rspec/rails'
-
 require 'simplecov'
 SimpleCov.start do
 	add_filter "spec/*"
 	add_filter "config/*"
 	add_filter "db/seeds.rb"
+
+	add_group "Models", "app/models"
+	add_group "Controllers", "app/controllers"
+	add_group "Helpers", "app/helpers"
 end
+
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+require 'rspec/rails'
 
 include RSpec
 
