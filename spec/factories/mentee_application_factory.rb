@@ -1,8 +1,8 @@
 FactoryBot.define do
 	factory :mentee_application do
-		first_name "Jane"
-		last_name "Doe"
-		email "mentee@litg.com"
+		first_name "Mentee"
+		last_name "Rspec"
+		email "mentee@email.com"
 		gender "female"
 		country "IN"
 		program_country "IN"
