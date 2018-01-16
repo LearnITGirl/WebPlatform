@@ -1,27 +1,30 @@
-require "spec_helper"
+require 'rails_helper'
 
-describe Api::MenteeApplicationsController, type: :controller do
-  describe "POST /api/mentee_applications" do
-    before do
-      ActionMailer::Base.deliveries.clear
-    end
+RSpec.describe Api::MenteeApplicationsController, type: :controller do
+	describe "Api Mentee Application controller tests" do
+		# before(:each) do
+		# 	@edition = create(:edition)
+		# end
 
-    it "should create new mentee application for proper params" do
-      applications_number = MenteeApplication.count
+		# it 'should create a Mentee Application in api format' do
+		# 	post :create, params: { application: { 
+		# 		first_name: "Robot", last_name: "Rspec", email: "mentee@email.com", 
+		# 		gender: "famale", country: "IN", program_country: "IN", 
+		# 		time_zone: "5 - Mumbai", communicating_in_english: true,
+		# 		send_to_mentor_confirmed: true,
+		# 		motivation: "Motivation",
+		# 		background: "Background",
+		# 		team_work_experience: "Team Work Experience",
+		# 		previous_programming_experience: false, experience: "",
+		# 		operating_system: "mac_os",
+		# 		project_proposal: "Project Proposal",
+		# 		roadmap: "Roadmap",
+		# 		time_availability: 3,
+		# 		engagements: ["master_student", "part_time", "volunteer", "one_project"] }, step: "3", steps: "3" }
+			
+		# 	expect(response).to have_http_status(200)
+		# 	expect(flash[:notice]).be eq("Thank you for your application!")
+		# end
 
-      expect(ActionMailer::Base.deliveries.count).to eq(0)
-
-      params = Fabricate.to_params(:mentee_application, programming_language: ProgrammingLanguage.pluck(:slug).sample)
-      params = params.each{|k, v| params[k] = v.to_s}
-
-      post :create, format: :json, application: params, step: 3, steps: 3
-
-      expect(response).to be_success
-      expect(response.status).to eq 200
-
-      expect(ActionMailer::Base.deliveries.count).to eq(1)
-      expect(ActionMailer::Base.deliveries.first.to).to include MenteeApplication.last.email
-      expect(MenteeApplication.count).to eq(applications_number + 1)
-    end
-  end
+	end
 end
