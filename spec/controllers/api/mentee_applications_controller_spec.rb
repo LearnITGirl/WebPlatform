@@ -8,7 +8,7 @@ RSpec.describe Api::MenteeApplicationsController, type: :controller do
 
 		it 'should start create a Mentee Application, step 1' do
 			post :create, application: {
-				first_name: "Robot", last_name: "Rspec", email: "mentee@email.com",
+				first_name: "Mentee", last_name: "Rspec", email: "mentee@email.com",
 				gender: "female", country: "IN", program_country: "IN",
 				time_zone: "5 - Mumbai", communicating_in_english: "true",
 				send_to_mentor_confirmed: "true",
@@ -21,7 +21,7 @@ RSpec.describe Api::MenteeApplicationsController, type: :controller do
 
 		it 'should continue to create a Mentee Application, step 2' do
 			post :create, application: {
-				first_name: "Robot", last_name: "Rspec", email: "mentee@email.com",
+				first_name: "Mentee", last_name: "Rspec", email: "mentee@email.com",
 				gender: "female", country: "IN", program_country: "IN",
 				time_zone: "5 - Mumbai", communicating_in_english: "true",
 				send_to_mentor_confirmed: "true",
@@ -38,7 +38,7 @@ RSpec.describe Api::MenteeApplicationsController, type: :controller do
 		it 'should not create a Mentee Application in api format' do
 			applications = MenteeApplication.count
 			post :create, application: {
-				first_name: "Robot", last_name: "Rspec", email: "mentee@email.com",
+				first_name: "Mentee", last_name: "Rspec", email: "mentee@email.com",
 				gender: "female", country: "IN", program_country: "IN",
 				time_zone: "5 - Mumbai", communicating_in_english: "true",
 				send_to_mentor_confirmed: "true",
@@ -59,7 +59,7 @@ RSpec.describe Api::MenteeApplicationsController, type: :controller do
 		it 'should create a Mentee Application in api format (step 3)' do
 			applications = MenteeApplication.count
 			post :create, application: {
-				first_name: "Robot", last_name: "Rspec", email: "mentee@email.com",
+				first_name: "Mentee", last_name: "Rspec", email: "mentee@email.com",
 				gender: "female", country: "IN", program_country: "IN",
 				time_zone: "5 - Mumbai", communicating_in_english: "true",
 				send_to_mentor_confirmed: "true",
