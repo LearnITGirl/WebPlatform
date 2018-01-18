@@ -55,5 +55,22 @@ RSpec.describe Project, type: :model do
 			expect(applicationMatch).to eq(@application_match.created_at.strftime("%D %r"))
 		end
 
+		it 'should check if this week has tasks to do' do
+			Week.create(number: 1, start: 14.months.from_now, 
+				end: (14.months.from_now + 7.days), edition_id: @edition.id)
+			@task = create(:task, creator_id: @mentor.id, created_at: Date.today,
+				project_id: @project.id, week: 1, status: 1)
+			
+			expect(@project.tasks_completed_for_week?(1)).to be(true)			
+		end
+
+		it 'should get week tests' do
+			Week.create(number: 1, start: 14.months.from_now, 
+				end: (14.months.from_now + 7.days), edition_id: @edition.id)
+			@task = create(:task, creator_id: @mentor.id, created_at: Date.today,
+				project_id: @project.id, week: 1, status: 1)
+			expect(@project.week_tasks(1)).to eq([@task])
+		end
+
 	end
 end

@@ -5,15 +5,15 @@ RSpec.describe TasksController, type: :controller do
 		before(:each) do
 			@edition = create(:edition)
 			Week.create(number: 1, start: 14.months.from_now, 
-			end: (14.months.from_now + 7.days), edition_id: @edition.id)
+				end: (14.months.from_now + 7.days), edition_id: @edition.id)
 			Week.create(number: 2, start: (14.months.from_now + 8.days),
-			end: (14.months.from_now + 15.days), edition_id: @edition.id)
+				end: (14.months.from_now + 15.days), edition_id: @edition.id)
 			Week.create(number: 3, start: (14.months.from_now + 16.days),
-			end: (14.months.from_now + 23.days), edition_id: @edition.id)
+				end: (14.months.from_now + 23.days), edition_id: @edition.id)
 			Week.create(number: 4, start: (14.months.from_now + 24.days),
-			end: (14.months.from_now + 31.days), edition_id: @edition.id)
+				end: (14.months.from_now + 31.days), edition_id: @edition.id)
 			Week.create(number: 5, start: (14.months.from_now + 32.days),
-			end: (14.months.from_now + 39.days), edition_id: @edition.id)
+				end: (14.months.from_now + 39.days), edition_id: @edition.id)
 			@organiser = create(:user)
 			@mentee = create(:mentee)
 			@mentor = create(:mentor)
@@ -46,7 +46,7 @@ RSpec.describe TasksController, type: :controller do
 			before(:each) do
 				login_user(@mentor)
 				@task = create(:task, creator_id: @mentor.id, created_at: Date.today,
-				project_id: @project.id, week: Week.first.id)
+					project_id: @project.id, week: Week.first.id)
 			end
 			it 'should get edit page' do
 				get :edit, id: @task.id
@@ -60,7 +60,7 @@ RSpec.describe TasksController, type: :controller do
 
 			it 'should update Task with status = 3' do
 				task2 = create(:task, creator_id: @mentor.id, created_at: Date.today,
-				project_id: @project.id, status: 3, week: 1, finished_by: @mentor.id)
+					project_id: @project.id, status: 3, week: 1, finished_by: @mentor.id)
 				put :update, id: task2.id, task: { status: 3 }, week: 1
 				expect(Task.first.finished_by).to eq(nil)
 			end
