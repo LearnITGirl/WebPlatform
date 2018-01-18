@@ -103,6 +103,7 @@ RSpec.describe OrganisersController, type: :controller do
 		end
 
 		it 'should delete the Organiser' do
+			request.env["HTTP_REFERER"] = "http://localhost:3000"
 			edition = create(:edition)
 			login_user(@organiser)
 			get :dashboard, user: @organiser

@@ -45,7 +45,7 @@ class OrganisersController < ApplicationController
   def destroy
     @organizer = User.find_by(role:1, id: params[:id])
     @organizer.delete
-    redirect_to dashboard_organisers_path, notice: "Deleted successfully!"
+    redirect_to :back, notice: "Deleted successfully!"
   end
 
   def problematic_projects
