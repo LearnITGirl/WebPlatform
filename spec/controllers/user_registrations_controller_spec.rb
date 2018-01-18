@@ -4,7 +4,6 @@ RSpec.describe UserRegistrationsController, type: :controller do
 	describe 'User Registrations tests' do
 		before(:each) do
 			@organiser = create(:user)
-			@mentee = create(:mentee)
 		end
 
 		it 'should not get edit page for user account' do

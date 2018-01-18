@@ -11,10 +11,11 @@ RSpec.describe UserSessionsController, type: :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
-
+		
 		# it "should create an user session" do
 		# 	get :new
-		# 	post :create, session: @organiser
+		# 	post :create, 
+		#		session: { email: @organiser.email, password: @organiser.password }
 		# 	expect(controller.current_user.first_name).to eq('Mentor')
 		# 	expect(flash[:notice]).to eq("Login Succesful!")
 		# end

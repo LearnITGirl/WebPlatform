@@ -17,12 +17,6 @@ RSpec.describe User, type: :model do
 
 			@project = create(:project, language: "ruby", mentor_id: @mentor.id,
 				mentee_id: @mentee.id, edition_id: @edition.id)
-
-			# @missing_mentee = create(:missing_mentee)
-			# @mentee_application_missing = create(:mentee_application, email: "mentee_missing@email.com")
-			# @project_missing = create(:project, title: 'Missing Project', language: "ruby", mentor_id: @mentor.id,
-			# mentee_id: @missing_mentee.id, edition_id: @edition.id)
-			# @application_match = create(:application_match, mentee_application_id: @mentee_application_missing.id, mentor_application_id: @mentor_application, created_at: 5.days.ago)
 		end
 
 		it 'should get user full name' do
@@ -53,10 +47,6 @@ RSpec.describe User, type: :model do
 		it 'should get mentee user application' do
 			expect(@mentee.application).to eq(@mentee_application)
 		end
-
-		# it 'should get all missing mentees' do
-		# 	expect(User.mentees_missing_on_website).to eq(1)
-		# end
 
 	end
 end
