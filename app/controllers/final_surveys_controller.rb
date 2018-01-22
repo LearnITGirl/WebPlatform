@@ -11,7 +11,7 @@ class FinalSurveysController < ApplicationController
     if survey.valid? && survey.save
       redirect_to root_path, notice: "Thank you for filling in your final evaluation"
     else
-      render_form(survey)
+      render_form(clean_survey_params(survey))
     end
   end
 
@@ -50,6 +50,17 @@ class FinalSurveysController < ApplicationController
       :mentor_impression, :mentor_expectations, :mentor_project_summary, :mentor_feedback,
       :mentor_program_duration
     )
+  end
+
+  def clean_survey_params(survey)
+    if survey.errors.has_key?(:mentee_demo_file) &&
+        survey.errors.values.include?(["file size must be less than 25 MB"])
+
+      survey.mentee_demo_url = ""
+      survey.mentee_demo_file = ""
+    end
+
+    survey
   end
 
   def require_mentee_or_mentor

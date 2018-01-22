@@ -15,6 +15,7 @@ class MenteeFinalSurveyForm
     unless: Proc.new { |f| f.mentee_demo_file.present? }
   validates :mentee_demo_file, presence: { message: "or demo url must be set" },
     unless: Proc.new { |f| f.mentee_demo_url.present? }
+  validates :mentee_demo_file, file_size: { less_than: 25.megabytes }
   validates :mentee_recap_and_future, presence: true
 
 
