@@ -25,12 +25,18 @@
           label.bottom-space
             strong Demo Time
             div We understand that everybody is in a different stage of development. We do not focus primarily if your product is finished or not. Is it live - please be prepared to include a link to the AppStore or website. Not quite there yet? Do not worry if you did not get to the very end - give us an idea of the state of development - be prepared to add a link or upload a file of a powerpoint, keynote, presi, pdf, blogpost, screencast etc. to showcase your product. Be creative!
-            .input-group.padding-top-15
-              = f.text_field :mentee_demo_url, class: "form-control"
-              .input-group-btn
-                label.btn.btn-default.demo-file-label for="demo-file" Upload file
-            div If your file has more than 25mb, please upload it to google drive and paste a link or contact us for help.
-            = f.file_field :mentee_demo_file, id: "demo-file", class: "hidden final-survey-input-file"
+            .row.padding-top-15
+              .col-xs-12.padding-top-15
+                  = f.text_field :mentee_demo_url, class: "form-control", placeholder: "Paste url here"
+              .col-xs-12.padding-top-15
+                .input-group
+                  input.form-control.demo-file-name disabled=true placeholder="File" value="#{temporary_file_name_and_size(survey.mentee_demo_file)}"
+                  .input-group-btn
+                    label.btn.btn-default.demo-file-label for="mentee_final_survey_form_mentee_demo_file" Upload file
+            div
+              i If your file has more than 25mb, please upload it to google drive and paste a link or contact us for help.
+            = f.file_field :mentee_demo_file, class: "hidden final-survey-input-file"
+            = f.hidden_field :mentee_demo_file_cache
         .form-group
           label.bottom-space
             strong Recap and Future

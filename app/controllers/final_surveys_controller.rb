@@ -41,7 +41,7 @@ class FinalSurveysController < ApplicationController
 
   def mentee_survey_param
     params.require(:mentee_final_survey_form).permit(
-      :mentee_idea_pitch, :mentee_demo_url, :mentee_demo_file, :mentee_recap_and_future, :mentee_feedback
+      :mentee_idea_pitch, :mentee_demo_url, :mentee_demo_file, :mentee_demo_file_cache, :mentee_recap_and_future, :mentee_feedback
     )
   end
 
