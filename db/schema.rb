@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101181312) do
+ActiveRecord::Schema.define(version: 20180121193040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,19 +82,18 @@ ActiveRecord::Schema.define(version: 20171101181312) do
     t.integer  "mentor_id"
     t.integer  "mentee_id"
     t.integer  "project_id"
-    t.text     "mentee_impression"
     t.text     "mentor_impression"
-    t.text     "mentee_expectations"
     t.text     "mentor_expectations"
-    t.text     "mentee_project_summary"
     t.text     "mentor_project_summary"
-    t.text     "mentee_feedback"
     t.text     "mentor_feedback"
-    t.text     "mentee_future_plans"
-    t.string   "mentee_program_duration"
     t.string   "mentor_program_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "mentee_idea_pitch"
+    t.text     "mentee_demo_url"
+    t.text     "mentee_demo_file"
+    t.text     "mentee_recap_and_future"
+    t.text     "mentee_feedback"
   end
 
   create_table "mentee_applications", force: :cascade do |t|
