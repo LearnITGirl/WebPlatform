@@ -2,21 +2,32 @@ class FinalSurveysController < ApplicationController
   before_action :require_mentee_or_mentor, :already_submitted
 
   def new
-    @survey = form(true)
+    render_form(form(true))
   end
 
   def create
-    @survey = form
+    survey = form
 
-    if @survey.valid?
-      @survey.save
+    if survey.valid? && survey.save
       redirect_to root_path, notice: "Thank you for filling in your final evaluation"
     else
-      render "new"
+      render_form(survey)
     end
   end
 
+  def show
+    redirect_to action: :new
+  end
+
   private
+
+  def render_form(survey_form)
+    if current_user.mentor?
+      render "final_surveys/mentor_form", locals: { survey: survey_form }
+    elsif current_user.mentee?
+      render "final_surveys/mentee_form", locals: { survey: survey_form }
+    end
+  end
 
   def form(is_empty=false)
     if current_user.mentee?
@@ -30,8 +41,7 @@ class FinalSurveysController < ApplicationController
 
   def mentee_survey_param
     params.require(:mentee_final_survey_form).permit(
-      :mentee_impression, :mentee_expectations, :mentee_project_summary, :mentee_future_plans,
-      :mentee_feedback, :mentee_program_duration
+      :mentee_idea_pitch, :mentee_demo_url, :mentee_demo_file, :mentee_recap_and_future, :mentee_feedback
     )
   end
 
