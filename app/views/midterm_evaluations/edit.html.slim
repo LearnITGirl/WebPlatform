@@ -1,26 +1,26 @@
 .page-header
   h1.text-center.green-text Final Evaluation
   h6.text-center Pair created on <b>#{@project.pair_matched_at.try(:strftime, "%d %B %Y")}</b><hr>
-  
+
 .wizard
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
       = form_for @project, url: midterm_evaluation_path(@project) do |f|
-        - if @project.errors.present?
-          .alert.alert-danger.text-center
-            = @project.errors.full_messages.join(", ")
-
         = link_to "See tasks", project_path(@project.id), target: "_blank"
 
         .pull-right
           = link_to "Github Repository", url_with_protocol(@project.github_link), target: "_blank"
 
+        h2.litg-pink.text-center Mentor evaluation
+
         = render partial: "midterm_evaluations/mentor_response"
 
         .form-group
           label.bottom-space The mentor evaluation is independent of the mentee's work. If the mentor is making efforts, even if the mentee is not working, they should receive a good evaluation.
-          = f.select :mentor_evaluation, options_for_select(Project.mentor_evaluations, selected: @project.mentor_evaluation), {prompt: "Select one"}, {class: "form-control"}
+          = f.select :mentor_evaluation, options_for_select(Project.mentor_evaluations, @project.mentor_evaluation), {prompt: "Select one"}, {class: "form-control"}
 
+        .top-space-100
+        h2.litg-pink.text-center Mentee evaluation
         = render partial: "midterm_evaluations/mentee_response"
 
         .form-group
