@@ -16,7 +16,7 @@ class MidtermEvaluationsController < ApplicationController
       redirect_to dashboard_organisers_path, notice: "Midterm Application for this project has already been filled"
     elsif @project.update_attributes(evaluation_params)
       @project.update_attribute(:midterm_evaluation_status, 2)
-      redirect_to dashboard_organisers_path, notice: "Midterm Evaluation submitted successfully!"
+      redirect_to dashboard_organisers_path, notice: "Evaluation submitted successfully!"
     else
       flash.now[:alert] = @project.errors.full_messages.join(", ")
       render "edit"

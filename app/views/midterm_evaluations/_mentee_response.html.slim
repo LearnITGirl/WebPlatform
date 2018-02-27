@@ -31,9 +31,9 @@ p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_idea_pitch : "Di
 b Demo Time. We understand that everybody is in a different stage of development. We do not focus primarily if your product is finished or not. give us an idea of the state of development - be prepared to add link or upload a file of a powerpoint, keynote, presi, pdf, blogpost, screencast etc. to showcase your product. Be creative!
 p
   - if @mentee_final_survey&.mentee_demo_url.present?
-    = link_to "Click to open link", @mentee_final_survey&.mentee_demo_url
+    = link_to "Click to open link", @mentee_final_survey&.mentee_demo_url, target: "_blank"
   - elsif @mentee_final_survey&.mentee_demo_file.present?
-    = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file.url
+    = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file.url, target: "_blank"
   - else
     = "Didn't fill in survey"
 
