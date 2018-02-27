@@ -25,22 +25,22 @@ p = @mentee_midterm_evaluation.present? ? @mentee_midterm_evaluation.extra_info 
 
 h4.text-justify Mentee Final Survey <hr>
 
-b How do you feel at the end of the programme?
-p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_impression : "Didn't fill in survey"
+b Present your final product in a few sentences - we want to know what is it used for and who will be the users. What languages, techniques, tools did you use to implement your product?
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_idea_pitch : "Didn't fill in survey"
 
-b What were your expectations regarding to the program? Were they met?
-p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_expectations : "Didn't fill in survey"
+b Demo Time. We understand that everybody is in a different stage of development. We do not focus primarily if your product is finished or not. give us an idea of the state of development - be prepared to add link or upload a file of a powerpoint, keynote, presi, pdf, blogpost, screencast etc. to showcase your product. Be creative!
+p
+  - if @mentee_final_survey&.mentee_demo_url.present?
+    = link_to "Click to open link", @mentee_final_survey&.mentee_demo_url
+  - elsif @mentee_final_survey&.mentee_demo_file.present?
+    = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file.url
+  - else
+    = "Didn't fill in survey"
 
-b Did you finish your project? Give us a short summary of its current state.
-p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_project_summary : "Didn't fill in survey"
+b We want to know about your journey. Be prepared to give a short recap of the 3 greatest challenges you had during the 12 weeks and what helped you overcome them? Also we would like to know how are you planning to continue your journey into IT. So please prepare a mission statement for the time after Learn IT Girl!
+p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_recap_and_future : "Didn't fill in survey"
 
-b What are you up to next? E.g.: university courses, looking for other programs, continuing working on the project, starting a new one etc.
-p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_future_plans : "Didn't fill in survey"
-
-b Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
+b Is there anything you would like to share with us?
 p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_feedback : "Didn't fill in survey"
-
-b Was the program too long? How many weeks should it last?
-p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_program_duration : "Didn't fill in survey"
 
 <hr>
