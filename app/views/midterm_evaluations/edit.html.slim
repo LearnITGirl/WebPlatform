@@ -6,7 +6,7 @@
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
       = form_for @project, url: midterm_evaluation_path(@project) do |f|
-        = link_to "See tasks", project_path(@project.id), target: "_blank"
+        = link_to "See tasks", project_path(@project.id, week: "all"), target: "_blank"
 
         .pull-right
           = link_to "Github Repository", url_with_protocol(@project.github_link), target: "_blank"
