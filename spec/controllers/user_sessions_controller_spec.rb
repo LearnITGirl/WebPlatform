@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
 	describe "Users Sessions controller tests" do
-		before(:each) do
-			@organiser = create(:user)
-		end
+		let(:organiser) { create(:user) }
 
     it "should set a new session instance" do
       get :new
@@ -21,7 +19,7 @@ RSpec.describe UserSessionsController, type: :controller do
 		# end
 
 		it "should destroy an user session" do
-			login_user(@organiser)
+			login_user(organiser)
 			get :destroy
 			expect(controller.current_user).to be(nil)
 			expect(flash[:notice]).to eq("Logged out!")
