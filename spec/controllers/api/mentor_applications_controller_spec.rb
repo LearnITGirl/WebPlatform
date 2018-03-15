@@ -2,90 +2,65 @@ require 'rails_helper'
 
 RSpec.describe Api::MentorApplicationsController, type: :controller do
   describe "Api Mentor Application controller tests" do
-		before(:each) do
-			@edition = create(:edition)
+		let!(:edition) { create(:edition) }
+		let(:params_step1) do { 
+			first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
+			gender: "female", country: "IN", program_country: "IN",
+			time_zone: "5 - Mumbai", english_level: nil,
+			mentee_level: [], experienced: "false",
+			mentor_experience: "Mentor Experience",
+			old_programming_languages: [], programming_experience: nil,
+			time_availability: "", communicating_in_english: "true", }
+		end
+		let(:params_step2) do
+			params_step1.merge({
+				motivation: "Motivation", background: "Background", })
+		end
+		let(:params_step3) do
+			params_step2.merge({
+				git: "true", operating_system: "linux",
+				programming_languages: ["ruby", "php"], })
+		end
+		let(:params_step4) do
+			params_step3.merge({
+				application_idea: "Application Idea", 
+				concept_explanation: "Concept Explanation", })
+		end
+		let(:params_step5) do
+			params_step4.merge({
+				engagements: ["master_student", "part_time", "volunteer", "one_project"], })
 		end
 
 		it 'should start to create a Mentor Application, step 1' do
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", english_level: nil,
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience",
-				old_programming_languages: [], programming_experience: nil,
-				time_availability: 3,
-				communicating_in_english: "true" },
+			post :create, application: params_step1,
 				step: "1", steps: "5"
 
 			expect(response).to have_http_status(200)
 		end
 
 		it 'should continue to create a Mentor Application, step 2' do
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				motivation: "Motivation", background: "Background",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", english_level: nil,
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience",
-				old_programming_languages: [], programming_experience: nil,
-				time_availability: 3,
-				communicating_in_english: "true" },
+			post :create, application: params_step2,
 				step: "2", steps: "5"
 
 			expect(response).to have_http_status(200)
 		end
 
 		it 'should continue to create a Mentor Application, step 3' do
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				motivation: "Motivation", background: "Background",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", english_level: nil,
-				git: "true", operating_system: "linux",
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience",
-				old_programming_languages: [], programming_experience: nil,
-				programming_languages: ["ruby", "php"],
-				time_availability: 3,
-				communicating_in_english: "true" },
+			post :create, application: params_step3,
 				step: "3", steps: "5"
 
 			expect(response).to have_http_status(200)
 		end
 
 		it 'should continue to create a Mentor Application, step 4' do
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				motivation: "Motivation", background: "Background",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", english_level: nil,
-				git: "true", operating_system: "linux",
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience",
-				old_programming_languages: [], programming_experience: nil,
-				programming_languages: ["ruby", "php"], application_idea: "Application Idea",
-				concept_explanation: "Concept Explanation", time_availability: 3,
-				communicating_in_english: "true" },
+			post :create, application: params_step4,
 				step: "4", steps: "5"
 
 			expect(response).to have_http_status(200)
 		end
 
 		it 'should not create a Mentor Application, step 5' do
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", motivation: "Motivation", english_level: nil,
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience", background: "Background",
-				git: "true", old_programming_languages: [], programming_experience: nil,
-				application_idea: "Application Idea",
-				communicating_in_english: "",
-				concept_explanation: "Concept Explanation",
-				time_availability: "",
-				engagements: ["master_student", "part_time", "volunteer", "one_project"] },
+			post :create, application: params_step5,
 				step: "5", steps: "5"
 
 			expect(response).to have_http_status(:unprocessable_entity)
@@ -93,18 +68,8 @@ RSpec.describe Api::MentorApplicationsController, type: :controller do
 
 		it 'should create a Mentor Application, step 5' do
 			applications = MentorApplication.count
-			post :create, application: {
-				first_name: "Mentor", last_name: "Rspec", email: "mentor@email.com",
-				gender: "female", country: "IN", program_country: "IN",
-				time_zone: "5 - Mumbai", motivation: "Motivation", 
-				communicating_in_english: "true", english_level: "",
-				mentee_level: [], experienced: "false",
-				mentor_experience: "Mentor Experience", background: "Background",
-				git: "true", old_programming_languages: ["ruby", "php"], programming_experience: nil, programming_languages: ["ruby", "php"],
-				application_idea: "Application Idea",
-				concept_explanation: "Concept Explanation",
-				time_availability: 3,
-				engagements: ["master_student", "part_time", "volunteer", "one_project"] },
+			final_params = params_step5.merge({ time_availability: 3, })
+			post :create, application: final_params,
 				step: "5", steps: "5"
 
 			expect(response).to have_http_status(200)
