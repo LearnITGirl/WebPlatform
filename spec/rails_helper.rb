@@ -28,8 +28,8 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-	# Added Sorcery methods to tests
-	config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  # Added Sorcery methods to tests
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
   config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

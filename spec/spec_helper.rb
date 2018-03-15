@@ -1,12 +1,12 @@
 require 'simplecov'
 SimpleCov.start do
-	add_filter "spec/*"
-	add_filter "config/*"
-	add_filter "db/seeds.rb"
+  add_filter "spec/*"
+  add_filter "config/*"
+  add_filter "db/seeds.rb"
 
-	add_group "Models", "app/models"
-	add_group "Controllers", "app/controllers"
-	add_group "Helpers", "app/helpers"
+  add_group "Models", "app/models"
+  add_group "Controllers", "app/controllers"
+  add_group "Helpers", "app/helpers"
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -20,12 +20,12 @@ include RSpec
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-	config.include Sorcery::TestHelpers::Rails
-	config.include Rails.application.routes.url_helpers
-	
+  config.include Sorcery::TestHelpers::Rails
+  config.include Rails.application.routes.url_helpers
+  
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-	end
+  end
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
