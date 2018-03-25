@@ -29,12 +29,14 @@ b Present your final product in a few sentences - we want to know what is it use
 p = @mentee_final_survey.present? ? @mentee_final_survey.mentee_idea_pitch : "Didn't fill in survey"
 
 b Demo Time. We understand that everybody is in a different stage of development. We do not focus primarily if your product is finished or not. give us an idea of the state of development - be prepared to add link or upload a file of a powerpoint, keynote, presi, pdf, blogpost, screencast etc. to showcase your product. Be creative!
-p
-  - if @mentee_final_survey&.mentee_demo_url.present?
+- if @mentee_final_survey&.mentee_demo_url.present?
+  p
     = link_to "Click to open link", @mentee_final_survey&.mentee_demo_url, target: "_blank"
-  - elsif @mentee_final_survey&.mentee_demo_file.present?
+- if @mentee_final_survey&.mentee_demo_file.present?
+  p
     = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file.url, target: "_blank"
-  - else
+- if @mentee_final_survey&.mentee_demo_url.blank? && @mentee_final_survey&.mentee_demo_file.url.blank?
+  p
     = "Didn't fill in survey"
 
 b We want to know about your journey. Be prepared to give a short recap of the 3 greatest challenges you had during the 12 weeks and what helped you overcome them? Also we would like to know how are you planning to continue your journey into IT. So please prepare a mission statement for the time after Learn IT Girl!
