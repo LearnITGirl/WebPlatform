@@ -49,15 +49,17 @@ gem 'graphql-client', '~> 0.8.6'
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'letter_opener'
+	gem 'letter_opener'
+	gem 'rails_best_practices', '~> 1.19'
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'rspec-rails', '~> 3.0'
+	gem 'rspec-rails', '~> 3.6'
+	gem 'simplecov', '~> 0.15.1'
   gem 'selenium-webdriver', '2.45.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'fabrication'
   gem 'faker' , '~> 1.8.4'
 end

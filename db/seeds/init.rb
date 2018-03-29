@@ -139,13 +139,29 @@ ProgrammingLanguage.find_or_create_by(name: "Ruby", slug: "ruby")
 ProgrammingLanguage.find_or_create_by(name: "PHP", slug: "php")
 
 # ##################################################
-# Editions
+# Edition with 5 Weeks
 # ##################################################
 
-Edition.find_or_create_by(name: "test", start_date: DateTime.new(2020, 1, 1), end_date: DateTime.new(2030, 1, 1), registration_started_at: DateTime.new(2017, 1, 1), registration_closed_at: DateTime.new(2030, 1, 1))
-#Edition.find_or_create_by(name: "first")
-#Edition.find_or_create_by(name: "second", start_date: DateTime.new(2016, 2, 15), end_date: DateTime.new(2016, 5, 8))
-#Edition.find_or_create_by(name: "third", start_date: DateTime.new(2017, 10, 16), end_date: DateTime.new(2018, 1, 21), registration_started_at: DateTime.new(2017, 7, 14), registration_closed_at: DateTime.new(2017, 9, 8))
+edition = Edition.find_or_create_by(name: "test",
+	start_date: 14.months.from_now,
+	end_date: (14.months.from_now + 39.days),
+	registration_started_at: DateTime.now,
+	registration_closed_at: 1.year.from_now)
+
+Week.create(number: 1, start: 14.months.from_now, 
+	end: (14.months.from_now + 7.days), edition_id: edition.id)
+
+Week.create(number: 2, start: (14.months.from_now + 8.days),
+	end: (14.months.from_now + 15.days), edition_id: edition.id)
+
+Week.create(number: 3, start: (14.months.from_now + 16.days),
+	end: (14.months.from_now + 23.days), edition_id: edition.id)
+
+Week.create(number: 4, start: (14.months.from_now + 24.days),
+	end: (14.months.from_now + 31.days), edition_id: edition.id)
+
+Week.create(number: 5, start: (14.months.from_now + 32.days),
+	end: (14.months.from_now + 39.days), edition_id: edition.id)
 
 # ##################################################
 # Badges

@@ -21,14 +21,13 @@ class OrganisersController < ApplicationController
     if @user.save
       OrganisersMailer.register(@user).deliver_now
       redirect_to organisers_path, notice: 'Instructions have been sent to the email'
-    else
+		else
       flash.now[:alert] = @user.errors.full_messages.join(", ")
       display_organisers
       organisers_left
       render "index"
     end
   end
-
 
   def edit
     @organizer = current_user
@@ -38,7 +37,7 @@ class OrganisersController < ApplicationController
     @organizer = current_user
     if @organizer.update_attributes(organizer_params)
       redirect_to(organisers_path, notice: "Details were successfully updated.")
-    else
+		else
       render "edit"
     end
   end
@@ -64,7 +63,7 @@ class OrganisersController < ApplicationController
   end
 
   def organizer_params
-    params.require(:user).permit(:first_name,:last_name,:country, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :country, :password, :password_confirmation, :avatar)
   end
 
   def current_dashboard_view

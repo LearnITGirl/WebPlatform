@@ -1,27 +1,61 @@
-require "spec_helper"
+require 'rails_helper'
 
-describe Api::MenteeApplicationsController, type: :controller do
-  describe "POST /api/mentee_applications" do
-    before do
-      ActionMailer::Base.deliveries.clear
+RSpec.describe Api::MenteeApplicationsController, type: :controller do
+  describe "Api Mentee Application controller tests" do
+    let!(:edition) { create(:edition) }
+    let(:params_step1) do {
+      first_name: "Mentee", last_name: "Rspec", email: "mentee@email.com",
+      gender: "female", country: "IN", program_country: "IN",
+      time_zone: "5 - Mumbai", communicating_in_english: "true",
+      send_to_mentor_confirmed: "true",
+      time_availability: 3,
+      previous_programming_experience: "false", }
+    end
+    let(:params_step2) do
+      params_step1.merge({
+        motivation: "Motivation", background: "Background",
+        team_work_experience: "Team Work Experience", })
+    end
+    let(:params_step3) do
+      params_step2.merge({
+        experience: "", operating_system: "mac_os",
+        project_proposal: "Project Proposal", roadmap: "Roadmap",
+        engagements: ["master_student", "part_time", "volunteer", "one_project"], })
     end
 
-    it "should create new mentee application for proper params" do
-      applications_number = MenteeApplication.count
+    it 'should start create a Mentee Application, step 1' do
+      post :create, application: params_step1,
+        step: "1", steps: "3"
 
-      expect(ActionMailer::Base.deliveries.count).to eq(0)
-
-      params = Fabricate.to_params(:mentee_application, programming_language: ProgrammingLanguage.pluck(:slug).sample)
-      params = params.each{|k, v| params[k] = v.to_s}
-
-      post :create, format: :json, application: params, step: 3, steps: 3
-
-      expect(response).to be_success
-      expect(response.status).to eq 200
-
-      expect(ActionMailer::Base.deliveries.count).to eq(1)
-      expect(ActionMailer::Base.deliveries.first.to).to include MenteeApplication.last.email
-      expect(MenteeApplication.count).to eq(applications_number + 1)
+      expect(response).to have_http_status(200)
     end
+
+    it 'should continue to create a Mentee Application, step 2' do
+      post :create, application: params_step2,
+        step: "2", steps: "3"
+
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should not create a Mentee Application in api format' do
+      applications = MenteeApplication.count
+      post :create, application: params_step3,
+      step: "3", steps: "3"
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(MenteeApplication.count).to be(0)
+    end
+
+    it 'should create a Mentee Application in api format (step 3)' do
+      applications = MenteeApplication.count
+      params_final = params_step3.merge({ programming_language: "ruby", })
+      post :create, application: params_final,
+      step: "3", steps: "3"
+      
+      expect(response).to have_http_status(200)
+      expect(MenteeApplication.count).to be(applications+1)
+      expect(flash[:notice]).to eq("Thank you for your application!")
+    end
+
   end
 end
