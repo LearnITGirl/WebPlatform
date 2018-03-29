@@ -34,8 +34,8 @@ b Demo Time. We understand that everybody is in a different stage of development
     = link_to "Click to open link", @mentee_final_survey&.mentee_demo_url, target: "_blank"
 - if @mentee_final_survey&.mentee_demo_file.present?
   p
-    = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file&.url, target: "_blank"
-- if @mentee_final_survey&.mentee_demo_url.blank? && @mentee_final_survey&.mentee_demo_file.url.blank?
+    = link_to "Click to see attchment", @mentee_final_survey&.mentee_demo_file.url, target: "_blank"
+- if @mentee_final_survey&.mentee_demo_url.blank? && @mentee_final_survey&.mentee_demo_file.blank?
   p
     = "Didn't fill in survey"
 
