@@ -13,7 +13,7 @@ namespace :final_results do
   task rejected_mentees: :environment do
     email_template = EmailTemplate.find_by(recipients: 24)
 
-    email_template.users.each do |user|
+    email_template.users.select{|u| u.id != 993}.each do |user|
       EmailTemplateMailer.custom(email_template, user).deliver_now
     end
   end
