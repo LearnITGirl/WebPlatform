@@ -117,6 +117,7 @@ Webplatform::Application.routes.draw do
   resources :exports, only: [] do
     collection do
       get :surveys
+      get :final_results
     end
   end
 
