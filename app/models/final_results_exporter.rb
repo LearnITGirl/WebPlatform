@@ -3,7 +3,7 @@ class FinalResultsExporter
 
   def initialize
     @mentors = Project.with_passing_mentors.map{|p| p.mentor}
-    @mentees = Project.with_passing_mentees.map{|p| p.mentor}
+    @mentees = Project.with_passing_mentees.map{|p| p.mentee}
   end
 
 
