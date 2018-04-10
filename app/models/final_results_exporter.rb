@@ -8,19 +8,27 @@ class FinalResultsExporter
 
 
   def to_csv
-    attributes = %w(full_name email evaluation_url)
+    attributes = %w(full_name email user_id evaluation_url github_link language)
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
+      csv << ["Mentors"]
       mentors.each do |mentor|
         url = Rails.application.routes.url_helpers.midterm_evaluation_url(mentor.project)
-        csv << [mentor.full_name, mentor.email, url]
+        csv << [
+          mentor.full_name, mentor.email, mentor.id, url, mentor.project.github_link,
+          mentor.project.programming_language&.name
+        ]
       end
 
+      csv << ["Mentees"]
       mentees.each do |mentee|
         url = Rails.application.routes.url_helpers.midterm_evaluation_url(mentee.project)
-        csv << [mentee.full_name, mentee.email, url]
+        csv << [
+          mentee.full_name, mentee.email, mentee.id, url, mentee.project.github_link,
+          mentee.project.programming_language&.name
+        ]
       end
     end
   end
