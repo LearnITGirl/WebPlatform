@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_one :final_survey
 
   belongs_to :edition
+  belongs_to :programming_language
 
   belongs_to :mentor_midterm_evaluation, class_name: 'User', foreign_key: "mentor_id"
   belongs_to :mentee_midterm_evaluation, class_name: 'User', foreign_key: "mentee_id"
