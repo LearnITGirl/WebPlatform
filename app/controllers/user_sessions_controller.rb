@@ -30,7 +30,12 @@ class UserSessionsController < ApplicationController
   end
 
   def check_partner
-    if @user.role == "organizer" || (@user.role != "organizer" && @user.project.present? && @user.partner.present?)
+    if @user.role == "organizer"
+      redirect_to user_dashboard_path, notice: "Login Succesful!"
+    elsif current_edition.end_date < DateTime.current
+      logout
+      redirect_to root_path, notice: "Current edition has ended. Please send email to learnitgirl.office@gmail.com with any inquiries"
+    elsif (@user.role != "organizer" && @user.project.present? && @user.partner.present?)
       redirect_to user_dashboard_path, notice: "Login Succesful!"
     else
       logout
