@@ -1,7 +1,7 @@
-namespace :participants do
+namespace :passing_pairs do
 
   desc "Send email with latest info to passing mentees"
-  task passing_mentee_latest_info: :environment do
+  task mentee_latest_info: :environment do
     template = EmailTemplate.final_passing_mentees.last
 
     template.users.each do |user|
@@ -10,7 +10,7 @@ namespace :participants do
   end
 
   desc "Send email with latest info to passing mentors"
-  task passing_mentor_latest_info: :environment do
+  task mentor_latest_info: :environment do
     template = EmailTemplate.final_passing_mentors.last
 
     template.users.each do |user|
