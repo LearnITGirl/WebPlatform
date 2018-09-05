@@ -19,7 +19,7 @@ motivation:
       score: 4
     - answer: "General sentences only"
       hint: "If their sentences are too general, and the personal reason why they are doing this is not really showing. And there are only general sentences"
-      score: 3
+      score: 1
     - answer: "They only focus on themselves and see it as a challenge"
       hint: "If they make the application about them: sharing their skills, showing off, testing their knowledge (of programming, or English etc.). If they seem like it’s more of a challenge, and they want to test themselves"
       score: 2
@@ -35,6 +35,9 @@ motivation:
       score: 0
     - answer: "Copy-paste from the program description"
       hint: "If they state they want to do what the program does (copy-paste, or even with minor modifications). We want their personal experience here, we already know what the program does."
+      score: 0
+    - answer: "Made-up answer, mentioning some random experience"
+      hint: "If it sounds like they made it up, without mentioning any relevant reasons"
       score: 0
 abilities:
   experienced:
@@ -82,6 +85,12 @@ abilities:
       - answer: "Specifying the idea along with why they choose it."
         hint: "For example, Learning through building a game like tic-tac-toe, she will learn through basic syntaxes. Them can move on to building memory games. "
         score: 5
+      - answer: "General type of application (mobile app, web-app) without specifying the topic, but providing details about what concepts to focus on or other implementational details"
+        hint: ""
+        score: 3
+      - answer: "Suggest some basic apps and then move creating more complex ones, with examples provided for the types of apps or other details"
+        hint: ""
+        score: 2
       - answer: "General statement"
         hint: "Answer is more general statements like *identifying the interest and suggesting ideas accordingly*"
         score: 1
@@ -101,7 +110,7 @@ abilities:
         hint: ""
         score: 0
   concept_explanation:
-    question: "Looking back at the time when you were still a beginner - which concept do you remember was challenging for you to understand? Who or what helped you to finally grasp it?"
+    question: "Looking back at the time you were still a beginner. What concept do you remember was challenging for you to understand? What explanation helped you to finally grasp the concept? Did you find it in a book or tutorial or did someone explain it to you? (No need to explain technical details. We rather want to get to know you as a learner. )"
     max_score: 5
     answers:
       - answer: "Understand the concept explained provided you don't know about it before hand"
@@ -115,16 +124,16 @@ abilities:
         score: 5
       - answer: "Copy-pasting a piece of code and explaining it how it works. "
         hint: ""
-        score: 4
+        score: 2
       - answer: "Explain how they would explain, instead of actually explaining "
         hint: "We don’t know how easily someone understands, because this skips some actual explanations"
         score: 4
-      - answer: "Simple concepts present in any every language"
+      - answer: "Simple concepts present in any every language and a very general way of explaining it"
         hint: "Simple concepts like control statements, conditional statements, arithmetic operations, etc present in any every language"
-        score: 4
+        score: 3
       - answer: "The answers are too technical"
         hint: ""
-        score: 0
+        score: 1
       - answer: "Long and hard to understand answer"
         hint: "The explanation is too long (as in text, not code or figures) and hard to understand."
         score: 0
