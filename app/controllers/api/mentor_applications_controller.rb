@@ -62,6 +62,7 @@ class Api::MentorApplicationsController < ApiController
   end
 
   def send_confirmation_email(mentor_application)
+    return unless Rails.env.production?
     if MentorApplicationMailer.confirm_application(mentor_application).deliver_now
       mentor_application.update_attributes(confirmation_email_sent_at: Time.now)
     end
