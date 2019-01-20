@@ -83,7 +83,15 @@ class MentorApplicationValidation
 
   def dry_validation_step_5
     Dry::Validation.Schema do
+      configure do
+        config.messages_file = 'config/locales/dry.en.yml'
+
+        def checked?(attr_name, value)
+          value == "true"
+        end
+      end
       required(:time_availability).filled
+      required(:gdpr_consent).filled(checked?: :gdpr_consent)
       optional(:engagements).each(:filled?)
     end
   end

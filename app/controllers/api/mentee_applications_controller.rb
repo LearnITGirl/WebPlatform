@@ -37,7 +37,7 @@ class Api::MenteeApplicationsController < ApiController
           .permit(:first_name, :last_name, :email, :gender, :country, :program_country,
                   :time_zone, :communicating_in_english, :send_to_mentor_confirmed,
                   :motivation, :background, :team_work_experience,
-                  :previous_programming_experience, :experience,
+                  :previous_programming_experience, :experience, :gdpr_consent,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
                   engagements: []).symbolize_keys
   end

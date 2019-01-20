@@ -31,6 +31,9 @@ class HomeController < ApplicationController
   def about_us
   end
 
+  def privacy_policy
+  end
+
   private
 
   def current_home_page

@@ -42,6 +42,10 @@ class MenteeApplicationValidation
           MenteeApplication.where(attr_name => value)
             .where(edition_id: edition.id).empty?
         end
+
+        def checked?(attr_name, value)
+          value == "true"
+        end
       end
 
       required(:first_name).filled(:str?)
@@ -65,12 +69,20 @@ class MenteeApplicationValidation
 
   def dry_validation_step_3
     Dry::Validation.Schema do
+      configure do
+        config.messages_file = 'config/locales/dry.en.yml'
+
+        def checked?(attr_name, value)
+          value == "true"
+        end
+      end
       required(:programming_language).filled(:str?)
       required(:previous_programming_experience).filled(:bool?)
       required(:operating_system).filled(:str?)
       required(:project_proposal).filled(:str?)
       required(:time_availability).filled
       required(:roadmap).filled
+      required(:gdpr_consent).filled(checked?: :gdpr_consent)
       optional(:engagements).each(:filled?)
     end
   end

@@ -1,3 +1,5 @@
 en:
   errors:
     unique?: 'was already used in different application'
+    checked?: 'must be checked'
+

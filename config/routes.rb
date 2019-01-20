@@ -34,6 +34,7 @@ Webplatform::Application.routes.draw do
   get "timeline" => "home#timeline"
   get "roadmap_example" => "home#roadmap_example"
   get "about_us" => "home#about_us"
+  get "privacy_policy" => "home#privacy_policy"
 
   resource :tutorial, only: [] do
     collection do

@@ -38,7 +38,7 @@ class Api::MentorApplicationsController < ApiController
                   :motivation, :background, :mentor_experience,
                   :git, :operating_system,
                   :application_idea, :concept_explanation,
-                  :time_availability,
+                  :time_availability, :gdpr_consent,
                   programming_languages_info: programming_languages_info_keys,
                   engagements: []).symbolize_keys
   end
