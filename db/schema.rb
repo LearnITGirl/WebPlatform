@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121193040) do
+ActiveRecord::Schema.define(version: 20190120021703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20180121193040) do
     t.datetime "confirmation_email_sent_at"
     t.text     "resignation_reason"
     t.text     "rematch_reason"
+    t.boolean  "gdpr_consent",                               default: false
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
@@ -189,6 +190,7 @@ ActiveRecord::Schema.define(version: 20180121193040) do
     t.datetime "confirmation_email_sent_at"
     t.text     "resignation_reason"
     t.text     "rematch_reason"
+    t.boolean  "gdpr_consent",                         default: false
   end
 
   create_table "mentor_applications_programming_languages", id: false, force: :cascade do |t|
