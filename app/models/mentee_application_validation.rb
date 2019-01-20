@@ -56,6 +56,7 @@ class MenteeApplicationValidation
       required(:program_country).filled(:str?)
       required(:time_zone).filled(:str?)
       required(:communicating_in_english).filled
+      required(:send_to_mentor_confirmed).filled(checked?: :send_to_mentor_confirmed)
     end
   end
 
