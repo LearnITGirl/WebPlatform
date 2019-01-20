@@ -87,7 +87,7 @@ class MentorApplicationValidation
         config.messages_file = 'config/locales/dry.en.yml'
 
         def checked?(attr_name, value)
-          value == "true"
+          value
         end
       end
       required(:time_availability).filled

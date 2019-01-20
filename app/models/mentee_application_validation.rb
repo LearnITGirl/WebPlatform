@@ -44,7 +44,7 @@ class MenteeApplicationValidation
         end
 
         def checked?(attr_name, value)
-          value == "true"
+          value
         end
       end
 
@@ -74,7 +74,7 @@ class MenteeApplicationValidation
         config.messages_file = 'config/locales/dry.en.yml'
 
         def checked?(attr_name, value)
-          value == "true"
+          value
         end
       end
       required(:programming_language).filled(:str?)
