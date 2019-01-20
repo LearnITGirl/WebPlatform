@@ -30,12 +30,8 @@
       =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
 
     .page-header
-      .head-text.green-text.text-center
-        | How can I get involved?
-        - if Rails.env.production?
-          = render partial: "application_closed"
-        - else
-          = render partial: "application_open"
+      .head-text.green-text.text-center  How can I get involved?
+      = render partial: "application_open"
 
     .page-header
       .head-text.green-text.text-center Want to get inspired?
