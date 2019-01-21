@@ -26,9 +26,9 @@ class Api::MenteeApplicationsController < ApiController
   def sanitize_params
     params[:application][:time_availability] = eval params[:application][:time_availability]
     params[:application][:communicating_in_english] = eval params[:application][:communicating_in_english]
-    params[:application][:send_to_mentor_confirmed] = eval params[:application][:send_to_mentor_confirmed]
+    params[:application][:send_to_mentor_confirmed] = eval(params[:application][:send_to_mentor_confirmed] || "")
     params[:application][:previous_programming_experience] = eval params[:application][:previous_programming_experience]
-    params[:application][:gdpr_consent] = eval params[:application][:gdpr_consent]
+    params[:application][:gdpr_consent] = eval(params[:application][:gdpr_consent] || "")
     params[:step] = params[:step].to_i
     params[:steps] = params[:steps].to_i
   end
