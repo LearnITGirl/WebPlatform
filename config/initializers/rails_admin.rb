@@ -51,7 +51,7 @@ RailsAdmin.config do |config|
     show
     edit do
       if (ENV["APPLICATION_EDITION_DISABLED"])
-        except ['MentorApplication', 'MenteeApplication', 'MentorMidtermEvaluation', 'MenteeMidtermEvaluation']
+        except ['MentorMidtermEvaluation', 'MenteeMidtermEvaluation']
       end
     end
     delete do
