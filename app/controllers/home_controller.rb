@@ -10,6 +10,9 @@ class HomeController < ApplicationController
   def second_edition_projects
   end
 
+  def third_edition_projects
+  end
+  
   def sponsors
   end
 
