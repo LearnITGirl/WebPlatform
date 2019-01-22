@@ -6,7 +6,7 @@ It's open source web platform for the "Learn IT, Girl" program.
 
 Find out more [here](https://www.learnitgirl.com/)
 
-Accepting applications for the **third edition**! Stay tuned :)
+Accepting applications for the **fourth edition**! Stay tuned :)
 
 
 # Contributing
