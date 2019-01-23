@@ -8,4 +8,12 @@
           img.show-badge
         .badge-description
       .modal-footer
+        .text-left
+          | Share the milestone:
+          = link_to "#", target: "_blank" do
+            i.fa.social-share.fa-facebook-official
+          = link_to "#", target: "_blank" do
+            i.fa.social-share.fa-twitter
+          = link_to "#", target: "_blank" do
+            i.fa.social-share.fa-linkedin
         button.btn.btn-danger type='button' data-dismiss='modal' Close
