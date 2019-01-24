@@ -31,7 +31,7 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :status
+      field :state
     end
   end
 
@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :status
+      field :state
     end
   end
 
