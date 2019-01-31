@@ -1,5 +1,3 @@
-@import "variables";
-
 .badges-controller {
   .badge-icon {
     width: 80%;
@@ -9,13 +7,4 @@
     margin: 15px 0 35px;
     font-size: 15px;
   }
-}
-
-.social-share {
-	font-size: 1.5em;
-	padding: 0.2em;
-	color: $litg-green;
-	&:hover {
-		transform: scale(1.1);
-	}
 }
