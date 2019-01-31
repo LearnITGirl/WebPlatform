@@ -10,10 +10,5 @@
       .modal-footer
         .text-left
           | Share the milestone:
-          = link_to "#", target: "_blank" do
-            i.fa.social-share.fa-facebook-official
-          = link_to "#", target: "_blank" do
-            i.fa.social-share.fa-twitter
-          = link_to "#", target: "_blank" do
-            i.fa.social-share.fa-linkedin
+          = social_share_button_tag share_msg, url:"learnitgirl.com", via: "learnitgirl", desc: share_msg
         button.btn.btn-danger type='button' data-dismiss='modal' Close

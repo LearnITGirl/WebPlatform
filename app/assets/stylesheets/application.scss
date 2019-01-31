@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require_directory ./application
+ *= require social-share-button
  */
 
 @import "variables";
@@ -8,6 +9,7 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "awesome-bootstrap-checkbox"
+@import "awesome-bootstrap-checkbox";
+@import "social-share-button";
 
 //don't put css in this file
