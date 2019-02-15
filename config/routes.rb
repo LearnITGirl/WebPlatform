@@ -25,9 +25,9 @@ Webplatform::Application.routes.draw do
   
   resource :user_sessions, only: [:create]
   resources :newsletters, only: [:create]
-  get  "featured_first_edition_projects" => "home#first_edition_projects"
-  get  "featured_second_edition_projects" => "home#second_edition_projects"
-  get  "featured_third_edition_projects" => "home#third_edition_projects"
+  get  "first_edition_projects" => "home#first_edition_projects"
+  get  "second_edition_projects" => "home#second_edition_projects"
+  get  "third_edition_projects" => "home#third_edition_projects"
   get "sponsors" => "home#sponsors"
   get "mentor_dos_and_donts" => "home#mentor_dos_and_donts"
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"

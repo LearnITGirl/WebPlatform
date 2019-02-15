@@ -56,11 +56,11 @@
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" Featured Projects
             ul.dropdown-menu
               li
-                = link_to "Third Edition", featured_third_edition_projects_path
+                = link_to "Third Edition", third_edition_projects_path
               li
-                = link_to "Second Edition", featured_second_edition_projects_path
+                = link_to "Second Edition", second_edition_projects_path
               li
-                = link_to "First Edition", featured_first_edition_projects_path
+                = link_to "First Edition", first_edition_projects_path
           = content_tag :li, link_to('Badges', badges_path), class: "no-image"
         ul.nav.navbar-nav.navbar-right
           - if current_user
