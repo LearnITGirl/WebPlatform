@@ -1,5 +1,5 @@
 class MentorApplicationsController < ApplicationController
-  before_action :registration_open?
+  before_action :redirect_for_closed_registration
 
   def new
     @mentor_application = MentorApplication.new.attributes

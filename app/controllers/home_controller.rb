@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
 
   def index
+    @current_edition = current_edition
+    @registration_open = registration_open?
     current_home_page if current_user
   end
 
