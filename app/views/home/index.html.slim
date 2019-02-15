@@ -5,7 +5,11 @@
   .col-xs-12
     .page-header
       .head-text.green-text.text-center
-        | Applications for 4th edition are open!
+        - if @registration_open
+          | Applications for #{@current_edition.name} edition are open!
+        - else
+          | Applications for #{@current_edition.name} edition are closed!
+
       p
         =< "Stay tuned for more details by following us on"
         = link_to " twitter", "https://twitter.com/learnitgirl", target: "_blank"
@@ -31,7 +35,10 @@
 
     .page-header
       .head-text.green-text.text-center  How can I get involved?
-      = render partial: "application_open"
+      - if @registration_open
+        = render partial: "application_open"
+      - else
+        = render partial: "application_closed"
 
     .page-header
       .head-text.green-text.text-center Want to get inspired?
