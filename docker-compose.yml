@@ -1,0 +1,26 @@
+version: "3.0"
+services: 
+  server:
+    network_mode: bridge
+    build: .
+    container_name: server
+    ports:
+     - "3000:3000"
+    hostname: server
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    image: centos/postgresql-96-centos7
+    network_mode: bridge
+    container_name: postgres
+    ports:
+     - "5432:5432"
+    hostname: postgres
+    environment:
+      POSTGRESQL_USER: admin
+      POSTGRESQL_PASSWORD: password
+      POSTGRESQL_DATABASE: learn_it_girl_development
+    
