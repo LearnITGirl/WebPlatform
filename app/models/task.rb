@@ -5,8 +5,13 @@ class Task < ActiveRecord::Base
   enum status: {not_done: 1, finished: 2, accepted: 3, trash: 4, deleted: 5}
 
   validates :title, presence: true
+  validate :created_by_mentor
 
   scope :for_weeks, -> (to) { where(week: 1..to) }
+
+  def created_by_mentor
+    errors.add(:creator_id, "cannot belong to non-mentor user role") unless self.creator.mentor?
+  end
 
   def self.finished(user)
     where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
