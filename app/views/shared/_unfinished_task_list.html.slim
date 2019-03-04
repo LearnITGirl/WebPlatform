@@ -37,6 +37,7 @@
             - elsif t.object.status == "trash"
               i.fa.fa-undo.undo-trash-task.pull-right.green-text data-id="#{t.object.id}" data-toggle="tooltip" data-placement="top" title="Undo removal"
 
+          - if current_user.mentor?
             = link_to edit_task_path(t.object), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#edit-task-modal', class: "edit-task"} do
               i.fa.fa-pencil.pull-right.green-text
 
