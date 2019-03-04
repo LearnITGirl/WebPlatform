@@ -24,8 +24,6 @@
           = t.check_box :status, {checked: checked(t.object), disabled: is_disabled(t.object)}, checked_task_status, unchecked_task_status
           label class="#{t.object.trash? && 'strike-through'}"
             = t.object.title
-            .creator-info
-              = creator_label(t.object)
             - if past_week?
               .past-week
                 | Select current week on the timeline to mark task as completed

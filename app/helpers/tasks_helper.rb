@@ -50,20 +50,9 @@ module TasksHelper
     current_user == task.creator
   end
 
-  def creator_label(task)
-    if task.creator.mentor?
-      "Project task"
-    elsif task.creator.mentee? && current_user.mentee?
-      "My TODO"
-    else
-      "Created by mentee"
-    end
-  end
-
   def past_week?
     @week && @week.end.past?
   end
-
 
   def disable_finished_task?(task)
     !is_creator?(task) || past_week?
