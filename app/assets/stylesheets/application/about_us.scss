@@ -1,0 +1,15 @@
+.collapsible {
+  background-color: #f19eae38;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+
+.collapsible:before {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+}
