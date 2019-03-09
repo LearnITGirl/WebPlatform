@@ -19,10 +19,10 @@ class EvaluationsController < ApplicationController
     application.update_column :evaluator_id, current_user.id
     questions = YAML.load_file("#{Rails.root.to_s}/config/mentee_evaluation.yml")
 
-    if application['programming_level'] == 'beginner'
-      questions = questions['beginners']
-    else
+    if application.previous_programming_experience
       questions = questions['experienced']
+    else
+      questions = questions['beginners']
     end
 
     locals = { application: application, questions: questions }
