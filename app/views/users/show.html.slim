@@ -18,7 +18,7 @@
     p
       = "Currently in: #{Carmen::Country.coded(@user.program_country)}"
     p
-      = "Current time zone: #{display_timezone(@user.timezone)}"
+      = "Current time zone: #{display_timezone(@user.timezone) || '-'}"
     p
       = @user.email
 

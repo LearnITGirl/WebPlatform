@@ -5,6 +5,7 @@ module MenteeProfileHelper
   end
 
   def display_timezone(time_zone)
+    return unless time_zone
     "GMT #{time_zone.match(/[+-]*\d/)[0]}"
   end
 end
