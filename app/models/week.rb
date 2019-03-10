@@ -1,5 +1,6 @@
 class Week < ActiveRecord::Base
   belongs_to :edition
+  has_many :roadmap_entries, dependent: :destroy
 
   scope :order_by_number, -> { order(number: :asc) }
 
