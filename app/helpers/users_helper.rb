@@ -18,7 +18,11 @@ module UsersHelper
   end
 
   def first_week?
-    week = current_edition.weeks.find_by(number: 1)
+    week = first_week
     DateTime.current.between?(week.start, week.end)
+  end
+
+  def first_week
+    current_edition.weeks.find_by(number: 1)
   end
 end

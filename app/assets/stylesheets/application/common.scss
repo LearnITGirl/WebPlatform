@@ -266,3 +266,16 @@ header .container-fluid nav.navbar li.dropdown {
     line-height: 1.5;
   }
 }
+
+#header-img {
+  max-height: 175px;
+}
+
+.roadmaps-controller .all-entries {
+  p {
+    margin: 5px 0;
+  }
+  .pink-text.week {
+    font-weight: bold;
+  }
+}

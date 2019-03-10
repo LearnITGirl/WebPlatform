@@ -1,0 +1,30 @@
+h1.text-center.green-text Roadmap
+
+.top-space-20
+  p Imagine you are planning a trip for your next vacation. In your head, you dream about where you want to go. But next, you will need a solid plan that takes you from "Thailand it is for my next holiday!" to waking up the first morning in your hotel bed.
+
+  p What do you do when planning a trip? You need to set a date for the trip, decide who will come with you, ask your boss for vacation days, decide what transport to take, book tickets & accommodation, plan day trips and activities, pack all the things, be at the airport on time. An important part will also be deciding what not to do on this particular trip - as probably you cannot squeeze all first ideas for a perfect holiday into just one trip. So this roadmap presents the bigger steps to have your preparations follow a logical order, to make sure you don't forget anything and to use the time until and during the trip efficiently.
+
+  p Back to your project. We have already asked you to write down your project idea as detailed as possible. Now we want you to decide which steps will lead you from this idea to being able to showcase a working demo after 12 weeks. Your mentor will help you in this process.
+
+  p Each step on your roadmap will then entail implementation details (e.g. when deciding the date for your trip that means you will have to check weather conditions, to check your other obligations, to compare prices in different seasons, check for local holidays and festivities etc.) The detailed tasks involved to complete one step of the roadmap, you will decide week by week together with your mentor and there will be a separate option in your profile to enter these.
+
+  p = link_to "Here's example of a roadmap", roadmap_example_path, target: "_blank"
+
+.row
+  .col-xs-12
+    = form_for setup_project(@project), url: project_roadmap_path(@project), html: {class: "form-horizontal top-space-40"} do |f|
+      - if @project.errors.any?
+        .alert.alert-danger
+          = @project.errors.full_messages.join(", ")
+      = f.fields_for :roadmap_entries do |entry|
+        = entry.hidden_field :edition_id, value: current_edition.id
+        = entry.hidden_field :week_id, value: current_edition.weeks.find_by_number(entry.index+1).id
+        .ordinary-field
+          label.control-label.pink-text style="margin-bottom: 5px; font-weight: bold;" = "WEEK #{entry.index+1}"
+          = entry.text_area :content, class: "form-control", rows: 3
+          .top-space-20
+
+      .pull-right
+        = link_to "Cancel", :back , class: "btn btn-pink-border"
+        = f.submit "Save", class: "btn btn-pink no-right-margin"
