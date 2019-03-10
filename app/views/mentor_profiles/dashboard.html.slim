@@ -27,6 +27,9 @@
       strong = @project.try(:title)
     p
       = @project.try(:language)
+    - if @project&.roadmap_entries&.any?
+      p
+        = link_to "Roadmap", project_roadmap_path(@project), target: "_blank"
     p.top-space-20.dot-dot-dot
       = @project.try(:description)
       = link_to "read more", mentor_profile_path(current_user), class: "read-more"

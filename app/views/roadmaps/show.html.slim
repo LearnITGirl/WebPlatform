@@ -1,0 +1,16 @@
+h1.text-center.green-text
+  | Your Roadmap
+  .pull-right
+    = link_to edit_project_roadmap_path(@project) do
+      i.fa.fa-pencil.pull-right.green-text
+
+.row
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12.all-entries.text-center
+    - @project.roadmap_entries.each do |entry|
+      .pink-text.week
+        = "WEEK #{entry.week.number}"
+      .row
+        .col-xs-12
+          = simple_format(entry.content)
+      .top-space-20
+
