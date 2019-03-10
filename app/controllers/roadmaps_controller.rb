@@ -10,6 +10,10 @@ class RoadmapsController < ApplicationController
     authorized_user
     @project = Project.find(params[:project_id])
     if @project.update_attributes(roadmap_params)
+      unless @project.mentee.badges.organized.any?
+        @project.mentee.badges << Badge.organized
+      end
+
       redirect_to project_roadmap_path(@project)
     else
       render "edit"
