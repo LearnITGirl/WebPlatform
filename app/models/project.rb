@@ -24,6 +24,8 @@ class Project < ActiveRecord::Base
   validates :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status, presence: true,
   if: "midterm_evaluation_pending?"
 
+  accepts_nested_attributes_for :roadmap_entries
+
   enum mentor_evaluation: {
     "The mentor is doing an excellent work": 1,
     "The mentor is doing well": 2,
