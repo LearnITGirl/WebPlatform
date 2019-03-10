@@ -1,4 +1,17 @@
 - if edition_started?
+  - if @project&.roadmap_entries&.empty?
+    .row.top-space-20
+      div class="panel #{first_week? ? 'panel-info' : 'panel-warning'}"
+        .panel-heading
+          .panel-title
+            | Roadmap
+        .panel-body
+          - if first_week?
+            | Please make sure your mentee creates roadmap till the end of #{first_week.end.strftime("%d %B")}. She can do it using the following
+            =< link_to "link", new_project_roadmap_path(@project)
+          - else
+            | Your mentee haven't created roadmap yet. She can do it using the following
+            =< link_to "link", new_project_roadmap_path(@project)
   .row.top-space-40
     .col-xs-12
       = render partial: "shared/weeks_bar"

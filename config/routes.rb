@@ -115,7 +115,10 @@ Webplatform::Application.routes.draw do
 
   resources :midterm_evaluations
 
-  resources :projects, only: [:show]
+  resources :projects, only: [:show] do
+    resource :roadmap
+  end
+
   resources :exports, only: [] do
     collection do
       get :surveys
