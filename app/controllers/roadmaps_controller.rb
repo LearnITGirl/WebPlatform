@@ -35,7 +35,7 @@ class RoadmapsController < ApplicationController
 
   def roadmap_params
     params.require(:project).permit(
-      :roadmap_entries_attributes => [:edition_id, :week_id, :content]
+      :roadmap_entries_attributes => [:id, :edition_id, :week_id, :content]
     )
   end
 end
