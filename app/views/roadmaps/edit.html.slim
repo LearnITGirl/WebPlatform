@@ -18,10 +18,10 @@ h1.text-center.green-text Roadmap
         .alert.alert-danger
           = @project.errors.full_messages.join(", ")
       = f.fields_for :roadmap_entries do |entry|
-        = entry.hidden_field :edition_id, value: (entry.object.edition_id || current_edition.id)
-        = entry.hidden_field :week_id, value: (entry.object.week_id || current_edition.weeks.find_by_number(entry.index+1).id)
+        = entry.hidden_field :edition_id, value: entry.object.edition_id
+        = entry.hidden_field :week_id, value: entry.object.week_id
         .ordinary-field
-          label.control-label.pink-text style="margin-bottom: 5px; font-weight: bold;" = "WEEK #{entry.index+1}"
+          label.control-label.pink-text style="margin-bottom: 5px; font-weight: bold;" = "WEEK #{entry.object.week.number}"
           = entry.text_area :content, class: "form-control", rows: 3
           .top-space-20
 
