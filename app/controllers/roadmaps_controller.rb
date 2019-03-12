@@ -2,7 +2,8 @@ class RoadmapsController < ApplicationController
   before_action :require_login
 
   def edit
-    if authorized_user && current_user.mentee?
+    authorized_user
+    if current_user.mentee?
       @project = Project.find(params[:project_id])
     else
       redirect_to root_path, alert: "You don't have permission to access this site", status: 401
