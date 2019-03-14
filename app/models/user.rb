@@ -105,6 +105,10 @@ class User < ActiveRecord::Base
     self.role == 'organizer'
   end
 
+  def name
+    "#{first_name} #{last_name}".strip
+  end
+
   private
 
   def create_token

@@ -7,7 +7,7 @@ RailsAdmin.config do |config|
 
   config.included_models = ["ProgrammingLanguage", "Badge", "Edition", "User",
                             "MenteeApplication", "MentorApplication", "Week",
-                            "MenteeMidtermEvaluation", "MentorMidtermEvaluation"]
+                            "MenteeMidtermEvaluation", "MentorMidtermEvaluation", "Project"]
 
   config.model 'User' do
     list do
@@ -32,6 +32,13 @@ RailsAdmin.config do |config|
       field :last_name
       field :email
       field :state
+    end
+  end
+
+  config.model Project do
+    [edit, show, list].each do
+      include_all_fields
+      exclude_fields :language
     end
   end
 

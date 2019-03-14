@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
   if: "midterm_evaluation_pending?"
 
   accepts_nested_attributes_for :roadmap_entries
+  before_update :set_language
 
   enum mentor_evaluation: {
     "The mentor is doing an excellent work": 1,
@@ -123,5 +124,11 @@ class Project < ActiveRecord::Base
 
   def validate_github?
     github_link.present? && github_link_changed?
+  end
+
+  def set_language
+    if programming_language_id_changed?
+      self.language = programming_language.name
+    end
   end
 end
