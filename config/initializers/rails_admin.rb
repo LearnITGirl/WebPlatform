@@ -27,6 +27,12 @@ RailsAdmin.config do |config|
 
     show do
       include_all_fields
+      field :project do
+        pretty_value do
+          title = bindings[:object].project&.title&.presence || "Project"
+          %{<a href="#{Rails.application.routes.url_helpers.root_url}admin/project/#{bindings[:object].project&.id}">#{title}</a>}.html_safe
+        end
+      end
       exclude_fields :crypted_password, :salt, :program_country, :country, :last_login_at, :last_logout_at,
                      :last_login_from_ip_address, :registration_token
     end
