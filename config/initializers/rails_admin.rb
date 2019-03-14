@@ -24,6 +24,12 @@ RailsAdmin.config do |config|
         end
       end
     end
+
+    show do
+      include_all_fields
+      exclude_fields :crypted_password, :salt, :program_country, :country, :last_login_at, :last_logout_at,
+                     :last_login_from_ip_address, :registration_token
+    end
   end
 
   config.model MenteeApplication do
