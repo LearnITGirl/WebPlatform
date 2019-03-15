@@ -1,8 +1,7 @@
 class RoadmapsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :authorized_user
 
   def edit
-    authorized_user
     if current_user.mentee?
       @project = Project.find(params[:project_id])
     else
@@ -11,7 +10,6 @@ class RoadmapsController < ApplicationController
   end
 
   def update
-    authorized_user
     @project = Project.find(params[:project_id])
     if @project.update_attributes(roadmap_params)
       unless @project.mentee.badges.organized.any?
@@ -25,7 +23,6 @@ class RoadmapsController < ApplicationController
   end
 
   def show
-    authorized_user
     @project = Project.find(params[:project_id])
   end
 
