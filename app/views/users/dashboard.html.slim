@@ -51,9 +51,6 @@
     p
       | Email:
       =< @partner.email
-  - if first_month? && not_missing_yet?(@partner)
-    .pull-right
-      = button_to "Report Missing Mentor", missing_mentor_mentee_profiles_path, data: {confirm: "Are you sure you want to report your mentor is missing?"}, method: :missing_mentor,  class: "btn btn-pink missing"
 
   .col-md-6
     - if edition_started?
