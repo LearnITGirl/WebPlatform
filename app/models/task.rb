@@ -14,7 +14,7 @@ class Task < ActiveRecord::Base
   end
 
   def self.finished(user)
-    where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
+    where("(status = 3) or (status = 2 and finished_by = :user_id)", {user_id: user.id})
   end
 
   def self.unfinished(user)
@@ -35,7 +35,7 @@ class Task < ActiveRecord::Base
 
   def self.completed_tasks(date, user)
     where(completed_at: (date.beginning_of_week..date.end_of_week)).
-      where("(status = 3) or (creator_id = :user_id and finished_by = :user_id and status = 2) or (creator_id != :user_id and finished_by != :user_id and status = 2)", {user_id: user.id})
+      where("(status = 3) or (status = 2 and finished_by = :user_id)", {user_id: user.id})
   end
 
   def self.unconfirmed_completed_tasks(date, user)
