@@ -26,6 +26,9 @@
           label.bottom-space How does the mentoring process work for you? What are the positives and negatives in the interaction with your mentor?
           = f.text_area :mentor_impression, class: "form-control"
         .form-group
+          label.bottom-spec Are your expectations from the program being met? If not, which of those expectations are not fulfilled? These could be mentoring related, project related or the program in general.
+          = f.text_area :program_feedback, class: "form-control"
+        .form-group
           label.bottom-space Is there anything else you would like to share with us?
           = f.text_area :extra_info, class: "form-control"
         .form-group.buttons.text-center
