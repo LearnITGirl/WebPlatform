@@ -22,7 +22,7 @@ class MentorMidtermEvaluationsController < ApplicationController
   def evaluation_param
     params.require(:mentor_midterm_evaluation).permit(
       :project_progress, :positive_aspects, :future_plans, :weekly_hours,
-      :mentee_impression, :extra_info
+      :mentee_impression, :program_feedback, :extra_info
     )
   end
 
