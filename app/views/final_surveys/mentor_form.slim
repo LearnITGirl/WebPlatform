@@ -4,7 +4,7 @@
   .row
     .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
       p Hi! It's been a great journey so far and we hope that you've enjoyed it as much as we did!
-      p Since this is the last week of the programme, we would like to hear about your experience with "Learn IT, Girl!".
+      p Since this is the last week of the programme, we would like to hear about your experience with Learn IT, Girl!.
       p Thank you for your time!
 
       = form_for survey, url: final_survey_path, html: {class: "top-space"} do |f|
@@ -24,7 +24,7 @@
           label.bottom-space Do you have any feedback about the programme? (Anything that could be improved, things that went well and things that didn't etc.)
           = f.text_area :mentor_feedback, class: "form-control"
         .form-group
-          label.bottom-space Was the program too long? How many weeks should it last?
+          label.bottom-space Was the program too long or too short? How many weeks should it last?
           = f.select :mentor_program_duration, options_for_select(6..12, selected: survey.mentor_program_duration), {include_blank: true}, {class: "form-control"}
 
         .form-group.buttons.text-center
