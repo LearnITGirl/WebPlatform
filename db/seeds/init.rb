@@ -174,5 +174,5 @@ Badge.find_or_create_by(name: 4, image: "badges/ambitious.png", thumbnail: "badg
 Badge.find_or_create_by(name: 5, image: "badges/energetic.png", thumbnail: "badges/thumbnails/energetic.png", description: "Badge awarded when mentee completes all tasks for 2 weeks in a row")
 Badge.find_or_create_by(name: 6, image: "badges/timekeeper.png", thumbnail: "badges/thumbnails/timekeeper.png",description: "Badge awarded when mentee completes all tasks for the current week")
 Badge.find_or_create_by(name: 7, image: "badges/novice.png", thumbnail: "badges/thumbnails/novice.png", description: "Badge awarded when mentee completes first task")
-Badge.find_or_create_by(name: 9, image: "badges/coder.png", thumbnail: "badges/thumbnails/coder.png", description: "Badge awarded when mentee find_or_create_bys her first github commit")
+Badge.find_or_create_by(name: 9, image: "badges/coder.png", thumbnail: "badges/thumbnails/coder.png", description: "Badge awarded when mentee creates her first GitHub commit")
 Badge.find_or_create_by(name: 10, image: "badges/visionary.png", thumbnail: "badges/thumbnails/visionary.png", description: "Badge awarded when mentee has provided a creative project description that’s doable and detailed")

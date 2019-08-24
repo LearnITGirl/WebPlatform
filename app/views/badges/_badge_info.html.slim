@@ -8,4 +8,7 @@
           img.show-badge
         .badge-description
       .modal-footer
+        .text-left
+          | Share the milestone:
+          = social_share_button_tag share_msg, url:"learnitgirl.com", via: "learnitgirl", desc: share_msg
         button.btn.btn-danger type='button' data-dismiss='modal' Close

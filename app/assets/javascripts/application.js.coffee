@@ -9,5 +9,6 @@
 #= require react
 #= require react_ujs
 #= require components
+#= require social-share-button
 
 #= require_directory ./application
