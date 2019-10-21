@@ -28,6 +28,7 @@ Webplatform::Application.routes.draw do
   get  "first_edition" => "home#first_edition_projects"
   get  "second_edition" => "home#second_edition_projects"
   get  "third_edition" => "home#third_edition_projects"
+  get  "fourth_edition" => "home#fourth_edition_projects"
   get "sponsors" => "home#sponsors"
   get "mentor_dos_and_donts" => "home#mentor_dos_and_donts"
   get "mentee_dos_and_donts" => "home#mentee_dos_and_donts"
