@@ -1,4 +1,4 @@
-window.litg || = {}
+window.litg ||= {}
 
 ReadMore =
   initializeDotDot: ->
