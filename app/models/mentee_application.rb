@@ -5,7 +5,7 @@ class MenteeApplication < ActiveRecord::Base
   belongs_to :edition
   has_one :user
 
-  validates :rejection_reason, presence: true, on: :update, if: "state == 'rejected'"
+  validates :rejection_reason, presence: true, on: :update, if: -> { state == 'rejected' }
 
   enum time_availability: {below_1: 1, up_to_2: 2, up_to_5: 3, up_to_7: 4, up_to_10: 5}
   enum state: { pending: 1,

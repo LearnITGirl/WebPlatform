@@ -18,10 +18,11 @@ class Project < ActiveRecord::Base
 
   validates :title, :description, presence: true, on: :update, if: -> {title.present? || description.present?}
 
-  validates :github_link, format: { with: GITHUB_REGEXP }, presence: true, if: "validate_github?"
+  validates :github_link, format: { with: GITHUB_REGEXP }, presence: true, on: :update,
+  if: -> { validate_github? }
 
   validates :mentor_evaluation, :mentee_feedback, :mentee_project_status, :github_repo_status, presence: true,
-  if: "midterm_evaluation_pending?"
+  if: -> { midterm_evaluation_pending? }
 
   accepts_nested_attributes_for :roadmap_entries
   before_update :set_language
