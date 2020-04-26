@@ -705,7 +705,7 @@ DEPENDENCIES
   faker (~> 1.8.4)
   file_validators
   fog
-  font-awesome-sass
+  font-awesome-sass (~> 5.12.0)
   gibbon!
   graphql-client
   jquery-rails
@@ -734,7 +734,7 @@ DEPENDENCIES
   virtus
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 2.6.6p146
 
 BUNDLED WITH
    2.1.4

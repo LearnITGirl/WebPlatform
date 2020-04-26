@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.7.1'
+ruby '2.6.6'
 
 gem 'rails', '6.0.2.2'
 gem 'dry-validation'
@@ -33,7 +33,7 @@ gem 'bower-rails', '~> 0.10.0'
 
 gem 'carmen-rails'
 
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 5.12.0'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 
