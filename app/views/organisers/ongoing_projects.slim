@@ -31,5 +31,5 @@
               td.text-center
                 - if project.github_link.present?
                  = link_to url_with_protocol(project.github_link), target: "_blank", class: "green-text github-link-big" do
-                   i.fa.fa-github
+                   i.fab.fa-github
               td = project.last_commit&.strftime("%d/%m/%y")

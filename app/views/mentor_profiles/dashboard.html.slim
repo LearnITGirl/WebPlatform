@@ -36,7 +36,7 @@
     .row.top-space-20
       .col-xs-12
         = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
-          i.fa.fa-github
+          i.fab.fa-github
           span See on Github
   .col-md-6
     - if edition_started?
