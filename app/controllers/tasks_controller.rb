@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.update_columns deleted_at: DateTime.current, status: 5
-    redirect_to :back, notice: "Deleted successfully!"
+    redirect_back fallback_location: dashboard_path, notice: "Deleted successfully!"
   end
 
   def accept

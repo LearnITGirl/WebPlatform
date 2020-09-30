@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "User or Date invalid"
     end
-    redirect_to :back
+    redirect_back fallback_location: @user.mentee? ? mentee_profile_url(@user) : mentor_profile_url(@user)
   end
 
   def report_resignation
