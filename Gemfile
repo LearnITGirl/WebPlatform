@@ -42,8 +42,8 @@ gem 'data-confirm-modal'
 
 gem 'spreadsheet'
 
-gem 'react-rails'
-gem 'react_component'
+gem 'react-rails', '~> 1.8.0'
+gem 'react_component', '~> 0.0.2'
 
 gem 'graphql-client'
 
