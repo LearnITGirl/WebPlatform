@@ -1,11 +1,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username:
-  password:
+  username: admin
+  password: password
 
 development:
   <<: *default
+  host: postgres
+  port: 5432
   database: learn_it_girl_development
 
 # Warning: The database defined as "test" will be erased and
