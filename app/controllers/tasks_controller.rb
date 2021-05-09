@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update_attributes task_params
+    if @task.update task_params
       request.xhr? ? (head :ok) : (redirect_to dashboard_path)
     else
       render json: {msg: @task.errors.full_messages.join(',')}, status: 422
