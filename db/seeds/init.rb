@@ -144,7 +144,7 @@ ProgrammingLanguage.find_or_create_by(name: "PHP", slug: "php")
 
 edition = Edition.find_or_create_by(name: "test",
 	start_date: 1.months.ago,
-	end_date: (1.months.ago + 39.days),
+	end_date: (1.months.ago + 100.days),
 	registration_started_at: DateTime.now,
 	registration_closed_at: 1.year.from_now)
 
