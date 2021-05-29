@@ -8,7 +8,7 @@ class  UserCreator
       User.new(user_params(application, role: 'mentor'))
     else
       user = User.find_by(email: application.email)
-      user.update_attributes(user_params(application, role: 'mentor', user: user))
+      user.update(user_params(application, role: 'mentor', user: user))
       user
     end
   end
@@ -18,7 +18,7 @@ class  UserCreator
       User.new(user_params(application, role: 'mentee'))
     else
       user = User.find_by(email: application.email)
-      user.update_attributes(user_params(application, role: 'mentee', user: user))
+      user.update(user_params(application, role: 'mentee', user: user))
       user
     end
   end

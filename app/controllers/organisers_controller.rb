@@ -35,7 +35,7 @@ class OrganisersController < ApplicationController
 
   def update
     @organizer = current_user
-    if @organizer.update_attributes(organizer_params)
+    if @organizer.update(organizer_params)
       redirect_to(organisers_path, notice: "Details were successfully updated.")
 		else
       render "edit"

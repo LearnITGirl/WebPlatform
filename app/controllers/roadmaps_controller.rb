@@ -11,7 +11,7 @@ class RoadmapsController < ApplicationController
 
   def update
     @project = Project.find(params[:project_id])
-    if @project.update_attributes(roadmap_params)
+    if @project.update(roadmap_params)
       unless @project.mentee.badges.organized.any?
         @project.mentee.badges << Badge.organized
       end

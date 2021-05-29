@@ -57,7 +57,7 @@ class Api::MenteeApplicationsController < ApiController
   def send_confirmation_email(mentee_application)
     return unless Rails.env.production?
     if MenteeApplicationMailer.confirm_application(mentee_application).deliver_now
-      mentee_application.update_attributes(confirmation_email_sent_at: Time.now)
+      mentee_application.update(confirmation_email_sent_at: Time.now)
     end
   end
 end

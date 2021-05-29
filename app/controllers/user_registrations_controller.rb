@@ -18,7 +18,7 @@ class UserRegistrationsController < ApplicationController
       not_authenticated
       return
     end
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       login(@user.email, user_params[:password])
       if @user.mentor?
         redirect_to(dashboard_mentor_profiles_path, :notice => "You've been succesfully added as Mentor.")
