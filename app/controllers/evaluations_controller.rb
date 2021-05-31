@@ -63,13 +63,13 @@ class EvaluationsController < ApplicationController
 
   def reject_mentee
     app = MenteeApplication.find(params[:mentee_application_id])
-    app.update_attributes(mentee_params)
+    app.update(mentee_params)
     redirect_to dashboard_organisers_path, notice: "Application was rejected"
   end
 
   def reject_mentor
     app = MentorApplication.find(params[:mentor_application_id])
-    app.update_attributes(mentor_params)
+    app.update(mentor_params)
     redirect_to dashboard_organisers_path, notice: "Application was rejected"
   end
 

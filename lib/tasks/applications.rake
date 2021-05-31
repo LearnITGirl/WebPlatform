@@ -2,13 +2,13 @@ namespace :applications do
   task send_outstanding_confirmation_emails: :environment do
     MentorApplication.where(confirmation_email_sent_at: nil).each do |application|
       if MentorApplicationMailer.confirm_application(application).deliver_now
-        application.update_attributes(confirmation_email_sent_at: Time.now)
+        application.update(confirmation_email_sent_at: Time.now)
       end
     end
 
     MenteeApplication.where(confirmation_email_sent_at: nil).each do |application|
       if MenteeApplicationMailer.confirm_application(application).deliver_now
-        application.update_attributes(confirmation_email_sent_at: Time.now)
+        application.update(confirmation_email_sent_at: Time.now)
       end
     end
   end

@@ -6,7 +6,7 @@ html
     meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" name="viewport"
     link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'
     meta content="yes" name="apple-mobile-web-app-capable"
-    link rel="shortcut icon" type="image/png" href="#{asset_url('favicon.png')}"
+    link rel="shortcut icon" type="image/png" href=asset_url('favicon.png')
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
@@ -18,14 +18,14 @@ html
       = yield
     footer.footer
       .container-fluid
-        = link_to "https://www.facebook.com/learnitgirl/?fref=ts", target: "_blank" do
-          i.fa.fa-facebook-official
+        = link_to "https://www.facebook.com/learnitgirl", target: "_blank" do
+          i.fab.fa-facebook
         = link_to "https://www.twitter.com/learnitgirl", target: "_blank" do
-          i.fa.fa-twitter
+          i.fab.fa-twitter
         = link_to "https://learnitgirl.wordpress.com/", target: "_blank" do
-          i.fa.fa-wordpress
+          i.fab.fa-wordpress
         = link_to "https://github.com/LearnITGirl/WebPlatform", target: "_blank" do
-          i.fa.fa-github
+          i.fab.fa-github
         .pull-right
           | Contact:
           =< mail_to "learnitgirl.office@gmail.com", "learnitgirl.office@gmail.com"

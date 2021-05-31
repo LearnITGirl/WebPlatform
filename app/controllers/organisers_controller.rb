@@ -35,7 +35,7 @@ class OrganisersController < ApplicationController
 
   def update
     @organizer = current_user
-    if @organizer.update_attributes(organizer_params)
+    if @organizer.update(organizer_params)
       redirect_to(organisers_path, notice: "Details were successfully updated.")
 		else
       render "edit"
@@ -45,7 +45,7 @@ class OrganisersController < ApplicationController
   def destroy
     @organizer = User.find_by(role:1, id: params[:id])
     @organizer.delete
-    redirect_to :back, notice: "Deleted successfully!"
+    redirect_back fallback_location: organisers_path, notice: "Deleted successfully!"
   end
 
   def problematic_projects

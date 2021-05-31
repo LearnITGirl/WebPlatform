@@ -19,7 +19,8 @@
       = render partial: "shared/weeks_bar"
 .row.top-space-20
   .col-md-3
-    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge, @upgrade_from_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
+    - unless @new_badge.blank?
+      .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge, @upgrade_from_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
     h3.green-text
       = current_user.full_name
     .row
@@ -39,7 +40,7 @@
     .row.top-space-20
       .col-xs-12
         = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
-          i.fa.fa-github
+          i.fab.fa-github
           span See on Github
 
     h4.green-text

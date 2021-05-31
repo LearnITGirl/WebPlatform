@@ -30,7 +30,7 @@ class MenteeFinalSurveyForm
 
   def save
     survey = FinalSurvey.find_or_initialize_by(project_id: @user.project.id)
-    survey.update_attributes(attributes.merge({mentee_id: @user.id, edition_id: @user.id}))
+    survey.update(attributes.merge({mentee_id: @user.id, edition_id: @user.id}))
     @user.badges << Badge.final_survey
   end
 end

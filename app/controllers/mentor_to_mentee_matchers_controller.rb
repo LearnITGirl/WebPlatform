@@ -34,14 +34,14 @@ class MentorToMenteeMatchersController < ApplicationController
 
       MenteeApplication.waiting_for_rematch.each do |application|
         if application.user.project.present?
-          application.update_attributes(state: :rematched)
+          application.update(state: :rematched)
           update_partner_application_state(application)
         end
       end
 
       MentorApplication.waiting_for_rematch.each do |application|
         if application.user.project.present?
-          application.update_attributes(state: :rematched)
+          application.update(state: :rematched)
           update_partner_application_state(application)
         end
       end
@@ -72,9 +72,9 @@ class MentorToMenteeMatchersController < ApplicationController
    partner_application = application.user.partner.application
 
    if application.rematched? && partner_application.waiting_for_rematch?
-      partner_application.update_attributes(state: :rematched)
+      partner_application.update(state: :rematched)
    elsif application.rematched? && partner_application.evaluated?
-      partner_application.update_attributes(state: :rematched_from_waiting_list)
+      partner_application.update(state: :rematched_from_waiting_list)
    end
   end
 end

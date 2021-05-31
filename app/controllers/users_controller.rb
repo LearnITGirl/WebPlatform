@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update
     setup_project(current_user)
 
-    if current_user.update_attributes(user_params)
+    if current_user.update(user_params)
       redirect_to @after_update_path, notice: "Details have been succesfuly updated."
     else
       render "edit"
@@ -34,14 +34,14 @@ class UsersController < ApplicationController
 
   def user_status
     @user = User.find(params[:mentee_profile_id].to_i) || User.find(params[:mentor_profile_id].to_i)
-    date = DateTime.strptime(params[:user][:warning_email_date], "%Y-%m-%d") if params[:user][:warning_email_date].present?
+    date = DateTime.strptime(params[:user][:warning_email_date], "%Y-%m-%d")  if params[:user][:warning_email_date].present?
 
-    if @user && params[:user][:warning_email_date].present? && @user.update_attribute(:send_warning_email_after, date + 1.week)
+    if @user && params[:user][:warning_email_date].present? && @user.update!(send_warning_email_after: date + 1.week)
       flash[:notice] = 'User details updated successfully - 1 week was added for the pair to catch up'
     else
       flash[:alert] = "User or Date invalid"
     end
-    redirect_to :back
+    redirect_back fallback_location: @user.mentee? ? mentee_profile_url(@user) : mentor_profile_url(@user)
   end
 
   def report_resignation

@@ -2,13 +2,14 @@
   .col-md-2.col-md-offset-2.col-sm-3.col-xs-5
     = image_tag display_avatar(@user), alt: "Mentee's avatar", class: "profile-icon"
   .col-md-8.col-sm-9.col-xs-7
-    .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge, @upgrade_from_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
+    - unless @new_badge.blank?
+      .new-badge style={display: "none"} data={toggle: 'modal', target: "#badge-info", src: asset_path(@new_badge&.image), description: new_badge_description(@new_badge, @upgrade_from_badge), name: "Congratulations - you got new badge!", id: @new_badge&.id}
     h3.green-text
       = @user.full_name
       - if @user == current_user
         .pull-right
           = link_to @edit_url do
-            .fa.fa-pencil
+            .fas.fa-pencil
       - if current_user.role == "organizer" && @user.is_missing
         .pull-right.red-text
           | Abandoned since
@@ -33,7 +34,7 @@
       = simple_format @project.try(:description)
     p.top-space-20
       = link_to url_with_protocol(@project.try(:github_link)), target: "_blank", class: "green-text github" do
-        i.fa.fa-github
+        i.fab.fa-github
         span See on Github
     p.top-space-20
       strong = @partner_label

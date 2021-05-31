@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update_attributes task_params
+    if @task.update task_params
       request.xhr? ? (head :ok) : (redirect_to dashboard_path)
     else
       render json: {msg: @task.errors.full_messages.join(',')}, status: 422
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.update_columns deleted_at: DateTime.current, status: 5
-    redirect_to :back, notice: "Deleted successfully!"
+    redirect_back fallback_location: dashboard_path, notice: "Deleted successfully!"
   end
 
   def accept

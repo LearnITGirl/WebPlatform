@@ -32,7 +32,7 @@
                = project.try(:title)
              td
                = link_to url_with_protocol(project.github_link), target: "_blank" do
-                 i.fa.fa-github.fa-3
+                 i.fab.fa-github.fa-3
              td
                - if (project.mentee.is_missing  && project.mentor.is_missing )
                  | Both
