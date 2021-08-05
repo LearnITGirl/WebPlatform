@@ -12,7 +12,7 @@ class MentorApplicationValidation
   end
 
   def errors
-    validate.messages(full: true)
+    validate.errors(full: true).to_h
   end
 
   def attrs
@@ -24,60 +24,15 @@ class MentorApplicationValidation
   def validate
     case step
     when 1
-      dry_validation_step_1.(params)
+      MentorStep1Contract.new.call(params)
     when 2
-      dry_validation_step_2.(params)
+      MentorStep2Contract.new.call(params)
     when 3
-      dry_validation_step_3.(params)
+      MentorStep3Contract.new.call(params)
     when 4
-      dry_validation_step_4.(params)
+      MentorStep4Contract.new.call(params)
     when 5
-      dry_validation_step_5.(params)
-    end
-  end
-
-  def dry_validation_step_1
-    Dry::Validation.Schema do
-      configure do
-        config.messages_file = 'config/locales/dry.en.yml'
-
-        def unique?(attr_name, value)
-          edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
-          MentorApplication.where(attr_name => value)
-            .where(edition_id: edition.id).empty?
-        end
-      end
-
-      required(:first_name).filled(:str?)
-      required(:last_name).filled(:str?)
-      required(:email).filled(format?: EMAIL_REGEX, unique?: :email)
-      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other'))}
-      required(:country).filled(:str?)
-      required(:program_country).filled(:str?)
-      required(:time_zone).filled(:str?)
-      required(:communicating_in_english).filled
-    end
-  end
-
-  def dry_validation_step_2
-    Dry::Validation.Schema do
-      required(:motivation).filled(:str?)
-      required(:background).filled(:str?)
-    end
-  end
-
-  def dry_validation_step_3
-    Dry::Validation.Schema do
-      required(:git).filled
-      required(:operating_system).filled(:str?)
-      required(:programming_languages) { filled? & each { str? } }
-    end
-  end
-
-  def dry_validation_step_4
-    Dry::Validation.Schema do
-      required(:application_idea).filled(:str?)
-      required(:concept_explanation).filled(:str?)
+      MentorStep5Contract.new.call(params)
     end
   end
 
@@ -96,4 +51,68 @@ class MentorApplicationValidation
     end
   end
 
+  class MentorStep1Contract < Dry::Validation::Contract
+    config.messages.load_paths << 'config/locales/dry.en.yml'
+
+    def unique?(attr_name, value)
+      edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
+      MenteeApplication.where(attr_name => value)
+                       .where(edition_id: edition.id).empty?
+    end
+
+    params do
+      required(:first_name).filled(:str?)
+      required(:last_name).filled(:str?)
+      required(:email).filled(format?: EMAIL_REGEX)
+      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other')) }
+      required(:country).filled(:str?)
+      required(:program_country).filled(:str?)
+      required(:time_zone).filled(:str?)
+      required(:communicating_in_english).filled
+    end
+
+    rule(:email) do
+      key.failure(:invalid) unless unique?('email', value)
+    end
+  end
+
+  class MentorStep2Contract < Dry::Validation::Contract
+    params do
+      required(:motivation).filled(:str?)
+      required(:background).filled(:str?)
+    end
+  end
+
+  class MentorStep3Contract < Dry::Validation::Contract
+    params do
+      required(:git).filled
+      required(:operating_system).filled(:str?)
+      required(:programming_languages) { filled? & each { str? } }
+    end
+  end
+
+  class MentorStep4Contract < Dry::Validation::Contract
+    params do
+      required(:application_idea).filled(:str?)
+      required(:concept_explanation).filled(:str?)
+    end
+  end
+
+  class MentorStep5Contract < Dry::Validation::Contract
+    config.messages.load_paths << 'config/locales/dry.en.yml'
+
+    def checked?(value)
+      value
+    end
+
+    params do
+      required(:time_availability).filled
+      required(:gdpr_consent).filled
+      optional(:engagements).each(:filled?)
+    end
+
+    rule(:gdpr_consent) do
+      key.failure(:unchecked) unless checked?(value)
+    end
+  end
 end

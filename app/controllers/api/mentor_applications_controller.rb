@@ -41,11 +41,11 @@ class Api::MentorApplicationsController < ApiController
                   :application_idea, :concept_explanation,
                   :time_availability, :gdpr_consent,
                   programming_languages_info: programming_languages_info_keys,
-                  engagements: []).symbolize_keys
+                  engagements: []).to_h
   end
 
   def validation_params
-    mentor_application_params.merge params.require(:application).permit(programming_languages: []).symbolize_keys
+    mentor_application_params.merge params.require(:application).permit(programming_languages: []).to_h
   end
 
   def programming_languages_info_keys
