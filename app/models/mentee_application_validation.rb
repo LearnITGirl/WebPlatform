@@ -12,7 +12,7 @@ class MenteeApplicationValidation
   end
 
   def errors
-    validate.messages(full: true)
+    validate.errors(full: true).to_h
   end
 
   def attrs
@@ -24,67 +24,76 @@ class MenteeApplicationValidation
   def validate
     case step
     when 1
-      dry_validation_step_1.(params)
+      MenteeStep1Contract.new.call(params)
     when 2
-      dry_validation_step_2.(params)
+      MenteeStep2Contract.new.call(params)
     when 3
-      dry_validation_step_3.(params)
+      MenteeStep3Contract.new.call(params)
     end
   end
 
-  def dry_validation_step_1
-    Dry::Validation.Schema do
-      configure do
-        config.messages_file = 'config/locales/dry.en.yml'
+  class MenteeStep1Contract < Dry::Validation::Contract
+    config.messages.load_paths << 'config/locales/dry.en.yml'
 
-        def unique?(attr_name, value)
-          edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
-          MenteeApplication.where(attr_name => value)
-            .where(edition_id: edition.id).empty?
-        end
+    def unique?(attr_name, value)
+      edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
+      MenteeApplication.where(attr_name => value)
+                       .where(edition_id: edition.id).empty?
+    end
 
-        def checked?(attr_name, value)
-          value
-        end
-      end
+    def checked?(attr_name, value)
+      value
+    end
 
+    params do
       required(:first_name).filled(:str?)
       required(:last_name).filled(:str?)
-      required(:email).filled(format?: EMAIL_REGEX, unique?: :email)
-      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other'))}
+      required(:email).filled(format?: EMAIL_REGEX)
+      required(:gender) { filled? & (eql?('male') | eql?('female') | eql?('other')) }
       required(:country).filled(:str?)
       required(:program_country).filled(:str?)
       required(:time_zone).filled(:str?)
       required(:communicating_in_english).filled
-      required(:send_to_mentor_confirmed).filled(checked?: :send_to_mentor_confirmed)
+      required(:send_to_mentor_confirmed).filled
+    end
+
+    rule(:email) do
+      key.failure(:invalid) unless unique?('email', value)
+    end
+
+    rule(:send_to_mentor_confirmed) do
+      key.failure(:unchecked) unless checked?('send_to_mentor_confirmed', value)
     end
   end
 
-  def dry_validation_step_2
-    Dry::Validation.Schema do
+  class MenteeStep2Contract < Dry::Validation::Contract
+    params do
       required(:motivation).filled(:str?)
       required(:background).filled(:str?)
       required(:team_work_experience).filled(:str?)
     end
   end
 
-  def dry_validation_step_3
-    Dry::Validation.Schema do
-      configure do
-        config.messages_file = 'config/locales/dry.en.yml'
+  class MenteeStep3Contract < Dry::Validation::Contract
+    config.messages.load_paths << 'config/locales/dry.en.yml'
 
-        def checked?(attr_name, value)
-          value
-        end
-      end
+    def checked?(value)
+      value
+    end
+
+    params do
       required(:programming_language).filled(:str?)
       required(:previous_programming_experience).filled(:bool?)
       required(:operating_system).filled(:str?)
       required(:project_proposal).filled(:str?)
       required(:time_availability).filled
       required(:roadmap).filled
-      required(:gdpr_consent).filled(checked?: :gdpr_consent)
+      required(:gdpr_consent).filled
       optional(:engagements).each(:filled?)
+    end
+
+    rule(:gdpr_consent) do
+      key.failure(:unchecked) unless checked?(value)
     end
   end
 end

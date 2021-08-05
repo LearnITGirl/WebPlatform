@@ -40,11 +40,11 @@ class Api::MenteeApplicationsController < ApiController
                   :motivation, :background, :team_work_experience,
                   :previous_programming_experience, :experience, :gdpr_consent,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
-                  engagements: []).symbolize_keys
+                  engagements: []).to_h
   end
 
   def validation_params
-    mentee_application_params.merge params.require(:application).permit(:programming_language).symbolize_keys
+    mentee_application_params.merge params.require(:application).permit(:programming_language).to_h
   end
 
   def add_programming_language(mentee_application)
