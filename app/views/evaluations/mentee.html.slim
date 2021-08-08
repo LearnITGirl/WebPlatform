@@ -23,6 +23,11 @@
       .row.evaluations
         .col-xs-12
           .section.row
+            - question = questions["teamwork_leadership"]["new_learnings"]
+            = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["new_learnings"], f: f, field: "L[0]"}
+      .row.evaluations
+        .col-xs-12
+          .section.row
             - question = questions["teamwork_leadership"]["leadership"]
             = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["roadmap"], f: f, field: "L[1]"}
       - if questions["experience"].present?

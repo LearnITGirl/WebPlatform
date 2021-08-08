@@ -59,7 +59,7 @@ beginners:
    teamwork:
     question: "Tell us about a time where you collaborated with others in a team. What was the project or task that you worked on? What was your role in the team? How was your experience?"
     max_score: "2"
-    answers: 
+    answers:
     - answer: "They share their experience and explain their role"
       hint: "They give at least one complete example about teamwork and their role"
       score: "2"
@@ -165,6 +165,19 @@ experienced:
     hint: "They don't give a project proposal stating they are beginners"
     score: "0"
  teamwork_leadership:
+   new_learnings:
+    question: "Tell us about a recent time when you learnt something new. What did you learn? How did you go about it? (Does not have to be technical). What were your key takeaways from the experience?"
+    max_score: "2"
+    answers:
+    - answer: "They share their experience and explain their role"
+      hint: "They give at least one complete example about teamwork and their role"
+      score: "2"
+    - answer: "They share their experience, but don't tell their role"
+      hint: "They give one or several examples of their previous experience, but don't mention their role in it"
+      score: "1"
+    - answer: "Incomplete or short answer / No experience"
+      hint: "If they give an incomplete answer or finish it in one sentence or two, or they say they have no experience"
+      score: "0"
    teamwork:
     question: "Do you have experience working with a team or collaborating with others? Tell us about it. What was the project or task? What was your role? Tell us as many things you want."
     max_score: "2"
@@ -215,7 +228,7 @@ experienced:
  experience:
   question: "Do you have previous experience in any other programming language? Please name the language(s), your level of expertise (beginner, intermediate, professional) and tell us about the projects you have worked on."
   max_score: "2"
-  answers: 
+  answers:
   - answer: "They have completed a project"
     hint: "If they have completed a project on their own or as part of GSOC, google code in, or in a group and did a meaningful part of it"
     score: "2"

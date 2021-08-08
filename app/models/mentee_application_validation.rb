@@ -71,6 +71,7 @@ class MenteeApplicationValidation
       required(:motivation).filled(:str?)
       required(:background).filled(:str?)
       required(:team_work_experience).filled(:str?)
+      required(:new_learnings).filled(:str?)
     end
   end
 
