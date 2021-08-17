@@ -29,6 +29,7 @@ class Api::MenteeApplicationsController < ApiController
     params[:application][:send_to_mentor_confirmed] = eval(params[:application][:send_to_mentor_confirmed].presence || "")
     params[:application][:previous_programming_experience] = eval params[:application][:previous_programming_experience]
     params[:application][:gdpr_consent] = eval(params[:application][:gdpr_consent].presence || "")
+    params[:application][:previous_participation] = eval(params[:application][:previous_participation].presence || "")
     params[:step] = params[:step].to_i
     params[:steps] = params[:steps].to_i
   end
@@ -40,7 +41,9 @@ class Api::MenteeApplicationsController < ApiController
                   :motivation, :background, :team_work_experience, :new_learnings,
                   :previous_programming_experience, :experience, :gdpr_consent,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
-                  other_programming_languages: [], engagements: []).to_h
+                  :previous_participation, :perceived_other,
+                  other_programming_languages: [], engagements: [], previous_participation_types: [],
+                  perceived_methods: []).to_h
   end
 
   def validation_params

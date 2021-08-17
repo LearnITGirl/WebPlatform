@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_225349) do
+ActiveRecord::Schema.define(version: 2021_08_17_184903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,10 @@ ActiveRecord::Schema.define(version: 2021_08_12_225349) do
     t.boolean "gdpr_consent", default: false
     t.string "new_learnings"
     t.string "other_programming_languages", default: [], array: true
+    t.boolean "previous_participation", default: false
+    t.string "previous_participation_types", default: [], array: true
+    t.string "perceived_methods", default: [], array: true
+    t.string "perceived_other"
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|
