@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_07_101336) do
+ActiveRecord::Schema.define(version: 2021_08_12_225349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_08_07_101336) do
     t.text "rematch_reason"
     t.boolean "gdpr_consent", default: false
     t.string "new_learnings"
+    t.string "other_programming_languages", default: [], array: true
   end
 
   create_table "mentee_midterm_evaluations", force: :cascade do |t|

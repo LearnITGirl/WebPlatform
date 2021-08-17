@@ -21,7 +21,8 @@
   render: ->
     React.DOM.div
       className: 'fields'
-      React.createElement(ApplicationRadioGroup, key: 'programmingLanguage', field: 'programming_language', options: @props.programming_languages, placeholder: "Which programming language or framework would you like to learn during the mentorship program?", application: @props.application, setApplicationField: @props.setApplicationField)
+      React.createElement(ApplicationRadioGroup, key: 'programmingLanguage', field: 'programming_language', groupId: 'other', options: @props.programming_languages, placeholder: "Which programming language or framework would you like to learn during the mentorship program?", application: @props.application, setApplicationField: @props.setApplicationField)
+      React.createElement(ApplicationCheckboxGroup, key: 'otherProgrammingLanguages', field: 'other_programming_languages', groupId: 'opl', options: @props.programming_languages, placeholder: "To increase your chances of being matched to a suitable mentor, please consider specifying additional choices. (upto 4 choices)", application: @props.application, setApplicationField: @props.setApplicationField)
       React.createElement(ApplicationRadioGroup, key: 'previousProgrammingExperience', field: 'previous_programming_experience', options: @yesNoOptions(), placeholder: "Do you have previous experience in any other programming language?", application: @props.application, setApplicationField: @props.setApplicationField)
       if @props.application.previous_programming_experience == 'true'
         React.createElement(ApplicationTextArea, key: 'experience', field: 'experience', label: "Please name the language(s), your level of expertise (beginner, intermediate, professional) and tell us about the projects you have worked on.", application: @props.application, setApplicationField: @props.setApplicationField)

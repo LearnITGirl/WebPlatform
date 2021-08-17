@@ -40,7 +40,7 @@ class Api::MenteeApplicationsController < ApiController
                   :motivation, :background, :team_work_experience, :new_learnings,
                   :previous_programming_experience, :experience, :gdpr_consent,
                   :operating_system, :project_proposal, :roadmap, :time_availability,
-                  engagements: []).to_h
+                  other_programming_languages: [], engagements: []).to_h
   end
 
   def validation_params

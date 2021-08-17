@@ -36,17 +36,20 @@
         React.DOM.div
           className: ""+@scrollableList()
           for option in @props.options
+            final_id = option.value
+            if (@props.groupId)
+              final_id = @props.groupId + '_' + option.value
             React.DOM.div
               className: "checkbox"
               key: option.value
               React.DOM.input
-                id: option.value
+                id: final_id
                 type: 'checkbox'
                 name: @props.field
                 defaultValue: option.value || []
                 defaultChecked: @checkedValue(option.value)
                 onChange: @changeValue
               React.DOM.label
-                htmlFor: option.value
+                htmlFor: final_id
                 option.name
               @renderInfo(option)
