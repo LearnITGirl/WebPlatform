@@ -12,7 +12,6 @@
       ''
 
   render: ->
-    console.log(@props.value)
     React.DOM.div
       className: 'form-group'
       React.DOM.label null

@@ -49,6 +49,7 @@
                 defaultValue: option.value || []
                 defaultChecked: @checkedValue(option.value)
                 onChange: @changeValue
+                className: "styled"
               React.DOM.label
                 htmlFor: final_id
                 option.name
