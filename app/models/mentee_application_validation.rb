@@ -85,7 +85,6 @@ class MenteeApplicationValidation
     params do
       required(:programming_language).filled(:str?)
       required(:previous_programming_experience).filled(:bool?)
-      required(:operating_system).filled(:str?)
       required(:project_proposal).filled(:str?)
       required(:time_availability).filled
       required(:roadmap).filled

@@ -40,8 +40,7 @@ class Api::MenteeApplicationsController < ApiController
                   :time_zone, :communicating_in_english, :send_to_mentor_confirmed,
                   :motivation, :background, :team_work_experience, :new_learnings,
                   :previous_programming_experience, :experience, :gdpr_consent,
-                  :operating_system, :project_proposal, :roadmap, :time_availability,
-                  :previous_participation, :perceived_other,
+                  :project_proposal, :roadmap, :time_availability, :previous_participation, :perceived_other,
                   other_programming_languages: [], engagements: [], previous_participation_types: [],
                   perceived_methods: []).to_h
   end

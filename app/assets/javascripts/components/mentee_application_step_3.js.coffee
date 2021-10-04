@@ -42,7 +42,6 @@
       React.createElement(ApplicationRadioGroup, key: 'previousProgrammingExperience', field: 'previous_programming_experience', options: @yesNoOptions(), placeholder: "Do you have previous experience in any other programming language?", application: @props.application, setApplicationField: @props.setApplicationField)
       if @props.application.previous_programming_experience == 'true'
         React.createElement(ApplicationTextArea, key: 'experience', field: 'experience', label: "Please name the language(s), your level of expertise (beginner, intermediate, professional) and tell us about the projects you have worked on.", application: @props.application, setApplicationField: @props.setApplicationField)
-      React.createElement(ApplicationRadioGroup, key: 'operatingSystem', field: 'operating_system', options: @operating_systems(), placeholder: "What operation system are you using?", application: @props.application, setApplicationField: @props.setApplicationField)
       if @props.application.programming_language == 'ruby' && @props.application.operating_system == 'windows'
         @systemWarning()
       React.createElement(ApplicationTextArea, key: 'projectProposal', field: 'project_proposal', label: "What project would you like to develop during the learning period? Please come up with your own idea", application: @props.application, setApplicationField: @props.setApplicationField)
