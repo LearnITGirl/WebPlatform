@@ -91,7 +91,7 @@ class MenteeApplicationValidation
       required(:roadmap).filled
       required(:gdpr_consent).filled
       optional(:engagements).each(:filled?)
-      optional(:other_programming_languages).each(:filled?)
+      optional(:other_programming_languages).value(:array, size?: 1..4).each(:filled?)
       required(:previous_participation).filled(:bool?)
       optional(:perceived_methods).each(:filled?)
     end
