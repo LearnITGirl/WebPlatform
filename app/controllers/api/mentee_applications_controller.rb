@@ -15,7 +15,7 @@ class Api::MenteeApplicationsController < ApiController
       mentee_application = MenteeApplication.create(mentee_application_params)
       add_programming_language(mentee_application)
       send_confirmation_email(mentee_application)
-      flash[:notice] = 'Thank you for your application!'
+      flash[:notice] = 'Thank you for your application. Please watch out for an email from us on the selection!'
     end
 
     render json: {errors: (errors || nil)}, status: status

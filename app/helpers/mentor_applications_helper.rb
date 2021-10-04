@@ -15,7 +15,7 @@ module MentorApplicationsHelper
     hs_student: "I am a high school student", bc_student: "I am a bachelor student",
     master_student: "I am a master student", phd_student: "I am a PhD student",
     one_project: "I am working on at least one project", part_time: "I am working part-time",
-    full_time: "I am working full time", volunteer: "I am a volunteer"
+    full_time: "I am working full-time", volunteer: "I am a volunteer"
   }
   end
 

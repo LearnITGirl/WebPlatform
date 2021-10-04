@@ -134,7 +134,7 @@ ProgrammingLanguage.find_or_create_by(name: "Python", slug: "python")
 ProgrammingLanguage.find_or_create_by(name: "C#", slug: "c_sharp")
 ProgrammingLanguage.find_or_create_by(name: ".NET", slug: "dot_net")
 ProgrammingLanguage.find_or_create_by(name: "HTML, CSS", slug: "html_css")
-ProgrammingLanguage.find_or_create_by(name: "Javascript", slug: "javascript")
+ProgrammingLanguage.find_or_create_by(name: "JavaScript", slug: "javascript")
 ProgrammingLanguage.find_or_create_by(name: "Ruby", slug: "ruby")
 ProgrammingLanguage.find_or_create_by(name: "PHP", slug: "php")
 
