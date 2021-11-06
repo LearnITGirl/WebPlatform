@@ -30,7 +30,7 @@
             type: 'checkbox'
             name: @props.field
             defaultValue: true
-            defaultChecked: @props.checked
+            defaultChecked: @props.application[@props.field]
             onChange: @changeValue
           React.DOM.label
             htmlFor: @props.value
