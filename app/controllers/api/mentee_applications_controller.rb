@@ -39,14 +39,23 @@ class Api::MenteeApplicationsController < ApiController
           .permit(:first_name, :last_name, :email, :gender, :country, :program_country,
                   :time_zone, :communicating_in_english, :send_to_mentor_confirmed,
                   :motivation, :background, :team_work_experience, :new_learnings,
-                  :previous_programming_experience, :experience, :gdpr_consent,
+                  :previous_programming_experience, :gdpr_consent,
                   :project_proposal, :roadmap, :time_availability, :previous_participation, :perceived_other,
                   other_programming_languages: [], engagements: [], previous_participation_types: [],
-                  perceived_methods: []).to_h
+                  perceived_methods: [], programming_experience_level: prog_experience_level_keys,
+                  programming_experience_detail: prog_experience_detail_keys).to_h
   end
 
   def validation_params
     mentee_application_params.merge params.require(:application).permit(:programming_language).to_h
+  end
+
+  def prog_experience_level_keys
+    params[:application][:programming_experience_level].try(:keys)
+  end
+
+  def prog_experience_detail_keys
+    params[:application][:programming_experience_detail].try(:keys)
   end
 
   def add_programming_language(mentee_application)

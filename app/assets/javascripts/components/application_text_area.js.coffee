@@ -18,7 +18,7 @@
       @renderLabel()
       React.DOM.textarea
         className: "form-control"+@errorClass()
-        defaultValue: @props.application[@props.field]
+        defaultValue: @props.value || @props.application[@props.field]
         onChange: @changeValue
         placeholder: @props.placeholder
         rows: 5
