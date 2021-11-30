@@ -18,6 +18,7 @@ FactoryBot.define do
     communicating_in_english true
     operating_system "mac_os"
     team_work_experience "Team Work Experience - Lorem ipsum dolor sit amet, malis zril accusam ex quo."
+    new_learnings "New learnings - Lorem ipsum dolor sit amet, malis zril accusam ex quo."
     previous_programming_experience true
     programming_language_id 9
     edition_id 1

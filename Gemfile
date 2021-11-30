@@ -33,7 +33,8 @@ gem 'bower-rails', '~> 0.10.0'
 
 gem 'carmen-rails'
 
-gem 'font-awesome-sass', '~> 5.12.0'
+gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.15.1'
 
 gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
 

@@ -14,9 +14,10 @@
   render: ->
     React.DOM.div
       className: 'form-group'
-      React.DOM.label
-        className: 'bottom-space'
-        @props.label
+      if (@props.label)
+        React.DOM.label
+          className: 'bottom-space'
+          @props.label
       React.DOM.select
         className: 'form-control'+@errorClass()
         defaultValue: @props.value || ''

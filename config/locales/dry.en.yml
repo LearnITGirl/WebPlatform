@@ -1,5 +1,10 @@
 en:
-  errors:
-    unique?: 'was already used in different application'
-    checked?: 'must be checked'
-
+  dry_validation:
+    errors:
+      rules:
+        email:
+          invalid: 'was already used in different application'
+        send_to_mentor_confirmed:
+          unchecked: 'must be checked'
+        gdpr_consent:
+          unchecked: 'must be checked'

@@ -12,7 +12,6 @@
       ''
 
   render: ->
-    console.log(@props.value)
     React.DOM.div
       className: 'form-group'
       React.DOM.label null
@@ -31,7 +30,7 @@
             type: 'checkbox'
             name: @props.field
             defaultValue: true
-            defaultChecked: @props.checked
+            defaultChecked: @props.application[@props.field]
             onChange: @changeValue
           React.DOM.label
             htmlFor: @props.value

@@ -13,8 +13,10 @@ RSpec.describe Api::MenteeApplicationsController, type: :controller do
     end
     let(:params_step2) do
       params_step1.merge({
-        motivation: "Motivation", background: "Background",
-        team_work_experience: "Team Work Experience", })
+        motivation: "Motivation",
+        background: "Background",
+        team_work_experience: "Team Work Experience",
+        new_learnings: "New Learnings", })
     end
     let(:params_step3) do
       params_step2.merge({
