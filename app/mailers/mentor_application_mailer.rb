@@ -1,5 +1,5 @@
 class MentorApplicationMailer < ApplicationMailer
-  add_template_helper(MentorApplicationsHelper)
+  helper(MentorApplicationsHelper)
 
   def confirm_application(application)
     @application = application
