@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2021_11_27_172830) do
     t.text "resignation_reason"
     t.text "rematch_reason"
     t.boolean "gdpr_consent", default: false
-    t.boolean "like_mentoring_beginner", default: false
+    t.boolean "like_mentoring_beginner", default: false, comment: "Whether to like mentoring a beginner in tech"
     t.string "roadmap"
     t.string "perceived_methods", default: [], array: true
     t.string "perceived_other"
