@@ -87,7 +87,6 @@ class MentorApplicationValidation
   class MentorStep3Contract < Dry::Validation::Contract
     params do
       required(:git).filled
-      required(:operating_system).filled(:str?)
       required(:programming_languages) { filled? & each { str? } }
     end
   end
