@@ -41,7 +41,7 @@ motivation:
       score: 0
 abilities:
   experienced:
-    question: "Have you ever mentored someone or taught classes??"
+    question: "Have you ever mentored someone or taught classes?"
     max_score: 2
     answers:
       - answer: 'Yes'
@@ -67,7 +67,7 @@ abilities:
       - answer: "Done teaching in places locally"
         hint: "Like in a small group or community that is not widely known"
         score: 2
-      - answer: Helped their friends / colleagues out"
+      - answer: "Helped their friends / colleagues out"
         hint: "(e.g. as part of their job, for paid individual tutoring)"
         score: 2
       - answer: "General answer"
@@ -109,45 +109,18 @@ abilities:
       - answer: "Something totally impractical or highly complex projects like building a search engine"
         hint: ""
         score: 0
-  concept_explanation:
-    question: "Looking back at the time you were still a beginner. What concept do you remember was challenging for you to understand? What explanation helped you to finally grasp the concept? Did you find it in a book or tutorial or did someone explain it to you? (No need to explain technical details. We rather want to get to know you as a learner. )"
-    max_score: 5
+  roadmap:
+    question: "Imagine you have been accepted to the program. Please describe how a typical week as a mentee at Learn IT, Girl! would look like for you."
+    max_score: 2
     answers:
-      - answer: "Understand the concept explained provided you don't know about it before hand"
-        hint: "Imagine you don't know any programming at all. Would you understand this without troubles?"
-        score:  5
-      - answer: "Explain using simple language without using many technical words"
-        hint: ""
-        score: 5
-      - answer: "Helps you understand a concept by explaining it in an unusual way"
-        hint: "For instance by using real-life examples (cars, movies, forks, something that everyone can understand from the real world)."
-        score: 5
-      - answer: "Copy-pasting a piece of code and explaining it how it works. "
+      - answer: "A specific detailed answer including a weekly sync ups with their mentees, working on finding resources, answering mentee questions and reviewing code."
         hint: ""
         score: 2
-      - answer: "Explain how they would explain, instead of actually explaining "
-        hint: "We don’t know how easily someone understands, because this skips some actual explanations"
-        score: 4
-      - answer: "Simple concepts present in any every language and a very general way of explaining it"
-        hint: "Simple concepts like control statements, conditional statements, arithmetic operations, etc present in any every language"
-        score: 3
-      - answer: "The answers are too technical"
+      - answer: "A general short answer on how they spend the week and divide time between the program and work/school"
         hint: ""
         score: 1
-      - answer: "Long and hard to understand answer"
-        hint: "The explanation is too long (as in text, not code or figures) and hard to understand."
-        score: 0
-      - answer: "Copy-pasted definition"
-        hint: "Copy Pasting the definition from wikipedia or similar to some standard answer."
-        score: 0
-      - answer: "List of concepts and no explanation"
-        hint: "Gave a list of concepts and tell they will explain all this but don't explain them"
-        score: 0
-      - answer: "General answers"
-        hint: "Like “programming” is a hard concept like itself. Anyone can learn it, “way of thinking” is difficult etc. ."
-        score: 
-      - answer: "Didn't answer the question"
-        hint: "Have not understood the questions, or if the answers are not fit"
+      - answer: "No response/no details"
+        hint: ""
         score: 0
 knowledge:
   background:
