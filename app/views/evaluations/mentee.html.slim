@@ -36,6 +36,14 @@
             .section.row
               - question = questions["experience"]
               = render partial: 'question_answer_evaluation', locals: {question: question, answer: application["experience"], f: f, field: "E[0]"}
+              .col-xs-12.answer
+                - application.programming_experience_level.each do |language|
+                  .language.row
+                    .col-xs-12
+                      | - #{programming_languages[language[0]]} (#{language[1]})
+                    .col-xs-12
+                      - if application.programming_experience_detail.present?
+                        | #{application.programming_experience_detail[language[0]] }
       .row.evaluations
         .col-xs-12
           .section.row
