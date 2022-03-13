@@ -80,6 +80,7 @@ class MentorApplicationValidation
     params do
       required(:motivation).filled(:str?)
       required(:background).filled(:str?)
+      required(:previous_mentor_experience).filled
       required(:like_mentoring_beginner).filled
     end
   end
