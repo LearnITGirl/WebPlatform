@@ -25,7 +25,9 @@ class EvaluationsController < ApplicationController
       questions = questions['beginners']
     end
 
-    locals = { application: application, questions: questions }
+    programming_languages = ProgrammingLanguage.all.map{|pl| [pl.slug, pl.name]}.to_h
+
+    locals = { application: application, questions: questions, programming_languages: programming_languages }
 
     render locals: locals
   end
