@@ -20,7 +20,7 @@
           @props.label
       React.DOM.select
         className: 'form-control'+@errorClass()
-        defaultValue: @props.value || ''
+        defaultValue: @props.application[@props.field] || ''
         onChange: @changeValue
         React.DOM.option
           defaultValue: ''
