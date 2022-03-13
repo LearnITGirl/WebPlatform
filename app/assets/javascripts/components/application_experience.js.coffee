@@ -19,5 +19,5 @@
       if @props.application.previous_mentor_experience == 'true'
         React.createElement(ApplicationTextArea, key: 'mentoringExperience', field: 'mentor_experience', label: "What did you teach/coach/mentor and to whom? What was your own biggest learning or take away from the experience?", application: @props.application, setApplicationField: @props.setApplicationField)
       if @props.application_type == 'mentor'
-        React.createElement(ApplicationRadioGroup,groupId:'like_mentor', key: 'likeMentoringBeginner', field: 'like_mentoring_beginner', options: @yesNoOptions(), placeholder: "Do you feel comfortable mentoring a person that is just starting out in tech? This could be beginner students or people wanting to change their careers from other fields to tech.", application: @props.application, setApplicationField: @props.setApplicationField)
+        React.createElement(ApplicationRadioGroup, groupId:'like_mentor', key: 'likeMentoringBeginner', field: 'like_mentoring_beginner', options: @yesNoOptions(), placeholder: "Do you feel comfortable mentoring a person that is just starting out in tech? This could be beginner students or people wanting to change their careers from other fields to tech.", application: @props.application, setApplicationField: @props.setApplicationField)
 
