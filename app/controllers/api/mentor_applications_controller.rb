@@ -36,7 +36,7 @@ class Api::MentorApplicationsController < ApiController
     params.require(:application)
           .permit(:first_name, :last_name, :email, :gender, :country, :program_country,
                   :time_zone, :communicating_in_english,
-                  :motivation, :background, :mentor_experience, :like_mentoring_beginner,
+                  :motivation, :background, :previous_mentor_experience, :mentor_experience, :like_mentoring_beginner,
                   :git, :application_idea, :roadmap, :perceived_other,
                   :time_availability, :gdpr_consent,
                   programming_languages_info: programming_languages_info_keys,
