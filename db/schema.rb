@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_121719) do
+ActiveRecord::Schema.define(version: 2022_03_13_114509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,10 @@ ActiveRecord::Schema.define(version: 2021_11_07_121719) do
     t.text "resignation_reason"
     t.text "rematch_reason"
     t.boolean "gdpr_consent", default: false
+    t.boolean "like_mentoring_beginner", comment: "Whether to like mentoring a beginner in tech"
+    t.string "roadmap"
+    t.string "perceived_methods", default: [], array: true
+    t.string "perceived_other"
   end
 
   create_table "mentor_applications_programming_languages", id: false, force: :cascade do |t|

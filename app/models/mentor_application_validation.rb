@@ -80,13 +80,14 @@ class MentorApplicationValidation
     params do
       required(:motivation).filled(:str?)
       required(:background).filled(:str?)
+      required(:previous_mentor_experience).filled
+      required(:like_mentoring_beginner).filled
     end
   end
 
   class MentorStep3Contract < Dry::Validation::Contract
     params do
       required(:git).filled
-      required(:operating_system).filled(:str?)
       required(:programming_languages) { filled? & each { str? } }
     end
   end
@@ -94,7 +95,6 @@ class MentorApplicationValidation
   class MentorStep4Contract < Dry::Validation::Contract
     params do
       required(:application_idea).filled(:str?)
-      required(:concept_explanation).filled(:str?)
     end
   end
 
@@ -109,6 +109,7 @@ class MentorApplicationValidation
       required(:time_availability).filled
       required(:gdpr_consent).filled
       optional(:engagements).each(:filled?)
+      optional(:perceived_methods).each(:filled?)
     end
 
     rule(:gdpr_consent) do
