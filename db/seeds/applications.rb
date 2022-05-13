@@ -24,9 +24,18 @@ MentorApplication.create(first_name: "Alice", last_name: "Doe", email: "mentor@l
                          git: true,
                          application_idea: "Application Idea - Lorem ipsum dolor sit amet, malis zril accusam ex quo, efficiendi definitiones interpretaris vis te.",
                          concept_explanation: " Concept Explanation - Lorem ipsum dolor sit amet, malis zril accusam ex quo, efficiendi definitiones interpretaris vis te.",
-                         time_availability: 3, engagements: ["master_student", "part_time", "volunteer", "one_project"],
-                         state: 1, communicating_in_english: true,
-                         operating_system: "mac_os", edition_id: edition.id,
+                         time_availability: 3,
+                         engagements: ["master_student", "part_time", "volunteer", "one_project"],
+                         state: 1,
+                         communicating_in_english: true,
+                         roadmap: "will ask the mentee, depending on mentee interest",
+                         edition_id: edition.id,
                          programming_language_ids: [programming_language_1.id, programming_language_2.id],
-                         like_mentoring_beginner: true, gdpr_consent: true
+                         programming_languages_info:[Hash[programming_language_1.id, 'i know it very well'], Hash[programming_language_2.id, 'Just learned'] ],
+                         programming_experience:"",
+                         old_programming_languages:"",
+                         like_mentoring_beginner: true,
+                         gdpr_consent: true,
+                         perceived_methods:["facebook", "linkedin"],
+                         perceived_other:""
 )
