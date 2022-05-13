@@ -36,7 +36,7 @@ gem 'carmen-rails'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass', '~> 5.15.1'
 
-gem 'gibbon', git: 'git://github.com/amro/gibbon.git'
+gem 'gibbon', git: 'https://github.com/amro/gibbon.git'
 
 gem 'rollbar'
 gem 'data-confirm-modal'
