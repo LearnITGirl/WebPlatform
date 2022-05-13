@@ -7,7 +7,7 @@ beginners:
     hint: "If they say they enjoy coding and have been spending time learning how to code using different sources"
     score: "5"
   - answer: "Wish to change the current profession with programming"
-    hint: "If they want to change thei current profession with programming, but have already tried exploring the IT field"
+    hint: "If they want to change the current profession with programming, but have already tried exploring the IT field"
     score: "5"
   - answer: "Wish to apply their knowledge and network"
     hint: "If they want to apply their knowledge or extend their understanding by working on a practical project and interact with peoople who share their interests"
@@ -56,6 +56,19 @@ beginners:
     hint: "They don't give a project proposal stating they are beginners"
     score: "0"
  teamwork_leadership:
+   new_learnings:
+    question: "Tell us about a recent time when you learnt something new. What did you learn? How did you go about it? (Does not have to be technical). What were your key takeaways from the experience?"
+    max_score: "2"
+    answers:
+    - answer: "They share their experience and explain their role"
+      hint: "They give at least one complete example about teamwork and their role"
+      score: "2"
+    - answer: "They share their experience, but don't tell their role"
+      hint: "They give one or several examples of their previous experience, but don't mention their role in it"
+      score: "1"
+    - answer: "Incomplete or short answer / No experience"
+      hint: "If they give an incomplete answer or finish it in one sentence or two, or they say they have no experience"
+      score: "0"
    teamwork:
     question: "Tell us about a time where you collaborated with others in a team. What was the project or task that you worked on? What was your role in the team? How was your experience?"
     max_score: "2"
@@ -110,7 +123,7 @@ experienced:
      hint: "If they say they enjoy coding and have been spending time learning how to code using different sources"
      score: "3"
    - answer: "Wish to change the current profession with programming"
-     hint: "If they want to change thei current profession with programming, but have already tried exploring the IT field"
+     hint: "If they want to change the current profession with programming, but have already tried exploring the IT field"
      score: "3"
    - answer: "Wish to apply their knowledge and network"
      hint: "If they want to apply their knowledge or extend their understanding by working on a practical project and interact with peoople who share their interests"
