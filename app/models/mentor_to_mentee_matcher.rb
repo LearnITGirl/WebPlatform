@@ -51,14 +51,46 @@ class MentorToMenteeMatcher
       languages = count_languages(mentors)
       languages.each do |language|
         if mentor.programming_languages.pluck(:slug).include?(language[:slug])
-          break unless send(mentees,language, mentor.country).each do |mentee|
-            if !with_time_zone || (timezone_difference(mentor.time_zone, mentee.time_zone) <= 2)
+          break unless send(mentees, mentor.country).each do |mentee|
+            if has_programming_language(mentee, language[:slug]) &&
+              (!with_time_zone || timezone_within_range(mentor, mentee)) &&
+                matches_experience(mentor, mentee, language[:slug])
               ApplicationMatch.create!(mentor_application_id: mentor.id, mentee_application_id: mentee.id)
               break
             end
           end
         end
       end
+    end
+  end
+
+  def has_programming_language(mentee, language_slug)
+    mentee.programming_language.slug == language_slug || mentee.other_programming_languages.include?(language_slug)
+  end
+
+  def timezone_within_range(mentor, mentee)
+    (timezone_difference(mentor.time_zone, mentee.time_zone) <= 2)
+  end
+
+  def matches_experience(mentor, mentee, language_slug)
+    mentee_prog_level = programming_level(mentee.programming_experience_level[language_slug])
+    mentor_prog_level = programming_level(mentor.programming_experience_level[language_slug])
+
+    mentor_accepts_beginners(mentor, mentee_prog_level) && mentee_prog_level <= mentor_prog_level
+  end
+
+  def mentor_accepts_beginners(mentor, mentee_prog_level)
+    (mentor.like_mentoring_beginner || (!mentor.like_mentoring_beginner && mentee_prog_level != 1))
+  end
+
+  def programming_level(programming_level)
+    case programming_level
+    when "professional"
+      3
+    when "intermediate"
+      2
+    else
+      1
     end
   end
 
@@ -83,23 +115,21 @@ class MentorToMenteeMatcher
     all_mentors.waiting_for_rematch
   end
 
-  def all_mentees(language, country)
+  def all_mentees(country)
     MenteeApplication.evaluated.where("evaluations.score >= ?", 10)
-      .joins(:programming_language)
-      .where(programming_languages: {slug: language[:slug].downcase})
       .order("evaluations.score DESC")
       .where.not(id: ApplicationMatch.pluck(:mentee_application_id))
       .where.not(state: MenteeApplication.states[:user_resigned])
   end
 
-  def all_ordered_mentees(language, country)
-    mentees = all_mentees(language, country)
+  def all_ordered_mentees(country)
+    mentees = all_mentees(country)
     mentees.where.not(country: country) + mentees.where(country: country)
   end
 
-  def mentees_waiting_for_rematch(language, country)
-    mentees = all_mentees(language, country).waiting_for_rematch
-    mentees.where.not(country: country) + mentees.where(country: country) 
+  def mentees_waiting_for_rematch(country)
+    mentees = all_mentees(country).waiting_for_rematch
+    mentees.where.not(country: country) + mentees.where(country: country)
   end
 
   def timezone_difference(timezone1, timezone2)
