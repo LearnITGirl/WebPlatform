@@ -40,6 +40,7 @@ class Api::MentorApplicationsController < ApiController
                   :git, :application_idea, :roadmap, :perceived_other,
                   :time_availability, :gdpr_consent,
                   programming_languages_info: programming_languages_info_keys,
+                  programming_experience_level: programming_languages_info_keys,
                   engagements: [], perceived_methods: []).to_h
   end
 
