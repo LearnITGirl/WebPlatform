@@ -55,7 +55,7 @@
 
   .col-md-6
     - if edition_started?
-      = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks, unfinished_tasks: @unfinished_tasks}
+      iframe src="https://trello.com/b/Y8e6Qn2J.html" width="100%" height="600"
   .col-md-3.right-left-text
     h3.green-text
       | Your Badges:
