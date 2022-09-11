@@ -32,6 +32,14 @@ class EvaluationsController < ApplicationController
     render locals: locals
   end
 
+  def updated_experience_levels(old_experience_level, params)
+    new_levels = {}
+    old_experience_level.each do |language_slug, _|
+      new_levels[language_slug] = params[:experience_level][language_slug]
+    end
+    new_levels
+  end
+
   def create_evaluation
     begin
       if params[:mentor_application_id].present?
@@ -39,6 +47,7 @@ class EvaluationsController < ApplicationController
         MentorApplicationEvaluation.new(evaluation: params['evaluation'],
                                         user: current_user,
                                         application: application).evaluate
+        application.update(programming_experience_level: updated_experience_levels(application.programming_experience_level, params))
       elsif params[:mentee_application_id].present?
         application = MenteeApplication.find(params[:mentee_application_id])
         MenteeApplicationEvaluation.new(evaluation: params['evaluation'],
