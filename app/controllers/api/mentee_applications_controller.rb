@@ -43,7 +43,7 @@ class Api::MenteeApplicationsController < ApiController
                   :project_proposal, :roadmap, :time_availability, :previous_participation, :perceived_other,
                   other_programming_languages: [], engagements: [], previous_participation_types: [],
                   perceived_methods: [], programming_experience_level: prog_experience_level_keys,
-                  programming_experience_detail: prog_experience_detail_keys).to_h
+                  programming_experience_detail: prog_experience_detail_keys, programming_experience: []).to_h
   end
 
   def validation_params
