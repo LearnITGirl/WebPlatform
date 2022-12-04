@@ -76,6 +76,7 @@ class MentorToMenteeMatcher
     mentee_prog_level = programming_level(mentee.programming_experience_level[language_slug])
     mentor_prog_level = programming_level(mentor.programming_experience_level[language_slug])
 
+    # check if mentor prefers mentee's programming level and mentor has more or equal experience level than mentee.
     mentor_accepts_beginners(mentor, mentee_prog_level) && mentee_prog_level <= mentor_prog_level
   end
 
