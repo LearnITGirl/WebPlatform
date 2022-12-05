@@ -89,11 +89,16 @@ class MentorApplicationValidation
     params do
       required(:git).filled
       required(:programming_languages) { filled? & each { str? } }
-      required(:programming_experience_level) { filled? }
+      optional(:programming_experience_level)
     end
 
-    rule(:programming_languages).each do
-      base.failure('Programming level of expertise must have a value') if values.data[:programming_experience_level][value].nil?
+    rule(:programming_languages) do
+      values.data[:programming_languages].each do |language_code|
+        if values.data[:programming_experience_level].nil? || values.data[:programming_experience_level][language_code].nil?
+          key.failure('level of expertise must have a value')
+          break
+        end
+      end
     end
   end
 
