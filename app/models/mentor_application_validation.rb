@@ -56,7 +56,7 @@ class MentorApplicationValidation
 
     def unique?(attr_name, value)
       edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
-      MenteeApplication.where(attr_name => value)
+      MentorApplication.where(attr_name => value)
                        .where(edition_id: edition.id).empty?
     end
 
