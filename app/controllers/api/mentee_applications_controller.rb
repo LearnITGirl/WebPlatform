@@ -51,7 +51,7 @@ class Api::MenteeApplicationsController < ApiController
   end
 
   def prog_experience_values
-    params[:application][:programming_experience]
+    params[:application][:programming_experience] || []
   end
 
   def add_programming_language(mentee_application)
