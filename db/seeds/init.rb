@@ -139,31 +139,6 @@ ProgrammingLanguage.find_or_create_by(name: "Ruby", slug: "ruby")
 ProgrammingLanguage.find_or_create_by(name: "PHP", slug: "php")
 
 # ##################################################
-# Edition with 5 Weeks
-# ##################################################
-
-edition = Edition.find_or_create_by(name: "test",
-	start_date: 1.months.ago,
-	end_date: (1.months.ago + 100.days),
-	registration_started_at: DateTime.now,
-	registration_closed_at: 1.year.from_now)
-
-Week.create(number: 1, start: 1.months.ago,
-	end: (1.months.ago + 7.days), edition_id: edition.id)
-
-Week.create(number: 2, start: (1.months.ago + 8.days),
-	end: (1.months.ago + 15.days), edition_id: edition.id)
-
-Week.create(number: 3, start: (1.months.ago + 16.days),
-	end: (1.months.ago + 23.days), edition_id: edition.id)
-
-Week.create(number: 4, start: (1.months.ago + 24.days),
-	end: (1.months.ago + 31.days), edition_id: edition.id)
-
-Week.create(number: 5, start: (1.months.ago + 32.days),
-	end: (1.months.ago + 39.days), edition_id: edition.id)
-
-# ##################################################
 # Badges
 # ##################################################
 
