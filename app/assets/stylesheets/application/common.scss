@@ -268,7 +268,7 @@ header .container-fluid nav.navbar li.dropdown {
 }
 
 #header-img {
-  max-height: 175px;
+  max-height: 110px;
 }
 
 .roadmaps-controller .all-entries {
@@ -278,4 +278,11 @@ header .container-fluid nav.navbar li.dropdown {
   .pink-text.week {
     font-weight: bold;
   }
+}
+
+.edition {
+  position: relative;
+  font-style: italic;
+  font-size: large;
+  margin: 5px;
 }
