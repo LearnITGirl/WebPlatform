@@ -55,6 +55,8 @@
                 .language.row
                   .col-xs-2
                     | - #{language.name}
+                  .col-xs-3
+                    = select_tag "experience_level[#{language.slug}]", options_for_select({ 'Beginner' => "beginner", 'Intermediate' => "intermediate", 'Professional' => "professional" }, selected: application.programming_experience_level[language.slug]), { prompt: "Override experience level", class: 'form-control', required: true }
                   .col-xs-2
                     = select_tag '', options_for_select((0..10).to_a.map{|x| [x, x]}), {prompt: "", class: 'form-control', required: true}
                   .col-xs-12

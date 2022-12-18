@@ -39,7 +39,8 @@ class Api::MentorApplicationsController < ApiController
                   :motivation, :background, :mentor_experience, :like_mentoring_beginner,
                   :git, :application_idea, :roadmap, :perceived_other,
                   :time_availability, :gdpr_consent,
-                  programming_languages_info: programming_languages_info_keys,
+                  programming_languages_info: programming_languages_values,
+                  programming_experience_level: programming_languages_values,
                   engagements: [], perceived_methods: []).to_h
   end
 
@@ -49,8 +50,8 @@ class Api::MentorApplicationsController < ApiController
       programming_languages: []).to_h
   end
 
-  def programming_languages_info_keys
-    params[:application][:programming_languages_info].try(:keys)
+  def programming_languages_values
+    params[:application][:programming_languages]
   end
 
   def add_programming_languages(mentor_application)

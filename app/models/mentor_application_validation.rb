@@ -56,7 +56,7 @@ class MentorApplicationValidation
 
     def unique?(attr_name, value)
       edition = Edition.where(name: ENV['ACTUAL_EDITION']).last
-      MenteeApplication.where(attr_name => value)
+      MentorApplication.where(attr_name => value)
                        .where(edition_id: edition.id).empty?
     end
 
@@ -89,6 +89,16 @@ class MentorApplicationValidation
     params do
       required(:git).filled
       required(:programming_languages) { filled? & each { str? } }
+      optional(:programming_experience_level)
+    end
+
+    rule(:programming_languages) do
+      values.data[:programming_languages].each do |language_code|
+        if values.data[:programming_experience_level].nil? || values.data[:programming_experience_level][language_code].nil?
+          key.failure('level of expertise must have a value')
+          break
+        end
+      end
     end
   end
 

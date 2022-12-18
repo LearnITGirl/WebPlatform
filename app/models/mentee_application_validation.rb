@@ -93,10 +93,23 @@ class MenteeApplicationValidation
       optional(:other_programming_languages).value(:array, size?: 1..4).each(:filled?)
       required(:previous_participation).filled(:bool?)
       optional(:perceived_methods).each(:filled?)
+      optional(:programming_experience) { array? }
+      optional(:programming_experience_level)
     end
 
     rule(:gdpr_consent) do
       key.failure(:unchecked) unless checked?(value)
+    end
+
+    rule(:programming_experience) do
+      unless values.data[:programming_experience].nil?
+        values.data[:programming_experience].each do |language_code|
+          if values.data[:previous_programming_experience] && (values.data[:programming_experience_level].nil? || values.data[:programming_experience_level][language_code].nil?)
+            key.failure('level of expertise must have a value')
+            break
+          end
+        end
+      end
     end
   end
 end
