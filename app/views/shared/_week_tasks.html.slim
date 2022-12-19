@@ -5,13 +5,15 @@ h1.text-center.green-text
     = "Week #{week.number}"
 p.text-center
   = "#{week.start.strftime('%B %d')} - #{week.end.strftime('%B %d')}"
-.row.top-space-40
-  .col-xs-12
-    = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
-- if current_user.mentor? && week.end.end_of_day > DateTime.current
-  .row
+
+/!
+  .row.top-space-40
     .col-xs-12
-      = render partial: "shared/task_form"
-.row.top-space-40
-  .col-xs-12
-    = render partial: "shared/finished_task_list", locals: {tasks: tasks}
+      = render partial: "shared/unfinished_task_list", locals: {tasks: unfinished_tasks}
+  - if current_user.mentor? && week.end.end_of_day > DateTime.current
+    .row
+      .col-xs-12
+        = render partial: "shared/task_form"
+  .row.top-space-40
+    .col-xs-12
+      = render partial: "shared/finished_task_list", locals: {tasks: tasks}
