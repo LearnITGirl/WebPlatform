@@ -54,6 +54,7 @@
       =< @partner.email
 
   .col-md-6
+  /!
     - if edition_started?
       = render partial: (@week.nil? ? "shared/all_project_tasks" : "shared/week_tasks"), locals: {week: @week, tasks: @tasks, unfinished_tasks: @unfinished_tasks}
   .col-md-3.right-left-text

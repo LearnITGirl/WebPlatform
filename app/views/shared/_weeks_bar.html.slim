@@ -8,9 +8,10 @@
           .fas.fa-caret-down
       span.label Week
 
-- if @week.nil?
-  p.text-center.grey-text
-    | Click on a week to see its tasks
-- else
-  p.text-center.pink-text
-    = link_to "See entire project", user_dashboard_path
+/!
+  - if @week.nil?
+    p.text-center.grey-text
+      | Click on a week to see its tasks
+  - else
+    p.text-center.pink-text
+      = link_to "See entire project", user_dashboard_path
