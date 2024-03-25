@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+ruby '2.6.10'
 
 gem 'rails', '6.1.3.1'
 gem 'dry-validation'
