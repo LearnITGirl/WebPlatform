@@ -1,16 +1,16 @@
 p
   = "Dear #{@application.first_name},"
 p
-  |Thank you for applying to "Learn IT, Girl" fourth edition! It is great to know you want
+  |Thank you for applying to "Learn IT, Girl" #{@application.edition_id} edition! It is great to know you want
   =< "to mentor a girl who wants to learn IT and build a great project."
   => "We hope you are as excited as we are!"
 p
   = "We will be reviewing applications in the following weeks and get back to you"
-  =< "at the beginning of March to let you know whether we have a mentee for you."
+  =< "near the start of the edition to let you know whether we have a mentee for you."
 p
   |Meanwhile, you can follow us on our
-  a href="https://www.facebook.com/learnitgirl" target="_blank"
-    =< "facebook group"
+  a href="https://www.linkedin.com/company/learn-it-girl/" target="_blank"
+    =< "LinkedIn group"
   =< "and "
   a href= "https://learnitgirl.wordpress.com/" target="_blank" our blog.
 p
