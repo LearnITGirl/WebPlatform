@@ -14,7 +14,11 @@
         =< "Stay tuned for more details by following us on"
         = link_to " twitter", "https://twitter.com/learnitgirl", target: "_blank"
         =< "or"
-        = link_to " facebook", "https://www.facebook.com/learnitgirl", target: "_blank"
+        = link_to " LinkedIn", "https://www.linkedin.com/company/learn-it-girl/", target: "_blank"
+
+      .alert.alert-info.text-center
+        = "Application deadlines for both mentors and mentees have been extended to June 26th! Don't miss this opportunity to join our program."
+
     .page-header
       .head-text.green-text.text-center What is Learn IT Girl?
     p
@@ -32,6 +36,18 @@
       =< "know which language to choose: we will help you! During 3 months, the"
       =< "mentee will work on their code on GitHub to be able to show their"
       =< 'amazing great in the end to the rest of the "Learn IT, Girl" community"'
+
+    .page-header
+      .head-text.green-text.text-center Programming Languages
+    p
+      | Mentors and mentees can join in the following programming languages:
+    .row
+      - ProgrammingLanguage.all.each do |pl|
+        .col-xs-6.col-sm-4.col-md-3.col-lg-2
+          .card
+            .card-body.text-center
+              .card-title
+                = pl.name
 
     .page-header
       .head-text.green-text.text-center  How can I get involved?

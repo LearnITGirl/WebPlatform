@@ -34,8 +34,50 @@
       padding: 0px;
     }
   }
-}
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+      padding: 10px;
+
+      .card-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+  }
+
+  .alert {
+    margin-top: 20px;
+  }
+
+  .page-header {
+    margin-top: 20px;
+
+    .head-text {
+      margin-bottom: 10px;
+
+      &.green-text {
+        color: #28a745;
+      }
+    }
+  }
+
+  p {
+    margin-top: 10px;
+  }
+}
 body.faq-action, body.timeline-action, body.git-action {
   p {
     text-align: center;
